@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.finance.PaymethodAttrDao">
+
+    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.finance.PaymethodAttr">
+        <id column="id" property="id" />
+        <result column="attr_name" property="attrName"/>
+        <result column="attr_code" property="attrCode"/>
+        <result column="method_id" property="methodId"/>
+        <result column="parent_attrid" property="parentAttrId"/>
+        <result column="attr_path" property="attrPath"/>
+        <result column="attr_status" property="attrStatus"/>
+        <result column="cost_rate" property="costRate"/>
+        <result column="min_costfee" property="minCostfee"/>
+        <result column="max_costfee" property="maxCostfee"/>
+        <result column="create_time" property="createTime"/>
+        <result column="creator" property="creator"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,attr_name,attr_code,method_id,parent_attrId,attr_path,attr_status,cost_rate,min_costfee,max_costfee,create_time,creator
+    </sql>
+
+
+    <select id="getById" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM fina_paymethod_attr
+        WHERE id = #{id}
+    </select>
+
+    <select id="search" resultMap="BaseResultMap" >
+        SELECT <include refid="Base_Column_List" />
+        FROM fina_paymethod_attr
+        <where>
+            1=1
+            <if test="parentAttrId != null">
+                AND IFNULL(parent_attrid,0)=#{parentAttrId}
+            </if>
+            <if test="methodId != null">
+                AND method_id=#{methodId}
+            </if>
+            <if test="attrStatus != null">
+                AND attr_status=#{attrStatus}
+            </if>
+        </where>
+    </select>
+
+</mapper>

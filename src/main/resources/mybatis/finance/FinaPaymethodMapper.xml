@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.finance.FinaPaymethodDao">
+	 
+	 <!--通用配置公用字段-->
+	 <sql id="Base_Column_List">
+        id,method_name,method_code,method_type,method_status,if_custome,cost_rate,min_costfee,max_costfee,create_time,creator,ablestage_template_code,remark
+    </sql>
+	 
+	 <!--通用配置实体映射-->
+	 <resultMap id="BaseResultMap" type="cn.mdni.business.entity.finance.FinaPaymethod">
+		  <id column="id" property="id"/>
+		  <result column="method_name" property="methodName"/>
+		  <result column="method_code" property="methodCode"/>
+		  <result column="method_type" property="methodType"/>
+		  <result column="method_status" property="methodStatus"/>
+		  <result column="if_custome" property="ifCustome"/>
+		  <result column="cost_rate" property="costRate"/>
+		  <result column="min_costfee" property="minCostfee"/>
+		  <result column="max_costfee" property="maxCostfee"/>
+		  <result column="create_time" property="createTime"/>
+		  <result column="creator" property="creator"/>
+		  <result column="ablestage_template_code" property="ablestageTemplateCode"/>
+		  <result column="remark" property="remark"/>
+	 </resultMap>
+	 
+	 <!--异步数使用的映射-->
+	 <resultMap id="TreeNodesMap" type="cn.mdni.business.entity.finance.TreeNode">
+	 </resultMap>
+	 
+	 <!--特殊配置实体映射-->
+	 <resultMap id="finaPaymethodTreeMap" type="cn.mdni.business.entity.finance.FinaPaymethodTree">
+	 </resultMap>
+	 
+	 <!--特殊配置和门店关系实体映射-->
+	 <resultMap id="FinaPaymethodStoreMap" type="cn.mdni.business.entity.finance.FinaPaymethodStore">
+	 </resultMap>
+	 
+	 <!--获取页面数据总数-->
+	 <select id="searchTotal" parameterType="map" resultType="long">
+        SELECT
+        count(*)
+        FROM
+        fina_paymethod fp
+        LEFT JOIN fina_paymethod_store fps ON fps.paymethod_code = fp.method_code
+        LEFT JOIN store s ON s.`code` = fps.store_code
+		  <where>
+				1=1
+				<if test="storeCode != null and storeCode != ''">
+					 AND s.`code`=#{storeCode}
+				</if>
+		  </where>
+    </select>
+	 
+	 <!--错的是否为空-->
+	 <select id="isEmptyCode" resultMap="BaseResultMap">
+        select
+            id
+        from
+            fina_paymethod
+        where
+            method_code = #{code}
+    </select>
+	 
+	 <!--查询通用配置-->
+	 <select id="search" resultMap="BaseResultMap">
+		  SELECT
+		  s.`name` storeName,
+		  fp.id,
+		  fp.method_name,
+		  fp.method_code,
+		  fp.method_type,
+		  fp.method_status,
+		  fp.if_custome,
+		  fp.cost_rate,
+		  fp.min_costfee,
+		  fp.max_costfee,
+		  fp.create_time,
+		  fp.creator,
+		  fp.ablestage_template_code
+		  FROM
+		  fina_paymethod fp
+		  LEFT JOIN fina_paymethod_store fps ON fps.paymethod_code = fp.method_code
+		  LEFT JOIN store s ON s.`code` = fps.store_code
+		  <where>
+				1=1
+				<if test="storeCode != null and storeCode != ''">
+					 AND s.`code`=#{storeCode}
+				</if>
+		  </where>
+		  <if test="sort != null">
+				ORDER BY
+				<foreach collection="sort" item="order" separator=",">
+					 ${order.property} ${order.direction}
+				</foreach>
+		  </if>
+		  limit #{offset}, #{pageSize}
+	 </select>
+	 
+	 <!--根据ID查询通用表的数据-->
+	 <select id="getById" resultMap="BaseResultMap">
+		  SELECT
+		  		<include refid="Base_Column_List"/>
+		  FROM
+		  		fina_paymethod
+		  WHERE
+		  		id = #{id}
+	 </select>
+	 
+	 <!--查询code是否空-->
+	 <select id="getFinaPaymethodStoreById" resultMap="FinaPaymethodStoreMap">
+       select
+          a.store_code storeCode
+       from
+          fina_paymethod_store a
+       where
+          a.paymethod_code=#{paymethodCode}
+    </select>
+	 
+	 <!--查询所有门店-->
+	 <select id="queryStoreAll" resultMap="FinaPaymethodStoreMap">
+		select  s.`name`   storeName,  s.code  storeCode   from store  s
+    </select>
+	 
+	 <!--删除关系表-->
+	 <delete id="deletePaymethodStoreById">
+       DELETE  from
+          fina_paymethod_store
+       where
+          paymethod_code=#{methodCode}
+    </delete>
+	 
+	 <!--根据父节点ID查询子节点-->
+	 <select id="getTreeNodes" resultMap="TreeNodesMap" parameterType="map">
+        SELECT
+            di.id  id,
+            di.attr_name  name,
+            di.parent_attrId  parentId
+        FROM
+            fina_paymethod_attr di
+        WHERE
+            di.parent_attrId = #{parentId}  order by id asc
+      </select>
+	 
+	 <!--插入通用配置表-->
+	 <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into fina_paymethod
+            (
+                method_name,
+                method_code,
+                method_type,
+                method_status,
+                if_custome,
+                cost_rate,
+                min_costfee,
+                max_costfee,
+                create_time,
+                creator,
+                ablestage_template_code,
+                remark
+             )
+        values
+            (
+                #{methodName},
+                #{methodCode},
+                #{methodType},
+                #{methodStatus},
+                #{ifCustome},
+                #{costRate},
+                #{minCostfee},
+                #{maxCostfee},
+                #{createTime},
+                #{creator},
+                #{ablestageTemplateCode},
+                #{remark}
+            )
+    </insert>
+	 
+	 <!--修改通用数据表-->
+	 <update id="update">
+		  update fina_paymethod
+		  <set>
+				<if test="methodName != null">
+					 method_name = #{methodName},
+				</if>
+				<if test="methodCode != null">
+					 method_code = #{methodCode},
+				</if>
+				<if test="methodType != null">
+					 method_type= #{methodType},
+				</if>
+				<if test="methodStatus != null">
+					 method_status = #{methodStatus},
+				</if>
+				<if test="ifCustome != null">
+					 if_custome = #{ifCustome},
+				</if>
+				<if test="costRate != null">
+					 cost_rate = #{costRate},
+				</if>
+				<if test="minCostfee != null">
+					 min_costfee = #{minCostfee},
+				</if>
+				<if test="maxCostfee != null">
+					 max_costfee = #{maxCostfee},
+				</if>
+				<if test="createTime != null">
+					 create_time = #{createTime},
+				</if>
+				<if test="creator != null">
+					 creator = #{creator},
+				</if>
+				<if test="ablestageTemplateCode != null">
+					 ablestage_template_code = #{ablestageTemplateCode},
+				</if>
+				<if test="remark != null">
+					 remark = #{remark}
+				</if>
+		  </set>
+		  where id = #{id}
+	 </update>
+	
+	 <!--查询通用表字段-->
+	 <select id="queryPayMethodWithStoreAndStage" resultMap="BaseResultMap">
+		  SELECT
+		  fp.id,
+		  fp.method_name,
+		  fp.method_code,
+		  fp.method_type,
+		  fp.method_status,
+		  fp.if_custome,
+		  fp.cost_rate,
+		  fp.min_costfee,
+		  fp.max_costfee,
+		  fp.create_time,
+		  fp.creator,
+		  fp.ablestage_template_code,
+		  fp.remark
+		  FROM fina_paymethod fp
+		  LEFT JOIN fina_paymethod_store fps ON fps.paymethod_code = fp.method_code
+		  <where>
+				method_status = 'ENABLE' AND fps.store_code=#{storeCode}
+				<if test="stageCode != null">
+					 AND ablestage_template_code LIKE #{stageCode}
+				</if>
+		  </where>
+	 </select>
+	 
+	 <!-- 根据通用表ID查询当前ID下的特殊配置全量 -->
+	 <select id="findAllWithDeleted" resultMap="finaPaymethodTreeMap">
+        SELECT
+            di.id  id,
+            di.attr_code  code,
+            di.attr_name  name,
+            IFNULL(di.parent_attrId,"0")  parentId
+        FROM
+            fina_paymethod_attr di
+        where di.method_id = #{id} or di.method_id IS NULL
+        order by
+            id asc
+    </select>
+	 
+	 <!-- 通过code,并可按id排除;可用于校验code是否已经被使用了 -->
+	 <select id="getByCode" resultMap="finaPaymethodTreeMap">
+        select
+            id
+        from
+            fina_paymethod_attr
+        where
+            attr_code = #{code}
+    </select>
+	 
+	 <!--修改特殊配置表的字段-->
+	 <update id="updateFinaPaymethodTree">
+		  update fina_paymethod_attr
+		  <set>
+				<if test="name != null">
+					 attr_name = #{name},
+				</if>
+				<if test="code != null">
+					 attr_code = #{code},
+				</if>
+				<if test="methodId != null">
+					 method_id= #{methodId},
+				</if>
+				<if test="parentId != null">
+					 parent_attrId = #{parentId},
+				</if>
+				<if test="attrAath != null">
+					 attr_path = #{attrAath},
+				</if>
+				<if test="attrStatus != null">
+					 attr_status = #{attrStatus},
+				</if>
+				<if test="costRate != null">
+					 cost_rate = #{costRate},
+				</if>
+				<if test="minCostfee != null">
+					 min_costfee = #{minCostfee},
+				</if>
+				<if test="maxCostFee != null">
+					 max_costFee = #{maxCostFee},
+				</if>
+				<if test="createTime != null">
+					 create_time = #{createTime},
+				</if>
+				<if test="creator != null">
+					 creator = #{creator},
+				</if>
+		  </set>
+		  where id = #{id}
+	 </update>
+	 
+	 <!--插入特殊配置表的配置-->
+	 <insert id="insertFinaPaymethodTree" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO fina_paymethod_attr
+        (
+            attr_name,
+            attr_code,
+            method_id ,
+            parent_attrId ,
+            attr_path ,
+            attr_status ,
+            cost_rate ,
+            min_costfee ,
+            max_costFee ,
+            create_time ,
+            creator
+        )
+        VALUES
+        (
+            #{name},
+            #{code},
+            #{methodId},
+            #{parentId},
+            #{attrAath},
+            #{attrStatus},
+            #{costRate},
+            #{minCostfee},
+            #{maxCostFee},
+            #{createTime},
+            #{creator}
+        )
+    </insert>
+	 
+	 <!-- 通过code,并可按id排除;可用于校验code是否已经被使用了 -->
+	 <select id="getByIdTree" resultMap="finaPaymethodTreeMap">
+        SELECT
+            a1.id  id,
+            a1.attr_name NAME,
+            a1.attr_code CODE,
+            a1.method_id methodId,
+            a2.attr_name  parentName,
+            a1.parent_attrId parentId,
+            a1.attr_path attrAath,
+            a1.attr_status attrStatus,
+            a1.cost_rate costRate,
+            a1.min_costfee minCostfee,
+            a1.max_costFee maxCostFee,
+            a1.create_time  createTime,
+            a1.creator
+        FROM
+            fina_paymethod_attr a1
+        LEFT JOIN fina_paymethod_attr a2 ON a1.parent_attrId = a2.id
+        where
+            a1.id = #{id}
+    </select>
+	 
+	 <!-- 删除数据 -->
+	 <delete id="deleteFinaPaymethod">
+        DELETE  FROM  fina_paymethod_attr WHERE id = #{id}
+    </delete>
+	 
+	 <!--批量插入关系表字段-->
+	 <insert id="addTrainRecordBatch" useGeneratedKeys="true" parameterType="java.util.List">
+		  <selectKey resultType="long" keyProperty="id" order="AFTER">
+				SELECT
+				LAST_INSERT_ID()
+		  </selectKey>
+				insert into fina_paymethod_store (paymethod_id,paymethod_code,store_code)
+				values
+		  <foreach collection="list" item="item" index="index" separator=",">
+				(#{item.paymethodId},#{item.paymethodCode},#{item.storeCode})
+		  </foreach>
+	 </insert>
+</mapper>

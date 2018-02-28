@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.finance.ProjectCloseApplyDao">
+    <select id="backRecord" resultType="java.util.HashMap">
+        SELECT
+            cus.`name` AS customerName,
+            cus.mobile AS customerMobile,
+            fpca.applyer,
+            fpca.checker,
+            fpca.close_reason AS closeReason,
+            fpca.executor,
+            fpca.execut_time AS executTime,
+            fpca.expect_refund_amount AS expectRefundAmount
+        FROM
+        fina_project_close_apply fpca
+        LEFT JOIN customer_contract cc ON fpca.contract_uuid = cc.contract_uuid
+        LEFT JOIN customer cus ON cc.customer_id = cus.id
+        <where>
+            fpca.contract_uuid = #{contractUuid}
+        </where>
+        ORDER BY fpca.id DESC
+    </select>
+
+    <insert id="insert" parameterType="cn.mdni.business.entity.finance.ProjectCloseApply">
+        insert into fina_project_close_apply
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="contractNo != null">
+                contract_no,
+            </if>
+            <if test="contractUuid != null">
+                contract_uuid,
+            </if>
+            <if test="applyerNo != null">
+                applyer_no,
+            </if>
+            <if test="applyer != null">
+                applyer,
+            </if>
+            <if test="applyerType != null">
+                applyer_type,
+            </if>
+            <if test="applyerTime != null">
+                applyer_time,
+            </if>
+            <if test="checker != null">
+                checker,
+            </if>
+            <if test="closeReason != null">
+                close_reason,
+            </if>
+            <if test="expectRefundAmount != null">
+                expect_refund_amount,
+            </if>
+            <if test="expectDeductAmount != null">
+                expect_deduct_amount,
+            </if>
+            <if test="executeStatus != null">
+                execute_status,
+            </if>
+            <if test="executor != null">
+                executor,
+            </if>
+            <if test="executTime != null">
+                execut_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="contractNo != null">
+                #{contractNo},
+            </if>
+            <if test="contractUuid != null">
+                #{contractUuid},
+            </if>
+            <if test="applyerNo != null">
+                #{applyerNo},
+            </if>
+            <if test="applyer != null">
+                #{applyer},
+            </if>
+            <if test="applyerType != null">
+                #{applyerType},
+            </if>
+            <if test="applyerTime != null">
+                #{applyerTime},
+            </if>
+            <if test="checker != null">
+                #{checker},
+            </if>
+            <if test="closeReason != null">
+                #{closeReason},
+            </if>
+            <if test="expectRefundAmount != null">
+                #{expectRefundAmount},
+            </if>
+            <if test="expectDeductAmount != null">
+                #{expectDeductAmount},
+            </if>
+            <if test="executeStatus != null">
+                #{executeStatus},
+            </if>
+            <if test="executor != null">
+                #{executor},
+            </if>
+            <if test="executTime != null">
+                #{executTime},
+            </if>
+        </trim>
+
+    </insert>
+</mapper>

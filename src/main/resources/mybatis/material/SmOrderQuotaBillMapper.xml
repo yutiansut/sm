@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.material.SmOrderQuotaBillDao">
+  <resultMap id="BaseResultMap" type="SmOrderQuotaBill">
+    <id column="id"  property="id" />
+    <result column="contract_code"  property="contractCode" />
+    <result column="category_code"  property="categoryCode" />
+    <result column="category_detail_code"  property="categoryDetailCode" />
+    <result column="amount"  property="amount" />
+    <result column="creater"  property="creater" />
+    <result column="create_time"  property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, contract_code, category_code, category_detail_code, amount, creater, create_time
+  </sql>
+  <select id="selectById" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sm_order_quota_bill
+    where id = #{id}
+  </select>
+  <delete id="deleteById">
+    delete from sm_order_quota_bill
+    where id = #{id}
+  </delete>
+  <delete id="deleteByCode">
+    delete from sm_order_quota_bill
+    where contract_code = #{contractCode}
+  </delete>
+  <insert id="insert"  useGeneratedKeys="true" keyProperty="id">
+    insert into sm_order_quota_bill
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="contractCode != null">
+        contract_code,
+      </if>
+      <if test="categoryCode != null">
+        category_code,
+      </if>
+      <if test="categoryDetailCode != null">
+        category_detail_code,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="creater != null">
+        creater,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="contractCode != null">
+        #{contractCode},
+      </if>
+      <if test="categoryCode != null">
+        #{categoryCode},
+      </if>
+      <if test="categoryDetailCode != null">
+        #{categoryDetailCode},
+      </if>
+      <if test="amount != null">
+        #{amount},
+      </if>
+      <if test="creater != null">
+        #{creater},
+      </if>
+      <if test="createTime != null">
+        #{createTime},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" >
+    update sm_order_quota_bill
+    <set>
+      <if test="contractCode != null">
+        contract_code = #{contractCode},
+      </if>
+      <if test="categoryCode != null">
+        category_code = #{categoryCode},
+      </if>
+      <if test="categoryDetailCode != null">
+        category_detail_code = #{categoryDetailCode},
+      </if>
+      <if test="amount != null">
+        amount = #{amount},
+      </if>
+      <if test="creater != null">
+        creater = #{creater},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+      <insert id="batchInsertList">
+        insert into sm_order_quota_bill(
+         contract_code, category_code, category_detail_code, amount, creater, create_time
+        ) values
+        <foreach collection="list" index="idx" item="item" separator=",">
+          (
+          #{ item.contractCode},#{ item.categoryCode},#{ item.categoryDetailCode},#{ item.amount},#{ item.creater},#{ item.createTime}
+          )
+        </foreach>
+      </insert>
+  <select id="findByCode" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/> FROM sm_order_quota_bill  WHERE contract_code=#{contractCode}
+  </select>
+</mapper>

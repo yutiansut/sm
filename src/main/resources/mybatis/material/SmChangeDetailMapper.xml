@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.material.SmChangeDetailDao">
+    <resultMap id="BaseResultMap" type="SmChangeDetail">
+        <id column="id" property="id"/>
+        <result column="contract_code" property="contractCode"/>
+        <result column="change_log_id" property="changeLogId"/>
+        <result column="change_category_url" property="changeCategoryUrl"/>
+        <result column="change_no" property="changeNo"/>
+        <result column="change_category_name" property="changeCategoryName"/>
+        <result column="current_status" property="currentStatus"/>
+        <result column="current_aduit_user" property="currentAduitUser"/>
+        <result column="current_audit_time" property="currentAuditTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_time" property="createTime"/>
+        <result column="pass_materials_department" property="passMaterialsDepartment"/>
+        <result column="material_remarks" property="materialRemarks"/>
+        <result column="design_director_remarks" property="designDirectorRemarks"/>
+        <result column="download_status" property="downloadStatus"/>
+        <result column="download_times" property="downloadTimes"/>
+        <result column="print_count" property="printCount"/>
+    </resultMap>
+
+    <resultMap id="SearchResultMap" type="SmChangeDetail" extends="BaseResultMap">
+        <result column="designer" property="designer"/>
+        <result column="name" property="name"/>
+        <result column="mobile" property="mobile"/>
+        <result column="house_addr" property="houseAddr"/>
+        <result column="address_province" property="addressProvince"/>
+        <result column="address_city" property="addressCity"/>
+        <result column="address_area" property="addressArea"/>
+        <result column="designer_mobile" property="designerMobile"/>
+        <result column="valuate_area" property="valuateArea"/>
+        <result column="second_contact" property="secondContact"/>
+        <result column="second_contact_mobile" property="secondContactMobile"/>
+        <result column="change_amount" property="changeAmount"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, contract_code, change_log_id, change_category_url, change_no, change_category_name, 
+    current_status, current_aduit_user, current_audit_time, create_user, create_time, pass_materials_department,material_remarks,design_director_remarks
+  </sql>
+
+    <select id="search" resultMap="SearchResultMap">
+        SELECT
+        spd.id,
+        spd.change_log_id,
+        spd.change_no,
+        spd.contract_code,
+        spd.create_time,
+        spd.current_status,
+        spd.change_category_name,
+        spd.change_category_url,
+        spd.material_remarks,
+        spd.design_director_remarks,
+        cc.designer,
+        cc.house_addr,
+        cc.address_province,
+        cc.address_city,
+        cc.address_area,
+        cc.designer_mobile,
+        cc.valuate_area,
+        c.name,
+        c.mobile
+        <include refid="searchWhere"/>
+        <if test="sort != null">
+            ORDER BY
+            <foreach collection="sort" item="order" separator=",">
+                ${order.property} ${order.direction}
+            </foreach>
+        </if>
+        limit #{offset},#{pageSize}
+    </select>
+    <select id="searchTotal" resultType="long">
+        SELECT COUNT(*)
+        <include refid="searchWhere"/>
+    </select>
+    <sql id="searchWhere" >
+        FROM
+            sm_change_detail spd
+        LEFT JOIN
+         customer_contract  cc
+        on spd.contract_code=cc.contract_code
+        LEFT JOIN
+         customer c
+        ON cc.customer_id=c.id
+        <where>
+            cc.store_code=#{storeCode}
+            <if test="catalogUrl!=null and catalogUrl!=''" >
+                <if test="catalogUrl==&quot;other&quot;" >
+                    AND  spd.change_category_url IS NULL
+                </if>
+                <if test=" catalogUrl!= &quot;other&quot;" >
+                    AND  spd.change_category_url=#{catalogUrl}
+                </if>
+            </if>
+            <if test="keyword!=null and keyword!=''" >
+                AND  (spd.change_no LIKE #{keyword} OR  spd.contract_code LIKE #{keyword})
+            </if>
+            <if test="passFlag!=null and passFlag!=''" >
+                AND  spd.pass_materials_department=#{passFlag}
+            </if>
+            <if test="orgCode!=null and orgCode!=''" >
+                AND  cc.auditor_org_code=#{orgCode}
+            </if>
+            <if test="currentStatusList!=null " >
+                AND spd.current_status IN
+                <foreach collection="currentStatusList" index="idx" item="item" open="(" close=")" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+    <select id="getById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sm_change_detail
+        where id = #{id}
+    </select>
+    <select id="getByChangeNo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sm_change_detail
+        where change_no = #{changeNo}
+    </select>
+    <select id="getRocordByChangeNo" resultType="String">
+        SELECT
+            audit_remark
+        FROM
+            sm_material_change_audit_record
+        WHERE
+            change_no = #{changeNo}
+        AND (
+            audit_result = 'EXAMINATIONPASSED'
+            OR audit_result = 'AUDITFAILED'
+        )
+        AND audit_remark IS NOT NULL
+        AND audit_remark != ''
+        AND  audit_user_type='审计员'
+        ORDER BY
+            audit_time DESC
+        LIMIT 1
+    </select>
+    <delete id="deleteById">
+    delete from sm_change_detail
+    where id = #{id}
+  </delete>
+    <insert id="batchInsertList" useGeneratedKeys="true" keyProperty="id">
+        INSERT  INTO  sm_change_detail(
+          contract_code, change_log_id, change_category_url, change_no, change_category_name,
+          current_status, current_aduit_user, current_audit_time,
+         create_user, create_time, pass_materials_department,material_remarks,design_director_remarks
+        )VALUES
+        <foreach collection="list" index="idx" item="item" separator=",">
+            (
+          #{item.contractCode},
+          #{item.changeLogId},
+          #{item.changeCategoryUrl},
+          #{item.changeNo},
+          #{item.changeCategoryName},
+          #{item.currentStatus},
+          #{item.currentAduitUser},
+          #{item.currentAuditTime},
+          #{item.createUser},
+          #{item.createTime},
+          #{item.passMaterialsDepartment},
+          #{item.materialRemarks},
+          #{item.designDirectorRemarks}
+            )
+        </foreach>
+
+    </insert>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into sm_change_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="contractCode != null">
+                contract_code,
+            </if>
+            <if test="changeLogId != null">
+                change_log_id,
+            </if>
+            <if test="changeCategoryUrl != null">
+                change_category_url,
+            </if>
+            <if test="changeNo != null">
+                change_no,
+            </if>
+            <if test="changeCategoryName != null">
+                change_category_name,
+            </if>
+            <if test="currentStatus != null">
+                current_status,
+            </if>
+            <if test="currentAduitUser != null">
+                current_aduit_user,
+            </if>
+            <if test="currentAuditTime != null">
+                current_audit_time,
+            </if>
+            <if test="changeAmount != null">
+                change_amount,
+            </if>
+            <if test="changeAmountBefore != null">
+                change_amount_before,
+            </if>
+            <if test="changeAmountAfter != null">
+                change_amount_after,
+            </if>
+            <if test="createUser != null">
+                create_user,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="passMaterialsDepartment != null">
+                pass_materials_department,
+            </if>
+            <if test="materialRemarks != null">
+                material_remarks,
+            </if>
+            <if test="designDirectorRemarks != null">
+                design_director_remarks,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="contractCode != null">
+                #{contractCode},
+            </if>
+            <if test="changeLogId != null">
+                #{changeLogId},
+            </if>
+            <if test="changeCategoryUrl != null">
+                #{changeCategoryUrl},
+            </if>
+            <if test="changeNo != null">
+                #{changeNo},
+            </if>
+            <if test="changeCategoryName != null">
+                #{changeCategoryName},
+            </if>
+            <if test="currentStatus != null">
+                #{currentStatus},
+            </if>
+            <if test="currentAduitUser != null">
+                #{currentAduitUser},
+            </if>
+            <if test="currentAuditTime != null">
+                #{currentAuditTime},
+            </if>
+            <if test="changeAmount != null">
+                #{changeAmount},
+            </if>
+            <if test="changeAmountBefore != null">
+                #{changeAmountBefore},
+            </if>
+            <if test="changeAmountAfter != null">
+                #{changeAmountAfter},
+            </if>
+            <if test="createUser != null">
+                #{createUser},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="passMaterialsDepartment != null">
+                #{passMaterialsDepartment},
+            </if>
+            <if test="materialRemarks != null">
+                #{materialRemarks},
+            </if>
+            <if test="designDirectorRemarks != null">
+                #{designDirectorRemarks},
+            </if>
+        </trim>
+    </insert>
+    <update id="update">
+        update sm_change_detail
+        <set>
+            <if test="contractCode != null">
+                contract_code = #{contractCode},
+            </if>
+            <if test="changeLogId != null">
+                change_log_id = #{changeLogId},
+            </if>
+            <if test="changeCategoryUrl != null">
+                change_category_url = #{changeCategoryUrl},
+            </if>
+            <if test="changeNo != null">
+                change_no = #{changeNo},
+            </if>
+            <if test="changeCategoryName != null">
+                change_category_name = #{changeCategoryName},
+            </if>
+            <if test="currentStatus != null">
+                current_status = #{currentStatus},
+            </if>
+            <if test="currentAduitUser != null">
+                current_aduit_user = #{currentAduitUser},
+            </if>
+            <if test="currentAuditTime != null">
+                current_audit_time = #{currentAuditTime},
+            </if>
+            <if test="changeAmount != null">
+                change_amount = #{changeAmount},
+            </if>
+            <if test="changeAmountBefore != null">
+                change_amount_before = #{changeAmountBefore},
+            </if>
+            <if test="changeAmountAfter != null">
+                change_amount_after = #{changeAmountAfter},
+            </if>
+            <if test="createUser != null">
+                create_user = #{createUser},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="passMaterialsDepartment != null">
+                pass_materials_department = #{passMaterialsDepartment},
+            </if>
+            <if test="materialRemarks != null">
+                material_remarks= #{materialRemarks},
+            </if>
+            <if test="designDirectorRemarks != null">
+                design_director_remarks= #{designDirectorRemarks},
+            </if>
+            <if test="downloadTimes != null">
+                download_times= #{downloadTimes},
+            </if>
+            <if test="printCount != null">
+                print_count= #{printCount},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--变更单管理列表-->
+    <select id="findChangeOrderList" parameterType="map" resultMap="SearchResultMap">
+        select
+        scd.id,
+        scd.change_log_id,
+        scd.contract_code,
+        scd.change_no,
+        scd.change_category_url,
+        c.name,
+        c.mobile,
+        cc.designer,
+        scd.change_category_name,
+        scd.current_status,
+        scd.download_status,
+        scd.download_times,
+        scd.create_time
+        FROM sm_change_detail as scd
+        LEFT JOIN customer_contract as cc on cc.contract_code = scd.contract_code
+        LEFT JOIN customer as c on c.id = cc.customer_id
+        <where>
+            <if test="keyword != null">
+                (scd.contract_code = #{keyword}
+                OR c.name LIKE CONCAT("%", #{keyword}, "%"))
+            </if>
+            <if test="currentStatus != null">
+                AND scd.current_status = #{currentStatus}
+            </if>
+            <if test="createUser != null">
+                AND  scd.create_user = #{createUser}
+            </if>
+            <if test="orgCode!=null and orgCode!=''" >
+                AND  cc.auditor_org_code=#{orgCode}
+            </if>
+            <if test="storeCode != null">
+                AND  cc.store_code = #{storeCode}
+            </if>
+        </where>
+
+        <if test="sort != null">
+            ORDER BY
+            <foreach collection="sort" item="order" separator=",">
+                ${order.property} ${order.direction}
+            </foreach>
+        </if>
+        limit #{offset},#{pageSize}
+    </select>
+    <select id="searchChangeOrderListTotal" resultType="long" parameterType="map">
+        select count(1) from sm_change_detail detail
+            LEFT JOIN customer_contract as contract on contract.contract_code = detail.contract_code
+            LEFT JOIN customer as customer on customer.id = contract.customer_id
+        <where>
+            <if test="keyword != null">
+                (detail.contract_code = #{keyword}
+                OR customer.name LIKE CONCAT("%", #{keyword}, "%"))
+            </if>
+            <if test="currentStatus != null">
+                AND detail.current_status = #{currentStatus}
+            </if>
+            <if test="createUser != null">
+                AND  detail.create_user = #{createUser}
+            </if>
+            <if test="auditor != null">
+                AND  contract.auditor = #{auditor}
+            </if>
+            <if test="storeCode != null">
+                AND  contract.store_code = #{storeCode}
+            </if>
+        </where>
+
+    </select>
+
+    <select id="getStatusByChangeLogId" resultType="long">
+        select count(1) from sm_change_detail where change_log_id = #{changeLogId}
+         and current_status <![CDATA[ <> ]]> 'EXAMINATIONPASSED' and current_status <![CDATA[ <> ]]> 'CHANGEORDERRECALL'
+    </select>
+
+    <update id="updateChangeOrderStatus">
+        update sm_change_detail set current_status = #{status} where id = #{id}
+    </update>
+    <select id="getChangeNoThree" resultType="String">
+        SELECT
+           RIGHT(change_no, 3) AS num
+        FROM
+            sm_change_detail
+        WHERE
+            change_log_id = (
+                SELECT
+                    id
+                FROM
+                    sm_change_log
+                WHERE
+                    change_version_no = #{changeVersionNo}
+            )
+        ORDER BY
+            num DESC
+        LIMIT 1
+    </select>
+
+    <select id="findChangeDetail"  resultMap="BaseResultMap">
+        select * from sm_change_detail as scd
+        LEFT JOIN sm_change_log as scl on scl.id = scd.change_log_id
+         <where>
+             <if test="contractCode != null and contractCode != ''">
+                 scd.contract_code = #{contractCode}
+             </if>
+             <if test="changeVersionNo != null and changeVersionNo != ''">
+                 AND scl.change_version_no = #{changeVersionNo}
+             </if>
+         </where>
+    </select>
+
+    <update id="updateDownloadStatus" parameterType="string" >
+        update sm_change_detail set download_status =  &apos;1&apos; where change_no = #{changeNo}
+    </update>
+
+    <select id="findDownloadTimesByChangeNo" parameterType="string" resultMap="BaseResultMap">
+        select * from sm_change_detail where change_no = #{changeNo}
+    </select>
+
+    <select id="listCount" resultType="long">
+        select count(*)
+         from sm_change_detail as scd
+            LEFT JOIN customer_contract as cc on cc.contract_code = scd.contract_code
+            LEFT JOIN customer as c on c.id = cc.customer_id
+        <where>
+            <if test="keyword != null">
+                (c.`name` LIKE CONCAT('%',#{keyword},'%') or scd.contract_code = #{keyword}  or c.mobile = #{keyword})
+            </if>
+            <if test="startDate != null ">
+                AND DATE(scd.create_time) &gt;= DATE(#{startDate})
+            </if>
+            <if test="endDate != null ">
+                AND DATE(scd.create_time) &lt;= DATE(#{endDate})
+            </if>
+            <choose>
+                <when test="printCount == 0">
+                    AND scd.print_count = #{printCount}
+                </when>
+                <when test="printCount > 0">
+                    AND scd.print_count >= #{printCount}
+                </when>
+            </choose>
+            AND cc.store_code = #{storeCode}
+        </where>
+    </select>
+
+    <select id="changeMaterialList" resultMap="SearchResultMap">
+      select scd.id,
+        scd.contract_code,
+				scd.change_no,
+				c.`name`,
+				c.mobile,
+				cc.second_contact,
+				cc.second_contact_mobile,
+				scd.create_time,
+                fpm.change_amount,
+				scd.print_count
+            from sm_change_detail as scd
+            LEFT JOIN customer_contract as cc on cc.contract_code = scd.contract_code
+            LEFT JOIN customer as c on c.id = cc.customer_id
+        LEFT JOIN fina_projectchange_money as fpm on fpm.change_no = scd.change_no
+            <where>
+                <if test="keyword != null">
+                    (c.`name` LIKE CONCAT('%',#{keyword},'%') or scd.contract_code = #{keyword}  or c.mobile = #{keyword})
+                </if>
+                <if test="startDate != null ">
+                    AND DATE(scd.create_time) &gt;= DATE(#{startDate})
+                </if>
+                <if test="endDate != null ">
+                    AND DATE(scd.create_time) &lt;= DATE(#{endDate})
+                </if>
+                <choose>
+                    <when test="printCount == 0">
+                        AND scd.print_count = #{printCount}
+                    </when>
+                    <when test="printCount > 0">
+                        AND scd.print_count >= #{printCount}
+                    </when>
+                </choose>
+                AND cc.store_code = #{storeCode}
+            </where>
+        ORDER BY scd.print_count ASC, id DESC
+        limit #{offset},#{pageSize}
+    </select>
+
+    <select id="getByIds" resultMap="BaseResultMap">
+        select contract_code,change_no,create_time from sm_change_detail where id in
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+
+    <update id="UpdatePrintCount">
+        UPDATE sm_change_detail SET print_count = print_count + 1
+        WHERE id IN
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </update>
+</mapper>

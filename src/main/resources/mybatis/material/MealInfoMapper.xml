@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.material.MealInfoDao">
+    <resultMap id="BaseResultMap" type="MealInfo">
+        <id column="id" property="id"/>
+        <result column="store_code" property="storeCode"/>
+        <result column="store_name" property="storeName"/>
+        <result column="meal_name" property="mealName"/>
+        <result column="meal_sale_price" property="mealSalePrice"/>
+        <result column="validity_date" property="validityDate"/>
+        <result column="expiration_date" property="expirationDate"/>
+        <result column="remark" property="remark"/>
+        <result column="meal_status" property="mealStatus"/>
+        <result column="no_deadline" property="noDeadline"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+          id, store_code, meal_name, meal_sale_price, validity_date, expiration_date,remark,
+          meal_status, meal_status, no_deadline, create_user, create_time, update_user, update_time
+    </sql>
+    <select id="getById" resultMap="BaseResultMap">
+        select
+            st.name AS store_name,
+            mi.id,
+            mi.store_code,
+            mi.meal_name,
+            mi.meal_sale_price,
+            mi.validity_date,
+            mi.expiration_date,
+            mi.remark,
+            mi.meal_status,
+            mi.no_deadline,
+            mi.create_user,
+            mi.create_time,
+            mi.update_user,
+            mi.update_time
+        from sm_meal_info mi
+        LEFT JOIN store st
+        ON mi.store_code = st.id
+        where mi.id = #{id}
+    </select>
+
+    <select id="findAllMeal" resultMap="BaseResultMap">
+        SELECT
+            mi.id,
+            mi.store_code,
+            mi.meal_name,
+            mi.meal_sale_price,
+            mi.validity_date,
+            mi.expiration_date,
+            mi.remark,
+            mi.meal_status,
+            mi.no_deadline,
+            mi.create_user,
+            mi.create_time,
+            mi.update_user,
+            mi.update_time
+        FROM sm_meal_info mi
+        WHERE mi.meal_status = '1'
+    </select>
+
+    <select id="findMealByStoreCode" resultMap="BaseResultMap">
+        SELECT
+        *
+        FROM sm_meal_info
+        WHERE store_code = #{storeCode} and meal_status=1 and curdate() &gt;= validity_date and curdate()  &lt;= expiration_date
+    </select>
+
+
+    <select id="searchTotal" parameterType="map" resultType="long">
+        SELECT count(*)
+        FROM sm_meal_info mi
+        <include refid="searchWhere"/>
+    </select>
+    <sql id="searchWhere">
+        <where>
+            <if test="keyword!=null and keyword!=''">
+                and mi.meal_name LIKE CONCAT('%',#{keyword},'%')
+            </if>
+        </where>
+    </sql>
+
+
+    <select id="search" resultMap="BaseResultMap">
+        SELECT
+            st.name AS store_name,
+            mi.id,
+            mi.store_code,
+            mi.meal_name,
+            mi.meal_sale_price,
+            mi.validity_date,
+            mi.expiration_date,
+            mi.remark,
+            mi.meal_status,
+            mi.no_deadline,
+            mi.create_user,
+            mi.create_time,
+            mi.update_user,
+            mi.update_time
+        FROM sm_meal_info mi
+        LEFT JOIN store st
+        ON mi.store_code = st.code
+        <include refid="searchWhere"/>
+        ORDER BY mi.id DESC
+        limit #{offset},#{pageSize}
+    </select>
+
+    <delete id="deleteById">
+        delete from sm_meal_info
+        where id = #{id}
+    </delete>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into sm_meal_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="storeCode != null">
+                store_code,
+            </if>
+            <if test="mealName != null">
+                meal_name,
+            </if>
+            <if test="mealSalePrice != null">
+                meal_sale_price,
+            </if>
+            <if test="validityDate != null">
+                validity_date,
+            </if>
+            <if test="expirationDate != null">
+                expiration_date,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="mealStatus != null">
+                meal_status,
+            </if>
+            <if test="noDeadline != null">
+                no_deadline,
+            </if>
+            <if test="createUser != null">
+                create_user,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateUser != null">
+                update_user,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="storeCode != null">
+                #{storeCode},
+            </if>
+            <if test="mealName != null">
+                #{mealName},
+            </if>
+            <if test="mealSalePrice != null">
+                #{mealSalePrice},
+            </if>
+            <if test="validityDate != null">
+                #{validityDate},
+            </if>
+            <if test="expirationDate != null">
+                #{expirationDate},
+            </if>
+            <if test="remark != null">
+                #{remark},
+            </if>
+            <if test="mealStatus != null">
+                #{mealStatus},
+            </if>
+            <if test="noDeadline != null">
+                #{noDeadline},
+            </if>
+            <if test="createUser != null">
+                #{createUser},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="updateUser != null">
+                #{updateUser},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime}
+            </if>
+        </trim>
+    </insert>
+    <update id="update">
+        update sm_meal_info
+        <set>
+            <if test="storeCode != null">
+                store_code = #{storeCode},
+            </if>
+            <if test="mealName != null">
+                meal_name = #{mealName},
+            </if>
+            <if test="mealSalePrice != null">
+                meal_sale_price = #{mealSalePrice},
+            </if>
+            <if test="validityDate != null">
+                validity_date = #{validityDate},
+            </if>
+            <if test="expirationDate != null">
+                expiration_date = #{expirationDate},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+            <if test="mealStatus != null">
+                meal_status = #{mealStatus},
+            </if>
+            <if test="noDeadline != null">
+                no_deadline = #{noDeadline},
+            </if>
+            <if test="createUser != null">
+                create_user = #{createUser},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <resultMap id="StoreResultMap" type="cn.mdni.business.entity.material.Store" extends="BaseResultMap">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="code" property="code"/>
+    </resultMap>
+    <select id="getStoreList" resultMap="StoreResultMap">
+        select st.id,st.code,st.name from store st
+    </select>
+</mapper>

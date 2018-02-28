@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.material.StoreRelationMappingDao">
+
+    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.material.StoreRelationMapping">
+        <id column="id" property="id"/>
+        <id column="mps_store_id" property="mpsStoreId"/>
+        <id column="mps_store_name" property="mpsStoreName"/>
+        <id column="sm_store_name" property="smStoreName"/>
+        <id column="sm_store_code" property="smStoreCode"/>
+
+    </resultMap>
+
+    <sql id="Base_Column_List">
+          id,mps_store_id,mps_store_name,sm_store_name,sm_store_code
+    </sql>
+
+    <select id="getByMpsStoreId" parameterType="long" resultMap="BaseResultMap">
+        SELECT
+          <include refid="Base_Column_List"/>
+        FROM
+        sm_store_relation_mapping
+        where mps_store_id = #{mpsStoreId}
+    </select>
+
+
+</mapper>

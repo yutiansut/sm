@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.operatelog.OperateLogDao">
+    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.operatelog.OperateLog">
+        <id column="id" property="id"/>
+        <result column="contract_code" property="contractCode"/>
+        <result column="system_type" property="systemType"/>
+        <result column="operate_type" property="operateType"/>
+        <result column="operate_description" property="operateDescription"/>
+        <result column="operator" property="operator"/>
+        <result column="operate_time" property="operateTime"/>
+        <result column="appoint_org_code" property="appointOrgCode"/>
+        <result column="appoint_name" property="appointName"/>
+        <result column="appoint_phone" property="appointPhone"/>
+    </resultMap>
+
+    <insert id="insert">
+        insert into sm_operate_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="contractCode != null">
+                contract_code,
+            </if>
+            <if test="systemType != null">
+                system_type,
+            </if>
+            <if test="operateType != null">
+                operate_type,
+            </if>
+            <if test="operateDescription != null">
+                operate_description,
+            </if>
+            <if test="operator != null">
+                operator,
+            </if>
+            <if test="operateTime != null">
+                operate_time,
+            </if>
+            <if test="appointOrgCode != null">
+                appoint_org_code,
+            </if>
+            <if test="appointName != null">
+                appoint_name,
+            </if>
+            <if test="appointPhone != null">
+                appoint_phone,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="contractCode != null">
+                #{contractCode},
+            </if>
+            <if test="systemType != null">
+                #{systemType},
+            </if>
+            <if test="operateType != null">
+                #{operateType},
+            </if>
+            <if test="operateDescription != null">
+                #{operateDescription},
+            </if>
+            <if test="operator != null">
+                #{operator},
+            </if>
+            <if test="operateTime != null">
+                #{operateTime},
+            </if>
+            <if test="appointOrgCode != null">
+                #{appointOrgCode},
+            </if>
+            <if test="appointName != null">
+                #{appointName},
+            </if>
+            <if test="appointPhone != null">
+                #{appointPhone},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="findByConditions" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select  id,contract_code,system_type,operate_type,operate_description,operator,operate_time,
+                appoint_org_code,appoint_name,appoint_phone
+          from sm_operate_log
+        <where>
+            <if test="operateType != null">
+                AND operate_type = #{operateType}
+            </if>
+            <if test="contractCode != null">
+                and contract_code = #{contractCode}
+            </if>
+            <if test="systemType != null">
+                AND system_type = #{systemType}
+            </if>
+        </where>
+         order by operate_time desc
+    </select>
+</mapper>

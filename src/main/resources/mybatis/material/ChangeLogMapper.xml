@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.material.ChangeLogDao">
+    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.material.ChangeLog">
+        <id column="id" property="id"/>
+        <result column="change_status" property="changeStatus"/>
+        <result column="contract_code" property="contractCode"/>
+        <result column="change_version_no" property="changeVersionNo"/>
+        <result column="operat_user" property="operatUser"/>
+        <result column="operat_time" property="operatTime"/>
+        <result column="current_status" property="currentStatus"/>
+    </resultMap>
+
+    <insert id="insert">
+        insert into sm_change_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="contractCode != null">
+                contract_code,
+            </if>
+            <if test="changeVersionNo != null">
+                change_version_no,
+            </if>
+            <if test="changeStatus != null">
+                change_status,
+            </if>
+            <if test="operatUser != null">
+                operat_user,
+            </if>
+            <if test="operatTime != null">
+                operat_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="contractCode != null">
+                #{contractCode},
+            </if>
+            <if test="changeVersionNo != null">
+                #{changeVersionNo},
+            </if>
+            <if test="changeStatus != null">
+                #{changeStatus},
+            </if>
+            <if test="operatUser != null">
+                #{operatUser},
+            </if>
+            <if test="operatTime != null">
+                #{operatTime},
+            </if>
+        </trim>
+    </insert>
+    <select id="getChangeVersionTwo" resultType="String">
+        SELECT
+            RIGHT (change_version_no, 2) AS num
+        FROM
+            sm_change_log
+        WHERE
+            contract_code = #{contractCode}
+        ORDER BY
+            num DESC
+        LIMIT 1
+  </select>
+    <update id="update">
+        UPDATE sm_change_log
+        <set>
+            <if test="contractCode != null">
+                contract_code = #{contractCode},
+            </if>
+            <if test="changeVersionNo != null">
+                change_version_no = #{changeVersionNo},
+            </if>
+            <if test="changeStatus != null">
+                change_status = #{changeStatus},
+            </if>
+            <if test="operatUser != null">
+                operat_user = #{operatUser},
+            </if>
+            <if test="operatTime != null">
+                operat_time = #{operatTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select * from sm_change_log ORDER BY operat_time desc
+    </select>
+
+    <select id="findChangeVersionNoByContractCode" resultMap="BaseResultMap">
+        select * from sm_change_log
+        WHERE contract_code = #{contractCode}
+        ORDER BY operat_time desc
+    </select>
+
+    <select id="findChangeLogByChNo" resultMap="BaseResultMap">
+        select scl.*,scd.current_status from sm_change_detail as scd
+        LEFT JOIN sm_change_log as scl on scd.change_log_id = scl.id
+        <where>
+            <if test="changeVersionNo != null and changeVersionNo != ''">
+                scl.change_version_no = #{changeVersionNo}
+            </if>
+        </where>
+    </select>
+    <select id="getChangeLogByChNo" resultMap="BaseResultMap">
+        SELECT * FROM sm_change_log WHERE change_version_no = #{changeVersionNo}
+    </select>
+</mapper>

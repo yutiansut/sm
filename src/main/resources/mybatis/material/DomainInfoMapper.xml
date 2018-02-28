@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.material.DomainInfoDao">
+
+  <resultMap id="BaseResultMap" type="cn.mdni.business.entity.material.DomainInfo">
+    <id column="id" property="id" />
+    <result column="domain_name" property="domainName"/>
+    <result column="include_domain_type" property="includeDomainType"/>
+    <result column="domain_status" property="domainStatus"/>
+    <result column="create_time" property="createTime"/>
+    <result column="create_user" property="createUser"/>
+    <result column="update_time" property="updateTime"/>
+    <result column="update_user" property="updateUser"/>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+      id,domain_name,include_domain_type,domain_status,create_time,create_user,update_time,update_user
+  </sql>
+
+  <select id="getById" parameterType="long" resultMap="BaseResultMap">
+      SELECT
+      <include refid="Base_Column_List" />
+      FROM
+      sm_domain_info
+      where id = #{id}
+  </select>
+
+  <select id="findAll" resultMap="BaseResultMap">
+      SELECT
+      <include refid="Base_Column_List" />
+      FROM sm_domain_info
+  </select>
+
+  <delete id="deleteById" parameterType="long">
+    delete from sm_domain_info
+    where id = #{id}
+  </delete>
+
+  <insert id="insert" parameterType="cn.mdni.business.entity.material.DomainInfo">
+    insert into sm_domain_info(
+        domain_name,
+        include_domain_type,
+        domain_status,
+        create_time,
+        create_user,
+        update_time,
+        update_user
+        )
+     values (
+        #{domainName},
+        #{includeDomainType},
+        1,
+        #{createTime},
+        #{createUser},
+        #{updateTime},
+        #{updateUser}
+        )
+  </insert>
+
+  <update id="update" parameterType="cn.mdni.business.entity.material.DomainInfo">
+    update sm_domain_info
+    set
+        domain_name = #{domainName},
+        include_domain_type = #{includeDomainType},
+        domain_status = #{domainStatus},
+        create_time = #{createTime},
+        create_user = #{createUser},
+        update_time = #{updateTime},
+        update_user = #{updateUser}
+    where
+        id = #{id}
+  </update>
+
+
+  <select id="searchTotal" parameterType="map" resultType="Long">
+    SELECT COUNT(*)
+    FROM sm_domain_info
+  </select>
+
+  <select id="search" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM
+    sm_domain_info
+    <where>
+      <if test="keyword != null">
+        AND (domain_name LIKE CONCAT('%',#{keyword},'%') OR
+        include_domain_type LIKE CONCAT('%',#{keyword},'%'))
+      </if>
+    </where>
+    limit #{offset}, #{pageSize}
+  </select>
+
+  <select id="getByName" parameterType="map" resultMap="BaseResultMap">
+    SELECT *
+    FROM sm_domain_info
+    WHERE domain_name = #{domainName} AND include_domain_type = #{includeDomainType}
+  </select>
+
+  <update id="offById" parameterType="long">
+    update sm_domain_info set domain_status = 0 where id = #{id}
+  </update>
+
+  <update id="openById" parameterType="long">
+    update sm_domain_info set domain_status = 1 where id = #{id}
+  </update>
+
+</mapper>

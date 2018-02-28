@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.material.ProjectMaterialDao">
+
+    <resultMap id="BaseResultMap" type="ProjectMaterial">
+        <id column="id" property="id"/>
+        <result column="product_category_url" property="productCategoryUrl"/>
+        <result column="contract_code" property="contractCode"/>
+        <result column="category_code" property="categoryCode"/>
+        <result column="category_detail_code" property="categoryDetailCode"/>
+        <result column="sku_code" property="skuCode"/>
+        <result column="design_remark" property="designRemark"/>
+        <result column="audit_remark" property="auditRemark"/>
+        <result column="sku_sqec" property="skuSqec"/>
+        <result column="sku_model" property="skuModel"/>
+        <result column="product_name" property="productName"/>
+        <result column="sku_image_path" property="skuImagePath"/>
+        <result column="store_sale_price" property="storeSalePrice"/>
+        <result column="quota_describe" property="quotaDescribe"/>
+        <result column="check_scale" property="checkScale"/>
+        <result column="attribute1" property="attribute1"/>
+        <result column="attribute2" property="attribute2"/>
+        <result column="attribute3" property="attribute3"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="name" property="cataLogName"/>
+        <result column="material_unit" property="materialUnit"/>
+        <result column="brand" property="brand"/>
+        <result column="brand_id" property="brandId"/>
+        <result column="supplier_code" property="supplierCode"/>
+        <result column="supplier_name" property="supplierName"/>
+    </resultMap>
+
+    <!--封装 sku用量信息-->
+    <resultMap id="MultiResultMap" type="ProjectMaterial" extends="BaseResultMap">
+        <collection property="skuDosageList" ofType="SmSkuDosage">
+            <id column="project_material_id" property="id"/>
+            <result column="domain_name" property="domainName"/>
+            <result column="budget_dosage" property="budgetDosage"/>
+            <result column="loss_factor" property="lossFactor"/>
+            <result column="loss_dosage" property="lossDosage"/>
+            <result column="no_loss_dosage" property="noLossDosage"/>
+            <result column="dosage_store_sale_price" property="storeSalePrice"/>
+            <result column="dosage_pricing_mode" property="dosagePricingMode"/>
+            <result column="project_proportion" property="projectProportion"/>
+            <result column="dosage_remark" property="dosageRemark"/>
+            <result column="convert_unit" property="convertUnit"/>
+        </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, product_category_url, contract_code, category_code, category_detail_code, sku_code,
+        design_remark, audit_remark, sku_sqec, sku_model, product_name, sku_image_path, store_sale_price,
+        quota_describe, check_scale, attribute1, attribute2, attribute3, create_user,
+        create_time, update_user, update_time,material_unit, brand, brand_id
+    </sql>
+
+    <select id="getById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sm_project_material
+        where id = #{id}
+    </select>
+
+    <insert id="insert" >
+        insert into sm_project_material
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="productCategoryUrl != null">
+                product_category_url,
+            </if>
+            <if test="contractCode != null">
+                contract_code,
+            </if>
+            <if test="materialUnit != null">
+                material_unit,
+            </if>
+            <if test="categoryCode != null">
+                category_code,
+            </if>
+            <if test="categoryDetailCode != null">
+                category_detail_code,
+            </if>
+            <if test="skuCode != null">
+                sku_code,
+            </if>
+            <if test="designRemark != null">
+                design_remark,
+            </if>
+            <if test="auditRemark != null">
+                audit_remark,
+            </if>
+            <if test="skuSqec != null">
+                sku_sqec,
+            </if>
+            <if test="skuModel != null">
+                sku_model,
+            </if>
+            <if test="productName != null">
+                product_name,
+            </if>
+            <if test="skuImagePath != null and skuImagePath != ''">
+                sku_image_path,
+            </if>
+            <if test="storeSalePrice != null">
+                store_sale_price,
+            </if>
+            <if test="quotaDescribe != null">
+                quota_describe,
+            </if>
+            <if test="checkScale != null">
+                check_scale,
+            </if>
+            <if test="attribute1 != null">
+                attribute1,
+            </if>
+            <if test="attribute2 != null">
+                attribute2,
+            </if>
+            <if test="attribute3 != null">
+                attribute3,
+            </if>
+            <if test="brand != null">
+                brand,
+            </if>
+            <if test="brandId != null">
+                brand_id,
+            </if>
+            <if test="createUser != null">
+                create_user,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateUser != null">
+                update_user,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="productCategoryUrl != null">
+                #{productCategoryUrl},
+            </if>
+            <if test="contractCode != null">
+                #{contractCode},
+            </if>
+            <if test="materialUnit != null">
+                #{materialUnit},
+            </if>
+            <if test="categoryCode != null">
+                #{categoryCode},
+            </if>
+            <if test="categoryDetailCode != null">
+                #{categoryDetailCode},
+            </if>
+            <if test="skuCode != null">
+                #{skuCode},
+            </if>
+            <if test="designRemark != null">
+                #{designRemark},
+            </if>
+            <if test="auditRemark != null">
+                #{auditRemark},
+            </if>
+            <if test="skuSqec != null">
+                #{skuSqec},
+            </if>
+            <if test="skuModel != null">
+                #{skuModel},
+            </if>
+            <if test="productName != null">
+                #{productName},
+            </if>
+            <if test="skuImagePath != null and skuImagePath != ''">
+                #{skuImagePath},
+            </if>
+            <if test="storeSalePrice != null">
+                #{storeSalePrice},
+            </if>
+            <if test="quotaDescribe != null">
+                #{quotaDescribe},
+            </if>
+            <if test="checkScale != null">
+                #{checkScale},
+            </if>
+            <if test="attribute1 != null">
+                #{attribute1},
+            </if>
+            <if test="attribute2 != null">
+                #{attribute2},
+            </if>
+            <if test="attribute3 != null">
+                #{attribute3},
+            </if>
+            <if test="brand != null">
+                #{brand},
+            </if>
+            <if test="brandId != null">
+                #{brandId},
+            </if>
+            <if test="createUser != null">
+                #{createUser},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="updateUser != null">
+                #{updateUser},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update">
+        update sm_project_material
+        <set>
+            <if test="productCategoryUrl != null">
+                product_category_url = #{productCategoryUrl},
+            </if>
+            <if test="contractCode != null">
+                contract_code = #{contractCode},
+            </if>
+            <if test="categoryCode != null">
+                category_code = #{categoryCode},
+            </if>
+            <if test="categoryDetailCode != null">
+                category_detail_code = #{categoryDetailCode},
+            </if>
+            <if test="skuCode != null">
+                sku_code = #{skuCode},
+            </if>
+            <if test="designRemark != null">
+                design_remark = #{designRemark},
+            </if>
+            <if test="auditRemark != null">
+                audit_remark = #{auditRemark},
+            </if>
+            <if test="skuSqec != null">
+                sku_sqec = #{skuSqec},
+            </if>
+            <if test="skuModel != null">
+                sku_model = #{skuModel},
+            </if>
+            <if test="productName != null">
+                product_name = #{productName},
+            </if>
+            <if test="skuImagePath != null and skuImagePath != ''">
+                sku_image_path = #{skuImagePath},
+            </if>
+            <if test="storeSalePrice != null">
+                store_sale_price = #{storeSalePrice},
+            </if>
+            <if test="quotaDescribe != null">
+                quota_describe = #{quotaDescribe},
+            </if>
+            <if test="checkScale != null">
+                check_scale = #{checkScale},
+            </if>
+            <if test="attribute1 != null">
+                attribute1 = #{attribute1},
+            </if>
+            <if test="attribute2 != null">
+                attribute2 = #{attribute2},
+            </if>
+            <if test="attribute3 != null">
+                attribute3 = #{attribute3},
+            </if>
+            <if test="brand != null">
+                brand = #{brand},
+            </if>
+            <if test="brandId != null">
+                brand_id = #{brandId},
+            </if>
+            <if test="createUser != null">
+                create_user = #{createUser},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过条件  查询所有项目主材sku及其下面的所有sku用量信息-->
+    <select id="findWithSubListByMaterialParams" resultMap="MultiResultMap" parameterType="map">
+        SELECT
+            material.*,dosage.id project_material_id, dosage.domain_name, dosage.budget_dosage,
+            dosage.loss_factor, dosage.loss_dosage, dosage.no_loss_dosage, dosage.store_sale_price dosage_store_sale_price,
+            dosage.dosage_pricing_mode, dosage.project_proportion, dosage.dosage_remark, dosage.convert_unit,
+            psup.`name` as supplier_name ,psup.`code` as supplier_code
+        FROM sm_project_material material
+        LEFT JOIN sm_sku_dosage dosage
+        ON material.id = dosage.project_material_id
+        LEFT JOIN prod_sku  psku ON psku.`code` = material.sku_code
+        LEFT JOIN prod_supplier psup ON psup.id = psku.supplier_id
+        <where>
+            <if test="contractCode != null">
+                contract_code = #{contractCode}
+            </if>
+            <if test="categoryCode != null">
+                AND category_code = #{categoryCode}
+            </if>
+            <if test="categoryDetailCode != null">
+                AND category_detail_code = #{categoryDetailCode}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteById" >
+        delete from sm_project_material where id = #{id}
+    </delete>
+
+    <sql id="otherName">
+         WHEN 'MAINMATERIAL' THEN '主材'
+         WHEN 'PACKAGESTANDARD' THEN '套餐标配'
+         WHEN 'UPGRADEITEM' THEN '升级项'
+        WHEN 'OTHERCATEGORIESOFSMALLFEES' THEN '其他综合费'
+        WHEN 'BASEINSTALLQUOTA' THEN '基装定额'
+        WHEN 'BASEINSTALLCOMPREHENSIVEFEE' THEN '基装增项综合费'
+        WHEN 'DISMANTLEBASEINSTALLQUOTA' THEN '拆除基装定额'
+        WHEN 'DISMANTLEBASEINSTALLCOMPFEE' THEN '拆除基装增项综合费'
+        WHEN 'DISMANTLEOTHERCOMPFEE' THEN '拆除其他综合费' END
+    </sql>
+
+    <select id="getPackagestandardByContractCode"  resultType="map">
+       select DISTINCT
+       CASE spm.category_code
+       <include refid="otherName"/>
+        category_code,
+        spm.category_detail_code,
+        pc.name as cataLogName,
+        spm.product_name,
+        spm.brand,
+        spm.sku_model,
+        spm.attribute1,
+        spm.material_unit,
+        spm.sku_sqec,
+        GROUP_CONCAT(DISTINCT ssd.domain_name) as domain_name,
+        IFNULL(sum(ssd.budget_dosage),0) as budget_dosage,
+        ssd.loss_factor,
+        ssd.convert_unit,
+        IFNULL(sum(ssd.loss_dosage),0) as loss_dosage,
+        IFNULL(sum(ssd.loss_dosage),0) as loss_dosage
+        from sm_project_material as spm
+        LEFT JOIN sm_sku_dosage as ssd on spm.id = ssd.project_material_id
+        LEFT JOIN prod_catalog as pc on pc.url = spm.product_category_url
+        LEFT JOIN prod_sku as ps on spm.sku_code = ps.`code`
+             where  contract_code = #{contractCode}
+            AND spm.category_code = 'PACKAGESTANDARD'
+        GROUP BY ssd.project_material_id
+    </select>
+
+
+
+    <select id="getUpMaterialByContractCode" parameterType="string" resultType="map">
+        SELECT DISTINCT
+        CASE spm.category_code
+        <include refid="otherName"/>
+        category_code,
+        pc.`name` as cataLogName,
+        spm.product_name,
+        spm.brand,
+        spm.sku_model,
+        spm.attribute1,
+        spm.material_unit,
+        IFNULL(ssd.store_upgrade_difference_price,0) as store_upgrade_difference_price,
+        spm.sku_sqec,
+        GROUP_CONCAT(DISTINCT ssd.domain_name) as domain_name,
+        IFNULL(sum(ssd.budget_dosage),0) as budget_dosage,
+        ssd.loss_factor,
+        ssd.convert_unit,
+        IFNULL(SUM(ssd.loss_dosage),0) as loss_dosage,
+        IFNULL(SUM(ssd.loss_dosage),0) as loss_dosage,
+        IFNULL(ssd.store_upgrade_difference_price,0)*IFNULL(SUM(ssd.loss_dosage),0) as priceTotal
+        FROM
+            sm_project_material AS spm
+        LEFT JOIN sm_sku_dosage AS ssd ON spm.id = ssd.project_material_id
+		LEFT JOIN prod_catalog as pc on pc.url = spm.product_category_url
+        WHERE
+             contract_code = #{contractCode}
+        AND spm.category_code = 'UPGRADEITEM'
+        GROUP BY ssd.project_material_id
+    </select>
+
+    <select id="getAddItemByContractCode" resultType="map">
+        SELECT DISTINCT
+        CASE spm.category_detail_code
+        <include refid="otherName"/>
+        category_detail_code,
+        pc.`name` as cataLogName,
+        spm.product_name,
+        spm.brand,
+        spm.sku_model,
+        spm.attribute1,
+        spm.material_unit,
+        IFNULL(ssd.store_increase_price,0) as store_increase_price,
+        spm.sku_sqec,
+        GROUP_CONCAT(DISTINCT ssd.domain_name) as domain_name,
+        IFNULL(sum(ssd.budget_dosage),0) as budget_dosage,
+        ssd.loss_factor,
+        ssd.convert_unit,
+        IFNULL(SUM(ssd.loss_dosage),0) as loss_dosage,
+        IFNULL(SUM(ssd.loss_dosage),0) as loss_dosage,
+        IFNULL(ssd.store_increase_price,0)*IFNULL(SUM(ssd.loss_dosage),0) as priceTotal
+        FROM
+            sm_project_material AS spm
+        LEFT JOIN sm_sku_dosage AS ssd ON spm.id = ssd.project_material_id
+        LEFT JOIN prod_catalog as pc on pc.url = spm.product_category_url
+        WHERE
+             contract_code = #{contractCode}
+        AND spm.category_code = 'ADDITEM'
+        AND spm.category_detail_code = #{addItemType}
+        GROUP BY ssd.project_material_id
+    </select>
+
+
+
+    <select id="getReduceitemByContractCode"  resultType="map">
+        SELECT DISTINCT
+        CASE spm.category_detail_code
+        <include refid="otherName"/>
+        category_detail_code,
+        pc.`name` as cataLogName,
+        spm.product_name,
+        spm.brand,
+        spm.sku_model,
+        spm.attribute1,
+        spm.material_unit,
+        IFNULL(ssd.store_reduce_price,0) as store_reduce_price,
+        spm.sku_sqec,
+        GROUP_CONCAT(DISTINCT ssd.domain_name) as domain_name,
+        IFNULL(sum(ssd.budget_dosage),0) as budget_dosage,
+        ssd.loss_factor,
+        ssd.convert_unit,
+        IFNULL(SUM(ssd.loss_dosage),0) as loss_dosage,
+        IFNULL(SUM(ssd.loss_dosage),0) as loss_dosage,
+        IFNULL(ssd.store_reduce_price,0)*IFNULL(SUM(ssd.loss_dosage),0) as priceTotal
+        FROM
+            sm_project_material AS spm
+        LEFT JOIN sm_sku_dosage AS ssd ON spm.id = ssd.project_material_id
+        LEFT JOIN prod_catalog as pc on pc.url = spm.product_category_url
+        WHERE
+             contract_code = #{contractCode}
+        AND spm.category_code = 'REDUCEITEM'
+        AND spm.category_detail_code = #{reduceItemType}
+        GROUP BY ssd.project_material_id
+    </select>
+
+
+    <select id="getOthercateFeesByContractCode" parameterType="string" resultType="map">
+        SELECT
+        ssd.domain_name,
+        spm.product_name,
+        spm.material_unit,
+         IFNULL(ssd.loss_dosage,0) as loss_dosage,
+        CASE ssd.dosage_pricing_mode
+        WHEN 'fixedUnitPrice' THEN '固定单价'
+        WHEN 'foundationPileTotal' THEN '基装增项总价占比'
+        WHEN 'renovationFoundationPile' THEN '装修工程总价占比'
+        WHEN 'dismantleFoundationPile' THEN '拆除基装定额总价占比'
+        WHEN 'demolitionProjectTotal' THEN '拆除工程总价占比'
+        END  dosage_pricing_mode,
+        IFNULL(ssd.store_sale_price,0) as store_sale_price,
+        IFNULL(ssd.project_proportion,IFNULL(ssd.store_sale_price,0)) as project_proportion,
+        IFNULL(ssd.loss_dosage,0)*IFNULL(ssd.store_sale_price,0) as baseinstallquotaTotal,
+        spm.design_remark,
+        spm.quota_describe
+        FROM
+            sm_project_material AS spm
+        LEFT JOIN sm_sku_dosage AS ssd ON spm.id = ssd.project_material_id
+        WHERE
+             contract_code = #{contractCode}
+        AND spm.category_code = 'OTHERCOMPREHENSIVEFEE'
+        AND spm.category_detail_code = 'OTHERCATEGORIESOFSMALLFEES'
+    </select>
+
+    <select id="getDismantlebaseinstallquotaByContractCode"  resultType="map">
+        SELECT
+        ssd.domain_name,
+        spm.product_name,
+        spm.material_unit,
+        IFNULL(sum(ssd.loss_dosage),0) as loss_dosage,
+        CASE ssd.dosage_pricing_mode
+        WHEN 'fixedUnitPrice' THEN '固定单价'
+        WHEN 'foundationPileTotal' THEN '基装增项总价占比'
+        WHEN 'renovationFoundationPile' THEN '装修工程总价占比'
+        WHEN 'dismantleFoundationPile' THEN '拆除基装定额总价占比'
+        WHEN 'demolitionProjectTotal' THEN '拆除工程总价占比'
+        END dosage_pricing_mode,
+        IFNULL(ssd.store_sale_price,0) as store_sale_price,
+        IFNULL(ssd.project_proportion,IFNULL(ssd.store_sale_price,0)) as project_proportion,
+        IFNULL(sum(ssd.loss_dosage),0)*IFNULL(ssd.store_sale_price,0) as baseinstallquotaTotal,
+        spm.quota_describe
+        FROM
+            sm_project_material AS spm
+        LEFT JOIN sm_sku_dosage AS ssd ON spm.id = ssd.project_material_id
+        WHERE
+             contract_code = #{contractCode}
+        AND spm.category_code = 'OLDHOUSEDEMOLITION'
+        AND spm.category_detail_code = #{oldHouseType}
+        GROUP BY ssd.project_material_id
+    </select>
+
+    <delete id="delete">
+        delete from sm_project_material where contract_code = #{contractCode}
+    </delete>
+
+    <insert id="insertByprojectChangeMaterial" parameterType="list">
+        insert into sm_project_material ( id, product_category_url, contract_code, category_code, category_detail_code, sku_code,
+        design_remark, audit_remark, sku_sqec, sku_model, product_name, sku_image_path, store_sale_price,
+        quota_describe, check_scale, attribute1, attribute2, attribute3, create_user,
+        create_time, update_user, update_time,material_unit, brand, brand_id) VALUES
+        <foreach item="item" collection="list"  index="index" separator="," >
+            (#{item.id},#{item.productCategoryUrl},#{item.contractCode},#{item.categoryCode}
+            ,#{item.categoryDetailCode},#{item.skuCode},#{item.designRemark},#{item.auditRemark},#{item.skuSqec}
+            ,#{item.skuModel},#{item.productName}
+            ,#{item.skuImagePath},#{item.storeSalePrice},#{item.quotaDescribe},#{item.checkScale},#{item.attribute1}
+            ,#{item.attribute2},#{item.attribute3},#{item.createUser},#{item.createTime},#{item.updateUser},#{item.updateTime}
+            ,#{item.materialUnit},#{item.brand}, #{item.brandId})
+        </foreach>
+    </insert>
+
+    <select id="getByConCodeAndChUrl" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/> from sm_project_material where contract_code = #{contractCode} and
+        product_category_url LIKE CONCAT('%',#{changeCategoryUrl},'%')
+    </select>
+    <select id="getByContractCode" resultMap="BaseResultMap">
+        SELECT * FROM sm_project_material WHERE contract_code = #{contractCode}
+    </select>
+
+    <select id="findByConAndUrl" resultMap="BaseResultMap">
+        select * from sm_project_material where contract_code = #{contractCode} and
+        product_category_url LIKE CONCAT(#{changeCategoryUrl},'%')
+    </select>
+</mapper>

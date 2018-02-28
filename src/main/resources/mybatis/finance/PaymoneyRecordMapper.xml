@@ -1,0 +1,721 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.finance.PaymoneyRecordDao">
+  <resultMap id="BaseResultMap" type="cn.mdni.business.entity.finance.PaymoneyRecord">
+    <id column="id" property="id" />
+    <result column="pay_id" property="payId"/>
+    <result column="contract_code" property="contractCode"/>
+    <result column="contract_uuid" property="contractUuid"/>
+    <result column="stage_code" property="stageCode"/>
+    <result column="pay_type" property="payType"/>
+    <result column="payer_name" property="payerName"/>
+    <result column="payer_mobile" property="payerMobile"/>
+    <result column="pay_time" property="payTime"/>
+    <result column="expect_received" property="expectReceived"/>
+    <result column="actual_received" property="actualReceived"/>
+    <result column="receipt_num" property="receiptNum"/>
+    <result column="if_rcw" property="ifRcw"/>
+    <result column="rcw_payid" property="rcwPayid"/>
+    <result column="create_time" property="createTime"/>
+    <result column="update_time" property="updateTime"/>
+    <result column="creator" property="creator"/>
+    <result column="pay_status" property="payStatus"/>
+    <result column="remark" property="remark"/>
+    <result column="print_count" property="printCount"/>
+    <result column="cashier" property="cashier"/>
+    <result column="paymethod_code" property="paymethodCode"/>
+    <result column="paymethod_name" property="paymethodName"/>
+    <result column="paymethod_attr_id" property="paymethodAttrId"/>
+    <result column="paymethod_attr_fullname" property="paymethodAttrFullname"/>
+    <result column="costfee_rate" property="costfeeRate"/>
+    <result column="costfee_amount" property="costfeeAmount"/>
+    <result column="if_able_deduct" property="ifAbleDeduct"/>
+    <result column="sign_contract_start_time" property="contractStartTime"/>
+    <result column="order_flow_status" property="orderFlowStatus"/>
+    <result column="build_area" property="buildArea"/>
+    <result column="item_name" property="itemName"/>
+    <result column="stage_template_id" property="stageTemplateId"/>
+    <result column="pay_manual_flag" property="payManualFlag"/>
+    <result column="customer_name" property="customerName"/>
+    <result column="customer_mobile" property="customerMobile"/>
+    <result column="address_province" property="addressProvince"/>
+    <result column="address_city" property="addressCity"/>
+    <result column="address_area" property="addressArea"/>
+    <result column="house_addr" property="houseAddr"/>
+    <result column="finance_status" property="financeStatus"/>
+    <result column="stage_finished" property="stageFinished"/>
+    <result column="service_name" property="serviceName"/>
+    <result column="service_mobile" property="serviceMobile"/>
+    <result column="second_contact" property="secondContact"/>
+    <result column="second_contact_mobile" property="secondContactMobile"/>
+    <result column="designer" property="designer"/>
+    <result column="customer_mobile" property="customerMobile"/>
+    <result column="template_stage_id" property="templateStageId"/>
+    <result column="template_stage_Code" property="templateStageCode"/>
+    <result column="template_stage_Code" property="templateStageCode"/>
+    <result column="ifRcwName" property="ifRcwName"/>
+    <result column="relate_record_id" property="relateRecordId"/>
+    <result column="balance" property="balance"/>
+    <result column="meal_name" property="mealName"/>
+    <result column="config_content" property="configContent"/>
+  </resultMap>
+
+  <select id="paymoneyRecordTotal" parameterType="map" resultType="long">
+    SELECT COUNT(*) FROM fina_paymoney_record AS rec
+    <include refid="paymoneyRecordFromWhere"/>
+  </select>
+
+  <select id="paymoneyRecordFindAll" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    rec.*,sig.contract_start_time AS sign_contract_start_time,cus.order_flow_status AS order_flow_status,cus.build_area,
+    ite.id AS template_stage_id
+    FROM
+    fina_paymoney_record rec
+    <include refid="paymoneyRecordFromWhere"/>
+    <if test="sort != null">
+      order by
+      <foreach collection="sort" item="order" separator=",">
+        ${order.property} ${order.direction}
+      </foreach>
+    </if>
+    limit #{offset}, #{pageSize}
+  </select>
+
+  <sql id="paymoneyRecordFromWhere">
+    LEFT JOIN sm_project_sign sig ON rec.contract_code = sig.contract_code
+    LEFT JOIN customer_contract cus ON rec.contract_code = cus.contract_code
+    LEFT JOIN fina_payplan_item ite ON rec.template_stage_id = ite.id
+    <where>
+      <if test="keyword != null">
+        and (rec.contract_code like CONCAT('%', #{keyword}, '%')
+        OR rec.payer_name like CONCAT('%', #{keyword}, '%')
+        OR rec.receipt_num like CONCAT('%', #{keyword}, '%')
+        OR rec.payer_mobile like CONCAT('%', #{keyword}, '%')
+        )
+      </if>
+      <if test="paystartTime != null and paystartTime != ''">
+        AND DATE(rec.pay_time) &gt;= DATE(#{paystartTime})
+      </if>
+      <if test="payendTime != null and payendTime != ''">
+        AND DATE(rec.pay_time) &lt;= DATE(#{payendTime})
+      </if>
+      <if test="paymethodName != null">
+        AND rec.paymethod_name LIKE '%${paymethodName}%'
+      </if>
+      <if test="ifRcw != null">
+        AND rec.if_rcw = #{ifRcw}
+      </if>
+      <if test="templateStageId != null">
+        AND ite.id  = #{templateStageId}
+      </if>
+      AND cus.store_code = #{storeCode}
+    </where>
+  </sql>
+
+  <select id="getStageType" resultType="map" parameterType="String">
+    SELECT
+        fpi.id AS itemId,
+        fpi.item_name AS itemName
+    FROM
+        fina_payplan_item fpi
+    LEFT JOIN fina_payplan fp ON fpi.plan_code = fp.plan_code
+    LEFT JOIN fina_payplan_store fps ON fpi.plan_code = fps.plan_code
+    where fps.store_code = #{storeCode}
+  </select>
+
+  <select id="projectCompositeTotal" parameterType="map" resultType="long">
+    select count(*) from
+    (select distinct
+    cus.order_flow_status as fstatus,
+    IF(cus.is_sign_deposit IS NULL,0, cus.is_sign_deposit) as finished,
+    cus.contract_code as contractCode,
+    cus.contract_uuid as contractUuid,
+    cus.store_code as storeCode,
+    cust.name as customerName,
+    cus.address_province as addressProvince,
+    cus.address_city as addressCity,
+    cus.address_area as addressArea,
+    cus.house_addr as houseAddr,
+    cus.build_area as buildArea,
+    cus.order_flow_status as orderFlowStatus,
+    cust.mobile as customeMobile,
+    cus.second_contact AS secondContact,
+    cus.designer AS designer,
+    cus.service_name AS serviceName,
+    cus.service_mobile AS serviceMobile,
+    IF(cus.is_sign_deposit IS NULL,0, cus.is_sign_deposit) as stageFinished
+    from customer_contract cus
+    left join customer cust ON cus.customer_id = cust.id
+    ) aa
+    left join
+    (select
+    rec.contract_code,
+    rec.template_stage_id as templateStageId,
+    rec.paymethod_name AS paymethodName,
+    rec.pay_time as payTime,
+    rec.actual_received AS actualReceived,
+    ite.item_name as itemName
+    from fina_paymoney_record rec,fina_payplan_item ite,
+    (select contract_code,MAX(id) maxId from fina_paymoney_record group by contract_code) b
+    where rec.contract_code = b.contract_code
+    and b.maxId = rec.id
+    and ite.id = rec.template_stage_id) bb
+    on aa.contractCode = bb.contract_code
+    <include refid="projectCompositeFromWhere"/>
+  </select>
+
+  <select id="projectCompositeFindAll" parameterType="map" resultType="map">
+    select * from
+    (select distinct
+      cus.order_flow_status as fstatus,
+      IF(cus.is_sign_deposit IS NULL,0, cus.is_sign_deposit) as finished,
+      cus.contract_code as contractCode,
+      cus.contract_uuid as contractUuid,
+      cus.store_code as storeCode,
+      cust.name as customerName,
+      cus.address_province as addressProvince,
+      cus.address_city as addressCity,
+      cus.address_area as addressArea,
+      cus.house_addr as houseAddr,
+      cus.build_area as buildArea,
+      cus.order_flow_status as orderFlowStatus,
+      cust.mobile as customeMobile,
+      cus.second_contact AS secondContact,
+      cus.designer AS designer,
+      cus.service_name AS serviceName,
+      cus.service_mobile AS serviceMobile,
+      IF(cus.is_sign_deposit IS NULL,0, cus.is_sign_deposit) as stageFinished
+    from customer_contract cus
+    left join customer cust ON cus.customer_id = cust.id
+    ) aa
+    left join
+    (select
+    rec.contract_code,
+    rec.template_stage_id as templateStageId,
+    rec.paymethod_name AS paymethodName,
+    rec.pay_time as payTime,
+    rec.actual_received AS actualReceived,
+    ite.item_name as itemName
+    from fina_paymoney_record rec,fina_payplan_item ite,
+    (select contract_code,MAX(id) maxId from fina_paymoney_record group by contract_code) b
+    where rec.contract_code = b.contract_code
+    and b.maxId = rec.id
+    and ite.id = rec.template_stage_id) bb
+    on aa.contractCode = bb.contract_code
+    <include refid="projectCompositeFromWhere"/>
+    order by payTime desc
+    limit #{offset}, #{pageSize}
+  </select>
+
+  <sql id="projectCompositeFromWhere">
+    <where>
+      <if test="keyword != null">
+        and (contractCode like CONCAT('%', #{keyword}, '%')
+        OR customerName like CONCAT('%', #{keyword}, '%')
+        OR secondContact like CONCAT('%', #{keyword}, '%')
+        OR designer like CONCAT('%', #{keyword}, '%')
+        OR serviceName like CONCAT('%', #{keyword}, '%')
+        OR serviceMobile like CONCAT('%', #{keyword}, '%')
+        )
+      </if>
+      <if test="orderFlowStatus != null">
+        AND fstatus = #{orderFlowStatus}
+      </if>
+      <if test="stageFinished != null">
+        AND finished = #{stageFinished}
+      </if>
+      <if test="paystartTime != null and paystartTime != ''">
+        AND DATE(payTime) &gt;= DATE(#{paystartTime})
+      </if>
+      <if test="payendTime != null and payendTime != ''">
+        AND DATE(payTime) &lt;= DATE(#{payendTime})
+      </if>
+      <if test="paymethodName != null">
+        AND paymethodName = #{paymethodName}
+      </if>
+      <if test="templateStageId != null">
+        AND templateStageId=#{templateStageId}
+      </if>
+      AND storeCode = #{storeCode}
+    </where>
+  </sql>
+
+  <select id="paymentInformationInquiry" resultType="java.util.HashMap">
+    SELECT
+    fpr.id AS id,
+    pay_id AS payId,
+    cashier AS cashier,
+    actual_received AS actualReceived,
+    expect_received AS expectReceived,
+    receipt_num AS receiptNum,
+    paymethod_name AS paymethodName,
+    pay_time AS payTime,
+    payer_mobile AS payerMobile,
+    payer_name AS payerName,
+    pay_manual_flag AS payManualFlag,
+    fpi.item_name AS itemName,
+    fpr.pay_status AS payStatus,
+    fpr.if_rcw AS ifRcw,
+    fpr.pay_type AS payType
+    FROM
+    fina_paymoney_record fpr
+    LEFT JOIN fina_payplan_item fpi ON fpr.template_stage_id = fpi.id
+    <where>
+      fpr.contract_uuid = #{contractUuid}
+      and fpr.pay_type!='RETURN_MONEY'
+    </where>
+    ORDER BY fpr.id DESC
+  </select>
+
+  <select id="exportProjectComposite" parameterType="map" resultType="map">
+    select * from
+    (select distinct
+    cus.order_flow_status as fstatus,
+    IF(cus.is_sign_deposit IS NULL,0, cus.is_sign_deposit) as finished,
+    cus.contract_code as contractCode,
+    cus.contract_uuid as contractUuid,
+    cus.store_code as storeCode,
+    cust.name as customerName,
+    cus.address_province as addressProvince,
+    cus.address_city as addressCity,
+    cus.house_addr as houseAddr,
+    cus.address_area as addressArea,
+    cus.build_area as buildArea,
+    cust.mobile as customeMobile,
+    cus.second_contact AS secondContact,
+    cus.designer AS designer,
+    cus.service_name AS serviceName,
+    cus.service_mobile AS serviceMobile,
+    case
+    cus.order_flow_status
+    when 'STAY_TURN_DETERMINE'
+    then '待转大定'
+    when 'SUPERVISOR_STAY_ASSIGNED'
+    then '督导组长待分配'
+    when 'DESIGN_STAY_ASSIGNED'
+    then '设计待分配'
+    when 'APPLY_REFUND'
+    then '申请退回'
+    when 'STAY_DESIGN'
+    then '待设计'
+    when 'STAY_SIGN'
+    then '待签约'
+    when 'STAY_SEND_SINGLE_AGAIN'
+    then '待重新派单'
+    WHEN 'STAY_CONSTRUCTION' THEN '待施工'
+    WHEN 'ON_CONSTRUCTION' THEN '施工中'
+    when 'PROJECT_COMPLETE'
+    then '已竣工'
+    when 'ORDER_CLOSE'
+    then '订单关闭'
+    end as orderFlowStatus,
+    case
+    IF(cus.is_sign_deposit IS NULL,0, cus.is_sign_deposit)
+    when '1'
+    then '是'
+    when '0'
+    then '否'
+    end as stageFinished
+    from customer_contract cus
+    left join customer cust ON cus.customer_id = cust.id
+    ) aa
+    left join
+    (select
+    rec.contract_code,
+    rec.template_stage_id as templateStageId,
+    rec.paymethod_name AS paymethodName,
+    rec.pay_time as payTime,
+    rec.actual_received AS actualReceived,
+    ite.item_name as itemName
+    from fina_paymoney_record rec,fina_payplan_item ite,
+    (select contract_code,MAX(id) maxId from fina_paymoney_record group by contract_code) b
+    where rec.contract_code = b.contract_code
+    and b.maxId = rec.id
+    and ite.id = rec.template_stage_id) bb
+    on aa.contractCode = bb.contract_code
+    <include refid="projectCompositeFromWhere"/>
+  </select>
+
+  <select id="exportPaymoneyRecord" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    rec.*, sig.contract_code AS sign_contract_code,sig.contract_start_time AS sign_contract_start_time,
+    CASE rec.if_rcw
+      WHEN '1' THEN '是'
+      WHEN '0' THEN '否'
+    END AS ifRcwName,
+    case
+      cus.order_flow_status
+      when 'STAY_TURN_DETERMINE'
+      then '待转大定'
+      when 'SUPERVISOR_STAY_ASSIGNED'
+      then '督导组长待分配'
+      when 'DESIGN_STAY_ASSIGNED'
+      then '设计待分配'
+      when 'APPLY_REFUND'
+      then '申请退回'
+      when 'STAY_DESIGN'
+      then '待设计'
+      when 'STAY_SIGN'
+      then '待签约'
+      when 'STAY_SEND_SINGLE_AGAIN'
+      then '待重新派单'
+      WHEN 'STAY_CONSTRUCTION' THEN '待施工'
+      WHEN 'ON_CONSTRUCTION' THEN '施工中'
+      when 'PROJECT_COMPLETE'
+      then '已竣工'
+      when 'ORDER_CLOSE'
+      then '订单关闭'
+    end as orderFlowStatus,
+    cus.build_area,
+    ite.id AS template_stage_id
+    FROM
+    fina_paymoney_record rec
+    <include refid="paymoneyRecordFromWhere"/>
+  </select>
+
+
+  <insert id="insert" parameterType="cn.mdni.business.entity.finance.PaymoneyRecord">
+      INSERT INTO fina_paymoney_record(pay_id,contract_code,contract_uuid,stage_code,template_stage_id,template_stage_code,
+      pay_type,pay_manual_flag,payer_name,payer_mobile,pay_time,expect_received,actual_received,receipt_num,if_rcw,rcw_payid,
+      create_time,update_time,creator,pay_status,remark,print_count,cashier,paymethod_code,paymethod_name,paymethod_attr_id,
+      paymethod_attr_fullname,costfee_rate,costfee_amount,if_able_deduct,relate_record_id) VALUES (
+        #{payId},#{contractCode},#{contractUuid},#{stageCode},#{templateStageId},#{templateStageCode},#{payType},#{payManualFlag},
+        #{payerName},#{payerMobile},#{payTime},#{expectReceived},#{actualReceived},#{receiptNum},#{ifRcw},#{rcwPayid},#{createTime},
+        #{updateTime},#{creator},#{payStatus},#{remark},#{printCount},#{cashier},#{paymethodCode},#{paymethodName},#{paymethodAttrId},
+        #{paymethodAttrFullname},#{costfeeRate},#{costfeeAmount},#{ifAbleDeduct},#{relateRecordId}
+      )
+  </insert>
+
+
+
+
+  <insert id="batchInsertList">
+    INSERT INTO fina_paymoney_record(pay_id,contract_code,contract_uuid,stage_code,template_stage_id,template_stage_code,
+    pay_type,pay_manual_flag,payer_name,payer_mobile,pay_time,expect_received,actual_received,receipt_num,if_rcw,rcw_payid,
+    create_time,update_time,creator,pay_status,remark,print_count,cashier,paymethod_code,paymethod_name,paymethod_attr_id,
+    paymethod_attr_fullname,costfee_rate,costfee_amount,if_able_deduct,relate_record_id) VALUES
+    <foreach collection="list" index="idx" item="item" separator=",">
+      (#{item.payId},#{item.contractCode},#{item.contractUuid},#{item.stageCode},#{item.templateStageId},#{item.templateStageCode},#{item.payType},#{item.payManualFlag},
+      #{item.payerName},#{item.payerMobile},#{item.payTime},#{item.expectReceived},#{item.actualReceived},#{item.receiptNum},#{item.ifRcw},#{item.rcwPayid},#{item.createTime},
+      #{item.updateTime},#{item.creator},#{item.payStatus},#{item.remark},#{item.printCount},#{item.cashier},#{item.paymethodCode},#{item.paymethodName},#{item.paymethodAttrId},
+      #{item.paymethodAttrFullname},#{item.costfeeRate},#{item.costfeeAmount},#{item.ifAbleDeduct},#{item.relateRecordId})
+    </foreach>
+  </insert>
+
+  <select id="getPaymoneyRecordByPayId" parameterType="string" resultMap="BaseResultMap">
+    SELECT * FROM fina_paymoney_record
+    <where>
+      <if test="payId != null">
+        AND pay_id=#{payId}
+      </if>
+    </where>
+    ORDER BY id DESC LIMIT 1
+  </select>
+
+  <update id="update" parameterType="cn.mdni.business.entity.finance.PaymoneyRecord">
+    UPDATE fina_paymoney_record
+    <set>
+      <if test="payId != null">
+        pay_id = #{payId},
+      </if>
+      <if test="contractCode != null">
+        contract_code = #{contractCode},
+      </if>
+      <if test="contractUuid != null">
+        contract_uuid = #{contractUuid},
+      </if>
+      <if test="stageCode != null">
+        stage_code = #{stageCode},
+      </if>
+      <if test="templateStageId != null">
+        template_stage_id = #{templateStageId},
+      </if>
+      <if test="templateStageCode != null">
+        template_stage_code = #{templateStageCode},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType},
+      </if>
+      <if test="payManualFlag != null">
+        pay_manual_flag = #{payManualFlag},
+      </if>
+      <if test="payerName != null">
+        payer_name = #{payerName},
+      </if>
+      <if test="payerMobile != null">
+        payer_mobile = #{payerMobile},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime},
+      </if>
+      <if test="expectReceived != null">
+        expect_received = #{expectReceived},
+      </if>
+      <if test="actualReceived != null">
+        actual_received = #{actualReceived},
+      </if>
+      <if test="receiptNum != null">
+        receipt_num = #{receiptNum},
+      </if>
+      <if test="ifRcw != null">
+        if_rcw = #{ifRcw},
+      </if>
+      <if test="rcwPayid != null">
+        rcw_payid = #{rcwPayid},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime},
+      </if>
+      <if test="creator != null">
+        creator = #{creator},
+      </if>
+      <if test="payStatus != null">
+        pay_status = #{payStatus},
+      </if>
+      <if test="remark != null">
+        remark = #{remark},
+      </if>
+      <if test="printCount != null">
+        print_count = #{printCount},
+      </if>
+      <if test="cashier != null">
+        cashier = #{cashier},
+      </if>
+      <if test="paymethodCode != null">
+        paymethod_code = #{paymethodCode},
+      </if>
+      <if test="paymethodName != null">
+        paymethod_name = #{paymethodName},
+      </if>
+      <if test="paymethodAttrId != null">
+        paymethod_attr_id = #{paymethodAttrId},
+      </if>
+      <if test="paymethodAttrFullname != null">
+        paymethod_attr_fullname = #{paymethodAttrFullname},
+      </if>
+      <if test="costfeeRate != null">
+        costfee_rate = #{costfeeRate},
+      </if>
+      <if test="costfeeAmount != null">
+        costfee_amount = #{costfeeAmount},
+      </if>
+      <if test="ifAbleDeduct != null">
+        if_able_deduct = #{ifAbleDeduct},
+      </if>
+      <if test="paymethodId != null">
+        relate_record_id = #{paymethodId},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+  <update id="batchUpdatePaymoneyRecordStatus">
+      UPDATE fina_paymoney_record SET pay_status = #{payRecordStatus} WHERE contract_uuid=#{contractUuid}
+  </update>
+
+  <select id="getProjectAbleFinishPaymoneyRecord" resultMap="BaseResultMap">
+      SELECT r.* FROM fina_paymoney_record r
+      LEFT JOIN fina_project_payplan_stage s ON r.stage_code = s.stage_code
+      WHERE r.if_rcw=0 AND r.pay_status='VALID' AND r.contract_uuid=#{contractUuid} AND s.curent_flag = 1
+      AND r.pay_type IN
+      <foreach collection="ablePayTypes" index="index" item="type" open="(" separator="," close=")">
+        #{type}
+      </foreach>
+      AND r.template_stage_code NOT IN
+      <foreach collection="exNodes" index="index" item="node" open="(" separator="," close=")">
+        #{node}
+      </foreach>
+      ORDER BY pay_time DESC LIMIT 1;
+  </select>
+
+
+  <select id="getProjectAbleRcwPaymoneyRecord" resultMap="BaseResultMap">
+    SELECT * FROM fina_paymoney_record
+    WHERE if_rcw=0 AND pay_status='VALID' AND contract_uuid=#{contractUuid} AND pay_type IN
+    <foreach collection="ablePayTypes" index="index" item="type" open="(" separator="," close=")">
+      #{type}
+    </foreach>
+    ORDER BY pay_time DESC LIMIT 1;
+  </select>
+
+
+  <select id="findReceiptAll" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    rec.id,
+    rec.contract_code,
+    cust.`name` AS customer_name,
+    cust.mobile AS customer_mobile,
+    cus.second_contact,
+    cus.second_contact_mobile,
+    fpi.item_name,
+    rec.pay_manual_flag,
+    rec.payer_name,
+    rec.payer_mobile,
+    rec.pay_time,
+    rec.paymethod_name,
+    rec.receipt_num,
+    rec.expect_received,
+    rec.actual_received,
+    (
+    rec.expect_received - rec.actual_received
+    ) AS balance,
+    rec.creator
+    FROM
+    fina_paymoney_record rec
+    LEFT JOIN customer_contract cus ON cus.contract_code = rec.contract_code
+    LEFT JOIN customer cust ON cus.customer_id = cust.id
+    LEFT JOIN fina_payplan_item fpi ON rec.template_stage_id = fpi.id
+    <where>
+      <if test="keyword != null">
+        and (rec.contract_code like CONCAT('%', #{keyword}, '%')
+        OR cust.name like CONCAT('%', #{keyword}, '%')
+        OR cust.mobile  like CONCAT('%', #{keyword}, '%')
+        )
+      </if>
+      <if test="paystartTime != null and paystartTime != ''">
+        AND DATE(rec.pay_time) &gt;= DATE(#{paystartTime})
+      </if>
+      <if test="payendTime != null and payendTime != ''">
+        AND DATE(rec.pay_time) &lt;= DATE(#{payendTime})
+      </if>
+      <if test="creator != null">
+        AND rec.creator LIKE '%${creator}%'
+      </if>
+      AND cus.store_code = #{storeCode}
+    </where>
+    limit #{offset}, #{pageSize}
+  </select>
+
+  <select id="receiptTotal" parameterType="map" resultType="long">
+    SELECT COUNT(*)
+    FROM
+    fina_paymoney_record rec
+    LEFT JOIN customer_contract cus ON cus.contract_code = rec.contract_code
+    LEFT JOIN customer cust ON cus.customer_id = cust.id
+    LEFT JOIN fina_payplan_item fpi ON rec.template_stage_id = fpi.id
+    <where>
+      <if test="keyword != null">
+        and (rec.contract_code like CONCAT('%', #{keyword}, '%')
+        OR cust.name like CONCAT('%', #{keyword}, '%')
+        OR cust.mobile like CONCAT('%', #{keyword}, '%')
+        )
+      </if>
+      <if test="paystartTime != null and paystartTime != ''">
+        AND DATE(rec.pay_time) &gt;= DATE(#{paystartTime})
+      </if>
+      <if test="payendTime != null and payendTime != ''">
+        AND DATE(rec.pay_time) &lt;= DATE(#{payendTime})
+      </if>
+      <if test="creator != null">
+        AND rec.creator LIKE '%${creator}%'
+      </if>
+      AND cus.store_code = #{storeCode}
+    </where>
+  </select>
+
+
+  <select id="getPaymoneyRecordById" parameterType="map" resultMap="BaseResultMap">
+      SELECT
+          rec.*, fpi.item_name,
+          cus.address_province,
+          cus.address_city,
+          cus.address_area,
+          cus.house_addr,
+          cus.second_contact,
+          cus.second_contact_mobile,
+          smi.meal_name,
+          cust.`name` AS customer_name,
+          cust.mobile AS customer_mobile,
+          fsp.config_content
+      FROM
+          fina_paymoney_record rec
+      LEFT JOIN customer_contract cus ON cus.contract_code = rec.contract_code
+      LEFT JOIN customer cust ON cus.customer_id = cust.id
+      LEFT JOIN sm_meal_info smi ON cus.meal_id = smi.id
+      LEFT JOIN fina_payplan_item fpi ON rec.template_stage_id = fpi.id
+      LEFT JOIN fina_store_printconfig fsp ON fsp.store_code = cus.store_code
+      <where>
+        rec.id  = #{id}
+        AND fsp.store_code = #{storeCode}
+      </where>
+  </select>
+
+  <update id="updatePrintCount" parameterType="long">
+      update fina_paymoney_record set print_count = print_count + 1 where id = #{id}
+  </update>
+
+  <select id="getPrintCount" parameterType="long" resultType="int">
+      select print_count FROM fina_paymoney_record WHERE id = #{id}
+  </select>
+
+  <select id="getManyPaymoneyRecordById" resultMap="BaseResultMap">
+      SELECT
+          rec.*, fpi.item_name,
+          cus.address_province,
+          cus.address_city,
+          cus.address_area,
+          cus.house_addr,
+          cus.second_contact,
+          cus.second_contact_mobile,
+          smi.meal_name,
+          cust.`name` AS customer_name,
+          cust.mobile AS customer_mobile,
+          fsp.config_content
+      FROM
+          fina_paymoney_record rec
+      LEFT JOIN customer_contract cus ON cus.contract_code = rec.contract_code
+      LEFT JOIN customer cust ON cus.customer_id = cust.id
+      LEFT JOIN sm_meal_info smi ON cus.meal_id = smi.id
+      LEFT JOIN fina_payplan_item fpi ON rec.template_stage_id = fpi.id
+      LEFT JOIN fina_store_printconfig fsp ON fsp.store_code = cus.store_code
+      <where>
+        rec.id IN
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+          #{item}
+        </foreach>
+        AND fsp.store_code = #{storeCode}
+      </where>
+  </select>
+
+  <select id="searchTotal" parameterType="map" resultType="long">
+    SELECT COUNT(*) FROM fina_paymoney_record
+    <where>
+      1=1
+      <if test="receiptNum != null">
+        AND receipt_num  = #{receiptNum}
+      </if>
+    </where>
+  </select>
+
+
+  <select id="search" parameterType="map" resultMap="BaseResultMap">
+    SELECT * FROM fina_paymoney_record
+    <where>
+      1=1
+      <if test="contractUuid != null">
+        AND contract_uuid  = #{contractUuid}
+      </if>
+    </where>
+    <if test="sort != null">
+      ORDER BY
+      <foreach collection="sort" item="order" separator=",">
+        ${order.property} ${order.direction}
+      </foreach>
+    </if>
+    <if test="offset != null and pageSize != null">
+      limit #{offset}, #{pageSize}
+    </if>
+  </select>
+
+  <select id="getStoreCode" resultType="map" parameterType="String">
+     select store_code AS storeCode ,print_type AS printType,config_content AS configContent
+     from fina_store_printconfig
+     where store_code = #{storeCode}
+  </select>
+
+
+
+</mapper>

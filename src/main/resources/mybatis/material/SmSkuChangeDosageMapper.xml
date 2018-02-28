@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.material.SmSkuChangeDosageDao">
+    <resultMap id="BaseResultMap" type="SmSkuChangeDosage">
+        <id column="id" property="id"/>
+        <result column="project_material_id" property="projectMaterialId"/>
+        <result column="domain_name" property="domainName"/>
+        <result column="store_purchase_price" property="storePurchasePrice"/>
+        <result column="store_sale_price" property="storeSalePrice"/>
+        <result column="store_upgrade_difference_price" property="storeUpgradeDifferencePrice"/>
+        <result column="store_reduce_price" property="storeReducePrice"/>
+        <result column="store_increase_price" property="storeIncreasePrice"/>
+        <result column="budget_dosage" property="budgetDosage"/>
+        <result column="convert_unit" property="convertUnit"/>
+        <result column="loss_factor" property="lossFactor"/>
+        <result column="no_loss_dosage" property="noLossDosage"/>
+        <result column="loss_dosage" property="lossDosage"/>
+        <result column="project_proportion" property="projectProportion"/>
+        <result column="dosage_pricing_mode" property="dosagePricingMode"/>
+        <result column="dosage_remark" property="dosageRemark"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="category_detail_code" property="categoryDetailCode"/>
+        <result column="category_code" property="categoryCode"/>
+        <result column="original_dosage" property="originalDosage"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+     id, project_material_id, domain_name, store_purchase_price, store_sale_price, store_upgrade_difference_price,
+    store_reduce_price, store_increase_price, budget_dosage, convert_unit, loss_factor,
+    no_loss_dosage, loss_dosage, project_proportion, dosage_pricing_mode, dosage_remark,
+    create_user, create_time, update_user, update_time, original_dosage
+  </sql>
+    <select id="getById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sm_sku_change_dosage
+        where id = #{id}
+    </select>
+    <delete id="deleteById">
+        delete from sm_sku_change_dosage
+        where id = #{id}
+    </delete>
+    <insert id="insert" >
+        insert into sm_sku_change_dosage
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="projectMaterialId != null">
+                project_material_id,
+            </if>
+            <if test="domainName != null">
+                domain_name,
+            </if>
+            <if test="storePurchasePrice != null">
+                store_purchase_price,
+            </if>
+            <if test="storeSalePrice != null">
+                store_sale_price,
+            </if>
+            <if test="storeUpgradeDifferencePrice != null">
+                store_upgrade_difference_price,
+            </if>
+            <if test="storeReducePrice != null">
+                store_reduce_price,
+            </if>
+            <if test="storeIncreasePrice != null">
+                store_increase_price,
+            </if>
+            <if test="budgetDosage != null">
+                budget_dosage,
+            </if>
+            <if test="convertUnit != null">
+                convert_unit,
+            </if>
+            <if test="lossFactor != null">
+                loss_factor,
+            </if>
+            <if test="noLossDosage != null">
+                no_loss_dosage,
+            </if>
+            <if test="lossDosage != null">
+                loss_dosage,
+            </if>
+            <if test="projectProportion != null">
+                project_proportion,
+            </if>
+            <if test="dosagePricingMode != null">
+                dosage_pricing_mode,
+            </if>
+            <if test="dosageRemark != null">
+                dosage_remark,
+            </if>
+            <if test="createUser != null">
+                create_user,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateUser != null">
+                update_user,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="originalDosage != null">
+                original_dosage,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="projectMaterialId != null">
+                #{projectMaterialId},
+            </if>
+            <if test="domainName != null">
+                #{domainName},
+            </if>
+            <if test="storePurchasePrice != null">
+                #{storePurchasePrice},
+            </if>
+            <if test="storeSalePrice != null">
+                #{storeSalePrice},
+            </if>
+            <if test="storeUpgradeDifferencePrice != null">
+                #{storeUpgradeDifferencePrice},
+            </if>
+            <if test="storeReducePrice != null">
+                #{storeReducePrice},
+            </if>
+            <if test="storeIncreasePrice != null">
+                #{storeIncreasePrice},
+            </if>
+            <if test="budgetDosage != null">
+                #{budgetDosage},
+            </if>
+            <if test="convertUnit != null">
+                #{convertUnit},
+            </if>
+            <if test="lossFactor != null">
+                #{lossFactor},
+            </if>
+            <if test="noLossDosage != null">
+                #{noLossDosage},
+            </if>
+            <if test="lossDosage != null">
+                #{lossDosage},
+            </if>
+            <if test="projectProportion != null">
+                #{projectProportion},
+            </if>
+            <if test="dosagePricingMode != null">
+                #{dosagePricingMode},
+            </if>
+            <if test="dosageRemark != null">
+                #{dosageRemark},
+            </if>
+            <if test="createUser != null">
+                #{createUser},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="updateUser != null">
+                #{updateUser},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+            <if test="originalDosage != null">
+                #{originalDosage},
+            </if>
+        </trim>
+    </insert>
+    <update id="update">
+        update sm_sku_change_dosage
+        <set>
+            <if test="projectMaterialId != null">
+                project_material_id = #{projectMaterialId},
+            </if>
+            <if test="domainName != null">
+                domain_name = #{domainName},
+            </if>
+            <if test="storePurchasePrice != null">
+                store_purchase_price = #{storePurchasePrice},
+            </if>
+            <if test="storeSalePrice != null">
+                store_sale_price = #{storeSalePrice},
+            </if>
+            <if test="storeUpgradeDifferencePrice != null">
+                store_upgrade_difference_price = #{storeUpgradeDifferencePrice},
+            </if>
+            <if test="storeReducePrice != null">
+                store_reduce_price = #{storeReducePrice},
+            </if>
+            <if test="storeIncreasePrice != null">
+                store_increase_price = #{storeIncreasePrice},
+            </if>
+            <if test="budgetDosage != null">
+                budget_dosage = #{budgetDosage},
+            </if>
+            <if test="convertUnit != null">
+                convert_unit = #{convertUnit},
+            </if>
+            <if test="lossFactor != null">
+                loss_factor = #{lossFactor},
+            </if>
+            <if test="noLossDosage != null">
+                no_loss_dosage = #{noLossDosage},
+            </if>
+            <if test="lossDosage != null">
+                loss_dosage = #{lossDosage},
+            </if>
+            <if test="projectProportion != null">
+                project_proportion = #{projectProportion},
+            </if>
+            <if test="dosagePricingMode != null">
+                dosage_pricing_mode = #{dosagePricingMode},
+            </if>
+            <if test="dosageRemark != null">
+                dosage_remark = #{dosageRemark},
+            </if>
+            <if test="createUser != null">
+                create_user = #{createUser},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="originalDosage != null">
+                original_dosage = #{originalDosage},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="getBychangeCategoryUrl" resultMap="BaseResultMap">
+        select * from sm_sku_change_dosage where project_material_id in
+        (select id from sm_project_change_material where contract_code = #{contractCode} and
+        product_category_url LIKE CONCAT(#{changeCategoryUrl},'%'))
+    </select>
+    <select id="getByContractCode" resultMap="BaseResultMap">
+        select * from sm_sku_change_dosage where project_material_id in
+        (select id from sm_project_change_material where contract_code = #{contractCode}) and loss_dosage > 0
+    </select>
+
+    <delete id="deleteByContractCode">
+        delete from sm_sku_change_dosage where project_material_id in
+        (select id from sm_project_change_material where contract_code = #{contractCode})
+    </delete>
+
+    <delete id="deleteByConAndUrl">
+        delete from sm_sku_change_dosage where id in (select a.* from
+        (select sscd.id from sm_sku_change_dosage as sscd
+        LEFT JOIN sm_project_change_material as spcm on spcm.id = sscd.project_material_id
+         where spcm.contract_code = #{contractCode} and spcm.product_category_url like concat(#{changeCategoryUrl},'%')) as a)
+    </delete>
+
+    <select id="getByOriDosGTZero" resultMap="BaseResultMap">
+        select sscd.* from sm_sku_change_dosage as sscd
+        LEFT JOIN sm_project_change_material as spcm on spcm.id = sscd.project_material_id
+         where spcm.contract_code =  #{contractCode} and spcm.product_category_url like concat(#{changeCategoryUrl},'%')
+        and sscd.original_dosage  > 0
+    </select>
+
+    <update id="updateBudDosByOriDos">
+        update sm_sku_change_dosage set loss_dosage = #{originalDosage} where id =#{id}
+    </update>
+
+    <select id="getDosage"  resultMap="BaseResultMap">
+        select sscd.* from sm_sku_change_dosage as sscd
+        LEFT JOIN sm_project_change_material as spcm on spcm.id=sscd.project_material_id
+        where  spcm.contract_code = #{contractCode} and spcm.product_category_url LIKE CONCAT(#{changeCategoryUrl},'%')
+    </select>
+
+
+    <select id="findDosageByContractCodeList" resultMap="BaseResultMap">
+        SELECT
+        ssd.*, aa.category_code,
+        aa.category_detail_code
+        FROM
+        sm_sku_change_dosage ssd
+        JOIN (
+        SELECT
+        spm.id,
+        spm.category_code,
+        spm.category_detail_code
+        FROM
+        sm_project_change_material spm
+        WHERE
+        spm.contract_code = #{contractCode}
+        AND spm.category_code != 'PACKAGESTANDARD'
+        ) aa ON aa.id = ssd.project_material_id
+    </select>
+    <insert id="batchInsert">
+        insert into sm_sku_change_dosage (id,project_material_id,domain_name,store_purchase_price,
+        store_sale_price,store_upgrade_difference_price,store_reduce_price,store_increase_price,budget_dosage,
+        convert_unit,loss_factor,no_loss_dosage,loss_dosage,project_proportion,dosage_pricing_mode,dosage_remark,
+        create_user,create_time,update_user,update_time,original_dosage)
+        values
+        <foreach collection="list" item="item" index="index" separator="," >
+            (#{item.id},#{item.projectMaterialId},#{item.domainName},#{item.storePurchasePrice},
+            #{item.storeSalePrice},#{item.storeUpgradeDifferencePrice},#{item.storeReducePrice},#{item.storeIncreasePrice},
+            #{item.budgetDosage},#{item.convertUnit},#{item.lossFactor},#{item.noLossDosage},
+            #{item.lossDosage},#{item.projectProportion},#{item.dosagePricingMode},#{item.dosageRemark},
+            #{item.createUser},#{item.createTime},#{item.updateUser},#{item.updateTime},
+            #{item.originalDosage})
+        </foreach>
+    </insert>
+</mapper>

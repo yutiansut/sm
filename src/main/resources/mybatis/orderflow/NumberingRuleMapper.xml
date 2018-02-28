@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.orderflow.NumberingRuleDao">
+
+    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.orderflow.NumberingRule">
+        <id column="id" property="id"/>
+        <id column="store_code" property="storeCode"/>
+        <id column="number_type" property="numberType"/>
+        <id column="prefix" property="prefix"/>
+        <id column="mid_number" property="midNumber"/>
+        <id column="tail_number" property="tailNumber"/>
+        <id column="tail_format_type" property="tailFormatType"/>
+
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,number_type,prefix,mid_number,tail_number,tail_format_type
+    </sql>
+
+    <select id="getById" parameterType="long" resultMap="BaseResultMap">
+        SELECT
+          <include refid="Base_Column_List"/>
+        FROM
+        sm_numbering_rule
+        where id = #{id}
+    </select>
+
+    <select id="getByStoreCodeAndNumType" parameterType="map" resultMap="BaseResultMap">
+        SELECT
+        srn.store_code,nr.id,nr.number_type,nr.prefix,nr.mid_number,nr.tail_number,nr.tail_format_type
+        FROM
+        sm_store_relation_numrule srn
+        LEFT JOIN sm_numbering_rule nr ON srn.rule_id = nr.id
+        WHERE nr.number_type = #{numberType}  AND srn.store_code = #{storeCode}
+    </select>
+
+    <select id="getStoreCodeByPrefix" parameterType="map" resultMap="BaseResultMap">
+        SELECT
+        srn.store_code,nr.id,nr.number_type,nr.prefix,nr.mid_number,nr.tail_number,nr.tail_format_type
+        FROM
+        sm_store_relation_numrule srn
+        LEFT JOIN sm_numbering_rule nr ON srn.rule_id = nr.id
+        WHERE prefix = #{prefix} LIMIT 1
+    </select>
+
+    <insert id="insert" parameterType="cn.mdni.business.entity.orderflow.NumberingRule">
+        insert into sm_numbering_rule(
+            number_type,
+            prefix,
+            mid_number,
+            tail_number,
+            tail_format_type
+        ) values
+        (
+            #{numberType},
+            #{prefix},
+            #{midNumber},
+            #{tailNumber},
+            #{tailFormatType}
+        )
+    </insert>
+
+    <update id="update" parameterType="cn.mdni.business.entity.orderflow.NumberingRule">
+        update sm_numbering_rule
+        set
+            mid_number = #{midNumber},
+            tail_number = #{tailNumber}
+        where
+        id = #{id}
+    </update>
+
+
+</mapper>

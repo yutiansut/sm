@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.material.ChangeAuditCollectDao">
+  <resultMap id="BaseResultMap" type="ChangeAuditCollect">
+    <result column="contract_code"        property="contractCode" />
+    <result column="change_no"        property="changeNo" />
+    <result column="audit_user"       property="auditUser" />
+    <result column="audit_time"       property="auditTime" />
+    <result column="audit_count"        property="auditCount" />
+    <result column="start_date"       property="startDate" />
+    <result column="end_date"       property="endDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+
+  </sql>
+  <select id="searchTotal" parameterType="map" resultType="long">
+    SELECT
+	  count(*)
+    FROM
+        (
+            SELECT
+                sar.audit_user,
+                count(*) AS audit_count,
+                #{startDate} as start_date,#{endDate} as end_date
+            FROM
+                sm_change_detail scd
+            LEFT JOIN sm_material_change_audit_record sar ON scd.change_no = sar.change_no
+            LEFT JOIN customer_contract cc ON cc.contract_code = scd.contract_code
+            WHERE
+                sar.audit_result = 'EXAMINATIONPASSED'
+            AND sar.audit_user_type = '审计员'
+            AND Date(sar.audit_time) BETWEEN #{startDate} AND #{endDate}
+            AND cc.store_code = #{storeCode}
+            GROUP BY
+                sar.audit_user
+        ) AS temp
+  </select>
+
+  <select id="search" resultMap="BaseResultMap">
+     SELECT
+			*
+	 FROM(
+        SELECT
+        sar.audit_user,count(*) as audit_count,#{startDate} as start_date,#{endDate} as end_date
+        FROM
+        sm_change_detail scd
+        LEFT JOIN sm_material_change_audit_record sar ON scd.change_no = sar.change_no
+        LEFT JOIN customer_contract cc ON cc.contract_code = scd.contract_code
+        WHERE
+        sar.audit_result = 'EXAMINATIONPASSED'
+        AND sar.audit_user_type = '审计员'
+        AND Date(sar.audit_time) BETWEEN #{startDate} AND #{endDate}
+        AND cc.store_code = #{storeCode}
+        GROUP BY sar.audit_user
+      ) temp ORDER  BY  audit_count DESC
+  </select>
+
+  <select id="findAuditChangeOrderInfo" resultMap="BaseResultMap">
+        SELECT
+			sar.audit_user,cc.contract_code,scd.change_no,sar.audit_time
+		FROM
+			sm_change_detail scd
+		LEFT JOIN sm_material_change_audit_record sar ON scd.change_no = sar.change_no
+		LEFT JOIN customer_contract cc ON cc.contract_code = scd.contract_code
+		WHERE
+			sar.audit_result = 'EXAMINATIONPASSED'
+		AND sar.audit_user_type = '审计员'
+		AND sar.audit_user = #{auditUser}
+		AND Date(sar.audit_time) BETWEEN #{startDate} AND #{endDate}
+        AND cc.store_code = #{storeCode}
+		ORDER BY sar.audit_time DESC
+  </select>
+
+
+
+
+
+
+
+</mapper>

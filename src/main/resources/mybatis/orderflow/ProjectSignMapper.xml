@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.orderflow.ProjectSignDao">
+    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.orderflow.ProjectSign">
+        <id column="id" property="id"/>
+        <result column="contract_code" property="contractCode"/>
+        <result column="complete" property="complete"/>
+        <result column="complete_time" property="completeTime"/>
+        <result column="sign_executor" property="signExecutor"/>
+        <result column="contract_sign_trem" property="contractSignTrem"/>
+        <result column="contract_start_time" property="contractStartTime"/>
+        <result column="contract_complete_time" property="contractCompleteTime"/>
+        <result column="operator" property="operator"/>
+        <result column="operate_time" property="operateTime"/>
+        <result column="contract_amount" property="contractAmount"/>
+        <result column="modify_amount" property="modifyAmount"/>
+    </resultMap>
+
+    <select id="getByCode" resultMap="BaseResultMap">
+        SELECT
+            sms.id,
+            cucs.contract_code,
+            sms.complete,
+            sms.complete_time,
+            sms.sign_executor,
+            sms.contract_sign_trem,
+            sms.contract_start_time,
+            sms.contract_complete_time,
+            cucs.contract_amount,
+            cucs.modify_amount
+        FROM customer_contract cucs
+        LEFT JOIN sm_project_sign sms
+        ON sms.contract_code = cucs.contract_code
+        WHERE cucs.contract_code = #{contractCode}
+    </select>
+    <select id="getById" resultMap="BaseResultMap">
+        SELECT
+            sms.contract_code,
+            sms.complete,
+            sms.complete_time,
+            sms.sign_executor,
+            sms.contract_sign_trem,
+            sms.contract_start_time,
+            sms.contract_complete_time,
+            cucs.contract_amount,
+            cucs.modify_amount
+        FROM sm_project_sign sms
+        LEFT JOIN customer_contract cucs
+        ON sms.contract_code = cucs.contract_code
+        WHERE sms.id = #{id}
+    </select>
+    <update id="update">
+        update sm_project_sign
+        <set>
+            <if test="contractCode != null">
+            contract_code = #{contractCode},
+        </if>
+            <if test="complete != null">
+                complete = #{complete},
+            </if>
+            <if test="completeTime != null">
+                complete_time = #{completeTime},
+            </if>
+            <if test="signExecutor != null">
+                sign_executor = #{signExecutor},
+            </if>
+            <if test="contractSignTrem != null">
+                contract_sign_trem = #{contractSignTrem},
+            </if>
+            <if test="contractStartTime != null">
+                contract_start_time = #{contractStartTime},
+            </if>
+            <if test="contractCompleteTime != null">
+                contract_complete_time = #{contractCompleteTime},
+            </if>
+            <if test="operator != null">
+                operator = #{operator},
+            </if>
+            <if test="operateTime != null">
+                operate_time = #{operateTime},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+    <insert id="insert">
+        insert into sm_project_sign
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="contractCode != null">
+                contract_code,
+            </if>
+            <if test="complete != null">
+                complete,
+            </if>
+            <if test="completeTime != null">
+                complete_time,
+            </if>
+            <if test="signExecutor != null">
+                sign_executor,
+            </if>
+            <if test="contractSignTrem != null">
+                contract_sign_trem,
+            </if>
+            <if test="contractStartTime != null">
+                contract_start_time,
+            </if>
+            <if test="contractCompleteTime != null">
+                contract_complete_time,
+            </if>
+            <if test="operator != null">
+                operator,
+            </if>
+            <if test="operateTime != null">
+                operate_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="contractCode != null">
+                #{contractCode},
+            </if>
+            <if test="complete != null">
+                #{complete},
+            </if>
+            <if test="completeTime != null">
+                #{completeTime},
+            </if>
+            <if test="signExecutor != null">
+                #{signExecutor},
+            </if>
+            <if test="contractSignTrem != null">
+                #{contractSignTrem},
+            </if>
+            <if test="contractStartTime != null">
+                #{contractStartTime},
+            </if>
+            <if test="contractCompleteTime != null">
+                #{contractCompleteTime},
+            </if>
+            <if test="operator != null">
+                #{operator},
+            </if>
+            <if test="operateTime != null">
+                #{operateTime},
+            </if>
+        </trim>
+    </insert>
+
+
+</mapper>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+       default-lazy-init="true">
+  <description>Shiro安全配置</description>
+
+  <!-- shiro's main business-tier object for web-enabled applications -->
+  <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+    <property name="sessionManager" ref="defaultWebSessionManager"/>
+    <property name="realm" ref="shiroSSORealm" />
+    <property name="cacheManager" ref="customShiroCacheManager"/>
+  </bean>
+
+  <!-- custom shiro session listener -->
+  <bean id="customSessionListener" class="cn.mdni.core.shiro.listener.CustomSessionListener">
+    <property name="shiroSessionRepository" ref="memoryShiroSessionRepository"/>
+  </bean>
+
+  <bean id="shiroSSORealm" class="cn.mdni.core.shiro.ShiroSSORealm"></bean>
+
+  <bean id="customShiroSessionDAO" class="cn.mdni.core.shiro.session.CustomShiroSessionDAO">
+    <property name="shiroSessionRepository" ref="memoryShiroSessionRepository"/>
+  </bean>
+
+  <!-- custom save session by memory class impl ShiroSessionRepository interface -->
+  <bean id="memoryShiroSessionRepository" class="cn.mdni.core.shiro.session.MemoryShiroSessionRepository">
+    <property name="cacheManager" ref="memoryManager"/>
+    <property name="sessionTimeOut" value="${session.timeout}"/>
+  </bean>
+  <!-- ...AUTHENTICATION INFO CACHE END... -->
+
+  <!-- ...AUTHORIZATION INFO CACHE BEGIN... -->
+  <!-- custom shiro authorization info cache manager class -->
+  <bean id="customShiroCacheManager" class="cn.mdni.core.shiro.cache.CustomShiroCacheManager">
+    <property name="shiroCacheManager" ref="memoryShiroCacheManager"/>
+  </bean>
+
+  <bean id="memoryShiroCacheManager" class="cn.mdni.core.shiro.cache.MemoryShiroCacheManager">
+    <property name="memoryManager" ref="memoryManager"/>
+  </bean>
+  <!-- ...AUTHORIZATION INFO CACHE END... -->
+
+  <!-- memory manager class -->
+  <bean id="memoryManager" class="cn.mdni.core.shiro.MemoryManager">
+  </bean>
+
+
+  <!-- default web session manager，session expire time 4 hours -->
+  <bean id="defaultWebSessionManager"
+        class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+    <property name="globalSessionTimeout" value="${session.timeout}"/>
+    <property name="sessionDAO" ref="customShiroSessionDAO"/>
+    <property name="sessionIdCookie" ref="simpleCookie"/>
+    <property name="sessionListeners">
+      <list>
+        <ref bean="customSessionListener"/>
+      </list>
+    </property>
+    <property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>
+    <property name="sessionValidationSchedulerEnabled" value="true"/>
+    <property name="deleteInvalidSessions" value="true"/>
+  </bean>
+
+  <bean id="sessionValidationScheduler"
+        class="org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler">
+    <property name="sessionManager" ref="defaultWebSessionManager"/>
+    <property name="interval" value="${session.validate.timespan}"/>
+  </bean>
+
+  <bean id="simpleCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+    <constructor-arg index="0" value="JSESSIONID_COOKIE"/>
+    <property name="httpOnly" value="true"/>
+  </bean>
+
+  <!-- Shiro Filter -->
+  <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+    <property name="securityManager" ref="securityManager"/>
+    <property name="loginUrl" value="/index"/>
+    <property name="successUrl" value="/index"/>
+    <property name="unauthorizedUrl" value="/index"/>
+    <property name="filters">
+      <util:map>
+        <entry key="user" value-ref="multipleViewUserFilter"/>
+      </util:map>
+    </property>
+    <property name="filterChainDefinitions">
+      <value>
+        /logout = anon
+        /oauthCallBack = anon
+        /externalApi/** = anon
+        <!--对外接口放行-->
+        /api/** = anon
+
+        /** = user
+      </value>
+    </property>
+  </bean>
+
+  <bean class="cn.mdni.core.shiro.ShiroCacheHelper" lazy-init="false">
+    <property name="cacheManager" ref="memoryShiroCacheManager"/>
+  </bean>
+
+  <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+  <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+</beans>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xmlns:context="http://www.springframework.org/schema/context"
+		 xmlns:mvc="http://www.springframework.org/schema/mvc"
+		 xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	 
+	 <description>业务相关: 页面映射</description>
+	 
+	 <!--选材首页-->
+	 <mvc:view-controller path="/material/materialIndex" view-name="material/materialIndex"/>
+	 
+	 <!--商品相关首页-->
+	 <mvc:view-controller path="/material/prodSkuPriceList"
+								 view-name="/material/prodSkuPriceList"/>
+	 <mvc:view-controller path="/material/labelList"
+								 view-name="/material/labelList"/>
+	 <!--功能区管理-->
+	 <mvc:view-controller path="/domaininfo/list" view-name="domaininfo/list"/>
+	 <!--套餐管理-->
+	 <mvc:view-controller path="/mealinfo/meallist" view-name="material/mealInfoList"/>
+	 
+	 <mvc:view-controller path="/orderflow/order/list" view-name="orderflow/order/list"/>
+
+	 <!--串单管理-->
+	 <mvc:view-controller path="/singletag/singletaglist" view-name="orderflow/singleTagList"/>
+	 <!--串单管理-项目管理-->
+	 <mvc:view-controller path="/singletag/projectManage" view-name="orderflow/projectManage"/>
+	 <!---->
+	 <!--<mvc:view-controller path="/aaa" view-name=""/>-->
+	 <!--选材管理-->
+	 <mvc:view-controller path="/business/customercontract/customercontract"
+								 view-name="/customercontract/customercontract"/>
+	 <!--变更管理-->
+	 <mvc:view-controller path="/business/changemange/changemange" view-name="/changemange/changemange"/>
+	 <mvc:view-controller path="/material/changeordermange" view-name="/material/changeordermange"/>
+	 <!--变更审核-->
+	 <mvc:view-controller path="/material/changeaudit" view-name="/material/changeaudit"/>
+	<!--变更汇总-->
+	<mvc:view-controller path="/business/material/auditCollect" view-name="/material/auditCollect"/>
+	<!--原始选材单预览-->
+	 <mvc:view-controller path="/business/changemange/originalmaterialpreview" view-name="changemange/originalmaterialpreview"/>
+	 
+	 <!--财务查询-->
+	 <!--交款记录查询-->
+	 <mvc:view-controller path="/finance/analyze/paymentrecordlist" view-name="finance/analyze/paymentrecordlist"/>
+	 <!--项目汇总查询-->
+	 <mvc:view-controller path="/finance/analyze/projectsummarizlist" view-name="finance/analyze/projectsummarizlist"/>
+	 <!--综合查询-->
+	 <mvc:view-controller path="/finance/analyze/projectcompositelist" view-name="finance/analyze/projectcompositelist"/>
+	 <!--退/收款管理-->
+	 <mvc:view-controller path="/finance/payment/index" view-name="/finance/refundDetail"/>
+	 <!--财务打印-->
+	<!--主材变更单打印-->
+	<mvc:view-controller path="/finance/print/changelist" view-name="finance/print/changeList"/>
+	 <!--基装变更单打印-->
+	 <mvc:view-controller path="/finance/print/baselist" view-name="finance/print/baseList"/>
+	 <!--收据打印-->
+	 <mvc:view-controller path="/finance/print/receiptlist" view-name="finance/print/receiptlist"/>
+
+	 <!--财务管理-->
+	 <!--财务配置-->
+	 <mvc:view-controller path="/finance/finapaymethod/queryfinapaymethodlist"
+								 view-name="finance/finaPaymethod/queryFinaPaymethodAll"/>
+	 <!--通用特殊配置-->
+	 <mvc:view-controller path="/finance/finaPaymethod/particularConfig"
+								 view-name="finance/finaPaymethod/particularConfig"/>
+
+</beans>

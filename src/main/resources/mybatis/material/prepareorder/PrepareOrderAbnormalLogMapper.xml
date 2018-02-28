@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.material.PrepareOrderAbnormalLogDao">
+
+    <resultMap id="BaseResultMap" type="PrepareOrderAbnormalLog">
+        <id column="id" property="id"/>
+        <result column="contract_code" property="contractCode"/>
+        <result column="data_source" property="dataSource"/>
+        <result column="deal_status" property="dealStatus"/>
+        <result column="deal_user" property="dealUser"/>
+        <result column="deal_time" property="dealTime"/>
+        <result column="create_time" property="createTime"/>
+        <result column="abnormal_content" property="abnormalContent"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, contract_code, data_source, deal_status, deal_user, deal_time, create_time, abnormal_content
+    </sql>
+
+    <select id="getById" parameterType="Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sm_prepare_order_abnormal_log
+        where id = #{id}
+    </select>
+
+    <delete id="deleteById" parameterType="Long">
+        delete from sm_prepare_order_abnormal_log
+        where id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="PrepareOrderAbnormalLog">
+        insert into sm_prepare_order_abnormal_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="contractCode != null">
+                contract_code,
+            </if>
+            <if test="dataSource != null">
+                data_source,
+            </if>
+            <if test="dealStatus != null">
+                deal_status,
+            </if>
+            <if test="dealUser != null">
+                deal_user,
+            </if>
+            <if test="dealTime != null">
+                deal_time,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="abnormalContent != null">
+                abnormal_content,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="contractCode != null">
+                #{contractCode},
+            </if>
+            <if test="dataSource != null">
+                #{dataSource},
+            </if>
+            <if test="dealStatus != null">
+                #{dealStatus},
+            </if>
+            <if test="dealUser != null">
+                #{dealUser},
+            </if>
+            <if test="dealTime != null">
+                #{dealTime},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="abnormalContent != null">
+                #{abnormalContent},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="PrepareOrderAbnormalLog">
+        update sm_prepare_order_abnormal_log
+        <set>
+            <if test="contractCode != null">
+                contract_code = #{contractCode},
+            </if>
+            <if test="dataSource != null">
+                data_source = #{dataSource},
+            </if>
+            <if test="dealStatus != null">
+                deal_status = #{dealStatus},
+            </if>
+            <if test="dealUser != null">
+                deal_user = #{dealUser},
+            </if>
+            <if test="dealTime != null">
+                deal_time = #{dealTime},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="abnormalContent != null">
+                abnormal_content = #{abnormalContent},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>

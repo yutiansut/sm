@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.finance.DeductMoneyDao">
+
+    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.finance.DeductMoney">
+        <id column="id" property="id" />
+        <result column="contract_no" property="contractNo"/>
+        <result column="contract_uuid" property="contractUuid"/>
+        <result column="pay_id" property="payId"/>
+        <result column="receipt_no" property="receiptNo"/>
+        <result column="deduct_type" property="deductType"/>
+        <result column="max_deduct_amount" property="maxDeductAmount"/>
+        <result column="deducted_amount" property="deductedAmount"/>
+        <result column="latest_deduct_time" property="latestDeductTime"/>
+        <result column="deduct_status" property="deductStatus"/>
+        <result column="creat_time" property="creatTime"/>
+        <result column="creator" property="creator"/>
+        <result column="deduct_times" property="deductTimes"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,contract_no,contract_uuid,pay_id,receipt_no,deduct_type,max_deduct_amount,deducted_amount,latest_deduct_time,
+        deduct_status,creat_time,creator,IFNULL(deduct_times,0) as deduct_times
+    </sql>
+
+
+    <select id="getById" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM fina_deduct_money
+        WHERE id = #{id}
+    </select>
+
+
+    <select id="search" resultMap="BaseResultMap" >
+        SELECT <include refid="Base_Column_List" />
+        FROM fina_deduct_money
+        <where>
+            1=1
+            <if test="contractNo != null">
+                AND contract_no=#{contractNo}
+            </if>
+            <if test="contractUuid != null">
+                AND contract_uuid=#{contractUuid}
+            </if>
+            <if test="attrStatus != null">
+                AND deduct_status=#{attrStatus}
+            </if>
+            <if test="deductType != null">
+                AND deduct_type=#{deductType}
+            </if>
+            <if test="payId != null">
+                AND pay_id=#{payId}
+            </if>
+        </where>
+        <if test="sort != null">
+            ORDER BY
+            <foreach collection="sort" item="order" separator=",">
+                ${order.property} ${order.direction}
+            </foreach>
+        </if>
+    </select>
+
+
+    <insert id="insert" parameterType="cn.mdni.business.entity.finance.DeductMoney">
+        INSERT INTO fina_deduct_money(contract_no,contract_uuid,pay_id,receipt_no,deduct_type,max_deduct_amount,
+          deducted_amount,latest_deduct_time,deduct_status,creat_time,creator,deduct_times) VALUES (
+          #{contractNo},#{contractUuid},#{payId},#{receiptNo},#{deductType},#{maxDeductAmount},#{deductedAmount},
+          #{latestDeductTime},#{deductStatus},#{creatTime},#{creator},0
+          )
+    </insert>
+
+    <update id="update" parameterType="cn.mdni.business.entity.finance.DeductMoney">
+        UPDATE fina_deduct_money
+        <set>
+            <if test="maxDeductAmount != null">
+                max_deduct_amount = #{maxDeductAmount},
+            </if>
+            <if test="deductedAmount != null">
+                deducted_amount = #{deductedAmount},
+            </if>
+            <if test="latestDeductTime != null">
+                latest_deduct_time = #{latestDeductTime},
+            </if>
+            <if test="deductStatus != null">
+                deduct_status = #{deductStatus},
+            </if>
+            <if test="deductTimes != null">
+                deduct_times = #{deductTimes},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+</mapper>

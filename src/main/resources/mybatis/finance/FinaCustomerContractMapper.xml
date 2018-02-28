@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.finance.FinaCustomerContractDao">
+    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.SimpleCustomerContract">
+        <result column="contract_uuid" property="orderId"/>
+        <result column="contract_code" property="orderNo"/>
+        <result column="customer_name" property="customerName"/>
+        <result column="service_name" property="serviceName"/>
+        <result column="designer" property="stylistName"/>
+        <result column="supervisor" property="supervisorName"/>
+        <result column="contract_code" property="contractNo"/>
+        <result column="complete_time" property="signFinishTime"/>
+        <result column="create_time" property="createTime"/>
+        <result column="total_budget_amount" property="budgetAmount"/>
+        <result column="advance_payment" property="imprest"/>
+        <result column="single_order_info" property="orderTagName"/>
+        <result column="order_flow_status" property="orderStatus"/>
+    </resultMap>
+
+    <select id="search" resultType="map">
+        SELECT
+            cc.contract_code AS contractCode,
+            c.`name` AS customerName,
+            c.mobile AS customerMobile,
+            designer AS designer,
+            designer_mobile AS designerMobile,
+            cc.second_contact AS secondContact,
+            cc.second_contact_mobile AS secondContactMobile,
+            cc.service_name AS serviceName,
+            cc.service_mobile AS serviceMobile,
+            cc.order_flow_status AS orderFlowStatus,
+            fpi.item_name AS itemName,
+            cc.contract_uuid AS contractUuid
+        FROM
+            customer_contract cc
+        LEFT JOIN customer c ON c.id = cc.customer_id
+        LEFT JOIN fina_project_payplan_stage fps ON fps.contract_code = cc.contract_code
+        LEFT JOIN fina_payplan_item fpi ON fpi.id = fps.stage_template_id
+        <where>
+            fps.curent_flag = 1 AND cc.store_code IN
+            <foreach collection="storeCodeArray" index="index" item="storeCodeItem" open="(" separator="," close=")">
+                #{storeCodeItem}
+            </foreach>
+            <if test="storeCode != null">
+                AND cc.store_code  = #{storeCode}
+            </if>
+            <if test="keyword != null and keyword != ''">
+                AND (cc.contract_code like CONCAT('%', #{keyword}, '%')
+                OR c.`name` like CONCAT('%', #{keyword}, '%')
+                OR c.mobile = #{keyword})
+            </if>
+        </where>
+        <if test="sort != null">
+            ORDER BY
+            <foreach collection="sort" item="order" separator=",">
+                ${order.property} ${order.direction}
+            </foreach>
+        </if>
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <select id="searchTotal" resultType="long">
+        SELECT
+            count(*)
+        FROM
+            customer_contract cc
+        LEFT JOIN customer c ON c.id = cc.customer_id
+        LEFT JOIN fina_project_payplan_stage fps ON fps.contract_code = cc.contract_code
+        LEFT JOIN fina_payplan_item fpi ON fpi.id = fps.stage_template_id
+         <where>
+             fps.curent_flag = 1 AND cc.store_code IN
+             <foreach collection="storeCodeArray" index="index" item="storeCodeItem" open="(" separator="," close=")">
+                 #{storeCodeItem}
+             </foreach>
+             <if test="storeCode != null">
+                 AND cc.store_code  = #{storeCode}
+             </if>
+             <if test="keyword != null and keyword != ''">
+                AND (cc.contract_code like CONCAT('%', #{keyword}, '%')
+                OR c.`name` like CONCAT('%', #{keyword}, '%')
+                OR c.mobile = #{keyword})
+             </if>
+         </where>
+     </select>
+
+
+    <select id="projectInformation" resultType="map">
+        SELECT
+            cucs.contract_code AS contractCode,
+            cus.`name` AS customerName,
+            cus.mobile AS customerMobile,
+            cus.income_source AS incomeSource,
+            cucs.second_contact AS secondContact,
+            cucs.second_contact_mobile AS secondContactMobile,
+            cucs.designer AS designer,
+            cucs.designer_mobile AS designerMobile,
+            cucs.order_flow_status AS orderFlowStatus,
+            cucs.layout AS layout,
+            cucs.build_area AS buildArea,
+            cucs.service_name AS serviceName,
+            cucs.create_time AS createTime,
+            cucs.activity_name AS activityName,
+            cucs.house_addr AS houseAddr,
+            cucs.discount_name AS discountName,
+            smi.meal_name AS mealName
+        FROM
+            customer_contract AS cucs
+        LEFT JOIN customer cus ON cucs.customer_id = cus.id
+        LEFT JOIN sm_meal_info smi ON cucs.meal_id = smi.id
+        <where>
+            cucs.contract_uuid = #{contractUuid}
+        </where>
+    </select>
+
+
+    <select id="findContractAll" resultType="map">
+        SELECT
+        cus.contract_code AS contractCode,
+        cust.`name` AS customerName,
+        cust.mobile AS customerMobile,
+        cus.contract_amount AS contractAmount,
+        cus.contract_uuid AS contractUuid,
+        cus.modify_amount AS modifyAmount,
+        cus.order_flow_status AS orderFlowStatus,
+        cus.build_area AS buildArea,
+        cus.service_name AS serviceName,
+        cus.designer AS designer,
+        cus.project_manager AS projectManager,
+        cus.start_construction_time AS startConstructionTime,
+        cus.complete_construction_time AS completeConstructionTime,
+        cus.create_time AS createTime,
+        sig.contract_start_time AS contractStartTime,
+        sig.contract_complete_time AS contractCompleteTime,
+        inf.meal_name AS mealName
+        FROM
+        customer_contract cus
+        LEFT JOIN customer cust ON cus.customer_id = cust.id
+        LEFT JOIN sm_project_sign sig ON cus.contract_code = sig.contract_code
+        LEFT JOIN sm_meal_info inf ON cus.meal_id = inf.id
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND (cus.contract_code like CONCAT('%', #{keyword}, '%')
+                    OR cust.`name` like CONCAT('%', #{keyword}, '%')
+                    OR cust.mobile like CONCAT('%', #{keyword}, '%')
+                )
+            </if>
+            <if test="orderFlowStatus != null">
+                AND cus.order_flow_status = #{orderFlowStatus}
+            </if>
+            <if test="stratDate != null and stratDate != ''">
+                AND DATE(cus.create_time) &gt;= DATE(#{stratDate})
+            </if>
+            <if test="endDate != null and endDate != ''">
+                AND DATE(cus.create_time) &lt;= DATE(#{endDate})
+            </if>
+            <if test="contractCodeMany != null">
+                AND cus.contract_code in
+                <foreach collection="contractCodeMany" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            AND cus.store_code = #{storeCode}
+        </where>
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <select id="contractTotal" resultType="long">
+        SELECT
+        count(*)
+        FROM
+        customer_contract cus
+        LEFT JOIN customer cust ON cus.customer_id = cust.id
+        LEFT JOIN sm_project_sign sig ON cus.contract_code = sig.contract_code
+        LEFT JOIN sm_meal_info inf ON cus.meal_id = inf.id
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND (cus.contract_code like CONCAT('%', #{keyword}, '%')
+                OR cust.`name` like CONCAT('%', #{keyword}, '%')
+                OR cust.mobile like CONCAT('%', #{keyword}, '%')
+                )
+            </if>
+            <if test="orderFlowStatus != null">
+                AND cus.order_flow_status = #{orderFlowStatus}
+            </if>
+            <if test="stratDate != null and stratDate != ''">
+                AND DATE(cus.create_time) &gt;= DATE(#{stratDate})
+            </if>
+            <if test="endDate != null and endDate != ''">
+                AND DATE(cus.create_time) &lt;= DATE(#{endDate})
+            </if>
+            <if test="contractCodeMany != null">
+                AND cus.contract_code in
+                <foreach collection="contractCodeMany" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            AND cus.store_code = #{storeCode}
+        </where>
+    </select>
+
+    <select id="getAccountByContractCode" resultType="map" parameterType="java.util.List">
+        SELECT
+        fpa.contract_code AS contractCode,
+        fpa.deposit_total_deduct AS depositTotalDeduct,
+        fpa.deposit_total_payed AS depositTotalPayed,
+        fpa.modify_expect_amount AS modifyExpectAmount,
+        fpa.modify_total_payed AS modifyTotalPayed,
+        fpa.construct_expect_amount AS constructExpectAmount,
+        fpa.construct_total_payed AS constructTotalPayed,
+        (fpa.modify_total_payed + fpa.construct_total_payed) AS accumulativeTotal
+        FROM
+        fina_project_account fpa
+        <where>
+            <if test="codeList != null">
+                fpa.contract_code IN
+                <foreach collection="codeList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="countProjectSummarizByQuery" parameterType="map" resultType="long">
+        SELECT count(*) FROM customer_contract
+    </select>
+
+    <select id="exportProjectSummariz" resultType="map">
+        SELECT
+        cus.contract_code AS contractCode,
+        cust.`name` AS customerName,
+        cust.mobile AS customerMobile,
+        cus.contract_amount AS contractAmount,
+        cus.contract_uuid AS contractUuid,
+        cus.modify_amount AS modifyAmount,
+        CASE cus.order_flow_status
+        WHEN 'STAY_TURN_DETERMINE' THEN '待转大定'
+        WHEN 'SUPERVISOR_STAY_ASSIGNED' THEN '督导组长待分配'
+        WHEN 'DESIGN_STAY_ASSIGNED' THEN '设计待分配'
+        WHEN 'APPLY_REFUND' THEN '申请退回'
+        WHEN 'STAY_DESIGN' THEN '待设计'
+        WHEN 'STAY_SIGN' THEN '待签约'
+        WHEN 'STAY_SEND_SINGLE_AGAIN' THEN '待重新派单'
+        WHEN 'STAY_CONSTRUCTION' THEN '待施工'
+        WHEN 'ON_CONSTRUCTION' THEN '施工中'
+        WHEN 'PROJECT_COMPLETE' THEN '已竣工'
+        WHEN 'ORDER_CLOSE' THEN '订单关闭'
+        END AS orderFlowStatus,
+        cus.build_area AS buildArea,
+        cus.service_name AS serviceName,
+        cus.designer AS designer,
+        cus.project_manager AS projectManager,
+        cus.start_construction_time AS startConstructionTime,
+        cus.complete_construction_time AS completeConstructionTime,
+        cus.create_time AS createTime,
+        sig.contract_start_time AS contractStartTime,
+        sig.contract_complete_time AS contractCompleteTime,
+        inf.meal_name AS mealName
+        FROM
+        customer_contract cus
+        LEFT JOIN customer cust ON cus.customer_id = cust.id
+        LEFT JOIN sm_project_sign sig ON cus.contract_code = sig.contract_code
+        LEFT JOIN sm_meal_info inf ON cus.meal_id = inf.id
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND (cus.contract_code like CONCAT('%', #{keyword}, '%')
+                OR cust.`name` like CONCAT('%', #{keyword}, '%')
+                OR cust.mobile like CONCAT('%', #{keyword}, '%')
+                )
+            </if>
+            <if test="orderFlowStatus != null">
+                AND cus.order_flow_status = #{orderFlowStatus}
+            </if>
+            <if test="stratDate != null and stratDate != ''">
+                AND DATE(cus.create_time) &gt;= DATE(#{stratDate})
+            </if>
+            <if test="endDate != null and endDate != ''">
+                AND DATE(cus.create_time) &lt;= DATE(#{endDate})
+            </if>
+            <if test="contractCodeMany != null">
+                AND cus.contract_code in
+                <foreach collection="contractCodeMany" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            AND cus.store_code = #{storeCode}
+        </where>
+    </select>
+
+    <select id="querySimpleCustomerContractList" resultMap="BaseResultMap">
+        select
+        cucs.contract_uuid,
+        cucs.contract_code,
+        cus.name AS customer_name,
+        cucs.service_name,
+        cucs.designer,
+        cucs.supervisor,
+        cucs.contract_code AS contractNo,
+        sps.complete_time,
+        cucs.create_time,
+        sobc.total_budget_amount,
+        sobc.advance_payment,
+        cucs.single_order_info,
+        CASE cucs.order_flow_status
+        When 'STAY_TURN_DETERMINE' Then '待转大定'
+        When 'SUPERVISOR_STAY_ASSIGNED' Then '督导组长待分配'
+        When 'DESIGN_STAY_ASSIGNED' Then '设计待分配'
+        When 'APPLY_REFUND' Then '申请退回'
+        When 'STAY_DESIGN' Then '待设计'
+        When 'STAY_SIGN' Then '待签约'
+        When 'STAY_SEND_SINGLE_AGAIN' Then '待重新派单'
+        When 'STAY_CONSTRUCTION' Then '待施工'
+        When 'ON_CONSTRUCTION' Then '施工中'
+        When 'PROJECT_COMPLETE' Then '竣工'
+        When 'ORDER_CLOSE' Then '订单关闭'
+        ELSE '未知' end AS orderStatus
+        from customer_contract cucs
+        LEFT JOIN customer cus ON cucs.customer_id = cus.id
+        LEFT JOIN sm_project_sign sps ON sps.contract_code = cucs.contract_code
+        LEFT JOIN sm_order_bespeak_contract sobc ON cucs.contract_code = sobc.contract_code
+        where cucs.contract_uuid in
+        <foreach collection="contractUuidArr" index="idx" item="contractUuid" open="(" separator="," close=")">
+            #{contractUuid}
+        </foreach>
+    </select>
+
+    <!-- 根据指定的多个项目uuid查询订单的定金情况 -->
+    <select id="queryFinanceDepositDetail" resultType="map">
+        select
+        cc.contract_code AS OrderNo,
+        cc.is_sign_deposit AS IsImprestAmount,
+        cc.is_return_word AS depositAbleBack,
+        fpa.deposit_total_payed AS ImprestAmount
+        from customer_contract cc
+        left join fina_project_account fpa on cc.contract_code = fpa.contract_code
+        where cc.contract_uuid in
+        <foreach collection="contractUuidArr" index="idx" item="contractUuid" open="(" separator="," close=")">
+            #{contractUuid}
+        </foreach>
+    </select>
+</mapper>

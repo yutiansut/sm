@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+	<description>mybatis 相关配置</description>
+
+	<!-- 扫描basePackage下所有以@Repository标识的 接口 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="cn.mdni.business.dao" />
+		<property name="annotationClass" value="org.springframework.stereotype.Repository" />
+	</bean>
+
+
+	<!-- 配置mybaties的sessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
+		<property name="typeAliasesPackage" value="cn.mdni.business.entity" />
+		<!-- 扫描存放Mapping配置文件的目录 -->
+		<property name="mapperLocations" value="classpath*:mybatis/**/*Mapper.xml"></property>
+		<!-- 使用分页插件 PageHelper -->
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageInterceptor">
+					<property name="properties">
+						<!--使用下面的方式配置参数，一行配置一个 -->
+						<!-- helperDialect=mysql：配置数据库方言为mysql -->
+						<!-- offsetAsPageNum=true：使用offset和limit进行分页 -->
+						<!-- rowBoundsWithCount=true：分页时进行count查询 -->
+						<value>
+							helperDialect=mysql
+							offsetAsPageNum=true
+							rowBoundsWithCount=true
+						</value>
+					</property>
+				</bean>
+			</array>
+		</property>
+	</bean>
+</beans>

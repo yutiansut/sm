@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.material.ProportionMoneyDao">
+  <resultMap id="BaseResultMap" type="ProportionMoney">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="baseloadrating1"  property="baseloadrating1" />
+    <result column="renovationamount"  property="renovationAmount" />
+    <result column="baseloadrating3"  property="baseloadrating3" />
+    <result column="comprehensivefee4"  property="comprehensivefee4" />
+    <result column="contract_code"  property="contractCode" />
+    <result column="create_time"  property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, baseloadrating1, renovationamount, baseloadrating3, comprehensivefee4, contract_code,
+    create_time
+  </sql>
+  <delete id="deleteByContractCode">
+    delete from sm_proportion_money
+    where contract_code = #{contractCode}
+  </delete>
+  <select id="getByContractCode" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/> FROM  sm_proportion_money
+    WHERE   contract_code = #{contractCode}
+  </select>
+  <insert id="insert" parameterType="ProportionMoney" useGeneratedKeys="true" keyProperty="id">
+    insert into sm_proportion_money
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="baseloadrating1 != null">
+        baseloadrating1,
+      </if>
+      <if test="renovationAmount != null">
+        renovationamount,
+      </if>
+      <if test="baseloadrating3 != null">
+        baseloadrating3,
+      </if>
+      <if test="comprehensivefee4 != null">
+        comprehensivefee4,
+      </if>
+      <if test="contractCode != null">
+        contract_code,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="baseloadrating1 != null">
+        #{baseloadrating1},
+      </if>
+      <if test="renovationAmount != null">
+        #{renovationAmount},
+      </if>
+      <if test="baseloadrating3 != null">
+        #{baseloadrating3},
+      </if>
+      <if test="comprehensivefee4 != null">
+        #{comprehensivefee4},
+      </if>
+      <if test="contractCode != null">
+        #{contractCode},
+      </if>
+      <if test="createTime != null">
+        #{createTime},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.finance.FinaOperatLogDao">
+
+    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.finance.FinaOperatLog">
+        <id column="id" property="id" />
+        <result column="operat_type" property="operatType"/>
+        <result column="contract_code" property="contractCode"/>
+        <result column="contract_uuid" property="contractUuid"/>
+        <result column="target_key" property="targetKey"/>
+        <result column="target_val" property="targetVal"/>
+        <result column="operat_msg" property="operatMsg"/>
+        <result column="operator" property="operator"/>
+        <result column="operat_time" property="operatTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,plan_code,item_name,item_type,prev_item_id,fina_trans_amount,fina_trans_rate,allow_auto_trans,allow_less_amount,item_status
+    </sql>
+
+    <insert id="insert" parameterType="cn.mdni.business.entity.finance.FinaOperatLog">
+        INSERT INTO fina_operat_log(operat_type,contract_code,contract_uuid,target_key,target_val,operat_msg,operator,operat_time)
+        VALUES (#{operatType},#{contractCode},#{contractUuid},#{targetKey},#{targetVal},#{operatMsg},#{operator},#{operatTime})
+    </insert>
+
+    <select id="operationRecord" resultType="java.util.HashMap">
+        SELECT
+        fol.operat_type AS operatType,
+        fol.operat_msg AS operatMsg,
+        fol.operator AS operator,
+        fol.operat_time AS operatTime
+        FROM
+        fina_operat_log fol
+        <where>
+            fol.contract_uuid = #{contractUuid}
+        </where>
+        ORDER BY fol.id DESC
+    </select>
+
+</mapper>

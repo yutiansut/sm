@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.material.SmSkuDosageDao">
+    <resultMap id="BaseResultMap" type="SmSkuDosage">
+        <id column="id" property="id"/>
+        <result column="project_material_id" property="projectMaterialId"/>
+        <result column="domain_name" property="domainName"/>
+        <result column="store_purchase_price" property="storePurchasePrice"/>
+        <result column="store_sale_price" property="storeSalePrice"/>
+        <result column="store_upgrade_difference_price" property="storeUpgradeDifferencePrice"/>
+        <result column="store_reduce_price" property="storeReducePrice"/>
+        <result column="store_increase_price" property="storeIncreasePrice"/>
+        <result column="budget_dosage" property="budgetDosage"/>
+        <result column="convert_unit" property="convertUnit"/>
+        <result column="loss_factor" property="lossFactor"/>
+        <result column="no_loss_dosage" property="noLossDosage"/>
+        <result column="loss_dosage" property="lossDosage"/>
+        <result column="project_proportion" property="projectProportion"/>
+        <result column="dosage_pricing_mode" property="dosagePricingMode"/>
+        <result column="dosage_remark" property="dosageRemark"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="category_detail_code" property="categoryDetailCode"/>
+        <result column="category_code" property="categoryCode"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, project_material_id, domain_name, store_purchase_price, store_sale_price, budget_dosage,
+    convert_unit, loss_factor, no_loss_dosage, loss_dosage, project_proportion, dosage_pricing_mode,
+    dosage_remark, create_user, create_time, update_user, update_time,store_upgrade_difference_price,
+    store_reduce_price,store_increase_price
+  </sql>
+    <select id="getById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sm_sku_dosage
+        where id = #{id}
+    </select>
+    <delete id="deleteById">
+        delete from sm_sku_dosage
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteByMaterialId">
+        delete from sm_sku_dosage
+        where project_material_id = #{projectMaterialId}
+    </delete>
+
+    <insert id="insert" >
+        insert into sm_sku_dosage
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="projectMaterialId != null">
+                project_material_id,
+            </if>
+            <if test="domainName != null">
+                domain_name,
+            </if>
+            <if test="storePurchasePrice != null">
+                store_purchase_price,
+            </if>
+            <if test="storeSalePrice != null">
+                store_sale_price,
+            </if>
+            <if test="storeUpgradeDifferencePrice != null">
+                store_upgrade_difference_price,
+            </if>
+            <if test="storeReducePrice != null">
+                store_reduce_price,
+            </if>
+            <if test="storeIncreasePrice != null">
+                store_increase_price,
+            </if>
+            <if test="budgetDosage != null">
+                budget_dosage,
+            </if>
+            <if test="convertUnit != null">
+                convert_unit,
+            </if>
+            <if test="lossFactor != null">
+                loss_factor,
+            </if>
+            <if test="noLossDosage != null">
+                no_loss_dosage,
+            </if>
+            <if test="lossDosage != null">
+                loss_dosage,
+            </if>
+            <if test="projectProportion != null">
+                project_proportion,
+            </if>
+            <if test="dosagePricingMode != null">
+                dosage_pricing_mode,
+            </if>
+            <if test="dosageRemark != null">
+                dosage_remark,
+            </if>
+            <if test="createUser != null">
+                create_user,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateUser != null">
+                update_user,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="projectMaterialId != null">
+                #{projectMaterialId},
+            </if>
+            <if test="domainName != null">
+                #{domainName},
+            </if>
+            <if test="storePurchasePrice != null">
+                #{storePurchasePrice},
+            </if>
+            <if test="storeSalePrice != null">
+                #{storeSalePrice},
+            </if>
+            <if test="storeUpgradeDifferencePrice != null">
+                #{storeUpgradeDifferencePrice},
+            </if>
+            <if test="storeReducePrice != null">
+                #{storeReducePrice},
+            </if>
+            <if test="storeIncreasePrice != null">
+                #{storeIncreasePrice},
+            </if>
+            <if test="budgetDosage != null">
+                #{budgetDosage},
+            </if>
+            <if test="convertUnit != null">
+                #{convertUnit},
+            </if>
+            <if test="lossFactor != null">
+                #{lossFactor},
+            </if>
+            <if test="noLossDosage != null">
+                #{noLossDosage},
+            </if>
+            <if test="lossDosage != null">
+                #{lossDosage},
+            </if>
+            <if test="projectProportion != null">
+                #{projectProportion},
+            </if>
+            <if test="dosagePricingMode != null">
+                #{dosagePricingMode},
+            </if>
+            <if test="dosageRemark != null">
+                #{dosageRemark},
+            </if>
+            <if test="createUser != null">
+                #{createUser},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="updateUser != null">
+                #{updateUser},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+        </trim>
+    </insert>
+    <update id="update">
+        update sm_sku_dosage
+        <set>
+            <if test="projectMaterialId != null">
+                project_material_id = #{projectMaterialId},
+            </if>
+            <if test="domainName != null">
+                domain_name = #{domainName},
+            </if>
+            <if test="storePurchasePrice != null">
+                store_purchase_price = #{storePurchasePrice},
+            </if>
+            <if test="storeSalePrice != null">
+                store_sale_price = #{storeSalePrice},
+            </if>
+            <if test="storeUpgradeDifferencePrice != null">
+                store_upgrade_difference_price = #{storeUpgradeDifferencePrice},
+            </if>
+            <if test="storeReducePrice != null">
+                store_reduce_price = #{storeReducePrice},
+            </if>
+            <if test="storeIncreasePrice != null">
+                store_increase_price = #{storeIncreasePrice},
+            </if>
+            <if test="budgetDosage != null">
+                budget_dosage = #{budgetDosage},
+            </if>
+            <if test="convertUnit != null">
+                convert_unit = #{convertUnit},
+            </if>
+            <if test="lossFactor != null">
+                loss_factor = #{lossFactor},
+            </if>
+            <if test="noLossDosage != null">
+                no_loss_dosage = #{noLossDosage},
+            </if>
+            <if test="lossDosage != null">
+                loss_dosage = #{lossDosage},
+            </if>
+            <if test="projectProportion != null">
+                project_proportion = #{projectProportion},
+            </if>
+            <if test="dosagePricingMode != null">
+                dosage_pricing_mode = #{dosagePricingMode},
+            </if>
+            <if test="dosageRemark != null">
+                dosage_remark = #{dosageRemark},
+            </if>
+            <if test="createUser != null">
+                create_user = #{createUser},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+
+    <select id="findDomainList" resultType="map">
+    SELECT
+	sdi.id,
+	sdi.domain_name AS name
+    FROM
+        sm_domain_info sdi
+    LEFT JOIN sm_domain_category sdc ON sdc.domain_info_id = sdi.id
+    LEFT JOIN prod_catalog pc ON sdc.product_category_id = pc.id
+    WHERE
+        sdi.domain_status='1'
+    AND
+        pc.url=#{catalogUrl}
+  </select>
+
+    <select id="findConvertUnitList" resultType="map">
+    SELECT
+	sd.dic_name AS  name,
+	sd.dic_value AS  id
+    FROM
+        prod_catalog pc
+    LEFT JOIN system_dictionary sd ON sd.dic_value = pc.convert_unit
+    WHERE pc.url=#{catalogUrl}
+  </select>
+
+    <select id="getLossFactor" resultType="double">
+     SELECT
+	  pc.loss_factor
+      FROM
+        prod_catalog pc
+      WHERE pc.url=#{catalogUrl}
+  </select>
+
+    <select id="getPriceBySkuCode" resultType="BigDecimal">
+    SELECT
+    price
+    FROM
+    prod_sku_price
+    WHERE
+    sku_id = (
+		SELECT
+			id
+		FROM
+			prod_sku
+		WHERE
+			code =#{skuCode}
+	)
+    AND DATE_FORMAT(price_start_date,'%Y-%m-%d') &lt;= #{date}
+    AND price_type=#{priceType}
+    ORDER BY
+    price_start_date DESC
+    LIMIT 1
+  </select>
+    <select id="getFlg" resultType="String">
+        SELECT
+            use_decimal
+        FROM
+            prod_catalog
+        WHERE
+            url =#{catalogUrl}
+  </select>
+
+
+    <select id="findDosageByContractCodeList" resultMap="BaseResultMap">
+        SELECT
+            ssd.*, aa.category_code,
+            aa.category_detail_code
+        FROM
+            sm_sku_dosage ssd
+        JOIN (
+            SELECT
+                spm.id,
+                spm.category_code,
+                spm.category_detail_code
+            FROM
+                sm_project_material spm
+            WHERE
+                spm.contract_code = #{contractCode}
+            AND spm.category_code != 'PACKAGESTANDARD'
+        ) aa ON aa.id = ssd.project_material_id
+    </select>
+    <select id="getContractAreaAndPrice" resultType="map">
+          SELECT
+            IFNULL(cc.valuate_area,0) AS  area ,
+            IFNULL(cc.meal_price,0) AS  price
+        FROM
+            customer_contract cc
+        WHERE
+            cc.contract_code = #{contractCode}
+    </select>
+
+    <delete id="deleteByProjectIntemId" parameterType="long">
+        delete from sm_sku_dosage where project_material_id = #{projectIntemId}
+    </delete>
+
+    <insert id="insertBySmSkuChangeDosage" parameterType="list">
+        insert into sm_sku_dosage (id, project_material_id, domain_name, store_purchase_price, store_sale_price, budget_dosage,
+        convert_unit, loss_factor, no_loss_dosage, loss_dosage, project_proportion, dosage_pricing_mode,
+        dosage_remark, create_user, create_time, update_user, update_time,store_upgrade_difference_price,
+        store_reduce_price,store_increase_price) VALUES
+        <foreach item="item" collection="list"  index="index" separator=",">
+            (#{item.id},#{item.projectMaterialId},#{item.domainName},#{item.storePurchasePrice}
+            ,#{item.storeSalePrice},#{item.budgetDosage},#{item.convertUnit},#{item.lossFactor},#{item.noLossDosage},#{item.lossDosage}
+            ,#{item.projectProportion},#{item.dosagePricingMode}
+            ,#{item.dosageRemark},#{item.createUser},#{item.createTime},#{item.updateUser},#{item.updateTime}
+            ,#{item.storeUpgradeDifferencePrice},#{item.storeReducePrice},#{item.storeIncreasePrice})
+        </foreach>
+    </insert>
+
+    <delete id="deleteByContractCode">
+        delete from sm_sku_dosage where project_material_id in
+        (select id from sm_project_material where contract_code = #{contractCode})
+    </delete>
+
+    <select id="getByConCodeAndChUrl" resultMap="BaseResultMap">
+        select ssd.* from  sm_sku_dosage as ssd
+        LEFT JOIN sm_project_material as spm on spm.id = ssd.project_material_id
+        where spm.ontract_code = #{contractCode} and
+        spm.product_category_url LIKE CONCAT('%',#{changeCategoryUrl},'%')
+    </select>
+    <select id="getByContractCode" resultMap="BaseResultMap">
+        SELECT ssd.* ,spm.category_code,spm.category_detail_code
+        FROM sm_sku_dosage ssd
+        RIGHT JOIN sm_project_material spm ON ssd.project_material_id = spm.id
+        WHERE spm.contract_code = #{contractCode}
+    </select>
+
+
+    <select id="findByConAndUrl" resultMap="BaseResultMap">
+        SELECT ssd.* from sm_sku_dosage as ssd
+        LEFT JOIN sm_project_material as spm on spm.id = ssd.project_material_id
+        where
+        spm.contract_code = #{contractCode} and
+        spm.product_category_url LIKE CONCAT(#{changeCategoryUrl},'%')
+    </select>
+</mapper>

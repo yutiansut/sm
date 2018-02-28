@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.finance.PayplanItemDao">
+
+    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.finance.PayplanItem">
+        <id column="id" property="id" />
+        <result column="item_code" property="itemCode"/>
+        <result column="item_name" property="itemName"/>
+        <result column="item_type" property="itemType"/>
+        <result column="item_index" property="itemIndex"/>
+        <result column="plan_code" property="planCode"/>
+        <result column="prev_item_id" property="prevItemId"/>
+        <result column="fina_trans_amount" property="finaTransAmount"/>
+        <result column="fina_trans_rate" property="finaTransRate"/>
+        <result column="allow_auto_trans" property="allowAutoTrans"/>
+        <result column="allow_less_amount" property="allowLessAmount"/>
+        <result column="item_status" property="itemStatus"/>
+        <result column="need_mps_push" property="needMpsPush"/>
+        <result column="manul_pay_flag" property="manulPayFlag"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,item_code,plan_code,item_name,item_type,item_index,prev_item_id,fina_trans_amount,fina_trans_rate,allow_auto_trans,
+        allow_less_amount,item_status,need_mps_push,manul_pay_flag
+    </sql>
+
+
+    <select id="getById" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM fina_payplan_item WHERE id=#{id}
+    </select>
+
+
+    <select id="getFirstItemOfPlanWithStore" resultMap="BaseResultMap">
+        SELECT itm.*
+        FROM fina_payplan_item itm
+        LEFT JOIN fina_payplan_store p ON itm.plan_code = p.plan_code
+        WHERE p.store_code = #{storeCode} AND itm.item_status=#{itemStatus}
+        ORDER BY item_index LIMIT 1
+    </select>
+
+    <select id="getNeedPushToMps" resultType="boolean">
+        SELECT need_mps_push FROM fina_payplan_item WHERE id=#{id}
+    </select>
+
+
+
+    <select id="querySortedPlanItemListWithStore" resultMap="BaseResultMap">
+        SELECT itm.*
+        FROM fina_payplan_item itm
+        LEFT JOIN fina_payplan_store p ON itm.plan_code = p.plan_code
+        WHERE p.store_code = #{storeCode}
+        <if test="itemStatus != null">
+            AND itm.item_status=#{itemStatus}
+        </if>
+        ORDER BY item_index
+    </select>
+
+
+    <select id="search" parameterType="map" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM fina_payplan_item
+        <where>
+            1=1
+            <if test="planCode != null">
+                AND plan_code=#{planCode}
+            </if>
+            <if test="itemStatus != null">
+                AND item_status=#{itemStatus}
+            </if>
+            <if test="itemCode != null">
+                AND item_code=#{itemCode}
+            </if>
+        </where>
+        <if test="sort != null">
+            ORDER BY
+            <foreach collection="sort" item="order" separator=",">
+                ${order.property} ${order.direction}
+            </foreach>
+        </if>
+    </select>
+
+</mapper>

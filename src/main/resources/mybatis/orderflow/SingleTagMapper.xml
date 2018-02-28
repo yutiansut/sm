@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.orderflow.SingleTagDao">
+    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.orderflow.SingleTag">
+        <id column="id" property="id"/>
+        <result column="tag_name" property="tagName"/>
+        <result column="operator" property="operator"/>
+        <result column="operate_time" property="operateTime"/>
+        <result column="describtion" property="describtion"/>
+        <result column="store_code" property="storeCode"/>
+
+        <!--项目信息-->
+        <result column="name" property="customerName" />
+        <result column="customer_tag" property="customerTag" />
+        <result column="contract_code" property="contractCode" />
+        <result column="customer_id" property="customerId" />
+        <result column="designer" property="designer" />
+        <result column="designer" property="designer" />
+        <result column="designer_mobile" property="designerMobile" />
+        <result column="second_contact" property="secondContact" />
+        <result column="second_contact_mobile" property="secondContactMobile" />
+        <result column="build_area" property="buildArea" />
+        <result column="valuate_area" property="valuateArea" />
+        <result column="address_province" property="addressProvince" />
+        <result column="address_city" property="addressCity" />
+        <result column="address_area" property="addressArea" />
+        <result column="designer_dep_name" property="designerDepName" />
+        <result column="plan_house_time" property="planHouseTime" />
+        <result column="book_house_time" property="bookHouseTime" />
+        <result column="order_flow_status" property="orderFlowStatus" />
+        <result column="service_name" property="serviceName" />
+        <result column="service_mobile" property="serviceMobile" />
+        <result column="complete_time" property="completeTime" />
+        <result column="create_time" property="createTime" />
+        <result column="stage_name" property="stageName" />
+        <result column="house_addr" property="houseAddr" />
+    </resultMap>
+    <sql id="Base_Column_List">
+          id, tag_name, operator, operate_time, describtion
+    </sql>
+
+    <select id="getById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sm_single_tag
+        where id = #{id}
+    </select>
+
+    <select id="searchTotal" parameterType="map" resultType="long">
+        SELECT count(*) FROM sm_single_tag
+        <include refid="searchWhere"/>
+    </select>
+    <sql id="searchWhere">
+        <where>
+            store_code = #{storeCode}
+            <if test="keyword!=null and keyword!=''">
+                AND (tag_name LIKE CONCAT('%',#{keyword},'%') OR
+                operator LIKE CONCAT('%',#{keyword},'%') OR
+                describtion LIKE CONCAT('%',#{keyword},'%'))
+            </if>
+        </where>
+    </sql>
+
+
+    <select id="search" resultMap="BaseResultMap">
+        SELECT
+            IFNULL(scs.itemCount, 0) itemCount,
+            sst.id,
+            sst.tag_name,
+            sst.operator,
+            sst.operate_time,
+            sst.describtion
+        FROM
+            sm_single_tag sst
+        LEFT JOIN (
+        SELECT
+          single_tag_id,
+          count(id) AS itemCount
+        FROM
+          sm_contract_single where deleted = 0 GROUP BY single_tag_id
+        ) scs ON scs.single_tag_id = sst.id
+        <include refid="searchWhere"/>
+        <if test="sort != null">
+            order by
+            <foreach collection="sort" item="order" separator=",">
+                ${order.property} ${order.direction}
+            </foreach>
+        </if>
+        limit #{offset},#{pageSize}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into sm_single_tag
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="tagName != null">
+                tag_name,
+            </if>
+            <if test="operator != null">
+                operator,
+            </if>
+            <if test="operateTime != null">
+                operate_time,
+            </if>
+            <if test="describtion != null">
+                describtion,
+            </if>
+            <if test="storeCode != null">
+                store_code,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="tagName != null">
+                #{tagName},
+            </if>
+            <if test="operator != null">
+                #{operator},
+            </if>
+            <if test="operateTime != null">
+                #{operateTime},
+            </if>
+            <if test="describtion != null">
+                #{describtion},
+            </if>
+            <if test="storeCode != null">
+                #{storeCode}
+            </if>
+        </trim>
+    </insert>
+    <update id="update">
+        update sm_single_tag
+        <set>
+            <if test="tagName != null">
+                tag_name = #{tagName},
+            </if>
+            <if test="operator != null">
+                operator = #{operator},
+            </if>
+            <if test="operateTime != null">
+                operate_time = #{operateTime},
+            </if>
+            <if test="describtion != null">
+                describtion = #{describtion},
+            </if>
+            <if test="storeCode != null">
+                store_code = #{storeCode}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--根据id查询项目信息-->
+    <select id="getProjectManageById" resultMap="BaseResultMap">
+        SELECT
+            cus.`name` AS customerName,
+            cus.customer_tag,
+            cc.contract_code,
+            cc.payment_status,
+            cc.second_contact,
+            cc.second_contact_mobile,
+            cc.house_addr,
+            cc.address_province,
+            cc.address_city,
+            cc.address_area,
+            cc.build_area,
+            cc.service_name,
+            cc.service_mobile,
+            cc.designer,
+            cc.designer_mobile,
+            cc.designer_dep_name,
+            cc.plan_house_time,
+            cc.book_house_time,
+            cc.order_flow_status,
+            sps.complete_time,
+            cc.create_time,
+            fpps.stage_name
+        FROM
+	        sm_single_tag sst
+        LEFT JOIN sm_contract_single scs ON sst.id = scs.single_tag_id
+        LEFT JOIN customer_contract cc ON scs.contract_code = cc.contract_code
+        LEFT JOIN customer cus ON cus.id = cc.customer_id
+        LEFT JOIN sm_project_sign sps ON sps.contract_code = cc.contract_code
+        LEFT JOIN fina_project_payplan_stage fpps ON fpps.contract_code = cc.contract_code
+        <where>
+            scs.deleted = 0 AND fpps.curent_flag = 1 AND sst.store_code = #{storeCode}
+            <if test="id != null">
+                AND sst.id = #{id}
+            </if>
+        </where>
+    </select>
+
+    <!--根据contract_code查询项目信息-->
+    <select id="getProjectManageByCode" resultMap="BaseResultMap">
+        SELECT
+        cus.`name` AS customerName,
+        cus.customer_tag,
+        cc.contract_code,
+        cc.payment_status,
+        cc.second_contact,
+        cc.second_contact_mobile,
+        cc.house_addr,
+        cc.address_province,
+        cc.address_city,
+        cc.address_area,
+        cc.build_area,
+        cc.service_name,
+        cc.service_mobile,
+        cc.designer,
+        cc.designer_mobile,
+        cc.designer_dep_name,
+        cc.plan_house_time,
+        cc.book_house_time,
+        cc.order_flow_status,
+        sps.complete_time,
+        cc.create_time,
+        fpps.stage_name
+        FROM
+          customer_contract cc
+        LEFT JOIN customer cus ON cus.id = cc.customer_id
+        LEFT JOIN sm_project_sign sps ON sps.contract_code = cc.contract_code
+        LEFT JOIN fina_project_payplan_stage fpps ON fpps.contract_code = cc.contract_code
+        <where>
+            fpps.curent_flag = 1 AND cc.store_code = #{storeCode}
+            <if test="contractCode != null">
+                AND cc.contract_code = #{contractCode}
+            </if>
+        </where>
+    </select>
+
+    <!--串单项目表-->
+    <resultMap id="ContractSingleMap" type="cn.mdni.business.entity.orderflow.ContractSingle" extends="BaseResultMap">
+        <id column="id" property="id"/>
+        <result column="single_tag_id" property="singleTagId"/>
+        <result column="contract_code" property="contractCode"/>
+        <result column="deleted" property="deleted"/>
+    </resultMap>
+    <sql id="Contract_Single_List">
+        id, single_tag_id, contract_code, deleted
+    </sql>
+    <select id="getContractSingleByContractCode" resultMap="ContractSingleMap">
+        SELECT
+          <include refid="Contract_Single_List"/>
+        FROM sm_contract_single
+        <where>
+            deleted = 0
+            <if test="contractCode!=null and contractCode!=''">
+                AND contract_code = #{contractCode}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateContractSingle">
+        update sm_contract_single
+        <set>
+            <if test="singleTagId != null">
+                single_tag_id = #{singleTagId},
+            </if>
+            <if test="deleted != null">
+                deleted = #{deleted}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <insert id="insertContractSingle" useGeneratedKeys="true" keyProperty="id">
+        insert into sm_contract_single
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="singleTagId != null">
+                single_tag_id,
+            </if>
+            <if test="contractCode != null">
+                contract_code,
+            </if>
+            <if test="deleted != null">
+                deleted
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="singleTagId != null">
+                #{singleTagId},
+            </if>
+            <if test="contractCode != null">
+                #{contractCode},
+            </if>
+            <if test="deleted != null">
+                #{deleted}
+            </if>
+        </trim>
+    </insert>
+
+    <select id="getSingleTagList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sm_single_tag
+        <include refid="searchWhere"/>
+    </select>
+</mapper>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.finance.ProjectchangeMoneyDao">
+
+    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.finance.ProjectchangeMoney">
+        <id column="id" property="id" />
+        <result column="change_no" property="changeNo"/>
+        <result column="contract_code" property="contractCode"/>
+        <result column="contract_uuid" property="contractUuid"/>
+        <result column="change_amount" property="changeAmount"/>
+        <result column="change_mode" property="changeMode"/>
+        <result column="create_stage_id" property="createStageId"/>
+        <result column="creator" property="creator"/>
+        <result column="create_time" property="createTime"/>
+        <result column="effect_stage_id" property="effectStageId"/>
+        <result column="effect_stage_name" property="effectStageName"/>
+        <result column="cleared" property="cleared"/>
+        <result column="clear_stage_id" property="clearStageId"/>
+        <result column="clear_stage_name" property="clearStageName"/>
+        <result column="cleared_time" property="clearedTime"/>
+        <result column="print_count" property="printCount"/>
+        <result column="change_status" property="changeStatus"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,change_no,contract_code,contract_uuid,change_amount,change_mode,create_stage_id,creator,create_time,effect_stage_id,
+        effect_stage_name,cleared,clear_stage_id,clear_stage_name,cleared_time,print_count,change_status
+    </sql>
+
+    <select id="changeLog" resultType="java.util.HashMap">
+        SELECT
+            scc.id AS basicId,
+            scd.id AS materialId,
+            fpr.cashier AS cashier,
+            fpm.cleared_time AS clearedTime,
+            payer_mobile AS payerMobile,
+            payer_name AS payerName,
+            fpm.change_no AS changeNo,
+            fpm.change_amount AS changeAmount,
+            fpm.cleared AS cleared,
+            fpm.change_mode AS changeMode,
+            fps.stage_name AS stageName,
+            fpm.change_type AS changeType
+        FROM
+            fina_projectchange_money fpm
+        LEFT JOIN fina_project_payplan_stage fps ON fpm.effect_stage_id = fps.stage_code
+        LEFT JOIN fina_paymoney_record fpr ON fpm.contract_uuid = fpr.contract_uuid
+        LEFT JOIN sm_construction_change scc on fpm.change_no = scc.change_no
+        LEFT JOIN sm_change_detail scd on fpm.change_no = scd.change_no
+        <where>
+            fpm.contract_uuid = #{contractUuid}
+        </where>
+        GROUP BY fpm.change_no
+        ORDER BY fpm.change_no DESC
+    </select>
+
+
+    <select id="search" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM fina_projectchange_money
+        <where>
+            1=1
+            <if test="contractUuid != null">
+                AND contract_uuid=#{contractUuid}
+            </if>
+            <if test="effectStageId != null">
+                AND effect_stage_id=#{effectStageId}
+            </if>
+            <if test="cleared != null">
+                AND cleared=#{cleared}
+            </if>
+        </where>
+        <if test="sort != null">
+            ORDER BY
+            <foreach collection="sort" item="order" separator=",">
+                ${order.property} ${order.direction}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="sumUnClearedChangeAmount" resultType="java.math.BigDecimal">
+        SELECT IFNULL(SUM(change_amount),0) FROM fina_projectchange_money
+        WHERE effect_stage_id=#{stageCode} and cleared =0
+    </select>
+
+    <select id="getFewAmountByContractCode" resultType="map" parameterType="java.util.List">
+        SELECT
+        fpm.contract_code AS contractCode,
+        SUM(fpm.change_amount) AS fewChangeAmount
+        FROM
+        fina_projectchange_money fpm
+        <where>
+        <if test="codeList != null">
+            fpm.contract_code IN
+            <foreach collection="codeList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+            and fpm.change_amount &lt; 0
+        </if>
+        </where>
+    </select>
+
+    <select id="getAddAmountByContractCode" resultType="map" parameterType="java.util.List">
+        SELECT
+        fpm.contract_code AS contractCode,
+        SUM(fpm.change_amount) AS addChangeAmount
+        FROM
+        fina_projectchange_money fpm
+        <where>
+        <if test="codeList != null">
+            fpm.contract_code IN
+            <foreach collection="codeList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+            and fpm.change_amount &gt; 0
+        </if>
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="cn.mdni.business.entity.finance.ProjectchangeMoney">
+        INSERT INTO fina_projectchange_money (
+            change_no,
+            contract_code,
+            contract_uuid,
+            change_amount,
+            change_mode,
+            create_time,
+            effect_stage_id,
+            effect_stage_name,
+            cleared,
+            print_count,
+            create_stage_id,
+            creator,
+            change_type
+        )
+        SELECT  #{changeNo},#{contractCode},#{contractUuid},#{changeAmount},#{changeMode},#{createTime},#{effectStageId},#{effectStageName},
+        #{cleared},#{printCount},#{createStageId},#{creator},#{changeType}
+         FROM DUAL  WHERE  NOT  EXISTS
+        (SELECT change_no,contract_code,contract_uuid,change_amount,change_mode,create_time,effect_stage_id,effect_stage_name FROM
+         fina_projectchange_money WHERE change_no = #{changeNo})
+    </insert>
+
+
+
+
+    <update id="batchClearChangeMoneyInStage" parameterType="cn.mdni.business.entity.finance.ProjectchangeMoney">
+        UPDATE fina_projectchange_money
+        <set>
+            <if test="cleared != null">
+                cleared = #{cleared},
+            </if>
+            <if test="clearStageId != null">
+                clear_stage_id = #{clearStageId},
+            </if>
+            <if test="clearStageName != null">
+                clear_stage_name = #{clearStageName},
+            </if>
+                cleared_time = NOW(),
+        </set>
+        WHERE effect_stage_id = #{effectStageId}
+    </update>
+</mapper>

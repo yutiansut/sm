@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.finance.RefundRecordDao">
+
+    <select id="refundRecord" resultType="java.util.HashMap">
+        SELECT
+            frr.refund_no AS refundNo,
+            frr.refund_type AS refundType,
+            frr.refund_actual_amount AS refundActualAmount,
+            frr.refund_receiver_name AS refundReceiverName,
+            frr.refund_receiver_mobile AS refundReceiverMobile,
+            frr.refund_receiver_account AS refundReceiverAccount,
+            frr.operator AS operator,
+            frr.operate_time AS operateTime,
+            frr.refund_time AS refundTime,
+            frr.refund_reson AS refundReson,
+            fps.stage_name AS stageName
+        FROM
+            fina_refund_record frr
+        LEFT JOIN fina_project_payplan_stage fps ON frr.create_stage_id = fps.stage_code
+        <where>
+            frr.contract_uuid = #{contractUuid}
+        </where>
+        ORDER BY frr.id DESC
+    </select>
+
+    <select id="getChargebackAmount" resultType="map" parameterType="java.util.List">
+        SELECT
+        (deduct_design_amount + deduct_other_amount) AS chargebackAmount
+        FROM
+        fina_refund_record
+        <where>
+            <if test="codeList != null">
+                contract_code IN
+                <foreach collection="codeList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+
+    <insert id="insert" parameterType="cn.mdni.business.entity.finance.RefundRecord">
+        INSERT INTO fina_refund_record(refund_no,contract_code,contract_uuid,create_stage_id,refund_type,refund_expect_amount,
+            refund_actual_amount,refund_deposit_amount,refund_modify_amount,refund_contract_amount,deduct_design_amount,
+            deduct_other_amount,refund_receiver_name,refund_receiver_mobile,refund_receiver_account,operator,operate_time,
+            refund_reson,refund_memo,refund_time)
+        VALUES (#{refundNo},#{contractCode},#{contractUuid},#{createStageId},#{refundType},#{refundExpectAmount},
+            #{refundActualAmount},#{refundDepositAmount},#{refundModifyAmount},#{refundConstructAmount},#{deductDesignAmount},
+            #{deductOtherAmount},#{refundReceiverName},#{refundReceiverMobile},#{refundReceiverAccount},#{operator},
+            #{operateTime},#{refundReson},#{refundMemo},#{refundTime})
+    </insert>
+
+
+
+</mapper>

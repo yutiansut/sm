@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.material.ContractOperateTimeSummaryDao">
+    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.material.ContractOperateTimeSummary">
+        <id column="id" property="id"/>
+        <result column="contract_code" property="contractCode"/>
+        <result column="material_submit_audit_time" property="materialSubmitAuditTime"/>
+        <result column="material_assign_audit_time" property="materialAssignAuditTime"/>
+        <result column="material_audit_pass_time" property="materialAuditPassTime"/>
+        <result column="material_audit_refuse_time" property="materialAuditRefuseTime"/>
+        <result column="material_sign_time" property="materialSignTime"/>
+        <result column="start_change_time" property="startChangeTime"/>
+        <result column="change_submit_audit_time" property="changeSubmitAuditTime"/>
+        <result column="change_audit_pass_time" property="changeAuditPassTime"/>
+        <result column="change_audit_refuse_time" property="changeAuditRefuseTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+      id,contract_code,material_submit_audit_time,material_assign_audit_time,material_audit_pass_time,
+      material_audit_refuse_time,material_sign_time,start_change_time,change_submit_audit_time,
+      change_audit_pass_time,change_audit_refuse_time
+    </sql>
+
+    <insert id="insert">
+        insert into sm_contract_operate_time_summary
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="contractCode != null">
+                contract_code,
+            </if>
+            <if test="materialSubmitAuditTime != null">
+                material_submit_audit_time,
+            </if>
+            <if test="materialAssignAuditTime != null">
+                material_assign_audit_time,
+            </if>
+            <if test="materialAuditPassTime != null">
+                material_audit_pass_time,
+            </if>
+            <if test="materialAuditRefuseTime != null">
+                material_audit_refuse_time,
+            </if>
+            <if test="materialSignTime != null">
+                material_sign_time,
+            </if>
+            <if test="startChangeTime != null">
+                start_change_time,
+            </if>
+            <if test="changeSubmitAuditTime != null">
+                change_submit_audit_time,
+            </if>
+            <if test="changeAuditPassTime != null">
+                change_audit_pass_time,
+            </if>
+            <if test="changeAuditRefuseTime != null">
+                change_audit_refuse_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="contractCode != null">
+                #{contractCode},
+            </if>
+            <if test="materialSubmitAuditTime != null">
+                #{materialSubmitAuditTime},
+            </if>
+            <if test="materialAssignAuditTime != null">
+                #{materialAssignAuditTime},
+            </if>
+            <if test="materialAuditPassTime != null">
+                #{materialAuditPassTime},
+            </if>
+            <if test="materialAuditRefuseTime != null">
+                #{materialAuditRefuseTime},
+            </if>
+            <if test="materialSignTime != null">
+                #{materialSignTime},
+            </if>
+            <if test="startChangeTime != null">
+                #{startChangeTime},
+            </if>
+            <if test="changeSubmitAuditTime != null">
+                #{changeSubmitAuditTime},
+            </if>
+            <if test="changeAuditPassTime != null">
+                #{changeAuditPassTime},
+            </if>
+            <if test="changeAuditRefuseTime != null">
+                #{changeAuditRefuseTime},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update">
+        UPDATE sm_contract_operate_time_summary
+        <set>
+            <if test="contractCode != null">
+                contract_code = #{contractCode},
+            </if>
+            <if test="materialSubmitAuditTime != null">
+                material_submit_audit_time = #{materialSubmitAuditTime},
+            </if>
+            <if test="materialAssignAuditTime != null">
+                material_assign_audit_time = #{materialAssignAuditTime},
+            </if>
+            <if test="materialAuditPassTime != null">
+                material_audit_pass_time = #{materialAuditPassTime},
+            </if>
+            <if test="materialAuditRefuseTime != null">
+                material_audit_refuse_time = #{materialAuditRefuseTime},
+            </if>
+            <if test="materialSignTime != null">
+                material_sign_time = #{materialSignTime},
+            </if>
+            <if test="startChangeTime != null">
+                start_change_time = #{startChangeTime},
+            </if>
+            <if test="changeSubmitAuditTime != null">
+                change_submit_audit_time = #{changeSubmitAuditTime},
+            </if>
+            <if test="changeAuditPassTime != null">
+                change_audit_pass_time = #{changeAuditPassTime},
+            </if>
+            <if test="changeAuditRefuseTime != null">
+                change_audit_refuse_time = #{changeAuditRefuseTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="getByContractCode" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM sm_contract_operate_time_summary WHERE contract_code = #{contractCode}
+    </select>
+
+</mapper>

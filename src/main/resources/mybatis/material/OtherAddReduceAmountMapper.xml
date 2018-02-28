@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.material.OtherAddReduceAmountDao">
+    <resultMap id="BaseResultMap" type="OtherAddReduceAmount">
+        <id column="id" property="id"/>
+        <result column="contract_code" property="contractCode"/>
+        <result column="item_name" property="itemName"/>
+        <result column="add_reduce_reason" property="addReduceReason"/>
+        <result column="add_reduce_type" property="addReduceType"/>
+        <result column="is_taxed_amount" property="taxedAmount"/>
+        <result column="quota" property="quota"/>
+        <result column="approver" property="approver"/>
+        <result column="change_flag" property="changeFlag"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, contract_code, item_name, add_reduce_reason, add_reduce_type, is_taxed_amount, 
+    quota, approver,change_flag
+  </sql>
+    <insert id="insert" parameterType="OtherAddReduceAmount" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into sm_other_add_reduce_amount
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="contractCode != null">
+                contract_code,
+            </if>
+            <if test="changeFlag != null">
+                change_flag,
+            </if>
+            <if test="itemName != null">
+                item_name,
+            </if>
+            <if test="addReduceReason != null">
+                add_reduce_reason,
+            </if>
+            <if test="addReduceType != null">
+                add_reduce_type,
+            </if>
+            <if test="taxedAmount != null">
+                is_taxed_amount,
+            </if>
+            <if test="quota != null">
+                quota,
+            </if>
+            <if test="approver != null">
+                approver,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="contractCode != null">
+                #{contractCode},
+            </if>
+            <if test="changeFlag != null">
+                #{changeFlag},
+            </if>
+            <if test="itemName != null">
+                #{itemName},
+            </if>
+            <if test="addReduceReason != null">
+                #{addReduceReason},
+            </if>
+            <if test="addReduceType != null">
+                #{addReduceType},
+            </if>
+            <if test="taxedAmount != null">
+                #{taxedAmount},
+            </if>
+            <if test="quota != null">
+                #{quota},
+            </if>
+            <if test="approver != null">
+                #{approver},
+            </if>
+        </trim>
+    </insert>
+    <update id="update" parameterType="OtherAddReduceAmount">
+        update sm_other_add_reduce_amount
+        <set>
+            <if test="contractCode != null">
+                contract_code = #{contractCode},
+            </if>
+            <if test="itemName != null">
+                item_name = #{itemName},
+            </if>
+            <if test="addReduceReason != null">
+                add_reduce_reason = #{addReduceReason},
+            </if>
+            <if test="addReduceType != null">
+                add_reduce_type = #{addReduceType},
+            </if>
+            <if test="taxedAmount != null">
+                is_taxed_amount = #{taxedAmount},
+            </if>
+            <if test="changeFlag != null">
+                change_flag=#{changeFlag},
+            </if>
+            <if test="quota != null">
+                quota = #{quota},
+            </if>
+            <if test="approver != null">
+                approver = #{approver},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="findByContractCodeList" resultMap="BaseResultMap">
+     select * from sm_other_add_reduce_amount where contract_code = #{contractCode}
+     <if test="changeFlag!=null and changeFlag!=''">
+         AND change_flag=#{changeFlag}
+     </if>
+  </select>
+
+
+    <delete id="deleteById">
+      DELETE FROM sm_other_add_reduce_amount
+        where id = #{id}
+  </delete>
+
+    <select id="getOthermoneyAddOrReduceByContractCode" parameterType="string" resultType="map">
+        select
+        item_name,
+        case add_reduce_type
+        when '0' then '减少'
+        when '1' THEN '增加'
+        end as add_reduce_type,
+        case is_taxed_amount
+        when '0' then '否'
+        when '1' THEN '是'
+        end as is_taxed_amount,
+        quota,
+        approver,
+        add_reduce_reason
+        from sm_other_add_reduce_amount
+        where contract_code = #{contractCode}
+    </select>
+
+
+    <select id="getChangeByContractCode"  resultMap="BaseResultMap">
+        select
+        *
+        from sm_other_add_reduce_amount
+        where contract_code = #{contractCode}
+        AND  change_flag=#{changeFlag}
+    </select>
+
+    <select id="getOthermoneyAddOrReduceByChangeFlag" resultType="long">
+        select count(1) from  sm_other_add_reduce_amount where contract_code = #{contractCode} AND change_flag = '1'
+    </select>
+
+    <update id="updateByContractCodeAndStatus">
+        update sm_other_add_reduce_amount set change_flag = '0' where contract_code = #{contractCode}
+        AND change_flag = #{changeFlag}
+    </update>
+
+    <select id="getOthrgAddReducePrice" resultMap="BaseResultMap">
+          select * from sm_other_add_reduce_amount where contract_code = #{contractCode} and change_flag = '1'
+    </select>
+
+    <delete id="deleteByCodeAndFlag">
+        delete from sm_other_add_reduce_amount where contract_code = #{contractCode} and change_flag = #{flag}
+    </delete>
+</mapper>

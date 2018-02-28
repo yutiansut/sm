@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.orderflow.ContractDao">
+    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.orderflow.CustomerContract">
+        <id column="id" property="id"/>
+        <result column="contract_code" property="contractCode"/>
+        <result column="contract_uuid" property="contractUuid"/>
+        <result column="customer_id" property="customerId"/>
+        <result column="house_addr" property="houseAddr"/>
+        <result column="designer" property="designer"/>
+        <result column="designer_mobile" property="designerMobile"/>
+        <result column="supervisor" property="supervisor"/>
+        <result column="supervisor_mobile" property="supervisorMobile"/>
+        <result column="project_manager" property="projectManager"/>
+        <result column="pm_mobile" property="pmMobile"/>
+        <result column="second_contact" property="secondContact"/>
+        <result column="second_contact_mobile" property="secondContactMobile"/>
+        <result column="meal_id" property="mealId"/>
+        <result column="meal_price" property="mealPrice"/>
+        <result column="layout" property="layout"/>
+        <result column="build_area" property="buildArea"/>
+        <result column="valuate_area" property="valuateArea"/>
+        <result column="house_condition" property="houseCondition"/>
+        <result column="elevator" property="elevator"/>
+        <result column="house_type" property="houseType"/>
+        <result column="address_province" property="addressProvince"/>
+        <result column="address_city" property="addressCity"/>
+        <result column="address_area" property="addressArea"/>
+        <result column="activity_name" property="activityName"/>
+        <result column="other_install_info" property="otherInstallInfo"/>
+        <result column="design_remark" property="designRemark"/>
+        <result column="audit_remark" property="auditRemark"/>
+        <result column="contract_amount" property="contractAmount"/>
+        <result column="modify_amount" property="modifyAmount"/>
+        <result column="payment_time" property="paymentTime"/>
+        <result column="single_order_info" property="singleOrderInfo"/>
+        <result column="customer_name" property="customerName"/>
+        <result column="customer_mobile" property="customerMobile"/>
+        <result column="meal_name" property="mealName"/>
+        <result column="designer_org_code" property="designerOrgCode"/>
+        <result column="auditor" property="auditor"/>
+        <result column="auditor_mobile" property="auditorMobile"/>
+        <result column="auditor_org_code" property="auditorOrgCode"/>
+        <result column="contract_status" property="contractStatus"/>
+        <result column="finance_status" property="financeStatus"/>
+        <result column="change_status" property="changeStatus"/>
+        <result column="operate_time" property="operateTime"/>
+        <result column="designer_dep_name" property="designerDepName"/>
+        <result column="plan_house_time" property="planHouseTime"/>
+        <result column="book_house_time" property="bookHouseTime"/>
+        <result column="order_flow_status" property="orderFlowStatus"/>
+        <result column="payment_status" property="paymentStatus"/>
+        <result column="discount_name" property="discountName"/>
+        <result column="plan_decorate_time" property="planDecorateTime"/>
+        <result column="designer_dep_code" property="designerDepCode"/>
+        <result column="designer_code" property="designerCode"/>
+        <result column="service_mobile" property="serviceMobile"/>
+        <result column="service_name" property="serviceName"/>
+        <result column="service_code" property="serviceCode"/>
+        <result column="current_change_version" property="currentChangeVersion"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="book_house_complete" property="bookHouseComplete"/>
+        <result column="book_house_complete_time" property="bookHouseCompleteTime"/>
+        <result column="book_house_executor" property="bookHouseExecutor"/>
+        <result column="book_house_cadurl" property="bookHouseCadurl"/>
+        <result column="out_map_complete" property="outMapComplete"/>
+        <result column="out_map_complete_time" property="outMapCompleteTime"/>
+        <result column="out_map_executor" property="outMapExecutor"/>
+        <result column="out_map_cadurl" property="outMapCadurl"/>
+        <result column="forward_delivery_housing" property="forwardDeliveryHousing"/>
+        <result column="complete_sign" property="completeSign"/>
+        <result column="schedule_sign_time" property="scheduleSignTime"/>
+        <result column="executor" property="executor"/>
+        <result column="package_type" property="packageType"/>
+        <result column="is_taxed_amount" property="taxedAmount"/>
+        <result column="dismantle_repair_cost" property="dismantleRepairCost"/>
+        <result column="long_range_cost" property="longRangeCost"/>
+        <result column="carry_cost" property="carryCost"/>
+        <result column="total_budget_amount" property="totalBudgetAmount"/>
+        <result column="advance_payment" property="advancePayment"/>
+        <result column="store_code" property="storeCode"/>
+        <result column="customer_level" property="customerLevel"/>
+        <result column="stage_name" property="stageName"/>
+        <result column="is_sign_deposit" property="signDeposit"/>
+        <result column="is_return_word" property="returnWord"/>
+        <result column="province_code" property="provinceCode"/>
+        <result column="city_code" property="cityCode"/>
+        <result column="area_code" property="areaCode"/>
+        <result column="complete_time" property="completeTime"/>
+        <result column="remark" property="remark"/>
+        <result column="customer_tag" property="customerTag"/>
+        <result column="contract_sign_trem" property="contractSignTrem"></result>
+        <result column="contract_start_time" property="contractStartTime"></result>
+        <result column="contract_complete_time" property="contractCompleteTime"></result>
+        <result column="complete_construction_time" property="completeConstructionTime"/>
+        <result column="start_construction_time" property="startConstructionTime"/>
+        <result column="return_reason" property="returnReason"/>
+        <result column="return_reason_describe" property="returnReasonDescribe"/>
+        <result column="single_tag_id" property="singleId"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="cn.mdni.business.entity.orderflow.CustomerContract">
+        insert into customer_contract
+        (
+        contract_code,
+        customer_id,
+        house_addr,
+        layout,
+        build_area,
+        house_condition,
+        elevator,
+        address_province,
+        address_city,
+        address_area,
+        activity_name,
+        service_code,
+        service_name,
+        service_mobile,
+        plan_house_time,
+        store_code,
+        contract_uuid,
+        order_flow_status,
+        discount_name,
+        create_time,
+        province_code,
+        city_code,
+        area_code,
+        forward_delivery_housing,
+        plan_decorate_time
+        )
+        values
+        (
+        #{contractCode},
+        #{customerId},
+        #{houseAddr},
+        #{layout},
+        #{buildArea},
+        #{houseCondition},
+        #{elevator},
+        #{addressProvince},
+        #{addressCity},
+        #{addressArea},
+        #{activityName},
+        #{serviceCode},
+        #{serviceName},
+        #{serviceMobile},
+        #{planHouseTime},
+        #{storeCode},
+        #{contractUuid},
+        #{orderFlowStatus},
+        #{discountName},
+        #{createTime},
+        #{provinceCode},
+        #{cityCode},
+        #{areaCode},
+        #{forwardDeliveryHousing},
+        #{planDecorateTime}
+        )
+    </insert>
+
+    <select id="getById" resultMap="BaseResultMap">
+    select
+    cucs.*,cus.customer_level,cus.name AS customer_name,cus.mobile AS customer_mobile,sobc.*
+    from customer_contract AS cucs
+    LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
+    LEFT JOIN sm_order_bespeak_contract sobc ON (cucs.contract_code = sobc.contract_code)
+    where cucs.id = #{id}
+    </select>
+
+    <select id="getContractByContractCode" resultMap="BaseResultMap">
+        select
+        cucs.*,cus.customer_level,cus.name AS customer_name,cus.mobile AS customer_mobile,sobc.*,
+        sps.contract_sign_trem,sps.contract_start_time,sps.contract_complete_time
+        from customer_contract AS cucs
+        LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
+        LEFT JOIN sm_order_bespeak_contract sobc ON (cucs.contract_code = sobc.contract_code)
+        LEFT JOIN sm_project_sign sps ON (sps.contract_code = cucs.contract_code)
+        where cucs.contract_code = #{contractCode}
+    </select>
+
+    <select id="searchTotal" parameterType="map" resultType="long">
+        SELECT COUNT(DISTINCT cucs.contract_code) FROM customer_contract AS cucs
+        <include refid="searchFromWhere"/>
+    </select>
+
+    <select id="search" parameterType="map" resultMap="BaseResultMap">
+        select DISTINCT
+        cucs.*,cus.customer_tag,cus.name AS customer_name,cus.mobile AS customer_mobile,smi.meal_name AS meal_name,
+        fpps.stage_name,sps.complete_time
+        from customer_contract AS cucs
+        <include refid="searchFromWhere"/>
+        <if test="sort != null">
+            order by
+            <foreach collection="sort" item="order" separator=",">
+                ${order.property} ${order.direction}
+            </foreach>
+            ,cucs.contract_code DESC
+        </if>
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <sql id="searchFromWhere">
+        LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
+        LEFT JOIN sm_meal_info smi ON (cucs.meal_id = smi.id)
+        LEFT JOIN sm_project_sign sps ON (cucs.contract_code = sps.contract_code)
+        LEFT JOIN fina_project_payplan_stage fpps ON (cucs.contract_code = fpps.contract_code)
+        <where>
+            cucs.store_code=#{storeCode}
+            <if test="keyword != null and keyword != ''">
+                AND (cus.name like CONCAT('%', #{keyword}, '%')
+                OR cucs.second_contact like CONCAT('%', #{keyword}, '%')
+                OR cucs.contract_code like CONCAT('%', #{keyword}, '%')
+                OR cucs.designer like CONCAT('%', #{keyword}, '%')
+                OR cucs.service_name like CONCAT('%', #{keyword}, '%')
+                OR cucs.service_mobile = #{keyword})
+            </if>
+            <if test="orderFlowStatus != null and orderFlowStatus != ''">
+                AND cucs.order_flow_status =#{orderFlowStatus}
+            </if>
+            <if test="startDate != null and startDate != ''">
+                AND DATE(cucs.create_time) &gt;= DATE(#{startDate})
+            </if>
+            <if test="endDate !=null and endDate !='' ">
+                AND DATE(cucs.create_time) &lt;= DATE(#{endDate})
+            </if>
+            <if test="planHouseStartTime != null and planHouseStartTime != ''">
+                AND DATE(cucs.plan_house_time) &gt;= DATE(#{planHouseStartTime})
+            </if>
+            <if test="planHouseEndTime !=null and planHouseEndTime !=''">
+                AND DATE(cucs.plan_house_time) &lt;= DATE(#{planHouseEndTime})
+            </if>
+            <if test="bookHouseStartTime != null and bookHouseStartTime != ''">
+                AND DATE(cucs.book_house_time) &gt;= DATE(#{bookHouseStartTime})
+            </if>
+            <if test="bookHouseEndTime !=null and bookHouseEndTime !=''">
+                AND DATE(cucs.book_house_time) &lt;= DATE(#{bookHouseEndTime})
+            </if>
+            <if test="designer != null and designer != ''">
+                AND cucs.designer = #{designer}
+            </if>
+            <if test="auditor != null and auditor != ''">
+                AND cucs.auditor = #{auditor}
+            </if>
+            <if test="designerCode != null and designerDepCode == null">
+                and cucs.designer_code = #{designerCode}
+            </if>
+            <if test="designerDepCode != null and designerCode != null">
+                AND ( cucs.designer_dep_code = #{designerDepCode} or cucs.designer_code = #{designerCode})
+            </if>
+            <if test="designerCode == null and designerDepCode != null">
+                and cucs.designer_dep_code = #{designerDepCode}
+            </if>
+            <if test="auditorOrgCode != null">
+                AND cucs.auditor_org_code = #{auditorOrgCode}
+            </if>
+            AND cucs.order_flow_status IS NOT NULL
+            AND fpps.curent_flag=1
+        </where>
+    </sql>
+
+    <delete id="deleteById">
+    delete from customer_contract
+    where id = #{id}
+    </delete>
+
+    <update id="update">
+        update customer_contract
+        <set>
+            <if test="contractCode != null">
+                contract_code = #{contractCode},
+            </if>
+            <if test="customerId != null">
+                customer_id = #{customerId},
+            </if>
+            <if test="houseAddr != null">
+                house_addr = #{houseAddr},
+            </if>
+            <if test="designer != null">
+                designer = #{designer},
+            </if>
+            <if test="designerMobile != null">
+                designer_mobile = #{designerMobile},
+            </if>
+            <if test="supervisor != null">
+                supervisor = #{supervisor},
+            </if>
+            <if test="supervisorMobile != null">
+                supervisor_mobile = #{supervisorMobile},
+            </if>
+            <if test="projectManager != null">
+                project_manager = #{projectManager},
+            </if>
+            <if test="pmMobile != null">
+                pm_mobile = #{pmMobile},
+            </if>
+            <if test="secondContact != null">
+                second_contact = #{secondContact},
+            </if>
+            <if test="secondContactMobile != null">
+                second_contact_mobile = #{secondContactMobile},
+            </if>
+            <if test="mealId != null">
+                meal_id = #{mealId},
+            </if>
+            <if test="mealPrice != null">
+                meal_price = #{mealPrice},
+            </if>
+            <if test="layout != null">
+                layout = #{layout},
+            </if>
+            <if test="buildArea != null">
+                build_area = #{buildArea},
+            </if>
+            <if test="valuateArea != null">
+                valuate_area = #{valuateArea},
+            </if>
+            <if test="houseCondition != null">
+                house_condition = #{houseCondition},
+            </if>
+            <if test="elevator != null">
+                elevator = #{elevator},
+            </if>
+            <if test="houseType != null">
+                house_type = #{houseType},
+            </if>
+            <if test="addressProvince != null">
+                address_province = #{addressProvince},
+            </if>
+            <if test="addressCity != null">
+                address_city = #{addressCity},
+            </if>
+            <if test="addressArea != null">
+                address_area = #{addressArea},
+            </if>
+            <if test="activityName != null">
+                activity_name = #{activityName},
+            </if>
+            <if test="otherInstallInfo != null">
+                other_install_info = #{otherInstallInfo},
+            </if>
+            <if test="designRemark != null">
+                design_remark = #{designRemark},
+            </if>
+            <if test="auditRemark != null">
+                audit_remark = #{auditRemark},
+            </if>
+            <if test="contractAmount != null">
+                contract_amount = #{contractAmount},
+            </if>
+            <if test="modifyAmount != null">
+                modify_amount = #{modifyAmount},
+            </if>
+            <if test="paymentTime != null">
+                payment_time = #{paymentTime},
+            </if>
+            <if test="singleOrderInfo != null">
+                single_order_info = #{singleOrderInfo},
+            </if>
+            <if test="designerOrgCode != null">
+                designer_org_code = #{designerOrgCode},
+            </if>
+            <if test="auditor != null">
+                auditor = #{auditor},
+            </if>
+            <if test="auditorMobile != null">
+                auditor_mobile = #{auditorMobile},
+            </if>
+            <if test="auditorOrgCode != null">
+                auditor_org_code = #{auditorOrgCode},
+            </if>
+            <if test="contractStatus != null">
+                contract_status = #{contractStatus},
+            </if>
+            <if test="financeStatus != null">
+                finance_status = #{financeStatus},
+            </if>
+            <if test="designerDepCode != null">
+                designer_dep_code = #{designerDepCode},
+            </if>
+            <if test="designerDepName != null">
+                designer_dep_name = #{designerDepName},
+            </if>
+            <if test="designerCode != null">
+                designer_code = #{designerCode},
+            </if>
+            <if test="orderFlowStatus != null">
+                order_flow_status = #{orderFlowStatus},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="updateRecovery">
+        UPDATE customer_contract
+        SET
+            designer = #{designer},
+            designer_mobile = #{designerMobile},
+            designer_org_code = #{designerOrgCode},
+            designer_dep_code = #{designerDepCode},
+            designer_dep_name = #{designerDepName},
+            designer_code = #{designerCode},
+            order_flow_status = #{orderFlowStatus},
+            return_reason = #{returnReason},
+            return_reason_describe = #{returnReasonDescribe}
+        WHERE id = #{id}
+    </update>
+    <update id="updateBookHouse">
+        update customer_contract
+        <set>
+            <if test="bookHouseTime != null">
+                book_house_time = #{bookHouseTime},
+            </if>
+            <if test="bookHouseComplete != null">
+                book_house_complete = #{bookHouseComplete},
+            </if>
+            <if test="bookHouseCompleteTime != null">
+                book_house_complete_time = #{bookHouseCompleteTime},
+            </if>
+            <if test="bookHouseExecutor != null">
+                book_house_executor = #{bookHouseExecutor},
+            </if>
+            <if test="bookHouseCadurl != null">
+                book_house_cadurl = #{bookHouseCadurl},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateOutMap">
+        update customer_contract
+        <set>
+            <if test="outMapComplete != null">
+                out_map_complete = #{outMapComplete},
+            </if>
+            <if test="outMapCompleteTime != null">
+                out_map_complete_time = #{outMapCompleteTime},
+            </if>
+            <if test="outMapExecutor != null">
+                out_map_executor = #{outMapExecutor},
+            </if>
+            <if test="outMapCadurl != null">
+                out_map_cadurl = #{outMapCadurl},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateContractStatus">
+        update customer_contract
+        <set>
+            <if test="orderFlowStatus != null">
+                order_flow_status = #{orderFlowStatus},
+            </if>
+            <if test="signDeposit != null">
+                is_sign_deposit = #{signDeposit},
+            </if>
+        </set>
+        WHERE contract_uuid = #{contractUuid}
+    </update>
+
+    <update id="updateDesignerGroup">
+        UPDATE customer_contract
+        SET
+        designer = #{designer},
+        designer_mobile = #{designerMobile},
+        designer_org_code = #{designerOrgCode},
+        designer_dep_code = #{designerDepCode},
+        designer_dep_name = #{designerDepName},
+        designer_code = #{designerCode},
+        order_flow_status = #{orderFlowStatus},
+        return_reason = #{returnReason},
+        return_reason_describe = #{returnReasonDescribe}
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateContractRetreat">
+        update customer_contract
+        <set>
+            <if test="orderFlowStatus != null">
+                order_flow_status = #{orderFlowStatus},
+            </if>
+            <if test="returnReason != null">
+                return_reason = #{returnReason},
+            </if>
+            <if test="returnReasonDescribe != null">
+                return_reason_describe = #{returnReasonDescribe},
+            </if>
+        </set>
+        WHERE contract_uuid = #{contractUuid}
+    </update>
+
+    <!--同步来自产业工人系统的 项目信息（项目经理 监理 开竣工时间 拒绝接单备注）-->
+    <update id="syncProjectInfoFromMps" parameterType="cn.mdni.business.entity.orderflow.CustomerContract">
+        update customer_contract
+        <set>
+            <if test="orderFlowStatus != null">
+                order_flow_status = #{orderFlowStatus},
+            </if>
+            <if test="startConstructionTime != null">
+                start_construction_time = #{startConstructionTime},
+            </if>
+            <if test="completeConstructionTime != null">
+                complete_construction_time = #{completeConstructionTime},
+            </if>
+            <if test="basicConstructionTime != null">
+                basic_construction_time = #{basicConstructionTime},
+            </if>
+            <if test="supervisor != null">
+                supervisor = #{supervisor},
+            </if>
+            <if test="supervisorMobile != null">
+                supervisor_mobile = #{supervisorMobile},
+            </if>
+            <if test="pmMobile != null">
+                pm_mobile = #{pmMobile},
+            </if>
+            <if test="projectManager != null">
+                project_manager = #{projectManager},
+            </if>
+            <if test="mpsBackRemark != null">
+                mps_back_remark = #{mpsBackRemark},
+            </if>
+        </set>
+        where contract_code = #{contractCode}
+    </update>
+
+    <select id="getByCode" resultMap="BaseResultMap">
+    select
+    cucs.*,cus.customer_level,cus.name AS customer_name,cus.mobile AS customer_mobile,smi.meal_name AS meal_name
+    from customer_contract AS cucs
+    LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
+    LEFT JOIN sm_meal_info smi ON (cucs.meal_id = smi.id)
+    where cucs.contract_code = #{code}
+    </select>
+
+
+    <select id="getByUuid" resultMap="BaseResultMap">
+        select
+        cucs.*,cus.customer_level,cus.name AS customer_name,cus.mobile AS customer_mobile,smi.meal_name AS meal_name
+        from customer_contract AS cucs
+        LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
+        LEFT JOIN sm_meal_info smi ON (cucs.meal_id = smi.id)
+        where cucs.contract_uuid = #{contractUuid}
+    </select>
+
+    <!--获取推送到产业工人系统的项目信息-->
+    <select id="getPushMpsInfoByCode" resultType="map">
+        select
+            'order' as business_type,
+             cuscon.store_code as store_id,
+            'chanye' as project_mode,
+            'putong' as customer_type,
+            cuscon.contract_code as order_number,
+            cuscon.contract_code as contract_number,
+            IF(LENGTH(trim(IFNULL(second_contact,'')))&lt;1,cus.`name`,second_contact) as customer_name,
+            IF(LENGTH(trim(IFNULL(second_contact_mobile,'')))&lt;1,cus.mobile,second_contact_mobile) as customer_phone,
+            house_addr as detail_address,
+            address_province as province,
+            address_city as city,address_area as county,
+            mi.meal_name as sale_type,
+            layout as house_type,
+            house_condition as house_is_new,
+            elevator as is_elevator,
+            designer as designer_name,
+            designer_mobile as designer_phone,
+            service_name,
+            service_mobile as service_phone,
+            ps.contract_start_time as contract_start_date,
+            ps.contract_complete_time as contract_end_date,
+            auditor as auditor_realname,
+            auditor_mobile,
+            build_area as covered_area,
+            valuate_area as contract_area,
+            ps.contract_sign_trem as contract_time,
+            ps.complete_time as sign_contract_date,
+            cus.customer_level,
+            contract_amount,
+            cus.customer_tag as tagname
+        from
+        customer_contract as cuscon
+        LEFT JOIN customer as cus  ON  cuscon.customer_id = cus.id
+        LEFT JOIN sm_meal_info as mi ON cuscon.meal_id = mi.id
+        LEFT JOIN sm_project_sign as ps on cuscon.contract_code = ps.contract_code
+        where cuscon.contract_code = #{code}
+    </select>
+
+    <!--crm  通过contractUuid查询项目信息-->
+    <select id="getContractByContractUuid" resultMap="BaseResultMap">
+        select
+        cucs.*,cus.customer_level,cus.name AS customer_name,cus.mobile AS customer_mobile,mi.meal_name AS meal_name,sobc.*
+        from customer_contract AS cucs
+        LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
+        LEFT JOIN sm_meal_info mi ON cucs.meal_id = mi.id
+        LEFT JOIN sm_order_bespeak_contract sobc ON (cucs.contract_code = sobc.contract_code)
+        where cucs.contract_uuid = #{contractUuid}
+    </select>
+
+    <select id="findSingleDetailBySingleId" resultMap="BaseResultMap">
+        select
+        cucs.*,cus.customer_level,cus.name AS customer_name,cus.mobile AS customer_mobile,cus.customer_tag
+        from customer_contract AS cucs
+        LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
+        where cucs.single_tag_id = #{singleId} AND cucs.store_code = #{storeCode}
+    </select>
+
+</mapper>

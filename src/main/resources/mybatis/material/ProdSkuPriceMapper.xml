@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.material.ProdSkuPriceDao">
+    <resultMap id="BaseResultMap" type="ProdSkuPrice">
+        <id column="id" property="id"/>
+        <result column="sku_id" property="skuId"/>
+        <result column="price_type" property="priceType"/>
+        <result column="price" property="price"/>
+        <result column="price_start_date" property="priceStartDate"/>
+        <result column="editor" property="editor"/>
+        <result column="edit_time" property="editTime"/>
+    </resultMap>
+    <resultMap id="skuPriceWithEditorMap" extends="BaseResultMap" type="ProdSkuPrice">
+        <result column="name" property="editorName"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, sku_id, price_type, price, price_start_date, editor, edit_time
+  </sql>
+    <select id="selectById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from prod_sku_price
+        where id = #{id}
+    </select>
+    <delete id="deleteById">
+    delete from prod_sku_price
+    where id = #{id}
+  </delete>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into prod_sku_price
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="skuId != null">
+                sku_id,
+            </if>
+            <if test="priceType != null">
+                price_type,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="priceStartDate != null">
+                price_start_date,
+            </if>
+            <if test="editor != null">
+                editor,
+            </if>
+            <if test="editTime != null">
+                edit_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="skuId != null">
+                #{skuId},
+            </if>
+            <if test="priceType != null">
+                #{priceType},
+            </if>
+            <if test="price != null">
+                #{price},
+            </if>
+            <if test="priceStartDate != null">
+                #{priceStartDate},
+            </if>
+            <if test="editor != null">
+                #{editor},
+            </if>
+            <if test="editTime != null">
+                #{editTime},
+            </if>
+        </trim>
+    </insert>
+    <update id="update">
+        update prod_sku_price
+        <set>
+            <if test="skuId != null">
+                sku_id = #{skuId},
+            </if>
+            <if test="priceType != null">
+                price_type = #{priceType},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="priceStartDate != null">
+                price_start_date = #{priceStartDate},
+            </if>
+            <if test="editor != null">
+                editor = #{editor},
+            </if>
+            <if test="editTime != null">
+                edit_time = #{editTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <sql id="searchFromWhere">
+        from prod_sku_price price
+        LEFT JOIN acct_user usr on usr.id = price.editor
+        <where>
+            sku_id = #{skuId}
+            <if test="priceType!=null">
+                and price_type = #{priceType}
+            </if>
+        </where>
+    </sql>
+    <select id="searchTotal" resultType="long">
+        select count(*)
+        FROM ( SELECT DISTINCT price.*,usr.name
+        <include refid="searchFromWhere"/>
+        ) as ssdd
+    </select>
+    <select id="search" resultMap="skuPriceWithEditorMap">
+        select DISTINCT
+        price.*,usr.name
+        <include refid="searchFromWhere"/>
+        <if test="sort != null">
+            order by
+            <foreach collection="sort" item="order" separator=",">
+                ${order.property} ${order.direction}
+            </foreach>
+        </if>
+        limit #{offset}, #{pageSize}
+    </select>
+    <select id="findAll" resultMap="skuPriceWithEditorMap">
+    select
+    price.*,usr.name
+    from prod_sku_price price LEFT JOIN acct_user usr on usr.id = price.editor
+  </select>
+    <select id="findByTypeAndSkuId" resultMap="skuPriceWithEditorMap">
+       select
+        price.*,usr.name
+        <include refid="searchFromWhere"/>
+    </select>
+</mapper>

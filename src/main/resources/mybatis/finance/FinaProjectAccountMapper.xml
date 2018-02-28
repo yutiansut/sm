@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.finance.FinaProjectAccountDao">
+
+    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.finance.FinaProjectAccount">
+        <id column="id" property="id" />
+        <result column="contract_code" property="contractCode"/>
+        <result column="contract_uuid" property="contractUuid"/>
+        <result column="balance_amount" property="balanceAmount"/>
+        <result column="deposit_total_payed" property="depositTotalPayed"/>
+        <result column="deposit_total_deduct" property="depositTotalDeduct"/>
+        <result column="modify_expect_amount" property="modifyExpectAmount"/>
+        <result column="modify_total_payed" property="modifyTotalPayed"/>
+        <result column="construct_expect_amount" property="constructExpectAmount"/>
+        <result column="construct_total_payed" property="constructTotalPayed"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,contract_code,contract_uuid,IFNULL(balance_amount,0) as balance_amount,IFNULL(deposit_total_payed,0) as deposit_total_payed,
+        IFNULL(deposit_total_deduct,0) as deposit_total_deduct,IFNULL(modify_expect_amount,0) as modify_expect_amount,
+        IFNULL(modify_total_payed,0) as modify_total_payed,
+        IFNULL(construct_expect_amount,0) as construct_expect_amount,IFNULL(construct_total_payed,0) as construct_total_payed
+    </sql>
+
+    <insert id="insert" parameterType="cn.mdni.business.entity.finance.FinaProjectAccount">
+        INSERT INTO fina_project_account(contract_code,contract_uuid,balance_amount,deposit_total_payed,
+        deposit_total_deduct,modify_expect_amount,modify_total_payed,construct_expect_amount,construct_total_payed)
+        VALUES (#{contractCode},#{contractUuid},#{balanceAmount},#{depositTotalPayed},#{depositTotalDeduct},
+        #{modifyExpectAmount},#{modifyTotalPayed},#{constructExpectAmount},#{constructTotalPayed})
+    </insert>
+
+
+    <select id="search" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM fina_project_account
+        <where>
+            1=1
+            <if test="contractUuid != null">
+                AND contract_uuid=#{contractUuid}
+            </if>
+
+        </where>
+        <if test="orderRule != null">
+            #{orderRule}
+        </if>
+    </select>
+
+
+    <update id="update" parameterType="cn.mdni.business.entity.finance.FinaProjectAccount">
+        UPDATE fina_project_account
+        <set>
+            <if test="balanceAmount != null">
+                balance_amount = #{balanceAmount},
+            </if>
+            <if test="depositTotalPayed != null">
+                deposit_total_payed = #{depositTotalPayed},
+            </if>
+            <if test="depositTotalDeduct != null">
+                deposit_total_deduct = #{depositTotalDeduct},
+            </if>
+            <if test="modifyExpectAmount != null">
+                modify_expect_amount = #{modifyExpectAmount},
+            </if>
+            <if test="modifyTotalPayed != null">
+                modify_total_payed = #{modifyTotalPayed},
+            </if>
+            <if test="constructExpectAmount != null">
+                construct_expect_amount = #{constructExpectAmount},
+            </if>
+            <if test="constructTotalPayed != null">
+                construct_total_payed = #{constructTotalPayed},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <select id="getFinaProjectAccountByUuid" resultType="cn.mdni.business.entity.finance.FinaProjectAccount">
+        SELECT
+        fpa.deposit_total_deduct AS depositTotalDeduct,
+        fpa.deposit_total_payed AS depositTotalPayed,
+        fpa.modify_expect_amount AS modifyExpectAmount,
+        fpa.modify_total_payed AS modifyTotalPayed,
+        fpa.construct_expect_amount AS constructExpectAmount,
+        fpa.construct_total_payed AS constructTotalPayed,
+        fpm.changeAmount AS changeAmount,
+        frm.reparationAmount AS reparationAmount
+        FROM
+        fina_project_account fpa
+        LEFT JOIN (
+        SELECT
+        contract_code,
+        SUM(change_amount) AS changeAmount
+        FROM
+        fina_projectchange_money
+        GROUP BY contract_code
+        ) fpm ON fpm.contract_code = fpa.contract_code
+        LEFT JOIN (
+        SELECT
+        contract_code,
+        SUM(reparation_amount) AS reparationAmount
+        FROM
+        fina_reparation_money
+        GROUP BY contract_code
+        ) frm ON frm.contract_code = fpa.contract_code
+        <where>
+            fpa.contract_uuid =#{contractUuid}
+        </where>
+    </select>
+</mapper>

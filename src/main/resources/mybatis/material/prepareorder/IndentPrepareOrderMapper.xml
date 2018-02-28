@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.material.IndentPrepareOrderDao">
+
+    <resultMap id="BaseResultMap" type="IndentPrepareOrder">
+        <id column="id" property="id"/>
+        <result column="contract_code" property="contractCode" />
+        <result column="data_source" property="dataSource" />
+        <result column="status" property="status" />
+        <result column="brand_id" property="brandId"/>
+        <result column="brand_name" property="brandName"/>
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="update_account" property="updateAccount" />
+        <result column="switch_time" property="switchTime" />
+    </resultMap>
+
+    <!--<resultMap id="MultiResultMap" type="ProjectChangeMaterial" extends="BaseResultMap">
+        <collection property="skuDosageList" ofType="SmSkuDosage">
+            <id column="project_material_id" property="id"/>
+            <result column="domain_name" property="domainName"/>
+            <result column="budget_dosage" property="budgetDosage"/>
+            <result column="loss_factor" property="lossFactor"/>
+            <result column="loss_dosage" property="lossDosage"/>
+            <result column="dosage_store_sale_price" property="storeSalePrice"/>
+            <result column="dosage_pricing_mode" property="dosagePricingMode"/>
+            <result column="project_proportion" property="projectProportion"/>
+            <result column="convert_unit" property="convertUnit"/>
+            <result column="original_dosage_single" property="originalDosage"/>
+        </collection>
+    </resultMap>-->
+
+    <sql id="Base_Column_List">
+        id, contract_code, data_source, status, brand_id, brand_name, create_time,
+        update_time, update_account, switch_time
+    </sql>
+
+    <select id="getById" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM indent_prepare_order
+        WHERE id = #{id}
+    </select>
+
+    <delete id="deleteById" parameterType="Long">
+        DELETE FROM indent_prepare_order
+        WHERE id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="IndentPrepareOrder" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO indent_prepare_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="contractCode != null">
+                contract_code,
+            </if>
+            <if test="dataSource != null">
+                data_source,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="brandId != null">
+                brand_id,
+            </if>
+            <if test="brandName != null">
+                brand_name,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="updateAccount != null">
+                update_account,
+            </if>
+            <if test="switchTime != null">
+                switch_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="contractCode != null">
+                #{contractCode},
+            </if>
+            <if test="dataSource != null">
+                #{dataSource},
+            </if>
+            <if test="status != null">
+                #{status},
+            </if>
+            <if test="brandId != null">
+                #{brandId},
+            </if>
+            <if test="brandName != null">
+                #{brandName},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+            <if test="updateAccount != null">
+                #{updateAccount},
+            </if>
+            <if test="switchTime != null">
+                #{switchTime},
+            </if>
+        </trim>
+    </insert>
+
+    <!--批量插入-->
+    <insert id="batchInsertList" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO indent_prepare_order
+          (
+              contract_code, data_source, status, brand_id, brand_name,
+              create_time, update_time, update_account,
+              switch_time
+          )
+        VALUES
+        <foreach collection="list" index="index" item="item" separator=",">
+            (
+                #{item.contractCode},#{item.dataSource},#{item.status},#{item.brandId},
+                #{item.brandName}, #{item.createTime},
+                #{item.updateTime},#{item.updateAccount},#{item.switchTime}
+            )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="IndentPrepareOrder">
+        UPDATE indent_prepare_order
+        <set>
+            <if test="contractCode != null">
+                contract_code = #{contractCode},
+            </if>
+            <if test="dataSource != null">
+                data_source = #{dataSource},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="brandId != null">
+                brand_id = #{brandId},
+            </if>
+            <if test="brandName != null">
+                brand_name = #{brandName},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="updateAccount != null">
+                update_account = #{updateAccount},
+            </if>
+            <if test="switchTime != null">
+                switch_time = #{switchTime},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+</mapper>

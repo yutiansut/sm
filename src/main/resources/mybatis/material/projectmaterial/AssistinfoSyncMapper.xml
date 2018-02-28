@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.material.AssistinfoSyncDao">
+
+    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.material.AssistinfoSync">
+        <id column="id" property="id"/>
+
+    </resultMap>
+
+    <!-- 批量插入施工（基装）变更明细 -->
+    <insert id="batchInsertList" >
+
+        INSERT INTO sm_assistinfo_sync (
+        contract_code,
+        assist_item_name,
+        unit,
+        unit_price,
+        worker_price,
+        supplier_price,
+        last_count,
+        supplier_code,
+        supplier_name,
+        material_cate_name,
+        acceptance_date,
+        brand,
+        assist_item_no
+        )
+        VALUES
+        <foreach collection="list" index="idx" item="item" separator=",">
+            (
+            #{item.contractCode},
+            #{item.assistItemName},
+            #{item.unit},
+            #{item.unitPrice},
+            #{item.workerPrice},
+            #{item.supplierPrice},
+            #{item.lastCount},
+            #{item.supplierCode},
+            #{item.supplierName},
+            #{item.materialCateName},
+            #{item.acceptanceDate},
+            #{item.brand},
+            #{item.assistItemNo}
+            )
+        </foreach>
+    </insert>
+</mapper>

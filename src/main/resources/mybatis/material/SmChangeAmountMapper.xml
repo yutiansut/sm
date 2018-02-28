@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.material.SmChangeAmountDao">
+    <resultMap id="BaseResultMap" type="SmChangeAmount">
+        <id column="id" property="id"/>
+        <result column="change_detail_id" property="changeDetailId"/>
+        <result column="category_code" property="categoryCode"/>
+        <result column="category_detail_code" property="categoryDetailCode"/>
+        <result column="original_amount" property="originalAmount"/>
+        <result column="cash_amount" property="cashAmount"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, change_detail_id, category_code, category_detail_code, original_amount, cash_amount, 
+    create_user, create_time, update_user, update_time
+  </sql>
+    <select id="getById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sm_change_amount
+        where id = #{id}
+    </select>
+    <delete id="deleteById">
+    delete from sm_change_amount
+    where id = #{id}
+  </delete>
+    <insert id="insert" parameterType="SmChangeAmount" useGeneratedKeys="true" keyProperty="id">
+        insert into sm_change_amount
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="changeDetailId != null">
+                change_detail_id,
+            </if>
+            <if test="categoryCode != null">
+                category_code,
+            </if>
+            <if test="categoryDetailCode != null">
+                category_detail_code,
+            </if>
+            <if test="originalAmount != null">
+                original_amount,
+            </if>
+            <if test="cashAmount != null">
+                cash_amount,
+            </if>
+            <if test="createUser != null">
+                create_user,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateUser != null">
+                update_user,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="changeDetailId != null">
+                #{changeDetailId},
+            </if>
+            <if test="categoryCode != null">
+                #{categoryCode},
+            </if>
+            <if test="categoryDetailCode != null">
+                #{categoryDetailCode},
+            </if>
+            <if test="originalAmount != null">
+                #{originalAmount},
+            </if>
+            <if test="cashAmount != null">
+                #{cashAmount},
+            </if>
+            <if test="createUser != null">
+                #{createUser},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="updateUser != null">
+                #{updateUser},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+        </trim>
+    </insert>
+    <update id="update" parameterType="SmChangeAmount">
+        update sm_change_amount
+        <set>
+            <if test="changeDetailId != null">
+                change_detail_id = #{changeDetailId},
+            </if>
+            <if test="categoryCode != null">
+                category_code = #{categoryCode},
+            </if>
+            <if test="categoryDetailCode != null">
+                category_detail_code = #{categoryDetailCode},
+            </if>
+            <if test="originalAmount != null">
+                original_amount = #{originalAmount},
+            </if>
+            <if test="cashAmount != null">
+                cash_amount = #{cashAmount},
+            </if>
+            <if test="createUser != null">
+                create_user = #{createUser},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="batchInsertList">
+        INSERT INTO sm_change_amount (
+        change_detail_id,
+        category_code,
+        category_detail_code,
+        original_amount,
+        cash_amount,
+        create_user,
+        create_time
+        )values
+        <foreach collection="list" index="idx" item="item" separator=",">
+            (
+            #{item.changeDetailId},
+            #{item.categoryCode},
+            #{item.categoryDetailCode},
+            #{item.originalAmount},
+            #{item.cashAmount},
+            #{item.createUser},
+            #{item.createTime}
+            )
+        </foreach>
+
+    </select>
+</mapper>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.finance.ReparationMoneyDao">
+
+    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.finance.ReparationMoney">
+        <id column="id" property="id" />
+        <result column="reparation_no" property="reparationNo"/>
+        <result column="contract_code" property="contractCode"/>
+        <result column="contract_uuid" property="contractUuid"/>
+        <result column="reparation_amount" property="reparationAmount"/>
+        <result column="reparation_mode" property="reparationMode"/>
+        <result column="create_stage_id" property="createStageId"/>
+        <result column="creator" property="creator"/>
+        <result column="create_time" property="createTime"/>
+        <result column="effect_stage_id" property="effectStageId"/>
+        <result column="effect_stage_name" property="effectStageName"/>
+        <result column="cleared" property="cleared"/>
+        <result column="clear_stage_id" property="clearStageId"/>
+        <result column="clear_stage_name" property="clearStageName"/>
+        <result column="clear_time" property="clearTime"/>
+        <result column="reparation_reason" property="reparationReason"/>
+        <result column="reparation_status" property="reparationStatus"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,reparation_no,contract_code,contract_uuid,reparation_amount,reparation_mode,create_stage_id,creator,create_time,
+        effect_stage_id,effect_stage_name,cleared,clear_stage_id,clear_stage_name,clear_time,reparation_reason,reparation_status
+    </sql>
+
+
+    <select id="claimsRecord" resultType="java.util.HashMap">
+        SELECT
+            frm.reparation_no AS reparationNo,
+            frm.reparation_amount AS reparationAmount,
+            frm.creator AS creator,
+            frm.create_time AS createTime,
+            frm.cleared AS cleared,
+            frm.reparation_reason AS reparationReason,
+            fps.stage_name AS stageName,
+            c.`name` AS name,
+            c.mobile AS mobile
+        FROM
+            fina_reparation_money frm
+        LEFT JOIN customer_contract cc ON frm.contract_uuid = cc.contract_uuid
+        LEFT JOIN customer c ON cc.customer_id = c.id
+        LEFT JOIN fina_project_payplan_stage fps ON frm.effect_stage_id = fps.stage_code
+        <where>
+            frm.contract_uuid = #{contractUuid}
+        </where>
+        ORDER BY frm.id DESC
+    </select>
+
+    <select id="getFeparationAmountByContractCode" resultType="map" parameterType="java.util.List">
+        SELECT
+            contract_code AS contractCode,
+            sum(reparation_amount) AS reparationAmount
+        FROM
+            fina_reparation_money
+        <where>
+        <if test="codeList != null">
+            contract_code IN
+            <foreach collection="codeList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        </where>
+    </select>
+
+
+
+    <select id="search" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM fina_reparation_money
+        <where>
+            1=1
+            <if test="contractUuid != null">
+                AND contract_uuid=#{contractUuid}
+            </if>
+            <if test="effectStageId != null">
+                AND effect_stage_id=#{effectStageId}
+            </if>
+            <if test="cleared != null">
+                AND cleared=#{cleared}
+            </if>
+        </where>
+        <if test="sort != null">
+            ORDER BY
+            <foreach collection="sort" item="order" separator=",">
+                ${order.property} ${order.direction}
+            </foreach>
+        </if>
+    </select>
+
+
+    <select id="sumUnClearedReparatAmount" resultType="java.math.BigDecimal">
+        SELECT IFNULL(SUM(reparation_amount),0) FROM fina_reparation_money
+        WHERE effect_stage_id=#{stageCode} AND cleared =0
+    </select>
+
+    <insert id="insert" parameterType="cn.mdni.business.entity.finance.ReparationMoney">
+        insert into fina_reparation_money
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="reparationNo != null">
+                reparation_no,
+            </if>
+            <if test="contractCode != null">
+                contract_code,
+            </if>
+            <if test="contractUuid != null">
+                contract_uuid,
+            </if>
+            <if test="reparationAmount != null">
+                reparation_amount,
+            </if>
+            <if test="reparationMode != null">
+                reparation_mode,
+            </if>
+            <if test="createStageId != null">
+                create_stage_id,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="effectStageId != null">
+                effect_stage_id,
+            </if>
+            <if test="effectStageName != null">
+                effect_stage_name,
+            </if>
+            <if test="cleared != null">
+                cleared,
+            </if>
+            <if test="createStageId != null">
+                clear_stage_id,
+            </if>
+            <if test="clearStageName != null">
+                clear_stage_name,
+            </if>
+            <if test="clearTime != null">
+                clear_time,
+            </if>
+            <if test="reparationReason != null">
+                reparation_reason,
+            </if>
+            <if test="reparationStatus != null">
+                reparation_status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="reparationNo != null">
+                #{reparationNo},
+            </if>
+            <if test="contractCode != null">
+                #{contractCode},
+            </if>
+            <if test="contractUuid != null">
+                #{contractUuid},
+            </if>
+            <if test="reparationAmount != null">
+                #{reparationAmount},
+            </if>
+            <if test="reparationMode != null">
+                #{reparationMode},
+            </if>
+            <if test="createStageId != null">
+                #{createStageId},
+            </if>
+            <if test="creator != null">
+                #{creator},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="effectStageId != null">
+                #{effectStageId},
+            </if>
+            <if test="effectStageName != null">
+                #{effectStageName},
+            </if>
+            <if test="cleared != null">
+                #{cleared},
+            </if>
+            <if test="createStageId != null">
+                #{createStageId},
+            </if>
+            <if test="clearStageName != null">
+                #{clearStageName},
+            </if>
+            <if test="clearTime != null">
+                #{clearTime},
+            </if>
+            <if test="reparationReason != null">
+                #{reparationReason},
+            </if>
+            <if test="reparationStatus != null">
+                #{reparationStatus},
+            </if>
+        </trim>
+
+    </insert>
+
+
+    <update id="batchClearReparationMoneyInStage" parameterType="cn.mdni.business.entity.finance.ReparationMoney">
+        UPDATE fina_reparation_money
+        <set>
+            <if test="cleared != null">
+                cleared = #{cleared},
+            </if>
+            <if test="clearStageId != null">
+                clear_stage_id = #{clearStageId},
+            </if>
+            <if test="clearStageName != null">
+                clear_stage_name = #{clearStageName},
+            </if>
+                clear_time = NOW(),
+        </set>
+        WHERE effect_stage_id = #{effectStageId}
+    </update>
+</mapper>

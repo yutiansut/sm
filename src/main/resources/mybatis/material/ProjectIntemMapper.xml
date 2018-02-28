@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.material.ProjectIntemDao">
+
+    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.material.ProjectIntem">
+        <id column="id" property="id"/>
+        <id column="project_intem_type_id" property="projectIntemTypeId"/>
+        <id column="project_intem_mold" property="projectIntemMold"/>
+        <id column="project_intem_code" property="projectIntemCode"/>
+        <id column="project_intem_name" property="projectIntemName"/>
+        <id column="project_intem_unit" property="projectIntemUnit"/>
+        <id column="group_type" property="groupType"/>
+        <id column="status" property="status"/>
+        <id column="project_intem_detail" property="projectIntemDetail"/>
+        <id column="using_platform" property="usingPlatform"/>
+        <id column="valuation_method" property="valuationMethod"/>
+        <id column="subordinate_category" property="subordinateCategory"/>
+        <id column="is_default" property="isDefault"/>
+        <id column="project_intem_type_name" property="projectIntemTypeName"/>
+        <id column="project_intem_cost_price" property="projectIntemCostPrice"/>
+        <id column="project_intem_price" property="projectIntemPrice"/>
+        <id column="effect_date" property="effectDate"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,project_intem_type_id,project_intem_mold,project_intem_code,project_intem_name,project_intem_unit,group_type,
+        `status`,project_intem_detail,using_platform,valuation_method,subordinate_category,is_default,
+        project_intem_cost_price,effect_date,project_intem_price
+    </sql>
+
+    <select id="getById" parameterType="long" resultMap="BaseResultMap">
+        SELECT
+            id,project_intem_type_id,project_intem_mold,project_intem_code,project_intem_name,project_intem_unit,group_type,
+            `status`,project_intem_detail,using_platform,valuation_method,subordinate_category,is_default
+        FROM
+        sm_project_intem
+        where id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="cn.mdni.business.entity.material.ProjectIntem">
+        insert into sm_project_intem(
+           id,
+           project_intem_type_id,
+           project_intem_mold,
+           project_intem_code,
+           project_intem_name,
+           project_intem_unit,
+           group_type,
+           `status`,
+           project_intem_detail,
+           using_platform,
+           valuation_method,
+           subordinate_category,
+           is_default
+        ) values
+        (
+           #{id},
+           #{projectIntemTypeId},
+           #{projectIntemMold},
+           #{projectIntemCode},
+           #{projectIntemName},
+           #{projectIntemUnit},
+           #{groupType},
+           #{status},
+           #{projectIntemDetail},
+           #{usingPlatform},
+           #{valuationMethod},
+           #{subordinateCategory},
+           #{isDefault}
+         )
+    </insert>
+
+    <update id="update" parameterType="cn.mdni.business.entity.material.ProjectIntem">
+        update sm_project_intem
+        set
+           project_intem_type_id = #{projectIntemTypeId},
+           project_intem_mold = #{projectIntemMold},
+           project_intem_code = #{projectIntemCode},
+           project_intem_name = #{projectIntemName},
+           project_intem_unit = #{projectIntemUnit},
+           group_type = #{groupType},
+           `status` = #{status},
+           project_intem_detail = #{projectIntemDetail},
+           using_platform = #{usingPlatform},
+           valuation_method = #{valuationMethod},
+           subordinate_category = #{subordinateCategory},
+           is_default = #{isDefault}
+        where
+        id = #{id}
+    </update>
+
+
+    <select id="searchTotal" parameterType="map" resultType="long">
+        select count(*) from sm_project_intem as spi
+        LEFT JOIN sm_project_intem_type as spit on spit.id = spi.project_intem_type_id
+        LEFT JOIN (select max(effect_date) as effect_date,project_intem_id,project_intem_price from
+        sm_project_intem_price
+        <where>
+            <if test="date != null">
+                effect_date &lt;= #{date}
+            </if>
+        </where>
+        GROUP BY project_intem_id
+        ORDER BY effect_date desc) as aa
+        LEFT JOIN sm_project_intem_price as bb on aa.effect_date = bb.effect_date and aa.project_intem_id = bb.project_intem_id
+        ON spi.id = bb.project_intem_id
+        <where>
+            <if test="projectIntemTypeId != null">
+                spit.id = #{projectIntemTypeId}
+            </if>
+            <choose>
+                <when test="projectIntemMold == 'ADDITEM'">
+                    AND project_intem_mold LIKE '%1%'
+                    AND spi.subordinate_category IN ('jizhuangdinge','jizhuangzengxiang')
+                </when>
+                <when test="projectIntemMold == 'REDUCEITEM'">
+                    AND project_intem_mold LIKE '%2%'
+                    AND spi.subordinate_category = 'jizhuangdinge'
+                </when>
+                <when test="projectIntemMold == 'OTHERCOMPREHENSIVEFEE'">
+                    AND spi.subordinate_category = 'qitazonmghefei'
+                </when>
+                <when test="projectIntemMold == 'OLDHOUSEDEMOLITION'">
+                    AND spi.subordinate_category IN ('laofangchaichu','laofangzonghefei','laofangqitazonghefei')
+                </when>
+            </choose>
+            <if test="keyword != null">
+                AND spi.project_intem_name LIKE CONCAT('%',#{keyword},'%')
+            </if>
+            and aa.project_intem_price is not NULL  AND bb.store_code = #{storeCode} and spi.using_platform like '%materialSystem%'
+        </where>
+    </select>
+
+    <select id="search" resultMap="BaseResultMap" parameterType="map">
+        select * from sm_project_intem as spi
+        LEFT JOIN sm_project_intem_type as spit on spit.id = spi.project_intem_type_id
+        LEFT JOIN (select max(effect_date) as effect_date,project_intem_id,project_intem_price from
+        sm_project_intem_price
+        <where>
+            <if test="date != null">
+                effect_date &lt;= #{date}
+            </if>
+        </where>
+        GROUP BY project_intem_id
+        ORDER BY effect_date desc) as aa
+        LEFT JOIN sm_project_intem_price as bb on aa.effect_date = bb.effect_date and aa.project_intem_id = bb.project_intem_id
+        ON spi.id = bb.project_intem_id
+        <where>
+            <if test="projectIntemTypeId != null">
+                spit.id = #{projectIntemTypeId}
+            </if>
+            <choose>
+                <when test="projectIntemMold == 'ADDITEM'">
+                    AND project_intem_mold LIKE '%1%'
+                    AND spi.subordinate_category IN ('jizhuangdinge','jizhuangzengxiang')
+                </when>
+                <when test="projectIntemMold == 'REDUCEITEM'">
+                    AND project_intem_mold LIKE '%2%'
+                    AND spi.subordinate_category = 'jizhuangdinge'
+                </when>
+                <when test="projectIntemMold == 'OTHERCOMPREHENSIVEFEE'">
+                    AND spi.subordinate_category = 'qitazonmghefei'
+                </when>
+                <when test="projectIntemMold == 'OLDHOUSEDEMOLITION'">
+                    AND spi.subordinate_category IN ('laofangchaichu','laofangzonghefei','laofangqitazonghefei')
+                </when>
+            </choose>
+            <if test="keyword != null">
+                AND spi.project_intem_name LIKE CONCAT('%',#{keyword},'%')
+            </if>
+            AND aa.project_intem_price is not NULL AND bb.store_code = #{storeCode} and spi.using_platform like '%materialSystem%'
+        </where>
+        <if test="sort != null">
+            order by
+            <foreach collection="sort" item="order" separator=",">
+                spi.${order.property} ${order.direction}
+            </foreach>
+        </if>
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <select id="getProjectIntemByType" resultMap="BaseResultMap">
+        select
+        id,project_intem_type_namez
+        from sm_project_intem_type
+        <where>
+            <if test="projectIntemMold != null">
+                project_intem_mold = #{projectIntemMold}
+            </if>
+        </where>
+    </select>
+
+    <select id="getProIntemByContractCode"  resultType="map">
+        select
+        ssd.domain_name,
+        spm.product_name,
+        spm.material_unit,
+        IFNULL(ssd.loss_dosage,0) as loss_dosage,
+        CASE ssd.dosage_pricing_mode
+         WHEN 'fixedUnitPrice' THEN '固定单价'
+         WHEN 'foundationPileTotal' THEN '基装增项总价占比'
+         WHEN 'renovationFoundationPile' THEN '装修工程总价占比'
+         WHEN 'dismantleFoundationPile' THEN '拆除基桩定额总价占比'
+         WHEN 'demolitionProjectTotal' THEN '拆除工程总价占比'
+         END as dosage_pricing_mode,
+        IFNULL(ssd.store_sale_price,0) as store_sale_price,
+        IFNULL(ssd.project_proportion,IFNULL(ssd.store_sale_price,0)) as project_proportion,
+        IFNULL(spm.store_sale_price,0)*IFNULL(ssd.loss_dosage,0) as totalPrice,
+        spm.design_remark,
+        spm.quota_describe
+        FROM sm_project_material as spm
+        LEFT JOIN sm_sku_dosage as ssd on ssd.project_material_id = spm.id
+        where spm.contract_code = #{contractCode}
+        and spm.category_code = #{categoryCode}
+        and spm.category_detail_code = #{categoryDetailCode}
+    </select>
+
+    <select id="findByStoreCodeAndIsDefault"  resultMap="BaseResultMap">
+        SELECT
+            CASE intem.subordinate_category
+            WHEN 'jizhuangdinge' THEN 'BASEINSTALLQUOTA'
+            WHEN 'jizhuangzengxiang' THEN 'BASEINSTALLCOMPREHENSIVEFEE'
+            WHEN 'qitazonmghefei' THEN 'OTHERCATEGORIESOFSMALLFEES'
+            WHEN 'laofangchaichu' THEN 'DISMANTLEBASEINSTALLQUOTA'
+            WHEN 'laofangzonghefei' THEN 'DISMANTLEBASEINSTALLCOMPFEE'
+            WHEN 'laofangqitazonghefei' THEN 'DISMANTLEOTHERCOMPFEE'
+            END AS subordinate_category, intem.*,
+            (SELECT price.project_intem_price FROM sm_project_intem_price price
+                WHERE intem.id = price.project_intem_id AND price.effect_date &lt;= DATE(NOW())
+                AND price.store_code = #{storeCode}
+                ORDER BY price.effect_date DESC limit 1) project_intem_price,
+            t.project_intem_type_name,
+            (SELECT price.project_intem_cost_price FROM sm_project_intem_price price
+                WHERE intem.id = price.project_intem_id AND price.effect_date &lt;= DATE(NOW())
+                AND price.store_code = #{storeCode}
+                ORDER BY price.effect_date DESC limit 1) project_intem_cost_price
+        FROM
+          sm_project_intem intem
+        LEFT JOIN sm_project_intem_type t
+        ON intem.project_intem_type_id = t.id
+        WHERE  intem.status = "1"
+            AND intem.is_default = "1"
+            AND intem.using_platform like '%materialSystem%';
+    </select>
+
+</mapper>

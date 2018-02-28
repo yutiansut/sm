@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.material.ContractChangeDao">
+    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.orderflow.CustomerContract">
+        <id column="id" property="id"/>
+        <result column="contract_code" property="contractCode"/>
+        <result column="customer_id" property="customerId"/>
+        <result column="house_addr" property="houseAddr"/>
+        <result column="designer" property="designer"/>
+        <result column="designer_mobile" property="designerMobile"/>
+        <result column="supervisor" property="supervisor"/>
+        <result column="supervisor_mobile" property="supervisorMobile"/>
+        <result column="project_manager" property="projectManager"/>
+        <result column="pm_mobile" property="pmMobile"/>
+        <result column="second_contact" property="secondContact"/>
+        <result column="second_contact_mobile" property="secondContactMobile"/>
+        <result column="meal_id" property="mealId"/>
+        <result column="meal_price" property="mealPrice"/>
+        <result column="layout" property="layout"/>
+        <result column="build_area" property="buildArea"/>
+        <result column="valuate_area" property="valuateArea"/>
+        <result column="house_condition" property="houseCondition"/>
+        <result column="elevator" property="elevator"/>
+        <result column="house_type" property="houseType"/>
+        <result column="address_province" property="addressProvince"/>
+        <result column="address_city" property="addressCity"/>
+        <result column="address_area" property="addressArea"/>
+        <result column="activity_name" property="activityName"/>
+        <result column="other_install_info" property="otherInstallInfo"/>
+        <result column="design_remark" property="designRemark"/>
+        <result column="audit_remark" property="auditRemark"/>
+        <result column="contract_amount" property="contractAmount"/>
+        <result column="modify_amount" property="modifyAmount"/>
+        <result column="payment_time" property="paymentTime"/>
+        <result column="single_order_info" property="singleOrderInfo"/>
+        <result column="customer_name" property="customerName"/>
+        <result column="customer_mobile" property="customerMobile"/>
+        <result column="meal_name" property="mealName"/>
+        <result column="designer_org_code" property="designerOrgCode"/>
+        <result column="auditor" property="auditor"/>
+        <result column="auditor_mobile" property="auditorMobile"/>
+        <result column="auditor_org_code" property="auditorOrgCode"/>
+        <result column="contract_status" property="contractStatus"/>
+        <result column="finance_status" property="financeStatus"/>
+        <result column="change_status" property="changeStatus"/>
+        <result column="operat_time" property="operatTime"/>
+        <result column="current_change_version" property="currentChangeVersion"/>
+        <result column="operat_user" property="operatUser"/>
+        <result column="service_code" property="serviceCode"/>
+        <result column="service_name" property="serviceName"/>
+        <result column="service_mobile" property="serviceMobile"/>
+        <result column="designer_code" property="designerCode"/>
+        <result column="designer_dep_code" property="designerDepCode"/>
+        <result column="designer_dep_name" property="designerDepName"/>
+        <result column="plan_house_time" property="planHouseTime"/>
+        <result column="book_house_time" property="bookHouseTime"/>
+        <result column="plan_decorate_time" property="planDecorateTime"/>
+        <result column="order_flow_status" property="orderFlowStatus"/>
+        <result column="payment_status" property="paymentStatus"/>
+        <result column="discount_name" property="discountName"/>
+        <result column="create_time" property="createTime" />
+        <result column="create_user" property="createUser" />
+        <result column="customer_level" property="customerLevel"/>
+        <result column="province_code" property="provinceCode"/>
+        <result column="city_code" property="cityCode"/>
+        <result column="area_code" property="areaCode"/>
+        <result column="store_code" property="storeCode"/>
+    </resultMap>
+
+    <select id="searchTotal" parameterType="map" resultType="long">
+        SELECT COUNT(DISTINCT cucs.contract_code) FROM customer_contract AS cucs
+        <include refid="searchFromWhere"/>
+    </select>
+
+    <select id="search" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select DISTINCT
+        cucs.*,cus.customer_level,cus.name AS customer_name,cus.mobile AS customer_mobile,smi.meal_name AS meal_name
+        from customer_contract AS cucs
+        <include refid="searchFromWhere"/>
+        <if test="sort != null">
+            order by
+            <foreach collection="sort" item="order" separator=",">
+                ${order.property} ${order.direction}
+            </foreach>
+        </if>
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <sql id="searchFromWhere">
+        LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
+        LEFT JOIN sm_meal_info smi ON (cucs.meal_id = smi.id)
+        LEFT JOIN sm_contract_operate_time_summary scos ON (cucs.contract_code = scos.contract_code)
+        <where>
+            <if test="keyword != null">
+                ( cucs.contract_code like CONCAT('%', #{keyword}, '%') or cus.name like CONCAT('%', #{keyword}, '%') )
+            </if>
+            <if test="contractStatus != null">
+                AND cucs.contract_status = #{contractStatus}
+            </if>
+            <if test="designer != null">
+                AND cucs.designer = #{designer}
+            </if>
+            <if test="auditor != null">
+                AND cucs.auditor = #{auditor}
+            </if>
+            <if test="designerCode != null">
+                AND cucs.designer_code = #{designerCode}
+            </if>
+            <if test="designerDepCode != null">
+                AND cucs.designer_dep_code = #{designerDepCode}
+            </if>
+            <if test="auditorOrgCode != null">
+                AND cucs.auditor_org_code = #{auditorOrgCode}
+            </if>
+            <if test="id != null">
+                AND cucs.id = #{id}
+            </if>
+            <choose>
+                <when test="changeTime == 'LATEST_CHANGE'">
+                    <if test="startDate != null and startDate != ''">
+                        AND scos.start_change_time &gt;= #{startDate}
+                    </if>
+                    <if test="endDate != null and endDate != ''">
+                        AND scos.start_change_time &lt;= #{endDate}
+                    </if>
+                </when>
+                <when test="changeTime == 'SUBMIT_AUDIT_TIME'">
+                    <if test="startDate != null and startDate != ''">
+                        AND scos.change_submit_audit_time &gt;= #{startDate}
+                    </if>
+                    <if test="endDate != null and endDate != ''">
+                        AND scos.change_submit_audit_time &lt;= #{endDate}
+                    </if>
+                </when>
+                <when test="changeTime == 'AUDIT_PASS_TIME'">
+                    <if test="startDate != null and startDate != ''">
+                        AND scos.change_audit_pass_time &gt;= #{startDate}
+                    </if>
+                    <if test="endDate != null and endDate != ''">
+                        AND scos.change_audit_pass_time &lt;= #{endDate}
+                    </if>
+                </when>
+            </choose>
+            AND cucs.store_code = #{storeCode}
+            AND cucs.current_change_version is NOT NULL
+        </where>
+    </sql>
+    <select id="getById" resultMap="BaseResultMap">
+        select
+        cucs.*,cus.customer_level,cus.name AS customer_name,cus.mobile AS customer_mobile,smi.meal_name AS meal_name,sobc.*
+        from customer_contract AS cucs
+        LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
+        LEFT JOIN sm_meal_info smi ON (cucs.meal_id = smi.id)
+        LEFT JOIN sm_order_bespeak_contract sobc ON (cucs.contract_code = sobc.contract_code)
+        where cucs.id = #{id}
+    </select>
+
+</mapper>

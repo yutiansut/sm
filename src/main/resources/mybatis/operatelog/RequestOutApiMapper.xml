@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.operatelog.RequestOutapiLogDao">
+    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.operatelog.RequestOutapiLog">
+        <id column="id" property="id"/>
+        <id column="push_type" property="pushType"/>
+        <id column="need_again_push" property="needAgainPush"/>
+        <id column="response_content" property="responseContent"/>
+        <id column="push_content" property="pushContent"/>
+        <id column="create_time" property="createTime"/>
+
+
+    </resultMap>
+
+    <insert id="insert">
+        INSERT INTO sm_request_outapi_log (
+            push_type,
+            need_again_push,
+            push_content,
+            response_content
+        )
+        VALUES
+        (
+            #{pushType},
+            #{needAgainPush},
+            #{pushContent},
+            #{responseContent}
+        );
+
+    </insert>
+
+
+</mapper>

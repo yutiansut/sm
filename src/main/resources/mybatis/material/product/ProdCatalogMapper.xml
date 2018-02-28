@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.material.ProdCatalogDao">
+
+    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.material.ProdCatalog">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="url" property="url"/>
+        <result column="parent_id" property="parent.id"/>
+        <result column="parent_name" property="parent.name"/>
+        <result column="parent_url" property="parent.url"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,url,parent_id
+    </sql>
+
+    <select id="getById" parameterType="long" resultMap="BaseResultMap">
+        SELECT
+          <include refid="Base_Column_List"/>
+        FROM
+        prod_catalog
+        where id = #{id}
+    </select>
+
+    <!--查询所有可用的 分类集合(可带条件)-->
+    <select id="findAll" resultMap="BaseResultMap" parameterType="map">
+        SELECT
+          cat.id, cat.name, cat.url, cat.parent_id, catA.name parent_name, catA.url parent_url
+        FROM prod_catalog cat
+        LEFT JOIN prod_catalog catA
+        ON cat.parent_id = catA.id
+        WHERE cat.status = 'OPEN'
+        <if test="url != null">
+            AND cat.url like CONCAT(#{url}, '%')
+        </if>
+    </select>
+
+    <select id="getByUrl" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from prod_catalog
+        where url = #{catalogUrl}
+    </select>
+
+
+    <select id="getNameByUrl" parameterType="string" resultType="string">
+        select `name` from prod_catalog where url = #{changeCategoryUrl}
+    </select>
+
+</mapper>

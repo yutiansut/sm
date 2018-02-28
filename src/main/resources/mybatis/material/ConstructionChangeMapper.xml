@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mdni.business.dao.orderflow.ConstructionChangeDao">
+
+    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.material.ConstructionChange">
+        <id column="id" property="id"/>
+        <result column="contract_code" property="contractCode"/>
+        <result column="change_no" property="changeNo"/>
+        <result column="change_apply_date" property="changeApplyDate"/>
+        <result column="change_reason" property="changeReason"/>
+        <result column="add_project_total_price" property="addProjectTotalPrice"/>
+        <result column="cut_project_total_price" property="cutProjectTotalPrice"/>
+        <result column="change_list_total_price" property="changeListTotalPrice"/>
+        <result column="print_count" property="printCount"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <resultMap id="mulitResultMap" type="ConstructionChange" extends="BaseResultMap">
+        <result column="customer_name" property="customerName"/>
+        <result column="customer_mobile" property="customerMobile"/>
+        <result column="second_contract_name" property="secondContractName"/>
+        <result column="second_contract_mobile" property="secondContractMobile"/>
+        <!--变更单明细集合-->
+        <collection property="detailList" ofType="ConstructionChangeDetail">
+            <id column="change_detail_id" property="id"/>
+            <result column="change_no" property="changeNo"/>
+            <result column="change_project_name" property="changeProjectName"/>
+            <result column="unit" property="unit"/>
+            <result column="amount" property="amount"/>
+            <result column="loss" property="loss"/>
+            <result column="labor_costs" property="laborCosts"/>
+            <result column="total_unit_price" property="totalUnitPrice"/>
+            <result column="unit_project_total_price" property="unitProjectTotalPrice"/>
+            <result column="explain" property="explain"/>
+            <result column="change_type" property="changeType"/>
+        </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,contract_code
+        ,change_no
+        ,change_apply_date
+        ,change_reason
+        ,add_project_total_price
+        ,cut_project_total_price
+        ,change_list_total_price
+        ,create_time
+    </sql>
+
+    <select id="getById" parameterType="long" resultMap="BaseResultMap">
+        SELECT
+          <include refid="Base_Column_List"/>
+        FROM
+        sm_construction_change
+        where id = #{id}
+    </select>
+
+    <select id="getByChangeNo"  resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        sm_construction_change
+        where change_no = #{changeNo} LIMIT 1
+    </select>
+
+
+    <insert id="insert" parameterType="cn.mdni.business.entity.material.ConstructionChange">
+        INSERT INTO sm_construction_change
+                  ( id
+                   ,contract_code
+                   ,change_no
+                   ,change_apply_date
+                   ,change_reason
+                   ,add_project_total_price
+                   ,cut_project_total_price
+                   ,change_list_total_price
+                   ,create_time)
+             VALUES
+                   (#{id}
+                   ,#{contractCode}
+                   ,#{changeNo}
+                   ,#{changeApplyDate}
+                   ,#{changeReason}
+                   ,#{addProjectTotalPrice}
+                   ,#{cutProjectTotalPrice}
+                   ,#{changeListTotalPrice}
+                   ,#{createTime}
+                   )
+    </insert>
+
+    <select id="searchTotal" parameterType="map" resultType="long">
+        SELECT COUNT(0) FROM sm_construction_change schange
+        <include refid="searchFromWhere"/>
+    </select>
+
+    <select id="search"  resultMap="mulitResultMap">
+        SELECT
+            schange.id, schange.change_no, schange.contract_code, cus.name customer_name,
+            cus.mobile customer_mobile, con.second_contact second_contract_name,
+            con.second_contact_mobile second_contract_mobile, schange.create_time,
+            schange.change_list_total_price, schange.print_count, schange.change_apply_date
+        FROM
+          sm_construction_change schange
+        <include refid="searchFromWhere"/>
+        ORDER BY schange.print_count ASC, id DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="findMoreByIds"  resultMap="mulitResultMap">
+        SELECT
+            schange.id, schange.change_no, schange.contract_code, cus.name customer_name,
+            cus.mobile customer_mobile, con.second_contact second_contract_name,
+            con.second_contact_mobile second_contract_mobile, schange.change_apply_date,
+            schange.change_list_total_price, schange.print_count, schange.change_reason,
+            detail.id change_detail_id, detail.change_project_name, detail.change_project_name,
+            detail.unit, detail.amount, detail.loss, detail.labor_costs, detail.total_unit_price,
+            unit_project_total_price, detail.explain, detail.change_type, schange.add_project_total_price,
+            schange.cut_project_total_price
+        FROM
+          sm_construction_change schange
+        LEFT JOIN customer_contract con ON con.contract_code = schange.contract_code
+        LEFT JOIN customer cus ON cus.id = con.customer_id
+        LEFT JOIN sm_construction_change_detail detail ON detail.change_no = schange.change_no
+        WHERE schange.id IN
+          <foreach collection="array" item="id" open="(" close=")" separator=",">
+              #{id}
+          </foreach>
+    </select>
+
+    <sql id="searchFromWhere">
+        LEFT JOIN customer_contract con ON con.contract_code = schange.contract_code
+        LEFT JOIN customer cus ON cus.id = con.customer_id
+        <where>
+            <if test="keyword != null">
+                (schange.contract_code like CONCAT('%', #{keyword}, '%')
+                    OR cus.name like CONCAT('%', #{keyword}, '%')
+                    OR cus.mobile like CONCAT('%', #{keyword}, '%')
+                )
+            </if>
+            <if test="changeApplyStartDate != null">
+                AND DATE(schange.change_apply_date) &gt;= DATE(#{changeApplyStartDate})
+            </if>
+            <if test="changeApplyEndDate != null">
+                AND DATE(schange.change_apply_date) &lt;= DATE(#{changeApplyEndDate})
+            </if>
+            <choose>
+                <when test="printCount == 0">
+                    AND schange.print_count = #{printCount}
+                </when>
+                <when test="printCount > 0">
+                    AND schange.print_count >= #{printCount}
+                </when>
+            </choose>
+            <!--门店-->
+            AND con.store_code = #{storeCode}
+        </where>
+    </sql>
+
+    <update id="updatePrintCount" >
+        UPDATE sm_construction_change SET print_count = print_count + 1
+        WHERE id IN
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </update>
+</mapper>
