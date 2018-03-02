@@ -1,6 +1,5 @@
 
 --日期时间 2017/11/2
---修改人：Ryze
 --描  述： prod_sku_price 价格类型枚举值 添加
 --执行状态 未执行
 ALTER TABLE prod_sku_price MODIFY COLUMN price_type enum (

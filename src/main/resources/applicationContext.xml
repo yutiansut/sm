@@ -13,7 +13,7 @@
 
 
     <!-- 扫描mdni包下的所有类 -->
-    <context:component-scan base-package="cn.mdni" />
+    <context:component-scan base-package="cn.damei" />
 
 
 

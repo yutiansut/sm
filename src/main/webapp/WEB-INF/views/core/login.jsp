@@ -10,9 +10,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="renderer" content="webkit">
 
-  <title>美得你登录</title>
-  <meta name="keywords" content="美得你,OA">
-  <meta name="description" content="美得你OA系统登录">
+  <title>大美登录</title>
+  <meta name="keywords" content="大美,OA">
+  <meta name="description" content="大美OA系统登录">
 
   <link rel="stylesheet" href="${ctx}/static/core/css/lib.css">
   <link rel="stylesheet" href="${ctx}/static/core/css/style.css">
@@ -28,7 +28,7 @@
 	    <div style="margin: 20px 0px">
 	      <img src="static/core/img/logo.png">
 	    </div>
-		<h3>欢迎使用 美得你OA管理系统</h3>
+		<h3>欢迎使用 大美OA管理系统</h3>
 		
 		<div class="login-form" style="width:99%;height:18px;left:0;top:18px;border-right:1px solid #f4f4f4;text-decoration:none">
 			<ul class="nav nav-tabs" role="tablist">

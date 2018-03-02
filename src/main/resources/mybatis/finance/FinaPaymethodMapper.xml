@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.mdni.business.dao.finance.FinaPaymethodDao">
+<mapper namespace="cn.damei.business.dao.finance.FinaPaymethodDao">
 	 
 	 <!--通用配置公用字段-->
 	 <sql id="Base_Column_List">
@@ -8,7 +8,7 @@
     </sql>
 	 
 	 <!--通用配置实体映射-->
-	 <resultMap id="BaseResultMap" type="cn.mdni.business.entity.finance.FinaPaymethod">
+	 <resultMap id="BaseResultMap" type="cn.damei.business.entity.finance.FinaPaymethod">
 		  <id column="id" property="id"/>
 		  <result column="method_name" property="methodName"/>
 		  <result column="method_code" property="methodCode"/>
@@ -25,15 +25,15 @@
 	 </resultMap>
 	 
 	 <!--异步数使用的映射-->
-	 <resultMap id="TreeNodesMap" type="cn.mdni.business.entity.finance.TreeNode">
+	 <resultMap id="TreeNodesMap" type="cn.damei.business.entity.finance.TreeNode">
 	 </resultMap>
 	 
 	 <!--特殊配置实体映射-->
-	 <resultMap id="finaPaymethodTreeMap" type="cn.mdni.business.entity.finance.FinaPaymethodTree">
+	 <resultMap id="finaPaymethodTreeMap" type="cn.damei.business.entity.finance.FinaPaymethodTree">
 	 </resultMap>
 	 
 	 <!--特殊配置和门店关系实体映射-->
-	 <resultMap id="FinaPaymethodStoreMap" type="cn.mdni.business.entity.finance.FinaPaymethodStore">
+	 <resultMap id="FinaPaymethodStoreMap" type="cn.damei.business.entity.finance.FinaPaymethodStore">
 	 </resultMap>
 	 
 	 <!--获取页面数据总数-->

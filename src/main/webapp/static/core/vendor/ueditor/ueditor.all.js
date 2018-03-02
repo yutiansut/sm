@@ -14525,10 +14525,6 @@ UE.plugin.register('copy', function () {
 ///commands 粘贴
 ///commandsName  PastePlain
 ///commandsTitle  纯文本粘贴模式
-/**
- * @description 粘贴
- * @author zhanyi
- */
 UE.plugins['paste'] = function () {
     function getClipboardData(callback) {
         var doc = this.document;
@@ -16484,7 +16480,6 @@ UE.plugins['list'] = function () {
 ///commandsTitle  设置回车标签p或br
 /**
  * @description 处理回车
- * @author zhanyi
  */
 UE.plugins['enterkey'] = function() {
     var hTag,
@@ -17192,10 +17187,6 @@ UE.plugins['fiximgclick'] = (function () {
 ///commands 为非ie浏览器自动添加a标签
 ///commandsName  AutoLink
 ///commandsTitle  自动增加链接
-/**
- * @description 为非ie浏览器自动添加a标签
- * @author zhanyi
- */
 
 UE.plugin.register('autolink',function(){
     var cont = 0;
@@ -21918,12 +21909,6 @@ UE.plugins['tablesort'] = function () {
 ///commands 右键菜单
 ///commandsName  ContextMenu
 ///commandsTitle  右键菜单
-/**
- * 右键菜单
- * @function
- * @name baidu.editor.plugins.contextmenu
- * @author zhanyi
- */
 
 UE.plugins['contextmenu'] = function () {
     var me = this;
@@ -22839,7 +22824,6 @@ UE.plugins['formatmatch'] = function(){
 ///commandsDialog  dialogs\searchreplace
 /**
  * @description 查找替换
- * @author zhanyi
  */
 
 UE.plugin.register('searchreplace',function(){
@@ -24453,12 +24437,6 @@ UE.plugin.register('section', function (){
 });
 
 // plugins/simpleupload.js
-/**
- * @description
- * 简单上传:点击按钮,直接选择文件上传
- * @author Jinqn
- * @date 2014-03-31
- */
 UE.plugin.register('simpleupload', function (){
     var me = this,
         isLoaded = false,

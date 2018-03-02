@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.mdni.business.dao.material.MealInfoDao">
+<mapper namespace="cn.damei.business.dao.material.MealInfoDao">
     <resultMap id="BaseResultMap" type="MealInfo">
         <id column="id" property="id"/>
         <result column="store_code" property="storeCode"/>
@@ -235,7 +235,7 @@
         where id = #{id}
     </update>
 
-    <resultMap id="StoreResultMap" type="cn.mdni.business.entity.material.Store" extends="BaseResultMap">
+    <resultMap id="StoreResultMap" type="cn.damei.business.entity.material.Store" extends="BaseResultMap">
         <result column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="code" property="code"/>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.mdni.business.dao.material.AssistinfoSyncDao">
+<mapper namespace="cn.damei.business.dao.material.AssistinfoSyncDao">
 
-    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.material.AssistinfoSync">
+    <resultMap id="BaseResultMap" type="cn.damei.business.entity.material.AssistinfoSync">
         <id column="id" property="id"/>
 
     </resultMap>

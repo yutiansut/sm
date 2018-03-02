@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.mdni.business.dao.finance.FinaCustomerContractDao">
-    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.SimpleCustomerContract">
+<mapper namespace="cn.damei.business.dao.finance.FinaCustomerContractDao">
+    <resultMap id="BaseResultMap" type="cn.damei.business.entity.SimpleCustomerContract">
         <result column="contract_uuid" property="orderId"/>
         <result column="contract_code" property="orderNo"/>
         <result column="customer_name" property="customerName"/>

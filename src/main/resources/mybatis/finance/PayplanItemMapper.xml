@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.mdni.business.dao.finance.PayplanItemDao">
+<mapper namespace="cn.damei.business.dao.finance.PayplanItemDao">
 
-    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.finance.PayplanItem">
+    <resultMap id="BaseResultMap" type="cn.damei.business.entity.finance.PayplanItem">
         <id column="id" property="id" />
         <result column="item_code" property="itemCode"/>
         <result column="item_name" property="itemName"/>

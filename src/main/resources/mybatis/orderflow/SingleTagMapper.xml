@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.mdni.business.dao.orderflow.SingleTagDao">
-    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.orderflow.SingleTag">
+<mapper namespace="cn.damei.business.dao.orderflow.SingleTagDao">
+    <resultMap id="BaseResultMap" type="cn.damei.business.entity.orderflow.SingleTag">
         <id column="id" property="id"/>
         <result column="tag_name" property="tagName"/>
         <result column="operator" property="operator"/>
@@ -227,7 +227,7 @@
     </select>
 
     <!--串单项目表-->
-    <resultMap id="ContractSingleMap" type="cn.mdni.business.entity.orderflow.ContractSingle" extends="BaseResultMap">
+    <resultMap id="ContractSingleMap" type="cn.damei.business.entity.orderflow.ContractSingle" extends="BaseResultMap">
         <id column="id" property="id"/>
         <result column="single_tag_id" property="singleTagId"/>
         <result column="contract_code" property="contractCode"/>

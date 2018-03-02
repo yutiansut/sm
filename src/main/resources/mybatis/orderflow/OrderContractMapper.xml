@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.mdni.business.dao.orderflow.ContractDao">
-    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.orderflow.CustomerContract">
+<mapper namespace="cn.damei.business.dao.orderflow.ContractDao">
+    <resultMap id="BaseResultMap" type="cn.damei.business.entity.orderflow.CustomerContract">
         <id column="id" property="id"/>
         <result column="contract_code" property="contractCode"/>
         <result column="contract_uuid" property="contractUuid"/>
@@ -100,7 +100,7 @@
         <result column="single_tag_id" property="singleId"/>
     </resultMap>
 
-    <insert id="insert" parameterType="cn.mdni.business.entity.orderflow.CustomerContract">
+    <insert id="insert" parameterType="cn.damei.business.entity.orderflow.CustomerContract">
         insert into customer_contract
         (
         contract_code,
@@ -491,7 +491,7 @@
     </update>
 
     <!--同步来自产业工人系统的 项目信息（项目经理 监理 开竣工时间 拒绝接单备注）-->
-    <update id="syncProjectInfoFromMps" parameterType="cn.mdni.business.entity.orderflow.CustomerContract">
+    <update id="syncProjectInfoFromMps" parameterType="cn.damei.business.entity.orderflow.CustomerContract">
         update customer_contract
         <set>
             <if test="orderFlowStatus != null">

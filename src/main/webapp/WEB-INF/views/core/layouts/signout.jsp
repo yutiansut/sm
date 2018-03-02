@@ -9,8 +9,8 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="keywords" content="美得你,平台,后台管理,登录">
-  <meta name="description" content="美得你平台管理平台登录">
+  <meta name="keywords" content="大美,平台,后台管理,登录">
+  <meta name="description" content="大美平台管理平台登录">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />

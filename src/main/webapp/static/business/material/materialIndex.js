@@ -1,12 +1,3 @@
-/**
- * @Description: 选材首页js
- *      1.引入其它子组件
- *      2.子组件公用方法,弹窗方法都放在此处
- *      3.合同信息的加载放于此处,并初始化加载其它子组件数据
- *      4.画外音: 注意各组件的数据加载时机!
- * @Company: 美得你智装科技有限公司
- * @Author: Paul
- */
 var materialIndex;
 +(function() {
         //$('#selectMaterialManage').addClass('active');

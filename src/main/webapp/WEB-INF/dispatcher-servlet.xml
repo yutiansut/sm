@@ -22,7 +22,7 @@
     
 
     <!-- 设置使用注解的类所在的jar包 -->
-    <context:component-scan base-package="cn.mdni.*.controller"/>
+    <context:component-scan base-package="cn.damei.*.controller"/>
 
     <!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
     <bean id="mappingJacksonHttpMessageConverter"
@@ -70,12 +70,12 @@
         <!--产业工人调用外部接口签名认证拦截器-->
         <mvc:interceptor>
             <mvc:mapping path="/api/mps/**" />
-            <bean class="cn.mdni.business.constants.SignatureComparisonInterceptor" />
+            <bean class="cn.damei.business.constants.SignatureComparisonInterceptor" />
         </mvc:interceptor>
         <!--CRM调用外部接口签名认证拦截器-->
         <mvc:interceptor>
             <mvc:mapping path="/api/crm/**" />
-            <bean class="cn.mdni.business.constants.SignatureComparisonInterceptor" />
+            <bean class="cn.damei.business.constants.SignatureComparisonInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
 

@@ -119,7 +119,7 @@ var detail;
                 } else if (val == 'A06') {
                     return '极有家'
                 } else if (val == 'A07') {
-                    return '美得你官网';
+                    return '大美官网';
                 } else if (val == 'A11') {
                     return '新媒体1'
                 } else if (val == 'A12') {

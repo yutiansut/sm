@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.mdni.business.dao.material.ChangeAuditCollectDao">
+<mapper namespace="cn.damei.business.dao.material.ChangeAuditCollectDao">
   <resultMap id="BaseResultMap" type="ChangeAuditCollect">
     <result column="contract_code"        property="contractCode" />
     <result column="change_no"        property="changeNo" />

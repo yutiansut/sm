@@ -14,18 +14,18 @@
   </bean>
 
   <!-- custom shiro session listener -->
-  <bean id="customSessionListener" class="cn.mdni.core.shiro.listener.CustomSessionListener">
+  <bean id="customSessionListener" class="cn.damei.core.shiro.listener.CustomSessionListener">
     <property name="shiroSessionRepository" ref="memoryShiroSessionRepository"/>
   </bean>
 
-  <bean id="shiroSSORealm" class="cn.mdni.core.shiro.ShiroSSORealm"></bean>
+  <bean id="shiroSSORealm" class="cn.damei.core.shiro.ShiroSSORealm"></bean>
 
-  <bean id="customShiroSessionDAO" class="cn.mdni.core.shiro.session.CustomShiroSessionDAO">
+  <bean id="customShiroSessionDAO" class="cn.damei.core.shiro.session.CustomShiroSessionDAO">
     <property name="shiroSessionRepository" ref="memoryShiroSessionRepository"/>
   </bean>
 
   <!-- custom save session by memory class impl ShiroSessionRepository interface -->
-  <bean id="memoryShiroSessionRepository" class="cn.mdni.core.shiro.session.MemoryShiroSessionRepository">
+  <bean id="memoryShiroSessionRepository" class="cn.damei.core.shiro.session.MemoryShiroSessionRepository">
     <property name="cacheManager" ref="memoryManager"/>
     <property name="sessionTimeOut" value="${session.timeout}"/>
   </bean>
@@ -33,17 +33,17 @@
 
   <!-- ...AUTHORIZATION INFO CACHE BEGIN... -->
   <!-- custom shiro authorization info cache manager class -->
-  <bean id="customShiroCacheManager" class="cn.mdni.core.shiro.cache.CustomShiroCacheManager">
+  <bean id="customShiroCacheManager" class="cn.damei.core.shiro.cache.CustomShiroCacheManager">
     <property name="shiroCacheManager" ref="memoryShiroCacheManager"/>
   </bean>
 
-  <bean id="memoryShiroCacheManager" class="cn.mdni.core.shiro.cache.MemoryShiroCacheManager">
+  <bean id="memoryShiroCacheManager" class="cn.damei.core.shiro.cache.MemoryShiroCacheManager">
     <property name="memoryManager" ref="memoryManager"/>
   </bean>
   <!-- ...AUTHORIZATION INFO CACHE END... -->
 
   <!-- memory manager class -->
-  <bean id="memoryManager" class="cn.mdni.core.shiro.MemoryManager">
+  <bean id="memoryManager" class="cn.damei.core.shiro.MemoryManager">
   </bean>
 
 
@@ -98,7 +98,7 @@
     </property>
   </bean>
 
-  <bean class="cn.mdni.core.shiro.ShiroCacheHelper" lazy-init="false">
+  <bean class="cn.damei.core.shiro.ShiroCacheHelper" lazy-init="false">
     <property name="cacheManager" ref="memoryShiroCacheManager"/>
   </bean>
 

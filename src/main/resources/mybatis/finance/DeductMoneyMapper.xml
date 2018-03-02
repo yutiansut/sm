@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.mdni.business.dao.finance.DeductMoneyDao">
+<mapper namespace="cn.damei.business.dao.finance.DeductMoneyDao">
 
-    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.finance.DeductMoney">
+    <resultMap id="BaseResultMap" type="cn.damei.business.entity.finance.DeductMoney">
         <id column="id" property="id" />
         <result column="contract_no" property="contractNo"/>
         <result column="contract_uuid" property="contractUuid"/>
@@ -61,7 +61,7 @@
     </select>
 
 
-    <insert id="insert" parameterType="cn.mdni.business.entity.finance.DeductMoney">
+    <insert id="insert" parameterType="cn.damei.business.entity.finance.DeductMoney">
         INSERT INTO fina_deduct_money(contract_no,contract_uuid,pay_id,receipt_no,deduct_type,max_deduct_amount,
           deducted_amount,latest_deduct_time,deduct_status,creat_time,creator,deduct_times) VALUES (
           #{contractNo},#{contractUuid},#{payId},#{receiptNo},#{deductType},#{maxDeductAmount},#{deductedAmount},
@@ -69,7 +69,7 @@
           )
     </insert>
 
-    <update id="update" parameterType="cn.mdni.business.entity.finance.DeductMoney">
+    <update id="update" parameterType="cn.damei.business.entity.finance.DeductMoney">
         UPDATE fina_deduct_money
         <set>
             <if test="maxDeductAmount != null">

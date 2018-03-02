@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.mdni.business.dao.material.ProjectIntemPriceDao">
+<mapper namespace="cn.damei.business.dao.material.ProjectIntemPriceDao">
 
-    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.material.ProjectIntemPrice">
+    <resultMap id="BaseResultMap" type="cn.damei.business.entity.material.ProjectIntemPrice">
         <id column="store_code" property="storeCode"/>
         <id column="project_intem_id" property="projectIntemId"/>
         <id column="project_intem_price" property="projectIntemPrice"/>
@@ -26,7 +26,7 @@
         where id = #{id}
     </select>
 
-    <insert id="insert" parameterType="cn.mdni.business.entity.material.ProjectIntemPrice">
+    <insert id="insert" parameterType="cn.damei.business.entity.material.ProjectIntemPrice">
         insert into sm_project_intem_price(
             id,
             store_code,
@@ -49,7 +49,7 @@
         )
     </insert>
 
-    <update id="update" parameterType="cn.mdni.business.entity.material.ProjectIntemPrice">
+    <update id="update" parameterType="cn.damei.business.entity.material.ProjectIntemPrice">
         update sm_project_intem_price
         set
         store_code = #{storeCode},

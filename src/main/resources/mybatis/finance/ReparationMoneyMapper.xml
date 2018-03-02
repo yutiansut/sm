@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.mdni.business.dao.finance.ReparationMoneyDao">
+<mapper namespace="cn.damei.business.dao.finance.ReparationMoneyDao">
 
-    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.finance.ReparationMoney">
+    <resultMap id="BaseResultMap" type="cn.damei.business.entity.finance.ReparationMoney">
         <id column="id" property="id" />
         <result column="reparation_no" property="reparationNo"/>
         <result column="contract_code" property="contractCode"/>
@@ -97,7 +97,7 @@
         WHERE effect_stage_id=#{stageCode} AND cleared =0
     </select>
 
-    <insert id="insert" parameterType="cn.mdni.business.entity.finance.ReparationMoney">
+    <insert id="insert" parameterType="cn.damei.business.entity.finance.ReparationMoney">
         insert into fina_reparation_money
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="reparationNo != null">
@@ -203,7 +203,7 @@
     </insert>
 
 
-    <update id="batchClearReparationMoneyInStage" parameterType="cn.mdni.business.entity.finance.ReparationMoney">
+    <update id="batchClearReparationMoneyInStage" parameterType="cn.damei.business.entity.finance.ReparationMoney">
         UPDATE fina_reparation_money
         <set>
             <if test="cleared != null">

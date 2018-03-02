@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.mdni.business.dao.finance.ProjectPayplanStageDao">
+<mapper namespace="cn.damei.business.dao.finance.ProjectPayplanStageDao">
 
-    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.finance.ProjectPayplanStage">
+    <resultMap id="BaseResultMap" type="cn.damei.business.entity.finance.ProjectPayplanStage">
         <id column="id" property="id" />
         <id column="stage_code" property="stageCode" />
         <id column="contract_code" property="contractCode" />
@@ -55,7 +55,7 @@
     </select>
 
 
-    <insert id="insert" parameterType="cn.mdni.business.entity.finance.ProjectPayplanStage">
+    <insert id="insert" parameterType="cn.damei.business.entity.finance.ProjectPayplanStage">
         INSERT INTO fina_project_payplan_stage(stage_code,contract_code,contract_uuid,stageidx,stage_template_id,
         stage_template_code,expect_received,actual_total_received,ago_unpay_amount,start_time,stage_finished,finish_time,finish_mode,
         finish_operator,curent_flag,prev_stage_code,next_stage_code,stage_type,stage_name,plan_template_code
@@ -162,7 +162,7 @@
 
 
 
-    <update id="update" parameterType="cn.mdni.business.entity.finance.ProjectPayplanStage">
+    <update id="update" parameterType="cn.damei.business.entity.finance.ProjectPayplanStage">
         UPDATE fina_project_payplan_stage
         <set>
             <if test="actualTotalReceived != null">

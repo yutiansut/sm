@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.mdni.business.dao.finance.RefundRecordDao">
+<mapper namespace="cn.damei.business.dao.finance.RefundRecordDao">
 
     <select id="refundRecord" resultType="java.util.HashMap">
         SELECT
@@ -40,7 +40,7 @@
     </select>
 
 
-    <insert id="insert" parameterType="cn.mdni.business.entity.finance.RefundRecord">
+    <insert id="insert" parameterType="cn.damei.business.entity.finance.RefundRecord">
         INSERT INTO fina_refund_record(refund_no,contract_code,contract_uuid,create_stage_id,refund_type,refund_expect_amount,
             refund_actual_amount,refund_deposit_amount,refund_modify_amount,refund_contract_amount,deduct_design_amount,
             deduct_other_amount,refund_receiver_name,refund_receiver_mobile,refund_receiver_account,operator,operate_time,

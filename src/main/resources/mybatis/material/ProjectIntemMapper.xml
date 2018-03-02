@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.mdni.business.dao.material.ProjectIntemDao">
+<mapper namespace="cn.damei.business.dao.material.ProjectIntemDao">
 
-    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.material.ProjectIntem">
+    <resultMap id="BaseResultMap" type="cn.damei.business.entity.material.ProjectIntem">
         <id column="id" property="id"/>
         <id column="project_intem_type_id" property="projectIntemTypeId"/>
         <id column="project_intem_mold" property="projectIntemMold"/>
@@ -37,7 +37,7 @@
         where id = #{id}
     </select>
 
-    <insert id="insert" parameterType="cn.mdni.business.entity.material.ProjectIntem">
+    <insert id="insert" parameterType="cn.damei.business.entity.material.ProjectIntem">
         insert into sm_project_intem(
            id,
            project_intem_type_id,
@@ -70,7 +70,7 @@
          )
     </insert>
 
-    <update id="update" parameterType="cn.mdni.business.entity.material.ProjectIntem">
+    <update id="update" parameterType="cn.damei.business.entity.material.ProjectIntem">
         update sm_project_intem
         set
            project_intem_type_id = #{projectIntemTypeId},

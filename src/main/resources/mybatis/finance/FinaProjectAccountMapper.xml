@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.mdni.business.dao.finance.FinaProjectAccountDao">
+<mapper namespace="cn.damei.business.dao.finance.FinaProjectAccountDao">
 
-    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.finance.FinaProjectAccount">
+    <resultMap id="BaseResultMap" type="cn.damei.business.entity.finance.FinaProjectAccount">
         <id column="id" property="id" />
         <result column="contract_code" property="contractCode"/>
         <result column="contract_uuid" property="contractUuid"/>
@@ -22,7 +22,7 @@
         IFNULL(construct_expect_amount,0) as construct_expect_amount,IFNULL(construct_total_payed,0) as construct_total_payed
     </sql>
 
-    <insert id="insert" parameterType="cn.mdni.business.entity.finance.FinaProjectAccount">
+    <insert id="insert" parameterType="cn.damei.business.entity.finance.FinaProjectAccount">
         INSERT INTO fina_project_account(contract_code,contract_uuid,balance_amount,deposit_total_payed,
         deposit_total_deduct,modify_expect_amount,modify_total_payed,construct_expect_amount,construct_total_payed)
         VALUES (#{contractCode},#{contractUuid},#{balanceAmount},#{depositTotalPayed},#{depositTotalDeduct},
@@ -46,7 +46,7 @@
     </select>
 
 
-    <update id="update" parameterType="cn.mdni.business.entity.finance.FinaProjectAccount">
+    <update id="update" parameterType="cn.damei.business.entity.finance.FinaProjectAccount">
         UPDATE fina_project_account
         <set>
             <if test="balanceAmount != null">
@@ -74,7 +74,7 @@
         WHERE id = #{id}
     </update>
 
-    <select id="getFinaProjectAccountByUuid" resultType="cn.mdni.business.entity.finance.FinaProjectAccount">
+    <select id="getFinaProjectAccountByUuid" resultType="cn.damei.business.entity.finance.FinaProjectAccount">
         SELECT
         fpa.deposit_total_deduct AS depositTotalDeduct,
         fpa.deposit_total_payed AS depositTotalPayed,

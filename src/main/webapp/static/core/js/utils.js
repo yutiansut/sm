@@ -39,7 +39,6 @@
     /**
      *  从地址栏获取解密后的参数对象
      * @returns 参数对象
-     * @author Paul
      */
     MdniUtils.parseQueryStringDecode = function () {
         var params = {};
@@ -62,7 +61,6 @@
      *  @param url 请求路径,必须
      *  @param params 带参
      *  @param isNewWindow 新窗口中打开?
-     *  @author Paul
      *
      */
     MdniUtils.locationHrefToServer = function (url, params, isNewWindow) {
@@ -120,7 +118,6 @@
      *  @param url 请求路径, 必须
      *  @param params 参数,必须,没参数的你还来加密?
      *  @param isNewWindow 是否需要打开新页面
-     *  @author Paul
      */
     MdniUtils.locationHrefToClient = function (url, params, isNewWindow) {
         if(!url || !params){

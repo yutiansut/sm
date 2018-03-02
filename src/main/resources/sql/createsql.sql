@@ -1,5 +1,4 @@
 --日期时间 2017.11.02
---修改人：Chaos
 --描  述：选材系统主要表结构
 --执行状态 未执行
 
@@ -635,13 +634,11 @@ alter table sm_construction_change_detail MODIFY COLUMN  create_time datetime NU
 alter table sm_construction_change_detail  ADD column change_type tinyint(1) comment '变更类型 1 增 2 减';
 
 --日期时间 2017/12/11
---修改人：Paul
 --描  述：
 -- 1:sm_construction_change 新增 打印次数
 --执行状态 未执行
 alter table sm_construction_change  ADD column print_count int(5) DEFAULT 0 comment '打印次数' AFTER change_list_total_price;
 --日期时间 2017/12/11
---修改人：刘铎
 --描  述：
 -- 1:sm_change_detail 新增
 --执行状态 未执行
@@ -659,7 +656,6 @@ alter table sm_order_bespeak_contract ADD COLUMN  remark varchar(500)  COMMENT '
 alter table fina_projectchange_money ADD COLUMN  change_type varchar(20)  COMMENT '变更类型 material主材 basic 基装' ;
 alter table sm_operate_log modify column operate_description text comment '操作描述';
 --日期时间 2018/01/05
---修改人：巢帅
 --描  述：
 -- 1:customer_contract 新增
 --执行状态 未执行
@@ -667,7 +663,6 @@ alter table customer_contract  ADD column return_reason VARCHAR(50) comment '退
 alter table customer_contract  ADD column return_reason_describe VARCHAR(200) comment '退回原因描述';
 alter table customer_contract  ADD column single_tag_id int comment '串单id';
 --日期时间 2018/01/10
---修改人：Paul
 --描  述：新建预备单/item表及异常表
 --执行状态 未执行
 DROP TABLE IF EXISTS `indent_prepare_order`;

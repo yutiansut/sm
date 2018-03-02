@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.mdni.business.dao.finance.PaymoneyRecordDao">
-  <resultMap id="BaseResultMap" type="cn.mdni.business.entity.finance.PaymoneyRecord">
+<mapper namespace="cn.damei.business.dao.finance.PaymoneyRecordDao">
+  <resultMap id="BaseResultMap" type="cn.damei.business.entity.finance.PaymoneyRecord">
     <id column="id" property="id" />
     <result column="pay_id" property="payId"/>
     <result column="contract_code" property="contractCode"/>
@@ -374,7 +374,7 @@
   </select>
 
 
-  <insert id="insert" parameterType="cn.mdni.business.entity.finance.PaymoneyRecord">
+  <insert id="insert" parameterType="cn.damei.business.entity.finance.PaymoneyRecord">
       INSERT INTO fina_paymoney_record(pay_id,contract_code,contract_uuid,stage_code,template_stage_id,template_stage_code,
       pay_type,pay_manual_flag,payer_name,payer_mobile,pay_time,expect_received,actual_received,receipt_num,if_rcw,rcw_payid,
       create_time,update_time,creator,pay_status,remark,print_count,cashier,paymethod_code,paymethod_name,paymethod_attr_id,
@@ -412,7 +412,7 @@
     ORDER BY id DESC LIMIT 1
   </select>
 
-  <update id="update" parameterType="cn.mdni.business.entity.finance.PaymoneyRecord">
+  <update id="update" parameterType="cn.damei.business.entity.finance.PaymoneyRecord">
     UPDATE fina_paymoney_record
     <set>
       <if test="payId != null">

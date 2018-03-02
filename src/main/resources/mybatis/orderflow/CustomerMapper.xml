@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.mdni.business.dao.orderflow.CustomerDao">
-    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.orderflow.Customer">
+<mapper namespace="cn.damei.business.dao.orderflow.CustomerDao">
+    <resultMap id="BaseResultMap" type="cn.damei.business.entity.orderflow.Customer">
         <id column="id" property="id"/>
         <id column="code" property="code"/>
         <id column="name" property="name"/>
@@ -16,7 +16,7 @@
         WHERE code = #{code}
     </select>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="cn.mdni.business.entity.orderflow.Customer">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="cn.damei.business.entity.orderflow.Customer">
         insert into customer
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="code != null">
@@ -63,7 +63,7 @@
     </insert>
 
 
-    <update id="update" parameterType="cn.mdni.business.entity.orderflow.Customer">
+    <update id="update" parameterType="cn.damei.business.entity.orderflow.Customer">
         UPDATE customer
         <set>
             <if test="name != null">

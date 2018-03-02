@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.mdni.business.dao.finance.ProjectchangeMoneyDao">
+<mapper namespace="cn.damei.business.dao.finance.ProjectchangeMoneyDao">
 
-    <resultMap id="BaseResultMap" type="cn.mdni.business.entity.finance.ProjectchangeMoney">
+    <resultMap id="BaseResultMap" type="cn.damei.business.entity.finance.ProjectchangeMoney">
         <id column="id" property="id" />
         <result column="change_no" property="changeNo"/>
         <result column="contract_code" property="contractCode"/>
@@ -117,7 +117,7 @@
         </where>
     </select>
 
-    <insert id="insert" parameterType="cn.mdni.business.entity.finance.ProjectchangeMoney">
+    <insert id="insert" parameterType="cn.damei.business.entity.finance.ProjectchangeMoney">
         INSERT INTO fina_projectchange_money (
             change_no,
             contract_code,
@@ -143,7 +143,7 @@
 
 
 
-    <update id="batchClearChangeMoneyInStage" parameterType="cn.mdni.business.entity.finance.ProjectchangeMoney">
+    <update id="batchClearChangeMoneyInStage" parameterType="cn.damei.business.entity.finance.ProjectchangeMoney">
         UPDATE fina_projectchange_money
         <set>
             <if test="cleared != null">
