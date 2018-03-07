@@ -146,7 +146,7 @@
 			// 'static/core/img/default_head.jpg';
 			// }
 			// });
-			// // delete window.MdniUser;
+			// // delete window.DameiUser;
 			// $('#userScript').remove();
 			// }
 			}

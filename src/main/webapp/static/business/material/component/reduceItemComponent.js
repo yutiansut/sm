@@ -35,9 +35,9 @@ var reduceItemComponent = Vue.extend({
             //总数--标题显示
             titleSum: 0,
             //页面类型: 选材(select) 或者 变更(change) 或者 其他
-            pageType: MdniUtils.parseQueryStringDecode()['pageType'] || '',
+            pageType: DameiUtils.parseQueryStringDecode()['pageType'] || '',
             //被打回的一级分类url
-            catalogUrl: MdniUtils.parseQueryStringDecode()['catalogUrl'] || '',
+            catalogUrl: DameiUtils.parseQueryStringDecode()['catalogUrl'] || '',
             //背景色对象
             backColorObj:{
                 //变更
@@ -52,7 +52,7 @@ var reduceItemComponent = Vue.extend({
     },
     created: function () {
         //合同code赋值
-        var contractCode = MdniUtils.parseQueryStringDecode()['contractCode'];
+        var contractCode = DameiUtils.parseQueryStringDecode()['contractCode'];
         this.projectMaterial[0].contractCode = contractCode;
         this.projectMaterial[1].contractCode = contractCode;
     },
@@ -97,10 +97,10 @@ var reduceItemComponent = Vue.extend({
                     url: ''
                 };
                 showAddProdModel(self.projectMaterial[0], self.priceType, catalog,
-                    MdniUtils.formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss'), 3);
+                    DameiUtils.formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss'), 3);
             }else{
                 showAddProdModel(self.projectMaterial[0], self.priceType, null,
-                    MdniUtils.formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss'), 3);
+                    DameiUtils.formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss'), 3);
             }
         },
         //移除projectMaterial对象
@@ -123,7 +123,7 @@ var reduceItemComponent = Vue.extend({
         addSkuDosageModel: function (catalog, projectMaterial) {
             var self = this;
             showAddSkuDosageModel(self.priceType, catalog, projectMaterial,
-                MdniUtils.formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss'));
+                DameiUtils.formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss'));
         },
         //删除sku用量
         removeSkuDosage: function (projectMaterial, skuDosageList, skuDosage) {
@@ -132,7 +132,7 @@ var reduceItemComponent = Vue.extend({
         //添加定额model
         addQuotaModel: function () {
             var self = this;
-            showAddProjectIntem(self.projectMaterial[1], MdniUtils.formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss'), 3);
+            showAddProjectIntem(self.projectMaterial[1], DameiUtils.formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss'), 3);
         },
         //修改定额用量
         updateDosage: function (skuDosage) {

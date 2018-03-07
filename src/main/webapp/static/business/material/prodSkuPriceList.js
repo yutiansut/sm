@@ -6,7 +6,7 @@ var proSkuPriceList;
     $('#proSkuPrice').addClass('active')
      proSkuPriceList = new Vue({
         el: '#container',
-        mixins: [MdniVueMixins.DataTableMixin],
+        mixins: [DameiVueMixins.DataTableMixin],
         data: {
             breadcrumbs: [{
                 path: '/',
@@ -124,13 +124,13 @@ var proSkuPriceList;
                         self.allStores = [];
                          var dataStore = res.data.data;
                          if(dataStore){
-                             if(MdniUser.storeCode){
+                             if(DameiUser.storeCode){
                              for (var i=0;i<dataStore.length;i++){
-                                if( dataStore[i].code==MdniUser.storeCode){
+                                if( dataStore[i].code==DameiUser.storeCode){
                                     self.allStores.push(dataStore[i]);
                                 }
                              }
-                            self.form.allStoreCode=MdniUser.storeCode;
+                            self.form.allStoreCode=DameiUser.storeCode;
                             this.drawTable();
                             this.fetchSuppliers();
                             this.fetchRegionSuppliers();
@@ -311,10 +311,10 @@ var proSkuPriceList;
                             align: 'center',
                             formatter: function (value, row) {
                                 var html = '';
-                                if(MdniUtils.hasPermission('product:setPriceBtn')){
+                                if(DameiUtils.hasPermission('product:setPriceBtn')){
                                     html += '<button data-handle="set-price" data-id="' + value + '" type="button" class="btn btn-xs btn-primary">设置价格</button>';
                                 }
-                                if(MdniUtils.hasPermission('product:viewBtn')){
+                                if(DameiUtils.hasPermission('product:viewBtn')){
                                     html += '<button data-handle="see-price" data-id="' + value + '" type="button" class="btn btn-xs btn-danger">查看</button>';
                                 }
                                 return html;
@@ -356,7 +356,7 @@ var proSkuPriceList;
             function () {
                 vueModal2 = new Vue({
                     el: $modal.get(0),
-                    mixins: [MdniVueMixins.DataTableMixin],
+                    mixins: [DameiVueMixins.DataTableMixin],
                     data: {
                         form: {
                             keyword: '',
@@ -764,7 +764,7 @@ var proSkuPriceList;
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     },
-                    mixins: [MdniVueMixins.ModalMixin],
+                    mixins: [DameiVueMixins.ModalMixin],
                     $modal: $el,
                     data: {
                         id: model.id,

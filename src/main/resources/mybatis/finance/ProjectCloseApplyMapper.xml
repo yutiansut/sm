@@ -13,10 +13,10 @@
             fpca.expect_refund_amount AS expectRefundAmount
         FROM
         fina_project_close_apply fpca
-        LEFT JOIN customer_contract cc ON fpca.contract_uuid = cc.contract_uuid
+        LEFT JOIN customer_contract cc ON fpca.dm_contract_uuid = cc.dm_contract_uuid
         LEFT JOIN customer cus ON cc.customer_id = cus.id
         <where>
-            fpca.contract_uuid = #{contractUuid}
+            fpca.dm_contract_uuid = #{contractUuid}
         </where>
         ORDER BY fpca.id DESC
     </select>
@@ -25,10 +25,10 @@
         insert into fina_project_close_apply
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="contractNo != null">
-                contract_no,
+                dm_contract_no,
             </if>
             <if test="contractUuid != null">
-                contract_uuid,
+                dm_contract_uuid,
             </if>
             <if test="applyerNo != null">
                 applyer_no,

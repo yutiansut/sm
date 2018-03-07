@@ -4,8 +4,8 @@
   try {
     $.fn.bootstrapTable.defaults.locale = 'zh-CN';
 
-    var MdniVueMixins = window.MdniVueMixins = {};
-    var MdniVueComponents = window.MdniVueComponents = {};
+    var DameiVueMixins = window.DameiVueMixins = {};
+    var DameiVueComponents = window.DameiVueComponents = {};
 
     // 打开 Vue 调试器
     Vue.config.devtools = /localhost|192\./.test(window.location.href);

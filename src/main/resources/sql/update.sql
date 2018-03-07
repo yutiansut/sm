@@ -20,3 +20,8 @@ ALTER TABLE `prod_product_image` ADD INDEX idx_prod_product_image_sku_id ( `sku_
 ALTER TABLE sm_project_material ADD COLUMN brand_id int (11) DEFAULT NULL COMMENT '品牌Id';
 
 ALTER TABLE sm_project_change_material ADD COLUMN brand_id int (11) DEFAULT NULL COMMENT '品牌Id';
+
+--2018/3/7
+--修改代码
+--生产库  未执行
+ALTER TABLE sm_order_bespeak_contract CHANGE contract_code dm_contract_code VARCHAR(50) NOT NULL;

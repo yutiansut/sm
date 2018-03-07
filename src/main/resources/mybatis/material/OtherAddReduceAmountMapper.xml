@@ -3,7 +3,7 @@
 <mapper namespace="cn.damei.business.dao.material.OtherAddReduceAmountDao">
     <resultMap id="BaseResultMap" type="OtherAddReduceAmount">
         <id column="id" property="id"/>
-        <result column="contract_code" property="contractCode"/>
+        <result column="dm_contract_code" property="contractCode"/>
         <result column="item_name" property="itemName"/>
         <result column="add_reduce_reason" property="addReduceReason"/>
         <result column="add_reduce_type" property="addReduceType"/>
@@ -13,7 +13,7 @@
         <result column="change_flag" property="changeFlag"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, contract_code, item_name, add_reduce_reason, add_reduce_type, is_taxed_amount, 
+    id, dm_contract_code, item_name, add_reduce_reason, add_reduce_type, is_taxed_amount,
     quota, approver,change_flag
   </sql>
     <insert id="insert" parameterType="OtherAddReduceAmount" useGeneratedKeys="true"
@@ -21,7 +21,7 @@
         insert into sm_other_add_reduce_amount
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="contractCode != null">
-                contract_code,
+                dm_contract_code,
             </if>
             <if test="changeFlag != null">
                 change_flag,
@@ -76,7 +76,7 @@
         update sm_other_add_reduce_amount
         <set>
             <if test="contractCode != null">
-                contract_code = #{contractCode},
+                dm_contract_code = #{contractCode},
             </if>
             <if test="itemName != null">
                 item_name = #{itemName},
@@ -104,7 +104,7 @@
     </update>
 
     <select id="findByContractCodeList" resultMap="BaseResultMap">
-     select * from sm_other_add_reduce_amount where contract_code = #{contractCode}
+     select * from sm_other_add_reduce_amount where dm_contract_code = #{contractCode}
      <if test="changeFlag!=null and changeFlag!=''">
          AND change_flag=#{changeFlag}
      </if>
@@ -131,7 +131,7 @@
         approver,
         add_reduce_reason
         from sm_other_add_reduce_amount
-        where contract_code = #{contractCode}
+        where dm_contract_code = #{contractCode}
     </select>
 
 
@@ -139,24 +139,24 @@
         select
         *
         from sm_other_add_reduce_amount
-        where contract_code = #{contractCode}
+        where dm_contract_code = #{contractCode}
         AND  change_flag=#{changeFlag}
     </select>
 
     <select id="getOthermoneyAddOrReduceByChangeFlag" resultType="long">
-        select count(1) from  sm_other_add_reduce_amount where contract_code = #{contractCode} AND change_flag = '1'
+        select count(1) from  sm_other_add_reduce_amount where dm_contract_code = #{contractCode} AND change_flag = '1'
     </select>
 
     <update id="updateByContractCodeAndStatus">
-        update sm_other_add_reduce_amount set change_flag = '0' where contract_code = #{contractCode}
+        update sm_other_add_reduce_amount set change_flag = '0' where dm_contract_code = #{contractCode}
         AND change_flag = #{changeFlag}
     </update>
 
     <select id="getOthrgAddReducePrice" resultMap="BaseResultMap">
-          select * from sm_other_add_reduce_amount where contract_code = #{contractCode} and change_flag = '1'
+          select * from sm_other_add_reduce_amount where dm_contract_code = #{contractCode} and change_flag = '1'
     </select>
 
     <delete id="deleteByCodeAndFlag">
-        delete from sm_other_add_reduce_amount where contract_code = #{contractCode} and change_flag = #{flag}
+        delete from sm_other_add_reduce_amount where dm_contract_code = #{contractCode} and change_flag = #{flag}
     </delete>
 </mapper>

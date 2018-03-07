@@ -4,7 +4,7 @@
 
     <resultMap id="BaseResultMap" type="IndentPrepareOrder">
         <id column="id" property="id"/>
-        <result column="contract_code" property="contractCode" />
+        <result column="dm_contract_code" property="contractCode" />
         <result column="data_source" property="dataSource" />
         <result column="status" property="status" />
         <result column="brand_id" property="brandId"/>
@@ -31,7 +31,7 @@
     </resultMap>-->
 
     <sql id="Base_Column_List">
-        id, contract_code, data_source, status, brand_id, brand_name, create_time,
+        id, dm_contract_code, data_source, status, brand_id, brand_name, create_time,
         update_time, update_account, switch_time
     </sql>
 
@@ -52,7 +52,7 @@
         INSERT INTO indent_prepare_order
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="contractCode != null">
-                contract_code,
+                dm_contract_code,
             </if>
             <if test="dataSource != null">
                 data_source,
@@ -114,7 +114,7 @@
     <insert id="batchInsertList" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO indent_prepare_order
           (
-              contract_code, data_source, status, brand_id, brand_name,
+              dm_contract_code, data_source, status, brand_id, brand_name,
               create_time, update_time, update_account,
               switch_time
           )
@@ -132,7 +132,7 @@
         UPDATE indent_prepare_order
         <set>
             <if test="contractCode != null">
-                contract_code = #{contractCode},
+                dm_contract_code = #{contractCode},
             </if>
             <if test="dataSource != null">
                 data_source = #{dataSource},

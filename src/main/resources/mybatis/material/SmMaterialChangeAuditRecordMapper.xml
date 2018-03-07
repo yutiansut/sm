@@ -92,7 +92,7 @@
   </update>
 
   <select id="getByChangeNos" resultMap="BaseResultMap">
-    select scd.contract_code,scd.change_no,smc.audit_user,smc.audit_user_type from sm_change_detail as scd
+    select scd.dm_contract_code,scd.change_no,smc.audit_user,smc.audit_user_type from sm_change_detail as scd
     LEFT JOIN sm_material_change_audit_record as smc on smc.change_no = scd.change_no
     where scd.id in
     <foreach collection="array" item="id" open="(" close=")" separator=",">

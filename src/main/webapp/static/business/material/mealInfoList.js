@@ -4,7 +4,6 @@ var tt = null;
     $('#mealInfo').addClass('active');
     tt = new Vue({
         el: '#container',
-        //mixins: [RocoVueMixins.DataTableMixin],
         data: {
             breadcrumbs: [{
                 path: '/',
@@ -207,7 +206,6 @@ var tt = null;
         var isEdit = !!isEdit;
         var userVue = new Vue({
             el: el,
-            //mixins: [RocoVueMixins.ModalMixin],
             $modal: $el,
             created: function () {
                 this.findStoreList();

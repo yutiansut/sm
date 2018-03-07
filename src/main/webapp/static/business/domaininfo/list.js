@@ -213,7 +213,7 @@
             var showDomainInfoVue = new Vue({
                 el: el,
                 // 模式窗体必须引用 ModalMixin
-                mixins: [MdniVueMixins.ModalMixin],
+                mixins: [DameiVueMixins.ModalMixin],
                 $modal: $el, // 模式窗体 jQuery 对象
                 data: {
                     domaininfo:{

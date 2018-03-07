@@ -5,7 +5,7 @@
     <resultMap id="BaseResultMap" type="ProjectMaterial">
         <id column="id" property="id"/>
         <result column="product_category_url" property="productCategoryUrl"/>
-        <result column="contract_code" property="contractCode"/>
+        <result column="dm_contract_code" property="contractCode"/>
         <result column="category_code" property="categoryCode"/>
         <result column="category_detail_code" property="categoryDetailCode"/>
         <result column="sku_code" property="skuCode"/>
@@ -51,7 +51,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, product_category_url, contract_code, category_code, category_detail_code, sku_code,
+        id, product_category_url, dm_contract_code, category_code, category_detail_code, sku_code,
         design_remark, audit_remark, sku_sqec, sku_model, product_name, sku_image_path, store_sale_price,
         quota_describe, check_scale, attribute1, attribute2, attribute3, create_user,
         create_time, update_user, update_time,material_unit, brand, brand_id
@@ -74,7 +74,7 @@
                 product_category_url,
             </if>
             <if test="contractCode != null">
-                contract_code,
+                dm_contract_code,
             </if>
             <if test="materialUnit != null">
                 material_unit,
@@ -229,7 +229,7 @@
                 product_category_url = #{productCategoryUrl},
             </if>
             <if test="contractCode != null">
-                contract_code = #{contractCode},
+                dm_contract_code = #{contractCode},
             </if>
             <if test="categoryCode != null">
                 category_code = #{categoryCode},
@@ -312,7 +312,7 @@
         LEFT JOIN prod_supplier psup ON psup.id = psku.supplier_id
         <where>
             <if test="contractCode != null">
-                contract_code = #{contractCode}
+                dm_contract_code = #{contractCode}
             </if>
             <if test="categoryCode != null">
                 AND category_code = #{categoryCode}
@@ -362,7 +362,7 @@
         LEFT JOIN sm_sku_dosage as ssd on spm.id = ssd.project_material_id
         LEFT JOIN prod_catalog as pc on pc.url = spm.product_category_url
         LEFT JOIN prod_sku as ps on spm.sku_code = ps.`code`
-             where  contract_code = #{contractCode}
+             where  dm_contract_code = #{contractCode}
             AND spm.category_code = 'PACKAGESTANDARD'
         GROUP BY ssd.project_material_id
     </select>
@@ -394,7 +394,7 @@
         LEFT JOIN sm_sku_dosage AS ssd ON spm.id = ssd.project_material_id
 		LEFT JOIN prod_catalog as pc on pc.url = spm.product_category_url
         WHERE
-             contract_code = #{contractCode}
+             dm_contract_code = #{contractCode}
         AND spm.category_code = 'UPGRADEITEM'
         GROUP BY ssd.project_material_id
     </select>
@@ -424,7 +424,7 @@
         LEFT JOIN sm_sku_dosage AS ssd ON spm.id = ssd.project_material_id
         LEFT JOIN prod_catalog as pc on pc.url = spm.product_category_url
         WHERE
-             contract_code = #{contractCode}
+             dm_contract_code = #{contractCode}
         AND spm.category_code = 'ADDITEM'
         AND spm.category_detail_code = #{addItemType}
         GROUP BY ssd.project_material_id
@@ -457,7 +457,7 @@
         LEFT JOIN sm_sku_dosage AS ssd ON spm.id = ssd.project_material_id
         LEFT JOIN prod_catalog as pc on pc.url = spm.product_category_url
         WHERE
-             contract_code = #{contractCode}
+             dm_contract_code = #{contractCode}
         AND spm.category_code = 'REDUCEITEM'
         AND spm.category_detail_code = #{reduceItemType}
         GROUP BY ssd.project_material_id
@@ -486,7 +486,7 @@
             sm_project_material AS spm
         LEFT JOIN sm_sku_dosage AS ssd ON spm.id = ssd.project_material_id
         WHERE
-             contract_code = #{contractCode}
+             dm_contract_code = #{contractCode}
         AND spm.category_code = 'OTHERCOMPREHENSIVEFEE'
         AND spm.category_detail_code = 'OTHERCATEGORIESOFSMALLFEES'
     </select>
@@ -512,18 +512,18 @@
             sm_project_material AS spm
         LEFT JOIN sm_sku_dosage AS ssd ON spm.id = ssd.project_material_id
         WHERE
-             contract_code = #{contractCode}
+             dm_contract_code = #{contractCode}
         AND spm.category_code = 'OLDHOUSEDEMOLITION'
         AND spm.category_detail_code = #{oldHouseType}
         GROUP BY ssd.project_material_id
     </select>
 
     <delete id="delete">
-        delete from sm_project_material where contract_code = #{contractCode}
+        delete from sm_project_material where dm_contract_code = #{contractCode}
     </delete>
 
     <insert id="insertByprojectChangeMaterial" parameterType="list">
-        insert into sm_project_material ( id, product_category_url, contract_code, category_code, category_detail_code, sku_code,
+        insert into sm_project_material ( id, product_category_url, dm_contract_code, category_code, category_detail_code, sku_code,
         design_remark, audit_remark, sku_sqec, sku_model, product_name, sku_image_path, store_sale_price,
         quota_describe, check_scale, attribute1, attribute2, attribute3, create_user,
         create_time, update_user, update_time,material_unit, brand, brand_id) VALUES
@@ -538,15 +538,15 @@
     </insert>
 
     <select id="getByConCodeAndChUrl" resultMap="BaseResultMap">
-        select <include refid="Base_Column_List"/> from sm_project_material where contract_code = #{contractCode} and
+        select <include refid="Base_Column_List"/> from sm_project_material where dm_contract_code = #{contractCode} and
         product_category_url LIKE CONCAT('%',#{changeCategoryUrl},'%')
     </select>
     <select id="getByContractCode" resultMap="BaseResultMap">
-        SELECT * FROM sm_project_material WHERE contract_code = #{contractCode}
+        SELECT * FROM sm_project_material WHERE dm_contract_code = #{contractCode}
     </select>
 
     <select id="findByConAndUrl" resultMap="BaseResultMap">
-        select * from sm_project_material where contract_code = #{contractCode} and
+        select * from sm_project_material where dm_contract_code = #{contractCode} and
         product_category_url LIKE CONCAT(#{changeCategoryUrl},'%')
     </select>
 </mapper>

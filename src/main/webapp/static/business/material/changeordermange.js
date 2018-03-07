@@ -50,11 +50,11 @@ var vueIndex;
             this.drawTable();
         },
         methods: {
-            //注意: MdniUser.roleNameList 是个字符串,需要转为数组!否则影响操作按钮角色的判断!
+            //注意: DameiUser.roleNameList 是个字符串,需要转为数组!否则影响操作按钮角色的判断!
             dealRoleNameList: function () {
                 var self = this;
                 self.roleNameList = [];
-                var str = MdniUser.roleNameList.substring(1, MdniUser.roleNameList.length - 1);
+                var str = DameiUser.roleNameList.substring(1, DameiUser.roleNameList.length - 1);
                 var roleNameArr = str.split(",");
                 roleNameArr.forEach(function (item) {
                     //去掉两端空格
@@ -361,7 +361,7 @@ var vueIndex;
                             pageType: 'change',
                             catalogUrl: changeCategoryUrl
                         }
-                        MdniUtils.locationHrefToClient('/material/materialIndex', params);
+                        DameiUtils.locationHrefToClient('/material/materialIndex', params);
                     }
                 );
                 //下载
@@ -516,7 +516,7 @@ function showDetailModal(model) {
                     remarks: null
                 },
                 // 模式窗体必须引用 ModalMixin
-                mixins: [MdniVueMixins.ModalMixin],
+                mixins: [DameiVueMixins.ModalMixin],
                 $modal: $el,
                 //模式窗体 jQuery 对象
                 created: function () {

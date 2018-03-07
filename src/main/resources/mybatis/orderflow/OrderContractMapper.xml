@@ -3,8 +3,8 @@
 <mapper namespace="cn.damei.business.dao.orderflow.ContractDao">
     <resultMap id="BaseResultMap" type="cn.damei.business.entity.orderflow.CustomerContract">
         <id column="id" property="id"/>
-        <result column="contract_code" property="contractCode"/>
-        <result column="contract_uuid" property="contractUuid"/>
+        <result column="dm_contract_code" property="contractCode"/>
+        <result column="dm_contract_uuid" property="contractUuid"/>
         <result column="customer_id" property="customerId"/>
         <result column="house_addr" property="houseAddr"/>
         <result column="designer" property="designer"/>
@@ -103,7 +103,7 @@
     <insert id="insert" parameterType="cn.damei.business.entity.orderflow.CustomerContract">
         insert into customer_contract
         (
-        contract_code,
+        dm_contract_code,
         customer_id,
         house_addr,
         layout,
@@ -119,7 +119,7 @@
         service_mobile,
         plan_house_time,
         store_code,
-        contract_uuid,
+        dm_contract_uuid,
         order_flow_status,
         discount_name,
         create_time,
@@ -164,7 +164,7 @@
     cucs.*,cus.customer_level,cus.name AS customer_name,cus.mobile AS customer_mobile,sobc.*
     from customer_contract AS cucs
     LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
-    LEFT JOIN sm_order_bespeak_contract sobc ON (cucs.contract_code = sobc.contract_code)
+    LEFT JOIN sm_order_bespeak_contract sobc ON (cucs.dm_contract_code = sobc.dm_contract_code)
     where cucs.id = #{id}
     </select>
 
@@ -174,13 +174,13 @@
         sps.contract_sign_trem,sps.contract_start_time,sps.contract_complete_time
         from customer_contract AS cucs
         LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
-        LEFT JOIN sm_order_bespeak_contract sobc ON (cucs.contract_code = sobc.contract_code)
-        LEFT JOIN sm_project_sign sps ON (sps.contract_code = cucs.contract_code)
-        where cucs.contract_code = #{contractCode}
+        LEFT JOIN sm_order_bespeak_contract sobc ON (cucs.dm_contract_code = sobc.dm_contract_code)
+        LEFT JOIN sm_project_sign sps ON (sps.dm_contract_code = cucs.dm_contract_code)
+        where cucs.dm_contract_code = #{contractCode}
     </select>
 
     <select id="searchTotal" parameterType="map" resultType="long">
-        SELECT COUNT(DISTINCT cucs.contract_code) FROM customer_contract AS cucs
+        SELECT COUNT(DISTINCT cucs.dm_contract_code) FROM customer_contract AS cucs
         <include refid="searchFromWhere"/>
     </select>
 
@@ -195,7 +195,7 @@
             <foreach collection="sort" item="order" separator=",">
                 ${order.property} ${order.direction}
             </foreach>
-            ,cucs.contract_code DESC
+            ,cucs.dm_contract_code DESC
         </if>
         limit #{offset}, #{pageSize}
     </select>
@@ -203,14 +203,14 @@
     <sql id="searchFromWhere">
         LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
         LEFT JOIN sm_meal_info smi ON (cucs.meal_id = smi.id)
-        LEFT JOIN sm_project_sign sps ON (cucs.contract_code = sps.contract_code)
-        LEFT JOIN fina_project_payplan_stage fpps ON (cucs.contract_code = fpps.contract_code)
+        LEFT JOIN sm_project_sign sps ON (cucs.dm_contract_code = sps.dm_contract_code)
+        LEFT JOIN fina_project_payplan_stage fpps ON (cucs.dm_contract_code = fpps.dm_contract_code)
         <where>
             cucs.store_code=#{storeCode}
             <if test="keyword != null and keyword != ''">
                 AND (cus.name like CONCAT('%', #{keyword}, '%')
                 OR cucs.second_contact like CONCAT('%', #{keyword}, '%')
-                OR cucs.contract_code like CONCAT('%', #{keyword}, '%')
+                OR cucs.dm_contract_code like CONCAT('%', #{keyword}, '%')
                 OR cucs.designer like CONCAT('%', #{keyword}, '%')
                 OR cucs.service_name like CONCAT('%', #{keyword}, '%')
                 OR cucs.service_mobile = #{keyword})
@@ -268,7 +268,7 @@
         update customer_contract
         <set>
             <if test="contractCode != null">
-                contract_code = #{contractCode},
+                dm_contract_code = #{contractCode},
             </if>
             <if test="customerId != null">
                 customer_id = #{customerId},
@@ -456,7 +456,7 @@
                 is_sign_deposit = #{signDeposit},
             </if>
         </set>
-        WHERE contract_uuid = #{contractUuid}
+        WHERE dm_contract_uuid = #{contractUuid}
     </update>
 
     <update id="updateDesignerGroup">
@@ -487,7 +487,7 @@
                 return_reason_describe = #{returnReasonDescribe},
             </if>
         </set>
-        WHERE contract_uuid = #{contractUuid}
+        WHERE dm_contract_uuid = #{contractUuid}
     </update>
 
     <!--同步来自产业工人系统的 项目信息（项目经理 监理 开竣工时间 拒绝接单备注）-->
@@ -522,7 +522,7 @@
                 mps_back_remark = #{mpsBackRemark},
             </if>
         </set>
-        where contract_code = #{contractCode}
+        where dm_contract_code = #{contractCode}
     </update>
 
     <select id="getByCode" resultMap="BaseResultMap">
@@ -531,7 +531,7 @@
     from customer_contract AS cucs
     LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
     LEFT JOIN sm_meal_info smi ON (cucs.meal_id = smi.id)
-    where cucs.contract_code = #{code}
+    where cucs.dm_contract_code = #{code}
     </select>
 
 
@@ -541,7 +541,7 @@
         from customer_contract AS cucs
         LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
         LEFT JOIN sm_meal_info smi ON (cucs.meal_id = smi.id)
-        where cucs.contract_uuid = #{contractUuid}
+        where cucs.dm_contract_uuid = #{contractUuid}
     </select>
 
     <!--获取推送到产业工人系统的项目信息-->
@@ -551,8 +551,8 @@
              cuscon.store_code as store_id,
             'chanye' as project_mode,
             'putong' as customer_type,
-            cuscon.contract_code as order_number,
-            cuscon.contract_code as contract_number,
+            cuscon.dm_contract_code as order_number,
+            cuscon.dm_contract_code as contract_number,
             IF(LENGTH(trim(IFNULL(second_contact,'')))&lt;1,cus.`name`,second_contact) as customer_name,
             IF(LENGTH(trim(IFNULL(second_contact_mobile,'')))&lt;1,cus.mobile,second_contact_mobile) as customer_phone,
             house_addr as detail_address,
@@ -581,8 +581,8 @@
         customer_contract as cuscon
         LEFT JOIN customer as cus  ON  cuscon.customer_id = cus.id
         LEFT JOIN sm_meal_info as mi ON cuscon.meal_id = mi.id
-        LEFT JOIN sm_project_sign as ps on cuscon.contract_code = ps.contract_code
-        where cuscon.contract_code = #{code}
+        LEFT JOIN sm_project_sign as ps on cuscon.dm_contract_code = ps.dm_contract_code
+        where cuscon.dm_contract_code = #{code}
     </select>
 
     <!--crm  通过contractUuid查询项目信息-->
@@ -592,8 +592,8 @@
         from customer_contract AS cucs
         LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
         LEFT JOIN sm_meal_info mi ON cucs.meal_id = mi.id
-        LEFT JOIN sm_order_bespeak_contract sobc ON (cucs.contract_code = sobc.contract_code)
-        where cucs.contract_uuid = #{contractUuid}
+        LEFT JOIN sm_order_bespeak_contract sobc ON (cucs.dm_contract_code = sobc.dm_contract_code)
+        where cucs.dm_contract_uuid = #{contractUuid}
     </select>
 
     <select id="findSingleDetailBySingleId" resultMap="BaseResultMap">

@@ -87,7 +87,7 @@ var materialIndex;
                 totalAmountFlag:false,
                 oldHouseactiveIndex: 0,
                 //页面类型: 选材(select) 或者 变更(change) 或者 其它
-                pageType: MdniUtils.parseQueryStringDecode()['pageType'] || '',
+                pageType: DameiUtils.parseQueryStringDecode()['pageType'] || '',
                 //背景色对象
                 backColorObj:{
                     //变更
@@ -97,7 +97,7 @@ var materialIndex;
                 },
                 //被打回的一级分类url
                 //注意: 其他金额增减被打回时,传递 &catalogUrl=other !!!!
-                catalogUrl: MdniUtils.parseQueryStringDecode()['catalogUrl'] || '',
+                catalogUrl: DameiUtils.parseQueryStringDecode()['catalogUrl'] || '',
                 //装修工程tab页,加载标记,只有第一次点击时,全部加载
                 decorationNeedLoadFlag: true,
 
@@ -238,7 +238,7 @@ var materialIndex;
                 },
                 loadContract: function(){
                     var self = this;
-                    self.customerContract.contractCode = MdniUtils.parseQueryStringDecode()['contractCode'];
+                    self.customerContract.contractCode = DameiUtils.parseQueryStringDecode()['contractCode'];
                     if(!self.customerContract.contractCode){
                         self.$toastr.error("参数丢失,请重新尝试!");
                         return false;
@@ -1084,7 +1084,7 @@ function modifyModal(model) {
                     }
                 },
                 // 模式窗体必须引用 ModalMixin
-                mixins: [MdniVueMixins.ModalMixin],
+                mixins: [DameiVueMixins.ModalMixin],
                 $modal: $el,
                 //模式窗体 jQuery 对象
                 created: function () {

@@ -10,7 +10,7 @@ var BackRecord = Vue.extend({
     ready: function () {
     },
     created: function () {
-        this.flag = MdniUtils.parseQueryString()['flag'];
+        this.flag = DameiUtils.parseQueryString()['flag'];
     },
     filters: {
         goDate: function (el) {

@@ -3,7 +3,7 @@
 <mapper namespace="cn.damei.business.dao.material.SmChangeDetailDao">
     <resultMap id="BaseResultMap" type="SmChangeDetail">
         <id column="id" property="id"/>
-        <result column="contract_code" property="contractCode"/>
+        <result column="dm_contract_code" property="contractCode"/>
         <result column="change_log_id" property="changeLogId"/>
         <result column="change_category_url" property="changeCategoryUrl"/>
         <result column="change_no" property="changeNo"/>
@@ -36,7 +36,7 @@
         <result column="change_amount" property="changeAmount"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, contract_code, change_log_id, change_category_url, change_no, change_category_name, 
+    id, dm_contract_code, change_log_id, change_category_url, change_no, change_category_name,
     current_status, current_aduit_user, current_audit_time, create_user, create_time, pass_materials_department,material_remarks,design_director_remarks
   </sql>
 
@@ -45,7 +45,7 @@
         spd.id,
         spd.change_log_id,
         spd.change_no,
-        spd.contract_code,
+        spd.dm_contract_code,
         spd.create_time,
         spd.current_status,
         spd.change_category_name,
@@ -79,7 +79,7 @@
             sm_change_detail spd
         LEFT JOIN
          customer_contract  cc
-        on spd.contract_code=cc.contract_code
+        on spd.dm_contract_code=cc.dm_contract_code
         LEFT JOIN
          customer c
         ON cc.customer_id=c.id
@@ -94,7 +94,7 @@
                 </if>
             </if>
             <if test="keyword!=null and keyword!=''" >
-                AND  (spd.change_no LIKE #{keyword} OR  spd.contract_code LIKE #{keyword})
+                AND  (spd.change_no LIKE #{keyword} OR  spd.dm_contract_code LIKE #{keyword})
             </if>
             <if test="passFlag!=null and passFlag!=''" >
                 AND  spd.pass_materials_department=#{passFlag}
@@ -147,7 +147,7 @@
   </delete>
     <insert id="batchInsertList" useGeneratedKeys="true" keyProperty="id">
         INSERT  INTO  sm_change_detail(
-          contract_code, change_log_id, change_category_url, change_no, change_category_name,
+          dm_contract_code, change_log_id, change_category_url, change_no, change_category_name,
           current_status, current_aduit_user, current_audit_time,
          create_user, create_time, pass_materials_department,material_remarks,design_director_remarks
         )VALUES
@@ -175,7 +175,7 @@
         insert into sm_change_detail
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="contractCode != null">
-                contract_code,
+                dm_contract_code,
             </if>
             <if test="changeLogId != null">
                 change_log_id,
@@ -278,7 +278,7 @@
         update sm_change_detail
         <set>
             <if test="contractCode != null">
-                contract_code = #{contractCode},
+                dm_contract_code = #{contractCode},
             </if>
             <if test="changeLogId != null">
                 change_log_id = #{changeLogId},
@@ -340,7 +340,7 @@
         select
         scd.id,
         scd.change_log_id,
-        scd.contract_code,
+        scd.dm_contract_code,
         scd.change_no,
         scd.change_category_url,
         c.name,
@@ -352,11 +352,11 @@
         scd.download_times,
         scd.create_time
         FROM sm_change_detail as scd
-        LEFT JOIN customer_contract as cc on cc.contract_code = scd.contract_code
+        LEFT JOIN customer_contract as cc on cc.dm_contract_code = scd.dm_contract_code
         LEFT JOIN customer as c on c.id = cc.customer_id
         <where>
             <if test="keyword != null">
-                (scd.contract_code = #{keyword}
+                (scd.dm_contract_code = #{keyword}
                 OR c.name LIKE CONCAT("%", #{keyword}, "%"))
             </if>
             <if test="currentStatus != null">
@@ -383,11 +383,11 @@
     </select>
     <select id="searchChangeOrderListTotal" resultType="long" parameterType="map">
         select count(1) from sm_change_detail detail
-            LEFT JOIN customer_contract as contract on contract.contract_code = detail.contract_code
+            LEFT JOIN customer_contract as contract on contract.dm_contract_code = detail.dm_contract_code
             LEFT JOIN customer as customer on customer.id = contract.customer_id
         <where>
             <if test="keyword != null">
-                (detail.contract_code = #{keyword}
+                (detail.dm_contract_code = #{keyword}
                 OR customer.name LIKE CONCAT("%", #{keyword}, "%"))
             </if>
             <if test="currentStatus != null">
@@ -438,7 +438,7 @@
         LEFT JOIN sm_change_log as scl on scl.id = scd.change_log_id
          <where>
              <if test="contractCode != null and contractCode != ''">
-                 scd.contract_code = #{contractCode}
+                 scd.dm_contract_code = #{contractCode}
              </if>
              <if test="changeVersionNo != null and changeVersionNo != ''">
                  AND scl.change_version_no = #{changeVersionNo}
@@ -457,11 +457,11 @@
     <select id="listCount" resultType="long">
         select count(*)
          from sm_change_detail as scd
-            LEFT JOIN customer_contract as cc on cc.contract_code = scd.contract_code
+            LEFT JOIN customer_contract as cc on cc.dm_contract_code = scd.dm_contract_code
             LEFT JOIN customer as c on c.id = cc.customer_id
         <where>
             <if test="keyword != null">
-                (c.`name` LIKE CONCAT('%',#{keyword},'%') or scd.contract_code = #{keyword}  or c.mobile = #{keyword})
+                (c.`name` LIKE CONCAT('%',#{keyword},'%') or scd.dm_contract_code = #{keyword}  or c.mobile = #{keyword})
             </if>
             <if test="startDate != null ">
                 AND DATE(scd.create_time) &gt;= DATE(#{startDate})
@@ -483,7 +483,7 @@
 
     <select id="changeMaterialList" resultMap="SearchResultMap">
       select scd.id,
-        scd.contract_code,
+        scd.dm_contract_code,
 				scd.change_no,
 				c.`name`,
 				c.mobile,
@@ -493,12 +493,12 @@
                 fpm.change_amount,
 				scd.print_count
             from sm_change_detail as scd
-            LEFT JOIN customer_contract as cc on cc.contract_code = scd.contract_code
+            LEFT JOIN customer_contract as cc on cc.dm_contract_code = scd.dm_contract_code
             LEFT JOIN customer as c on c.id = cc.customer_id
         LEFT JOIN fina_projectchange_money as fpm on fpm.change_no = scd.change_no
             <where>
                 <if test="keyword != null">
-                    (c.`name` LIKE CONCAT('%',#{keyword},'%') or scd.contract_code = #{keyword}  or c.mobile = #{keyword})
+                    (c.`name` LIKE CONCAT('%',#{keyword},'%') or scd.dm_contract_code = #{keyword}  or c.mobile = #{keyword})
                 </if>
                 <if test="startDate != null ">
                     AND DATE(scd.create_time) &gt;= DATE(#{startDate})
@@ -521,7 +521,7 @@
     </select>
 
     <select id="getByIds" resultMap="BaseResultMap">
-        select contract_code,change_no,create_time from sm_change_detail where id in
+        select dm_contract_code,change_no,create_time from sm_change_detail where id in
         <foreach collection="array" item="id" open="(" close=")" separator=",">
             #{id}
         </foreach>

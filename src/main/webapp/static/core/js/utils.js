@@ -1,8 +1,8 @@
 (function (window) {
-    var MdniUtils = window.MdniUtils = {};
+    var DameiUtils = window.DameiUtils = {};
 
     //获取地址栏指定参数值
-    MdniUtils.getQueryString = function (name) {
+    DameiUtils.getQueryString = function (name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
         var r = window.location.search.substr(1).match(reg);
         if (r != null)return unescape(r[2]);
@@ -10,7 +10,7 @@
     };
 
     //把querystring 转换为对象
-    MdniUtils.parseQueryString = function (queryString) {
+    DameiUtils.parseQueryString = function (queryString) {
         var params = {};
         var parts = queryString && queryString.split('&') || window.location.search.substr(1).split('\x26');
 
@@ -40,7 +40,7 @@
      *  从地址栏获取解密后的参数对象
      * @returns 参数对象
      */
-    MdniUtils.parseQueryStringDecode = function () {
+    DameiUtils.parseQueryStringDecode = function () {
         var params = {};
         var encodeParams = window.location.search.substr(1);
         try{
@@ -63,11 +63,11 @@
      *  @param isNewWindow 新窗口中打开?
      *
      */
-    MdniUtils.locationHrefToServer = function (url, params, isNewWindow) {
+    DameiUtils.locationHrefToServer = function (url, params, isNewWindow) {
         if(!url){
             return;
         }
-        var form = new MdniUtils.makeToForm({
+        var form = new DameiUtils.makeToForm({
             url: url,
             method:'POST',
             params: params
@@ -87,7 +87,7 @@
      *  <p>method:使用POST还是GET提交表单</p>
      *  <p>params:参数 K-V</p>
      */
-    MdniUtils.makeToForm = function(config){
+    DameiUtils.makeToForm = function(config){
         config = config || {};
 
         var url = config.url,
@@ -119,7 +119,7 @@
      *  @param params 参数,必须,没参数的你还来加密?
      *  @param isNewWindow 是否需要打开新页面
      */
-    MdniUtils.locationHrefToClient = function (url, params, isNewWindow) {
+    DameiUtils.locationHrefToClient = function (url, params, isNewWindow) {
         if(!url || !params){
             return;
         }
@@ -146,7 +146,7 @@
      * param section string 一级菜单
      * param subSection string 二级菜单
      */
-    MdniUtils.setSection = function (section, subSection) {
+    DameiUtils.setSection = function (section, subSection) {
         var $item = $('#side-menu');
         $item_li = $item.find('[data-section="' + section + '"]');
         $item.find('li:only-child').removeClass('active');
@@ -165,7 +165,7 @@
      * 参数：type,判断格式化后的金额是否需要小数位(如果为true,末尾带两位小数).
      * 返回：返回格式化后的数值字符串.
      */
-    MdniUtils.formatNumber = function (data, type) {
+    DameiUtils.formatNumber = function (data, type) {
         if (/[^0-9\.]/.test(data))
             return "0";
         if (data == null || data == "")
@@ -191,7 +191,7 @@
      * now:事件对象
      * fmt:时间格式 yyyy-MM-dd HH:mm:ss
      */
-    MdniUtils.formatDate = function (now, fmt) {
+    DameiUtils.formatDate = function (now, fmt) {
         // $.formatDate(new Date(),'yyyy-MM-dd hh:mm:ss');
         var o = {
             "M+": now.getMonth() + 1, //月份
@@ -240,14 +240,14 @@
      * @param obj
      * @returns {boolean}
      */
-    MdniUtils.isNumber = function (obj) {
+    DameiUtils.isNumber = function (obj) {
         return typeof obj === 'number' && !isNaN(obj)
     }
 
     /**
      * 把obj 转为百分数，如果 传flag：true则带百分号,否则不带
      */
-    MdniUtils.decToper = function (obj, flag) {
+    DameiUtils.decToper = function (obj, flag) {
         flag = flag || false;
         if (typeof obj === 'number') {
             return new Decimal(obj).times(100).toNumber() + (flag ? '%' : 0);
@@ -264,7 +264,7 @@
     }
 
     // 根据是否带着百分号进行判断是否需要 乘以 0.01；如果是数字类型，f 参数为true则乘以0.01,否则直接返回
-    MdniUtils.perToDec = function (obj, f) {
+    DameiUtils.perToDec = function (obj, f) {
         if (typeof obj === 'number') {
             return f ? new Decimal(obj).times(0.01).toNumber() : obj;
         }
@@ -283,7 +283,7 @@
         }
     }
     // 加法
-    MdniUtils.accAdd = function (arg1, arg2) {
+    DameiUtils.accAdd = function (arg1, arg2) {
         var r1, r2, m, c;
         try {
             r1 = arg1.toString().split(".")[1].length;
@@ -316,7 +316,7 @@
     };
 
     //将数字转化为大写金额,flag为true,不带圆角分，false带圆角分
-    MdniUtils.moneyToUpper = function (money, flag) {
+    DameiUtils.moneyToUpper = function (money, flag) {
         var cnNums = new Array("零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"); //汉字的数字
         var cnIntRadice = new Array("", "拾", "佰", "仟"); //基本单位
         var cnIntUnits = new Array("", "万", "亿", "兆"); //对应整数部分扩展单位
@@ -410,7 +410,7 @@
      * @param end 结束时间
      * @param pattern 时间格式 默认为 YYYY-MM-DD
      */
-    MdniUtils.initDateControl = function (start, end, format) {
+    DameiUtils.initDateControl = function (start, end, format) {
         if (!format)
             format = 'yyyy-mm-dd';
         start.datetimepicker({format: format});
@@ -428,7 +428,7 @@
      * 判断传入的值为空 undefined 或 null 或 ''
      * @param val
      */
-    MdniUtils.isEmpty = function (val) {
+    DameiUtils.isEmpty = function (val) {
 
         return (val == null || typeof(val) == 'undefined' || String(val) == '');
     };
@@ -438,8 +438,8 @@
      * @param url 跳转地址
      * @param time 延时时间,不指定直接跳转
      */
-    MdniUtils.redirect2Url = function (url, time) {
-        if (MdniUtils.isEmpty(time)) {
+    DameiUtils.redirect2Url = function (url, time) {
+        if (DameiUtils.isEmpty(time)) {
             window.location.href = url;
         } else {
             setTimeout(function () {
@@ -452,8 +452,8 @@
      * 判断传入的值不为空  不是 undefined 或 null 或 ''
      * @param val
      */
-    MdniUtils.isNotEmpty = function (val) {
-        return !MdniUtils.isEmpty(val);
+    DameiUtils.isNotEmpty = function (val) {
+        return !DameiUtils.isEmpty(val);
     };
 
 
@@ -585,9 +585,9 @@
      * 权限对象WildcardPermission数组[obj1,obj2,obj3,obj4]
      * @param permissionsStr 权限字符串
      */
-    MdniUtils.permissionsFormat = function (permissionsStr) {
+    DameiUtils.permissionsFormat = function (permissionsStr) {
         var wildcardPermissions = [];
-        if (MdniUtils.isNotEmpty(permissionsStr) && typeof(permissionsStr ) == 'string') {
+        if (DameiUtils.isNotEmpty(permissionsStr) && typeof(permissionsStr ) == 'string') {
             var permissions = permissionsStr.substring(1, permissionsStr.length - 1).split(",");
             if (permissions.length > 0) {
                 for (var i = 0; i < permissions.length; i++) {
@@ -603,9 +603,9 @@
      * @param otherPermission 权限字符串
      * @returns {boolean} 是否需要转化为小写
      */
-    MdniUtils.hasPermission = function (otherPermission) {
+    DameiUtils.hasPermission = function (otherPermission) {
 
-        // var permissionStr = window.MdniUser.permissions;
+        // var permissionStr = window.DameiUser.permissions;
         //
         // if (permissionStr && permissionStr.length > 0) {
         //
@@ -621,8 +621,8 @@
         //     }
         // }
         // return false;
-        var permissions = window.MdniUser.permissionList;
-        if (MdniUtils.isNotEmpty(permissions) && permissions.length > 0) {
+        var permissions = window.DameiUser.permissionList;
+        if (DameiUtils.isNotEmpty(permissions) && permissions.length > 0) {
             for (var i = 0; i < permissions.length; i++) {
                 if (permissions[i].implies(otherPermission)) {
                     return true;
@@ -637,7 +637,7 @@
      * @param permissions 权限数组
      * @returns {boolean} 是否小写
      */
-    MdniUtils.hasAnyPermission = function (permissions) {
+    DameiUtils.hasAnyPermission = function (permissions) {
         for (var i = 0; i < permissions.length; i++) {
             if (hasPermission(permissions[i])) {
                 return true;
@@ -646,8 +646,8 @@
         return false;
     };
 
-    // MdniUtils.hasPermission = function (permission) {
-    //     var permissions = window.MdniUser.permissions;
+    // DameiUtils.hasPermission = function (permission) {
+    //     var permissions = window.DameiUser.permissions;
     //     return (permissions.indexOf('*') > -1 || permissions.indexOf(permission) > -1) ? true : false;
     // };
 
@@ -656,8 +656,8 @@
      * @param role 指定角色名
      * @returns {boolean}
      */
-    MdniUtils.hasRole = function (role) {
-        var roles = window.MdniUser.roles;
+    DameiUtils.hasRole = function (role) {
+        var roles = window.DameiUser.roles;
         return roles.indexOf(role) > -1 ? true : false;
     };
 
@@ -666,8 +666,8 @@
      * @param id
      * @returns {boolean}
      */
-    MdniUtils.isLoginUser = function (id) {
-        var loginId = window.MdniUser.userId;
+    DameiUtils.isLoginUser = function (id) {
+        var loginId = window.DameiUser.userId;
         return id == loginId ? true : false;
     };
 

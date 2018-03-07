@@ -171,7 +171,6 @@ var tt = null;
         var userVue = new Vue({
             el: el,
 
-            //mixins: [RocoVueMixins.ModalMixin],
             $modal: $el,
             created: function () {
 

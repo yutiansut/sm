@@ -65,7 +65,7 @@
             //查询打印的门店
             findPrintStoreAbled: function () {
                 var self = this;
-                self.$http.get("/finance/print/getstorecode/" + MdniUser.storeCode, {
+                self.$http.get("/finance/print/getstorecode/" + DameiUser.storeCode, {
                      }).then(function (res) {
                     if (res.data.code == 1) {
                         self.printStoreCode = res.data.data.storeCode;
@@ -190,7 +190,7 @@
                             id: id
                         }
                         var url = '/finance/print/singleprint';
-                        MdniUtils.locationHrefToServer(url, params, true);
+                        DameiUtils.locationHrefToServer(url, params, true);
                         vueIndex.$dataTable.bootstrapTable('refresh');
                         /*var newWindow = window.open('/finance/print/singleprint/' + id );
                          newWindow.window.print();*/
@@ -231,7 +231,7 @@
                         ids: ids
                     }
                     var url = '/finance/print/multiprint';
-                    MdniUtils.locationHrefToServer(url, params ,true);
+                    DameiUtils.locationHrefToServer(url, params ,true);
                     setTimeout(function () {
                         self.$dataTable.bootstrapTable('refresh');
                         self.pringIds = [];

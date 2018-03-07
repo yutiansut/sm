@@ -136,7 +136,7 @@ var vueIndex;
                     }
                     console.log(params)
                     var url = '/material/contractchange/vieworprint';
-                    MdniUtils.locationHrefToServer(url, params, true);
+                    DameiUtils.locationHrefToServer(url, params, true);
                     setTimeout(function () {
                         self.$dataTable.bootstrapTable('refresh');
                     },2000);
@@ -149,7 +149,7 @@ var vueIndex;
                         isPrint: false
                     }
                     var url = '/material/contractchange/vieworprint';
-                    MdniUtils.locationHrefToServer(url, params, true);
+                    DameiUtils.locationHrefToServer(url, params, true);
                 });
 
                 //复选框 --- 选中一行
@@ -182,7 +182,7 @@ var vueIndex;
                     isPrint: true
                 }
                 var url = '/material/contractchange/vieworprint';
-                MdniUtils.locationHrefToServer(url, params ,true);
+                DameiUtils.locationHrefToServer(url, params ,true);
                 /*var newWindow = window.open('/material/contractchange/vieworprint/' + ids + '/true');
                 newWindow.window.print();*/
                 setTimeout(function () {

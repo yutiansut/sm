@@ -25,13 +25,13 @@
             return '';
         return val;
     }
-    window.MdniUser = {
+    window.DameiUser = {
         userId: null2Empty('<shiro:principal property="id"/>'),
         orgCode: null2Empty('<shiro:principal property="orgCode"/>'),
         account: null2Empty('<shiro:principal property="username"/>'),
         name: null2Empty('<shiro:principal property="name" />'),
         roleNameList: null2Empty('<shiro:principal property="roleNameList" />'),
-        permissionList: MdniUtils.permissionsFormat(null2Empty('<shiro:principal property="permissionList" />')),
+        permissionList: DameiUtils.permissionsFormat(null2Empty('<shiro:principal property="permissionList" />')),
         //门店编码
         storeCode: null2Empty('<shiro:principal property="storeCode"/>')
     }

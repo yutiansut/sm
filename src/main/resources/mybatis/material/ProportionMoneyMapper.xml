@@ -7,20 +7,20 @@
     <result column="renovationamount"  property="renovationAmount" />
     <result column="baseloadrating3"  property="baseloadrating3" />
     <result column="comprehensivefee4"  property="comprehensivefee4" />
-    <result column="contract_code"  property="contractCode" />
+    <result column="dm_contract_code"  property="contractCode" />
     <result column="create_time"  property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, baseloadrating1, renovationamount, baseloadrating3, comprehensivefee4, contract_code,
+    id, baseloadrating1, renovationamount, baseloadrating3, comprehensivefee4, dm_contract_code,
     create_time
   </sql>
   <delete id="deleteByContractCode">
     delete from sm_proportion_money
-    where contract_code = #{contractCode}
+    where dm_contract_code = #{contractCode}
   </delete>
   <select id="getByContractCode" resultMap="BaseResultMap">
     SELECT <include refid="Base_Column_List"/> FROM  sm_proportion_money
-    WHERE   contract_code = #{contractCode}
+    WHERE   dm_contract_code = #{contractCode}
   </select>
   <insert id="insert" parameterType="ProportionMoney" useGeneratedKeys="true" keyProperty="id">
     insert into sm_proportion_money
@@ -38,7 +38,7 @@
         comprehensivefee4,
       </if>
       <if test="contractCode != null">
-        contract_code,
+        dm_contract_code,
       </if>
       <if test="createTime != null">
         create_time,

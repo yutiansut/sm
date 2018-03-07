@@ -4,7 +4,7 @@
 
     <resultMap id="BaseResultMap" type="cn.damei.business.entity.material.ConstructionChange">
         <id column="id" property="id"/>
-        <result column="contract_code" property="contractCode"/>
+        <result column="dm_contract_code" property="contractCode"/>
         <result column="change_no" property="changeNo"/>
         <result column="change_apply_date" property="changeApplyDate"/>
         <result column="change_reason" property="changeReason"/>
@@ -38,7 +38,7 @@
 
     <sql id="Base_Column_List">
         id
-        ,contract_code
+        ,dm_contract_code
         ,change_no
         ,change_apply_date
         ,change_reason
@@ -68,7 +68,7 @@
     <insert id="insert" parameterType="cn.damei.business.entity.material.ConstructionChange">
         INSERT INTO sm_construction_change
                   ( id
-                   ,contract_code
+                   ,dm_contract_code
                    ,change_no
                    ,change_apply_date
                    ,change_reason
@@ -96,7 +96,7 @@
 
     <select id="search"  resultMap="mulitResultMap">
         SELECT
-            schange.id, schange.change_no, schange.contract_code, cus.name customer_name,
+            schange.id, schange.change_no, schange.dm_contract_code, cus.name customer_name,
             cus.mobile customer_mobile, con.second_contact second_contract_name,
             con.second_contact_mobile second_contract_mobile, schange.create_time,
             schange.change_list_total_price, schange.print_count, schange.change_apply_date
@@ -109,7 +109,7 @@
 
     <select id="findMoreByIds"  resultMap="mulitResultMap">
         SELECT
-            schange.id, schange.change_no, schange.contract_code, cus.name customer_name,
+            schange.id, schange.change_no, schange.dm_contract_code, cus.name customer_name,
             cus.mobile customer_mobile, con.second_contact second_contract_name,
             con.second_contact_mobile second_contract_mobile, schange.change_apply_date,
             schange.change_list_total_price, schange.print_count, schange.change_reason,
@@ -119,7 +119,7 @@
             schange.cut_project_total_price
         FROM
           sm_construction_change schange
-        LEFT JOIN customer_contract con ON con.contract_code = schange.contract_code
+        LEFT JOIN customer_contract con ON con.dm_contract_code = schange.dm_contract_code
         LEFT JOIN customer cus ON cus.id = con.customer_id
         LEFT JOIN sm_construction_change_detail detail ON detail.change_no = schange.change_no
         WHERE schange.id IN
@@ -129,11 +129,11 @@
     </select>
 
     <sql id="searchFromWhere">
-        LEFT JOIN customer_contract con ON con.contract_code = schange.contract_code
+        LEFT JOIN customer_contract con ON con.dm_contract_code = schange.dm_contract_code
         LEFT JOIN customer cus ON cus.id = con.customer_id
         <where>
             <if test="keyword != null">
-                (schange.contract_code like CONCAT('%', #{keyword}, '%')
+                (schange.dm_contract_code like CONCAT('%', #{keyword}, '%')
                     OR cus.name like CONCAT('%', #{keyword}, '%')
                     OR cus.mobile like CONCAT('%', #{keyword}, '%')
                 )

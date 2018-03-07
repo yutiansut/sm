@@ -5,8 +5,8 @@
     <resultMap id="BaseResultMap" type="cn.damei.business.entity.finance.FinaOperatLog">
         <id column="id" property="id" />
         <result column="operat_type" property="operatType"/>
-        <result column="contract_code" property="contractCode"/>
-        <result column="contract_uuid" property="contractUuid"/>
+        <result column="dm_contract_code" property="contractCode"/>
+        <result column="dm_contract_uuid" property="contractUuid"/>
         <result column="target_key" property="targetKey"/>
         <result column="target_val" property="targetVal"/>
         <result column="operat_msg" property="operatMsg"/>
@@ -19,7 +19,7 @@
     </sql>
 
     <insert id="insert" parameterType="cn.damei.business.entity.finance.FinaOperatLog">
-        INSERT INTO fina_operat_log(operat_type,contract_code,contract_uuid,target_key,target_val,operat_msg,operator,operat_time)
+        INSERT INTO fina_operat_log(operat_type,dm_contract_code,dm_contract_uuid,target_key,target_val,operat_msg,operator,operat_time)
         VALUES (#{operatType},#{contractCode},#{contractUuid},#{targetKey},#{targetVal},#{operatMsg},#{operator},#{operatTime})
     </insert>
 
@@ -32,7 +32,7 @@
         FROM
         fina_operat_log fol
         <where>
-            fol.contract_uuid = #{contractUuid}
+            fol.dm_contract_uuid = #{contractUuid}
         </where>
         ORDER BY fol.id DESC
     </select>

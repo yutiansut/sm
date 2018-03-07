@@ -55,7 +55,7 @@ var manyModelVue;
         methods: {
             findAbleColumn: function () {
                 var self = this;
-                self.$http.get("/finance/analyze/getstagetemplatecode?storeCode="+MdniUser.storeCode, {
+                self.$http.get("/finance/analyze/getstagetemplatecode?storeCode="+DameiUser.storeCode, {
                 }).then(function (res) {
                     if (res.data.code == 1) {
                         self.payplanStageList = res.data.data;
@@ -516,7 +516,7 @@ var manyModelVue;
             manyModelVue = new Vue({
                 el: el,
                 // 模式窗体必须引用 ModalMixin
-                mixins: [MdniVueMixins.ModalMixin],
+                mixins: [DameiVueMixins.ModalMixin],
                 $modal: $el, // 模式窗体 jQuery 对象
                 data: {
                     contractCodeMany: '',

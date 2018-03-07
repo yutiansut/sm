@@ -4,7 +4,7 @@
 
     <resultMap id="BaseResultMap" type="PrepareOrderAbnormalLog">
         <id column="id" property="id"/>
-        <result column="contract_code" property="contractCode"/>
+        <result column="dm_contract_code" property="contractCode"/>
         <result column="data_source" property="dataSource"/>
         <result column="deal_status" property="dealStatus"/>
         <result column="deal_user" property="dealUser"/>
@@ -14,7 +14,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, contract_code, data_source, deal_status, deal_user, deal_time, create_time, abnormal_content
+        id, dm_contract_code, data_source, deal_status, deal_user, deal_time, create_time, abnormal_content
     </sql>
 
     <select id="getById" parameterType="Long" resultMap="BaseResultMap">
@@ -33,7 +33,7 @@
         insert into sm_prepare_order_abnormal_log
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="contractCode != null">
-                contract_code,
+                dm_contract_code,
             </if>
             <if test="dataSource != null">
                 data_source,
@@ -83,7 +83,7 @@
         update sm_prepare_order_abnormal_log
         <set>
             <if test="contractCode != null">
-                contract_code = #{contractCode},
+                dm_contract_code = #{contractCode},
             </if>
             <if test="dataSource != null">
                 data_source = #{dataSource},

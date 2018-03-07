@@ -83,8 +83,8 @@ var detail;
             tabList: []
         },
         created: function () {
-            this.contractUuid = MdniUtils.parseQueryString()['id'];
-            this.flag = MdniUtils.parseQueryString()['flag'];
+            this.contractUuid = DameiUtils.parseQueryString()['id'];
+            this.flag = DameiUtils.parseQueryString()['flag'];
             if(!this.contractUuid){
                 this.showModel();
             }else{
@@ -172,11 +172,11 @@ var detail;
             },
             //选择项目跳转
             selectProject: function () {
-                showMdniOrder();
+                showDameiOrder();
             },
             //项目弹框
             showModel: function () {
-                showMdniOrder();
+                showDameiOrder();
             },
             refresh: function (val) {
                 var self = this;
@@ -251,7 +251,7 @@ var detail;
     });
 
     // 显示项目列表
-    function showMdniOrder() {
+    function showDameiOrder() {
         var _modal = $('#mdnOrder').clone();
         var $el = _modal.modal({
             height: 480,
@@ -262,7 +262,7 @@ var detail;
         var el = $el.get(0);
         var vueModal = new Vue({
             el: el,
-            mixins: [MdniVueMixins.ModalMixin],
+            mixins: [DameiVueMixins.ModalMixin],
             data: {
                 flag: true,//确定按钮是否显示的标识符
                 form: {
@@ -475,7 +475,7 @@ var detail;
                 var vueDetailModal = new Vue({
                     el: el,
                     // 模式窗体必须引用 ModalMixin
-                    mixins: [MdniVueMixins.ModalMixin],
+                    mixins: [DameiVueMixins.ModalMixin],
                     $modal: $el,
                     data: {
                         customerContract: null

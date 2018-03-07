@@ -5,8 +5,8 @@
     <resultMap id="BaseResultMap" type="cn.damei.business.entity.finance.ProjectchangeMoney">
         <id column="id" property="id" />
         <result column="change_no" property="changeNo"/>
-        <result column="contract_code" property="contractCode"/>
-        <result column="contract_uuid" property="contractUuid"/>
+        <result column="dm_contract_code" property="contractCode"/>
+        <result column="dm_contract_uuid" property="contractUuid"/>
         <result column="change_amount" property="changeAmount"/>
         <result column="change_mode" property="changeMode"/>
         <result column="create_stage_id" property="createStageId"/>
@@ -23,7 +23,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,change_no,contract_code,contract_uuid,change_amount,change_mode,create_stage_id,creator,create_time,effect_stage_id,
+        id,change_no,dm_contract_code,dm_contract_uuid,change_amount,change_mode,create_stage_id,creator,create_time,effect_stage_id,
         effect_stage_name,cleared,clear_stage_id,clear_stage_name,cleared_time,print_count,change_status
     </sql>
 
@@ -44,11 +44,11 @@
         FROM
             fina_projectchange_money fpm
         LEFT JOIN fina_project_payplan_stage fps ON fpm.effect_stage_id = fps.stage_code
-        LEFT JOIN fina_paymoney_record fpr ON fpm.contract_uuid = fpr.contract_uuid
+        LEFT JOIN fina_paymoney_record fpr ON fpm.dm_contract_uuid = fpr.dm_contract_uuid
         LEFT JOIN sm_construction_change scc on fpm.change_no = scc.change_no
         LEFT JOIN sm_change_detail scd on fpm.change_no = scd.change_no
         <where>
-            fpm.contract_uuid = #{contractUuid}
+            fpm.dm_contract_uuid = #{contractUuid}
         </where>
         GROUP BY fpm.change_no
         ORDER BY fpm.change_no DESC
@@ -61,7 +61,7 @@
         <where>
             1=1
             <if test="contractUuid != null">
-                AND contract_uuid=#{contractUuid}
+                AND dm_contract_uuid=#{contractUuid}
             </if>
             <if test="effectStageId != null">
                 AND effect_stage_id=#{effectStageId}
@@ -85,13 +85,13 @@
 
     <select id="getFewAmountByContractCode" resultType="map" parameterType="java.util.List">
         SELECT
-        fpm.contract_code AS contractCode,
+        fpm.dm_contract_code AS contractCode,
         SUM(fpm.change_amount) AS fewChangeAmount
         FROM
         fina_projectchange_money fpm
         <where>
         <if test="codeList != null">
-            fpm.contract_code IN
+            fpm.dm_contract_code IN
             <foreach collection="codeList" index="index" item="item" open="(" separator="," close=")">
                 #{item}
             </foreach>
@@ -102,13 +102,13 @@
 
     <select id="getAddAmountByContractCode" resultType="map" parameterType="java.util.List">
         SELECT
-        fpm.contract_code AS contractCode,
+        fpm.dm_contract_code AS contractCode,
         SUM(fpm.change_amount) AS addChangeAmount
         FROM
         fina_projectchange_money fpm
         <where>
         <if test="codeList != null">
-            fpm.contract_code IN
+            fpm.dm_contract_code IN
             <foreach collection="codeList" index="index" item="item" open="(" separator="," close=")">
                 #{item}
             </foreach>
@@ -120,8 +120,8 @@
     <insert id="insert" parameterType="cn.damei.business.entity.finance.ProjectchangeMoney">
         INSERT INTO fina_projectchange_money (
             change_no,
-            contract_code,
-            contract_uuid,
+            dm_contract_code,
+            dm_contract_uuid,
             change_amount,
             change_mode,
             create_time,
@@ -136,7 +136,7 @@
         SELECT  #{changeNo},#{contractCode},#{contractUuid},#{changeAmount},#{changeMode},#{createTime},#{effectStageId},#{effectStageName},
         #{cleared},#{printCount},#{createStageId},#{creator},#{changeType}
          FROM DUAL  WHERE  NOT  EXISTS
-        (SELECT change_no,contract_code,contract_uuid,change_amount,change_mode,create_time,effect_stage_id,effect_stage_name FROM
+        (SELECT change_no,dm_contract_code,dm_contract_uuid,change_amount,change_mode,create_time,effect_stage_id,effect_stage_name FROM
          fina_projectchange_money WHERE change_no = #{changeNo})
     </insert>
 

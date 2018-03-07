@@ -4,8 +4,8 @@
 
     <resultMap id="BaseResultMap" type="cn.damei.business.entity.finance.FinaProjectAccount">
         <id column="id" property="id" />
-        <result column="contract_code" property="contractCode"/>
-        <result column="contract_uuid" property="contractUuid"/>
+        <result column="dm_contract_code" property="contractCode"/>
+        <result column="dm_contract_uuid" property="contractUuid"/>
         <result column="balance_amount" property="balanceAmount"/>
         <result column="deposit_total_payed" property="depositTotalPayed"/>
         <result column="deposit_total_deduct" property="depositTotalDeduct"/>
@@ -16,14 +16,14 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,contract_code,contract_uuid,IFNULL(balance_amount,0) as balance_amount,IFNULL(deposit_total_payed,0) as deposit_total_payed,
+        id,dm_contract_code,dm_contract_uuid,IFNULL(balance_amount,0) as balance_amount,IFNULL(deposit_total_payed,0) as deposit_total_payed,
         IFNULL(deposit_total_deduct,0) as deposit_total_deduct,IFNULL(modify_expect_amount,0) as modify_expect_amount,
         IFNULL(modify_total_payed,0) as modify_total_payed,
         IFNULL(construct_expect_amount,0) as construct_expect_amount,IFNULL(construct_total_payed,0) as construct_total_payed
     </sql>
 
     <insert id="insert" parameterType="cn.damei.business.entity.finance.FinaProjectAccount">
-        INSERT INTO fina_project_account(contract_code,contract_uuid,balance_amount,deposit_total_payed,
+        INSERT INTO fina_project_account(dm_contract_code,dm_contract_uuid,balance_amount,deposit_total_payed,
         deposit_total_deduct,modify_expect_amount,modify_total_payed,construct_expect_amount,construct_total_payed)
         VALUES (#{contractCode},#{contractUuid},#{balanceAmount},#{depositTotalPayed},#{depositTotalDeduct},
         #{modifyExpectAmount},#{modifyTotalPayed},#{constructExpectAmount},#{constructTotalPayed})
@@ -36,7 +36,7 @@
         <where>
             1=1
             <if test="contractUuid != null">
-                AND contract_uuid=#{contractUuid}
+                AND dm_contract_uuid=#{contractUuid}
             </if>
 
         </where>
@@ -88,22 +88,22 @@
         fina_project_account fpa
         LEFT JOIN (
         SELECT
-        contract_code,
+        dm_contract_code,
         SUM(change_amount) AS changeAmount
         FROM
         fina_projectchange_money
-        GROUP BY contract_code
-        ) fpm ON fpm.contract_code = fpa.contract_code
+        GROUP BY dm_contract_code
+        ) fpm ON fpm.dm_contract_code = fpa.dm_contract_code
         LEFT JOIN (
         SELECT
-        contract_code,
+        dm_contract_code,
         SUM(reparation_amount) AS reparationAmount
         FROM
         fina_reparation_money
-        GROUP BY contract_code
-        ) frm ON frm.contract_code = fpa.contract_code
+        GROUP BY dm_contract_code
+        ) frm ON frm.dm_contract_code = fpa.dm_contract_code
         <where>
-            fpa.contract_uuid =#{contractUuid}
+            fpa.dm_contract_uuid =#{contractUuid}
         </where>
     </select>
 </mapper>

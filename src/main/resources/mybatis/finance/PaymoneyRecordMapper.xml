@@ -4,8 +4,8 @@
   <resultMap id="BaseResultMap" type="cn.damei.business.entity.finance.PaymoneyRecord">
     <id column="id" property="id" />
     <result column="pay_id" property="payId"/>
-    <result column="contract_code" property="contractCode"/>
-    <result column="contract_uuid" property="contractUuid"/>
+    <result column="dm_contract_code" property="contractCode"/>
+    <result column="dm_contract_uuid" property="contractUuid"/>
     <result column="stage_code" property="stageCode"/>
     <result column="pay_type" property="payType"/>
     <result column="payer_name" property="payerName"/>
@@ -82,12 +82,12 @@
   </select>
 
   <sql id="paymoneyRecordFromWhere">
-    LEFT JOIN sm_project_sign sig ON rec.contract_code = sig.contract_code
-    LEFT JOIN customer_contract cus ON rec.contract_code = cus.contract_code
+    LEFT JOIN sm_project_sign sig ON rec.dm_contract_code = sig.dm_contract_code
+    LEFT JOIN customer_contract cus ON rec.dm_contract_code = cus.dm_contract_code
     LEFT JOIN fina_payplan_item ite ON rec.template_stage_id = ite.id
     <where>
       <if test="keyword != null">
-        and (rec.contract_code like CONCAT('%', #{keyword}, '%')
+        and (rec.dm_contract_code like CONCAT('%', #{keyword}, '%')
         OR rec.payer_name like CONCAT('%', #{keyword}, '%')
         OR rec.receipt_num like CONCAT('%', #{keyword}, '%')
         OR rec.payer_mobile like CONCAT('%', #{keyword}, '%')
@@ -128,8 +128,8 @@
     (select distinct
     cus.order_flow_status as fstatus,
     IF(cus.is_sign_deposit IS NULL,0, cus.is_sign_deposit) as finished,
-    cus.contract_code as contractCode,
-    cus.contract_uuid as contractUuid,
+    cus.dm_contract_code as contractCode,
+    cus.dm_contract_uuid as contractUuid,
     cus.store_code as storeCode,
     cust.name as customerName,
     cus.address_province as addressProvince,
@@ -149,18 +149,18 @@
     ) aa
     left join
     (select
-    rec.contract_code,
+    rec.dm_contract_code,
     rec.template_stage_id as templateStageId,
     rec.paymethod_name AS paymethodName,
     rec.pay_time as payTime,
     rec.actual_received AS actualReceived,
     ite.item_name as itemName
     from fina_paymoney_record rec,fina_payplan_item ite,
-    (select contract_code,MAX(id) maxId from fina_paymoney_record group by contract_code) b
-    where rec.contract_code = b.contract_code
+    (select dm_contract_code,MAX(id) maxId from fina_paymoney_record group by dm_contract_code) b
+    where rec.dm_contract_code = b.dm_contract_code
     and b.maxId = rec.id
     and ite.id = rec.template_stage_id) bb
-    on aa.contractCode = bb.contract_code
+    on aa.contractCode = bb.dm_contract_code
     <include refid="projectCompositeFromWhere"/>
   </select>
 
@@ -169,8 +169,8 @@
     (select distinct
       cus.order_flow_status as fstatus,
       IF(cus.is_sign_deposit IS NULL,0, cus.is_sign_deposit) as finished,
-      cus.contract_code as contractCode,
-      cus.contract_uuid as contractUuid,
+      cus.dm_contract_code as contractCode,
+      cus.dm_contract_uuid as contractUuid,
       cus.store_code as storeCode,
       cust.name as customerName,
       cus.address_province as addressProvince,
@@ -190,18 +190,18 @@
     ) aa
     left join
     (select
-    rec.contract_code,
+    rec.dm_contract_code,
     rec.template_stage_id as templateStageId,
     rec.paymethod_name AS paymethodName,
     rec.pay_time as payTime,
     rec.actual_received AS actualReceived,
     ite.item_name as itemName
     from fina_paymoney_record rec,fina_payplan_item ite,
-    (select contract_code,MAX(id) maxId from fina_paymoney_record group by contract_code) b
-    where rec.contract_code = b.contract_code
+    (select dm_contract_code,MAX(id) maxId from fina_paymoney_record group by dm_contract_code) b
+    where rec.dm_contract_code = b.dm_contract_code
     and b.maxId = rec.id
     and ite.id = rec.template_stage_id) bb
-    on aa.contractCode = bb.contract_code
+    on aa.contractCode = bb.dm_contract_code
     <include refid="projectCompositeFromWhere"/>
     order by payTime desc
     limit #{offset}, #{pageSize}
@@ -261,7 +261,7 @@
     fina_paymoney_record fpr
     LEFT JOIN fina_payplan_item fpi ON fpr.template_stage_id = fpi.id
     <where>
-      fpr.contract_uuid = #{contractUuid}
+      fpr.dm_contract_uuid = #{contractUuid}
       and fpr.pay_type!='RETURN_MONEY'
     </where>
     ORDER BY fpr.id DESC
@@ -272,8 +272,8 @@
     (select distinct
     cus.order_flow_status as fstatus,
     IF(cus.is_sign_deposit IS NULL,0, cus.is_sign_deposit) as finished,
-    cus.contract_code as contractCode,
-    cus.contract_uuid as contractUuid,
+    cus.dm_contract_code as contractCode,
+    cus.dm_contract_uuid as contractUuid,
     cus.store_code as storeCode,
     cust.name as customerName,
     cus.address_province as addressProvince,
@@ -321,24 +321,24 @@
     ) aa
     left join
     (select
-    rec.contract_code,
+    rec.dm_contract_code,
     rec.template_stage_id as templateStageId,
     rec.paymethod_name AS paymethodName,
     rec.pay_time as payTime,
     rec.actual_received AS actualReceived,
     ite.item_name as itemName
     from fina_paymoney_record rec,fina_payplan_item ite,
-    (select contract_code,MAX(id) maxId from fina_paymoney_record group by contract_code) b
-    where rec.contract_code = b.contract_code
+    (select dm_contract_code,MAX(id) maxId from fina_paymoney_record group by dm_contract_code) b
+    where rec.dm_contract_code = b.dm_contract_code
     and b.maxId = rec.id
     and ite.id = rec.template_stage_id) bb
-    on aa.contractCode = bb.contract_code
+    on aa.contractCode = bb.dm_contract_code
     <include refid="projectCompositeFromWhere"/>
   </select>
 
   <select id="exportPaymoneyRecord" parameterType="map" resultMap="BaseResultMap">
     SELECT
-    rec.*, sig.contract_code AS sign_contract_code,sig.contract_start_time AS sign_contract_start_time,
+    rec.*, sig.dm_contract_code AS sign_contract_code,sig.contract_start_time AS sign_contract_start_time,
     CASE rec.if_rcw
       WHEN '1' THEN '是'
       WHEN '0' THEN '否'
@@ -375,7 +375,7 @@
 
 
   <insert id="insert" parameterType="cn.damei.business.entity.finance.PaymoneyRecord">
-      INSERT INTO fina_paymoney_record(pay_id,contract_code,contract_uuid,stage_code,template_stage_id,template_stage_code,
+      INSERT INTO fina_paymoney_record(pay_id,dm_contract_code,dm_contract_uuid,stage_code,template_stage_id,template_stage_code,
       pay_type,pay_manual_flag,payer_name,payer_mobile,pay_time,expect_received,actual_received,receipt_num,if_rcw,rcw_payid,
       create_time,update_time,creator,pay_status,remark,print_count,cashier,paymethod_code,paymethod_name,paymethod_attr_id,
       paymethod_attr_fullname,costfee_rate,costfee_amount,if_able_deduct,relate_record_id) VALUES (
@@ -390,7 +390,7 @@
 
 
   <insert id="batchInsertList">
-    INSERT INTO fina_paymoney_record(pay_id,contract_code,contract_uuid,stage_code,template_stage_id,template_stage_code,
+    INSERT INTO fina_paymoney_record(pay_id,dm_contract_code,dm_contract_uuid,stage_code,template_stage_id,template_stage_code,
     pay_type,pay_manual_flag,payer_name,payer_mobile,pay_time,expect_received,actual_received,receipt_num,if_rcw,rcw_payid,
     create_time,update_time,creator,pay_status,remark,print_count,cashier,paymethod_code,paymethod_name,paymethod_attr_id,
     paymethod_attr_fullname,costfee_rate,costfee_amount,if_able_deduct,relate_record_id) VALUES
@@ -419,10 +419,10 @@
         pay_id = #{payId},
       </if>
       <if test="contractCode != null">
-        contract_code = #{contractCode},
+        dm_contract_code = #{contractCode},
       </if>
       <if test="contractUuid != null">
-        contract_uuid = #{contractUuid},
+        dm_contract_uuid = #{contractUuid},
       </if>
       <if test="stageCode != null">
         stage_code = #{stageCode},
@@ -513,13 +513,13 @@
   </update>
 
   <update id="batchUpdatePaymoneyRecordStatus">
-      UPDATE fina_paymoney_record SET pay_status = #{payRecordStatus} WHERE contract_uuid=#{contractUuid}
+      UPDATE fina_paymoney_record SET pay_status = #{payRecordStatus} WHERE dm_contract_uuid=#{contractUuid}
   </update>
 
   <select id="getProjectAbleFinishPaymoneyRecord" resultMap="BaseResultMap">
       SELECT r.* FROM fina_paymoney_record r
       LEFT JOIN fina_project_payplan_stage s ON r.stage_code = s.stage_code
-      WHERE r.if_rcw=0 AND r.pay_status='VALID' AND r.contract_uuid=#{contractUuid} AND s.curent_flag = 1
+      WHERE r.if_rcw=0 AND r.pay_status='VALID' AND r.dm_contract_uuid=#{contractUuid} AND s.curent_flag = 1
       AND r.pay_type IN
       <foreach collection="ablePayTypes" index="index" item="type" open="(" separator="," close=")">
         #{type}
@@ -534,7 +534,7 @@
 
   <select id="getProjectAbleRcwPaymoneyRecord" resultMap="BaseResultMap">
     SELECT * FROM fina_paymoney_record
-    WHERE if_rcw=0 AND pay_status='VALID' AND contract_uuid=#{contractUuid} AND pay_type IN
+    WHERE if_rcw=0 AND pay_status='VALID' AND dm_contract_uuid=#{contractUuid} AND pay_type IN
     <foreach collection="ablePayTypes" index="index" item="type" open="(" separator="," close=")">
       #{type}
     </foreach>
@@ -545,7 +545,7 @@
   <select id="findReceiptAll" resultMap="BaseResultMap" parameterType="map">
     SELECT
     rec.id,
-    rec.contract_code,
+    rec.dm_contract_code As contract_code,
     cust.`name` AS customer_name,
     cust.mobile AS customer_mobile,
     cus.second_contact,
@@ -565,12 +565,12 @@
     rec.creator
     FROM
     fina_paymoney_record rec
-    LEFT JOIN customer_contract cus ON cus.contract_code = rec.contract_code
+    LEFT JOIN customer_contract cus ON cus.dm_contract_code = rec.dm_contract_code
     LEFT JOIN customer cust ON cus.customer_id = cust.id
     LEFT JOIN fina_payplan_item fpi ON rec.template_stage_id = fpi.id
     <where>
       <if test="keyword != null">
-        and (rec.contract_code like CONCAT('%', #{keyword}, '%')
+        and (rec.dm_contract_code like CONCAT('%', #{keyword}, '%')
         OR cust.name like CONCAT('%', #{keyword}, '%')
         OR cust.mobile  like CONCAT('%', #{keyword}, '%')
         )
@@ -593,12 +593,12 @@
     SELECT COUNT(*)
     FROM
     fina_paymoney_record rec
-    LEFT JOIN customer_contract cus ON cus.contract_code = rec.contract_code
+    LEFT JOIN customer_contract cus ON cus.dm_contract_code = rec.dm_contract_code
     LEFT JOIN customer cust ON cus.customer_id = cust.id
     LEFT JOIN fina_payplan_item fpi ON rec.template_stage_id = fpi.id
     <where>
       <if test="keyword != null">
-        and (rec.contract_code like CONCAT('%', #{keyword}, '%')
+        and (rec.dm_contract_code like CONCAT('%', #{keyword}, '%')
         OR cust.name like CONCAT('%', #{keyword}, '%')
         OR cust.mobile like CONCAT('%', #{keyword}, '%')
         )
@@ -632,7 +632,7 @@
           fsp.config_content
       FROM
           fina_paymoney_record rec
-      LEFT JOIN customer_contract cus ON cus.contract_code = rec.contract_code
+      LEFT JOIN customer_contract cus ON cus.dm_contract_code = rec.dm_contract_code
       LEFT JOIN customer cust ON cus.customer_id = cust.id
       LEFT JOIN sm_meal_info smi ON cus.meal_id = smi.id
       LEFT JOIN fina_payplan_item fpi ON rec.template_stage_id = fpi.id
@@ -666,7 +666,7 @@
           fsp.config_content
       FROM
           fina_paymoney_record rec
-      LEFT JOIN customer_contract cus ON cus.contract_code = rec.contract_code
+      LEFT JOIN customer_contract cus ON cus.dm_contract_code = rec.dm_contract_code
       LEFT JOIN customer cust ON cus.customer_id = cust.id
       LEFT JOIN sm_meal_info smi ON cus.meal_id = smi.id
       LEFT JOIN fina_payplan_item fpi ON rec.template_stage_id = fpi.id
@@ -696,7 +696,7 @@
     <where>
       1=1
       <if test="contractUuid != null">
-        AND contract_uuid  = #{contractUuid}
+        AND dm_contract_uuid  = #{contractUuid}
       </if>
     </where>
     <if test="sort != null">

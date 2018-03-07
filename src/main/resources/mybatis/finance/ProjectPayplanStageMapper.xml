@@ -5,8 +5,8 @@
     <resultMap id="BaseResultMap" type="cn.damei.business.entity.finance.ProjectPayplanStage">
         <id column="id" property="id" />
         <id column="stage_code" property="stageCode" />
-        <id column="contract_code" property="contractCode" />
-        <id column="contract_uuid" property="contractUuid" />
+        <id column="dm_contract_code" property="contractCode" />
+        <id column="dm_contract_uuid" property="contractUuid" />
         <id column="stageidx" property="stageidx" />
         <id column="stage_template_id" property="stageTemplateId" />
         <id column="stage_template_code" property="stageTemplateCode" />
@@ -27,7 +27,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,stage_code,contract_code,contract_uuid,stageidx,stage_template_id,stage_template_code,
+        id,stage_code,dm_contract_code,dm_contract_uuid,stageidx,stage_template_id,stage_template_code,
         IFNULL(expect_received,0) AS expect_received,IFNULL(actual_total_received,0) AS actual_total_received,
         IFNULL(ago_unpay_amount,0) AS ago_unpay_amount,start_time,stage_finished,finish_time,finish_mode,
         finish_operator,curent_flag,prev_stage_code,next_stage_code,stage_type,stage_name,plan_template_code
@@ -37,26 +37,26 @@
     <select id="getProjectFirstStage" resultMap="BaseResultMap">
         SELECT <include refid="Base_Column_List"/>
         FROM fina_project_payplan_stage
-        WHERE stg.contract_uuid=#{contractUuid} ORDER BY stageidx LIMIT 1
+        WHERE stg.dm_contract_uuid=#{contractUuid} ORDER BY stageidx LIMIT 1
     </select>
 
 
     <select id="getProjectStageWithStageCode" resultMap="BaseResultMap">
         SELECT <include refid="Base_Column_List"/>
         FROM fina_project_payplan_stage
-        WHERE stg.contract_uuid=#{contractUuid} AND stage_template_code=#{stageCode} LIMIT 1
+        WHERE stg.dm_contract_uuid=#{contractUuid} AND stage_template_code=#{stageCode} LIMIT 1
     </select>
 
 
     <select id="getProjectCurrentStage" resultMap="BaseResultMap">
         SELECT <include refid="Base_Column_List"/>
         FROM fina_project_payplan_stage
-        WHERE contract_uuid=#{contractUuid} AND curent_flag=1 LIMIT 1
+        WHERE dm_contract_uuid=#{contractUuid} AND curent_flag=1 LIMIT 1
     </select>
 
 
     <insert id="insert" parameterType="cn.damei.business.entity.finance.ProjectPayplanStage">
-        INSERT INTO fina_project_payplan_stage(stage_code,contract_code,contract_uuid,stageidx,stage_template_id,
+        INSERT INTO fina_project_payplan_stage(stage_code,dm_contract_code,dm_contract_uuid,stageidx,stage_template_id,
         stage_template_code,expect_received,actual_total_received,ago_unpay_amount,start_time,stage_finished,finish_time,finish_mode,
         finish_operator,curent_flag,prev_stage_code,next_stage_code,stage_type,stage_name,plan_template_code
         ) VALUES (#{stageCode},#{contractCode},#{contractUuid},#{stageidx},
@@ -68,7 +68,7 @@
 
 
     <insert id="insertProjectPayplanStageBatch">
-        INSERT INTO fina_project_payplan_stage(stage_code,contract_code,contract_uuid,stageidx,stage_template_id,
+        INSERT INTO fina_project_payplan_stage(stage_code, dm_contract_code,dm_contract_uuid,stageidx,stage_template_id,
         stage_template_code,expect_received,actual_total_received,ago_unpay_amount,start_time,stage_finished,finish_time,finish_mode,
         finish_operator,curent_flag,prev_stage_code,next_stage_code,stage_type,stage_name,plan_template_code
         ) VALUES
@@ -93,7 +93,7 @@
         fina_project_payplan_stage fps
         LEFT JOIN fina_payplan_item fpi ON fpi.id = fps.stage_template_id
         <where>
-            fps.contract_uuid = #{contractUuid}
+            fps.dm_contract_uuid = #{contractUuid}
         </where>
     </select>
 
@@ -112,14 +112,14 @@
         END AS paymentStatus,
         fps.actual_total_received AS amount,
         finish_time AS time,
-        fps.contract_code AS orderId
+        fps.dm_contract_code AS orderId
         FROM
         fina_project_payplan_stage fps
         LEFT JOIN fina_payplan_item fpi ON fps.stage_template_id = fpi.id
         <where>
             fpi.need_mps_push = 1 AND
             fps.stage_template_code = #{stageTemplateCode} AND
-            fps.contract_code = #{contractCode}
+            fps.dm_contract_code = #{contractCode}
         </where>
     </select>
 
@@ -136,25 +136,25 @@
                 AND stage_template_code=#{itemTempCode}
             </if>
             <if test="contractUuid != null">
-                AND contract_uuid=#{contractUuid}
+                AND dm_contract_uuid=#{contractUuid}
             </if>
         </where>
     </select>
 
     <select id="findProjectStage" resultType="java.util.HashMap">
         SELECT
-            fpps.contract_uuid,
-            fpps.contract_code,
+            fpps.dm_contract_uuid AS contract_uuid,
+            fpps.dm_contract_code AS contract_code,
             fpps.stage_name,
             fpps.stage_code,
             cus.`name`,
             cus.mobile
         FROM
             fina_project_payplan_stage fpps
-        LEFT JOIN customer_contract cc ON fpps.contract_code = cc.contract_code
+        LEFT JOIN customer_contract cc ON fpps.dm_contract_code = cc.dm_contract_code
         LEFT JOIN customer cus ON cus.id = cc.customer_id
         <where>
-            fpps.contract_uuid = #{contractUuid} AND fpps.curent_flag = 1
+            fpps.dm_contract_uuid = #{contractUuid} AND fpps.curent_flag = 1
         </where>
         LIMIT 1
     </select>
@@ -207,7 +207,7 @@
         LEFT JOIN fina_payplan_item fpi ON fpi.id = fps.stage_template_id
         <where>
         <if test="codeList != null">
-            AND fps.contract_code IN
+            AND fps.dm_contract_code IN
             <foreach collection="codeList" index="index" item="item" open="(" separator="," close=")">
                 #{item}
             </foreach>
@@ -219,7 +219,7 @@
         SELECT DISTINCT
             fps.stage_template_code AS stageTemplateCode
         FROM fina_project_payplan_stage fps
-        LEFT JOIN customer_contract con  ON fps.contract_code = con.contract_code
+        LEFT JOIN customer_contract con  ON fps.dm_contract_code = con.dm_contract_code
         WHERE con.store_code=#{storeCode}
     </select>
 

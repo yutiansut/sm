@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.damei.business.dao.material.ChangeAuditCollectDao">
   <resultMap id="BaseResultMap" type="ChangeAuditCollect">
-    <result column="contract_code"        property="contractCode" />
+    <result column="dm_contract_code"        property="contractCode" />
     <result column="change_no"        property="changeNo" />
     <result column="audit_user"       property="auditUser" />
     <result column="audit_time"       property="auditTime" />
@@ -25,7 +25,7 @@
             FROM
                 sm_change_detail scd
             LEFT JOIN sm_material_change_audit_record sar ON scd.change_no = sar.change_no
-            LEFT JOIN customer_contract cc ON cc.contract_code = scd.contract_code
+            LEFT JOIN customer_contract cc ON cc.dm_contract_code = scd.dm_contract_code
             WHERE
                 sar.audit_result = 'EXAMINATIONPASSED'
             AND sar.audit_user_type = '审计员'
@@ -45,7 +45,7 @@
         FROM
         sm_change_detail scd
         LEFT JOIN sm_material_change_audit_record sar ON scd.change_no = sar.change_no
-        LEFT JOIN customer_contract cc ON cc.contract_code = scd.contract_code
+        LEFT JOIN customer_contract cc ON cc.dm_contract_code = scd.dm_contract_code
         WHERE
         sar.audit_result = 'EXAMINATIONPASSED'
         AND sar.audit_user_type = '审计员'
@@ -57,11 +57,11 @@
 
   <select id="findAuditChangeOrderInfo" resultMap="BaseResultMap">
         SELECT
-			sar.audit_user,cc.contract_code,scd.change_no,sar.audit_time
+			sar.audit_user,cc.dm_contract_code,scd.change_no,sar.audit_time
 		FROM
 			sm_change_detail scd
 		LEFT JOIN sm_material_change_audit_record sar ON scd.change_no = sar.change_no
-		LEFT JOIN customer_contract cc ON cc.contract_code = scd.contract_code
+		LEFT JOIN customer_contract cc ON cc.dm_contract_code = scd.dm_contract_code
 		WHERE
 			sar.audit_result = 'EXAMINATIONPASSED'
 		AND sar.audit_user_type = '审计员'

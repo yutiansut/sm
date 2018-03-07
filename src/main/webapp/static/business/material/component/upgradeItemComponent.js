@@ -11,16 +11,16 @@ var upgradeItemComponent = Vue.extend({
             priceType: 'UPGRADE',
             //项目主材sku
             projectMaterial: {
-                contractCode: MdniUtils.parseQueryStringDecode()['contractCode'],
+                contractCode: DameiUtils.parseQueryStringDecode()['contractCode'],
                 categoryCode: 'UPGRADEITEM',//升级项
                 categoryDetailCode: 'UPGRADEITEM',//升级项
             },
             //sku总数(标题后面的数字)
             skuSum: 0,
             //页面类型: 选材(select) 或者 变更(change) 或者 其他
-            pageType: MdniUtils.parseQueryStringDecode()['pageType'] || '',
+            pageType: DameiUtils.parseQueryStringDecode()['pageType'] || '',
             //被打回的一级分类url
-            catalogUrl: MdniUtils.parseQueryStringDecode()['catalogUrl'] || '',
+            catalogUrl: DameiUtils.parseQueryStringDecode()['catalogUrl'] || '',
             //背景色对象
             backColorObj:{
                 //变更
@@ -76,10 +76,10 @@ var upgradeItemComponent = Vue.extend({
                     url: ''
                 };
                 showAddProdModel(self.projectMaterial, self.priceType, catalog,
-                    MdniUtils.formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss'), 1);
+                    DameiUtils.formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss'), 1);
             }else{
                 showAddProdModel(self.projectMaterial, self.priceType, null,
-                    MdniUtils.formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss'), 1);
+                    DameiUtils.formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss'), 1);
             }
         },
         //移除projectMaterial对象
@@ -101,7 +101,7 @@ var upgradeItemComponent = Vue.extend({
         //添加sku用量
         addSkuDosageModel: function (catalog, projectMaterial) {
             var self = this;
-            showAddSkuDosageModel(self.priceType, catalog, projectMaterial, MdniUtils.formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss'));
+            showAddSkuDosageModel(self.priceType, catalog, projectMaterial, DameiUtils.formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss'));
         },
         //删除sku用量
         removeSkuDosage: function (projectMaterial, skuDosageList, skuDosage) {

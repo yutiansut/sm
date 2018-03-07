@@ -4,8 +4,8 @@
 
     <resultMap id="BaseResultMap" type="cn.damei.business.entity.finance.DeductMoney">
         <id column="id" property="id" />
-        <result column="contract_no" property="contractNo"/>
-        <result column="contract_uuid" property="contractUuid"/>
+        <result column="dm_contract_no" property="contractNo"/>
+        <result column="dm_contract_uuid" property="contractUuid"/>
         <result column="pay_id" property="payId"/>
         <result column="receipt_no" property="receiptNo"/>
         <result column="deduct_type" property="deductType"/>
@@ -19,7 +19,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,contract_no,contract_uuid,pay_id,receipt_no,deduct_type,max_deduct_amount,deducted_amount,latest_deduct_time,
+        id,dm_contract_no,dm_contract_uuid,pay_id,receipt_no,deduct_type,max_deduct_amount,deducted_amount,latest_deduct_time,
         deduct_status,creat_time,creator,IFNULL(deduct_times,0) as deduct_times
     </sql>
 
@@ -37,10 +37,10 @@
         <where>
             1=1
             <if test="contractNo != null">
-                AND contract_no=#{contractNo}
+                AND dm_contract_no=#{contractNo}
             </if>
             <if test="contractUuid != null">
-                AND contract_uuid=#{contractUuid}
+                AND dm_contract_uuid=#{contractUuid}
             </if>
             <if test="attrStatus != null">
                 AND deduct_status=#{attrStatus}
@@ -62,7 +62,7 @@
 
 
     <insert id="insert" parameterType="cn.damei.business.entity.finance.DeductMoney">
-        INSERT INTO fina_deduct_money(contract_no,contract_uuid,pay_id,receipt_no,deduct_type,max_deduct_amount,
+        INSERT INTO fina_deduct_money(dm_contract_no,dm_contract_uuid,pay_id,receipt_no,deduct_type,max_deduct_amount,
           deducted_amount,latest_deduct_time,deduct_status,creat_time,creator,deduct_times) VALUES (
           #{contractNo},#{contractUuid},#{payId},#{receiptNo},#{deductType},#{maxDeductAmount},#{deductedAmount},
           #{latestDeductTime},#{deductStatus},#{creatTime},#{creator},0

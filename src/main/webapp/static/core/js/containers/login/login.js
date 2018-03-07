@@ -1,4 +1,4 @@
-+(function (MdniUtils, io) {
++(function (DameiUtils, io) {
   var login = new Vue({
     el: '#loginCont',
     http: {
@@ -26,9 +26,9 @@
       self.form.uuid = uuid;
       // 加载二维码
       self.qrcode = ctx + '/wx/qrcode?uuid=' + uuid;
-//       self.socket = io.connect('http://oasocket.test.mdni.net.cn'); //測試
-//       self.socket = io.connect('http://socketuat.mdni.net.cn'); //UAT
-//       self.socket = io.connect('http://socket.mdni.net.cn'); //生产
+//       self.socket = io.connect('http://oasocket.test.damei.net.cn'); //測試
+//       self.socket = io.connect('http://socketuat.damei.net.cn'); //UAT
+//       self.socket = io.connect('http://socket.damei.net.cn'); //生产
       // self.socket = io.connect('http://localhost:14082'); //本地开发
       // 将随机串推到服务端，为了服务端向客户端推送消息时，区分推到哪个客户端
       self.socket.emit('req', {
@@ -65,7 +65,7 @@
         self.submitting = true;
         self.$http.post(ctx + '/api/login', $.param(data)).then(function (res) {
           if (res.data.code == 1) {
-            window.location.href = MdniUtils.parseQueryString().successUrl || ctx + '/index';
+            window.location.href = DameiUtils.parseQueryString().successUrl || ctx + '/index';
           } else {
             Vue.toastr.error(res.data.message);
           }
@@ -90,4 +90,4 @@
       }
     }
   });
-})(MdniUtils, io);
+})(DameiUtils, io);

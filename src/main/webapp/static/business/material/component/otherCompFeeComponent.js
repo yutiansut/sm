@@ -5,7 +5,7 @@ var otherCompFeeComponent = Vue.extend({
         return {
             //项目主材sku
             projectMaterial: {
-                contractCode: MdniUtils.parseQueryStringDecode()['contractCode'],
+                contractCode: DameiUtils.parseQueryStringDecode()['contractCode'],
                 categoryCode: 'OTHERCOMPREHENSIVEFEE',//其他综合费--大类
                 categoryDetailCode: 'OTHERCATEGORIESOFSMALLFEES',//其他综合费--子类
             },
@@ -29,7 +29,7 @@ var otherCompFeeComponent = Vue.extend({
                 baseloadrating1: 0
             },
             //页面类型: 选材(select) 或者 变更(change) 或者 其他
-            pageType: MdniUtils.parseQueryStringDecode()['pageType'] || '',
+            pageType: DameiUtils.parseQueryStringDecode()['pageType'] || '',
         };
 
     },
@@ -41,7 +41,7 @@ var otherCompFeeComponent = Vue.extend({
         //添加定额model
         addQuotaModel: function () {
             var self = this;
-            showAddProjectIntem(self.projectMaterial, MdniUtils.formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss'), 5);
+            showAddProjectIntem(self.projectMaterial, DameiUtils.formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss'), 5);
         },
         //修改定额用量
         updateDosage: function (skuDosage) {

@@ -3,7 +3,7 @@
 <mapper namespace="cn.damei.business.dao.material.ContractOperateTimeSummaryDao">
     <resultMap id="BaseResultMap" type="cn.damei.business.entity.material.ContractOperateTimeSummary">
         <id column="id" property="id"/>
-        <result column="contract_code" property="contractCode"/>
+        <result column="dm_contract_code" property="contractCode"/>
         <result column="material_submit_audit_time" property="materialSubmitAuditTime"/>
         <result column="material_assign_audit_time" property="materialAssignAuditTime"/>
         <result column="material_audit_pass_time" property="materialAuditPassTime"/>
@@ -16,7 +16,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-      id,contract_code,material_submit_audit_time,material_assign_audit_time,material_audit_pass_time,
+      id,dm_contract_code,material_submit_audit_time,material_assign_audit_time,material_audit_pass_time,
       material_audit_refuse_time,material_sign_time,start_change_time,change_submit_audit_time,
       change_audit_pass_time,change_audit_refuse_time
     </sql>
@@ -25,7 +25,7 @@
         insert into sm_contract_operate_time_summary
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="contractCode != null">
-                contract_code,
+                dm_contract_code,
             </if>
             <if test="materialSubmitAuditTime != null">
                 material_submit_audit_time,
@@ -93,7 +93,7 @@
         UPDATE sm_contract_operate_time_summary
         <set>
             <if test="contractCode != null">
-                contract_code = #{contractCode},
+                dm_contract_code = #{contractCode},
             </if>
             <if test="materialSubmitAuditTime != null">
                 material_submit_audit_time = #{materialSubmitAuditTime},
@@ -129,7 +129,7 @@
     <select id="getByContractCode" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM sm_contract_operate_time_summary WHERE contract_code = #{contractCode}
+        FROM sm_contract_operate_time_summary WHERE dm_contract_code = #{contractCode}
     </select>
 
 </mapper>

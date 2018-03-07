@@ -5,8 +5,8 @@
     <resultMap id="BaseResultMap" type="cn.damei.business.entity.finance.ReparationMoney">
         <id column="id" property="id" />
         <result column="reparation_no" property="reparationNo"/>
-        <result column="contract_code" property="contractCode"/>
-        <result column="contract_uuid" property="contractUuid"/>
+        <result column="dm_contract_code" property="contractCode"/>
+        <result column="dm_contract_uuid" property="contractUuid"/>
         <result column="reparation_amount" property="reparationAmount"/>
         <result column="reparation_mode" property="reparationMode"/>
         <result column="create_stage_id" property="createStageId"/>
@@ -23,7 +23,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,reparation_no,contract_code,contract_uuid,reparation_amount,reparation_mode,create_stage_id,creator,create_time,
+        id,reparation_no,dm_contract_code,dm_contract_uuid,reparation_amount,reparation_mode,create_stage_id,creator,create_time,
         effect_stage_id,effect_stage_name,cleared,clear_stage_id,clear_stage_name,clear_time,reparation_reason,reparation_status
     </sql>
 
@@ -41,24 +41,24 @@
             c.mobile AS mobile
         FROM
             fina_reparation_money frm
-        LEFT JOIN customer_contract cc ON frm.contract_uuid = cc.contract_uuid
+        LEFT JOIN customer_contract cc ON frm.dm_contract_uuid = cc.dm_contract_uuid
         LEFT JOIN customer c ON cc.customer_id = c.id
         LEFT JOIN fina_project_payplan_stage fps ON frm.effect_stage_id = fps.stage_code
         <where>
-            frm.contract_uuid = #{contractUuid}
+            frm.dm_contract_uuid = #{contractUuid}
         </where>
         ORDER BY frm.id DESC
     </select>
 
     <select id="getFeparationAmountByContractCode" resultType="map" parameterType="java.util.List">
         SELECT
-            contract_code AS contractCode,
+            dm_contract_code AS contractCode,
             sum(reparation_amount) AS reparationAmount
         FROM
             fina_reparation_money
         <where>
         <if test="codeList != null">
-            contract_code IN
+            dm_contract_code IN
             <foreach collection="codeList" index="index" item="item" open="(" separator="," close=")">
                 #{item}
             </foreach>
@@ -74,7 +74,7 @@
         <where>
             1=1
             <if test="contractUuid != null">
-                AND contract_uuid=#{contractUuid}
+                AND dm_contract_uuid=#{contractUuid}
             </if>
             <if test="effectStageId != null">
                 AND effect_stage_id=#{effectStageId}
@@ -104,10 +104,10 @@
                 reparation_no,
             </if>
             <if test="contractCode != null">
-                contract_code,
+                dm_contract_code,
             </if>
             <if test="contractUuid != null">
-                contract_uuid,
+                dm_contract_uuid,
             </if>
             <if test="reparationAmount != null">
                 reparation_amount,

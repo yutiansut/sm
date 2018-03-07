@@ -102,11 +102,11 @@
             telWall: ''
         },
         created: function () {
-            this.changeVersionNo = MdniUtils.parseQueryStringDecode()['changeVersionNo'];
-            this.contractCode = MdniUtils.parseQueryStringDecode()['contractCode'];
-            this.hangCeiling = MdniUtils.parseQueryStringDecode()['hangCeiling'];
-            this.plasterLine = MdniUtils.parseQueryStringDecode()['plasterLine'];
-            this.telWall = MdniUtils.parseQueryStringDecode()['telWall'];
+            this.changeVersionNo = DameiUtils.parseQueryStringDecode()['changeVersionNo'];
+            this.contractCode = DameiUtils.parseQueryStringDecode()['contractCode'];
+            this.hangCeiling = DameiUtils.parseQueryStringDecode()['hangCeiling'];
+            this.plasterLine = DameiUtils.parseQueryStringDecode()['plasterLine'];
+            this.telWall = DameiUtils.parseQueryStringDecode()['telWall'];
         },
         ready: function () {
             this.findCustomerContract();

@@ -3,7 +3,7 @@
 <mapper namespace="cn.damei.business.dao.material.CustomerContractDao">
     <resultMap id="BaseResultMap" type="cn.damei.business.entity.orderflow.CustomerContract">
         <id column="id" property="id"/>
-        <result column="contract_code" property="contractCode"/>
+        <result column="dm_contract_code" property="contractCode"/>
         <result column="customer_id" property="customerId"/>
         <result column="house_addr" property="houseAddr"/>
         <result column="designer" property="designer"/>
@@ -72,7 +72,7 @@
         <result column="out_map_complete_time" property="outMapCompleteTime"/>
         <result column="out_map_executor" property="outMapExecutor"/>
         <result column="out_map_cadurl" property="outMapCadurl"/>
-        <result column="contract_uuid" property="contractUuid"/>
+        <result column="dm_contract_uuid" property="contractUuid"/>
         <result column="province_code" property="provinceCode"/>
         <result column="city_code" property="cityCode"/>
         <result column="area_code" property="areaCode"/>
@@ -84,7 +84,7 @@
         <result column="single_tag_id" property="singleId"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, contract_code, customer_id, house_addr, designer, designer_mobile, supervisor, 
+    id, dm_contract_code, customer_id, house_addr, designer, designer_mobile, supervisor,
     supervisor_mobile, project_manager, pm_mobile, second_contact, second_contact_mobile, 
     meal_id, meal_price, layout, build_area, valuate_area, house_condition, elevator, 
     house_type, address_province, address_city, address_area, activity_name, other_install_info, 
@@ -98,12 +98,12 @@
     from customer_contract AS cucs
     LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
     LEFT JOIN sm_meal_info smi ON (cucs.meal_id = smi.id)
-    LEFT JOIN sm_order_bespeak_contract sobc ON (cucs.contract_code = sobc.contract_code)
+    LEFT JOIN sm_order_bespeak_contract sobc ON (cucs.dm_contract_code = sobc.dm_contract_code)
     where cucs.id = #{id}
   </select>
 
     <select id="searchTotal" parameterType="map" resultType="long">
-        SELECT COUNT(DISTINCT cucs.contract_code) FROM customer_contract AS cucs
+        SELECT COUNT(DISTINCT cucs.dm_contract_code) FROM customer_contract AS cucs
         <include refid="searchFromWhere"/>
     </select>
 
@@ -124,10 +124,10 @@
     <sql id="searchFromWhere">
         LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
         LEFT JOIN sm_meal_info smi ON (cucs.meal_id = smi.id)
-        LEFT JOIN sm_contract_operate_time_summary scos ON (cucs.contract_code = scos.contract_code)
+        LEFT JOIN sm_contract_operate_time_summary scos ON (cucs.dm_contract_code = scos.dm_contract_code)
         <where>
             <if test="keyword != null and keyword != ''">
-                ( cucs.contract_code like CONCAT('%', #{keyword}, '%')
+                ( cucs.dm_contract_code like CONCAT('%', #{keyword}, '%')
                 OR cus.name like CONCAT('%', #{keyword}, '%')
                 OR cus.mobile like CONCAT('%', #{keyword}, '%') )
             </if>
@@ -211,7 +211,7 @@
     <insert id="insert" parameterType="cn.damei.business.entity.orderflow.CustomerContract">
     insert into customer_contract
     (
-        contract_code,
+        dm_contract_code,
         customer_id,
         house_addr,
         layout,
@@ -227,7 +227,7 @@
         service_mobile,
         plan_house_time,
         store_code,
-        contract_uuid,
+        dm_contract_uuid,
         order_flow_status
     )
     values
@@ -257,7 +257,7 @@
         update customer_contract
         <set>
             <if test="contractCode != null">
-                contract_code = #{contractCode},
+                dm_contract_code = #{contractCode},
             </if>
             <if test="customerId != null">
                 customer_id = #{customerId},
@@ -397,16 +397,16 @@
     from customer_contract AS cucs
     LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
     LEFT JOIN sm_meal_info smi ON (cucs.meal_id = smi.id)
-    LEFT JOIN sm_project_sign sps ON (sps.contract_code = cucs.contract_code)
-    where cucs.contract_code = #{code}
+    LEFT JOIN sm_project_sign sps ON (sps.dm_contract_code = cucs.dm_contract_code)
+    where cucs.dm_contract_code = #{code}
   </select>
 
     <update id="updateStatus">
-    update customer_contract set contract_status = #{contractStatus} where contract_code = #{contractCode}
+    update customer_contract set contract_status = #{contractStatus} where dm_contract_code = #{contractCode}
   </update>
 
     <update id="updateRefundable">
-        update customer_contract set is_return_word = #{returnWord} where contract_uuid = #{contractUuid}
+        update customer_contract set is_return_word = #{returnWord} where dm_contract_uuid = #{contractUuid}
     </update>
 
 </mapper>

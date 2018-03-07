@@ -11,7 +11,7 @@
     <insert id="batchInsertList" >
 
         INSERT INTO sm_assistinfo_sync (
-        contract_code,
+        dm_contract_code,
         assist_item_name,
         unit,
         unit_price,

@@ -3,7 +3,7 @@
 <mapper namespace="cn.damei.business.dao.operatelog.OperateLogDao">
     <resultMap id="BaseResultMap" type="cn.damei.business.entity.operatelog.OperateLog">
         <id column="id" property="id"/>
-        <result column="contract_code" property="contractCode"/>
+        <result column="dm_contract_code" property="contractCode"/>
         <result column="system_type" property="systemType"/>
         <result column="operate_type" property="operateType"/>
         <result column="operate_description" property="operateDescription"/>
@@ -18,7 +18,7 @@
         insert into sm_operate_log
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="contractCode != null">
-                contract_code,
+                dm_contract_code,
             </if>
             <if test="systemType != null">
                 system_type,
@@ -77,7 +77,7 @@
     </insert>
 
     <select id="findByConditions" parameterType="java.util.Map" resultMap="BaseResultMap">
-        select  id,contract_code,system_type,operate_type,operate_description,operator,operate_time,
+        select  id,dm_contract_code,system_type,operate_type,operate_description,operator,operate_time,
                 appoint_org_code,appoint_name,appoint_phone
           from sm_operate_log
         <where>
@@ -85,7 +85,7 @@
                 AND operate_type = #{operateType}
             </if>
             <if test="contractCode != null">
-                and contract_code = #{contractCode}
+                and dm_contract_code = #{contractCode}
             </if>
             <if test="systemType != null">
                 AND system_type = #{systemType}

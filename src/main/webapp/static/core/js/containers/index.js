@@ -1,9 +1,9 @@
 var vueIndex = null;
-+(function (Vue, $, _, moment, MdniUtils) {
++(function (Vue, $, _, moment, DameiUtils) {
     $('#homeMenu').addClass('active');
     vueIndex = new Vue({
         el: '#container',
-        mixins: [MdniVueMixins.DataTableMixin],
+        mixins: [DameiVueMixins.DataTableMixin],
         data: {
             _$dataTable: null // datatable $对象
         },
@@ -15,5 +15,5 @@ var vueIndex = null;
     });
 
 
-})(Vue, jQuery, _, moment, MdniUtils);
+})(Vue, jQuery, _, moment, DameiUtils);
 

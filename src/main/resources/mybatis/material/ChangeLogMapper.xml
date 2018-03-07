@@ -4,7 +4,7 @@
     <resultMap id="BaseResultMap" type="cn.damei.business.entity.material.ChangeLog">
         <id column="id" property="id"/>
         <result column="change_status" property="changeStatus"/>
-        <result column="contract_code" property="contractCode"/>
+        <result column="dm_contract_code" property="contractCode"/>
         <result column="change_version_no" property="changeVersionNo"/>
         <result column="operat_user" property="operatUser"/>
         <result column="operat_time" property="operatTime"/>
@@ -15,7 +15,7 @@
         insert into sm_change_log
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="contractCode != null">
-                contract_code,
+                dm_contract_code,
             </if>
             <if test="changeVersionNo != null">
                 change_version_no,
@@ -54,7 +54,7 @@
         FROM
             sm_change_log
         WHERE
-            contract_code = #{contractCode}
+            dm_contract_code = #{contractCode}
         ORDER BY
             num DESC
         LIMIT 1
@@ -63,7 +63,7 @@
         UPDATE sm_change_log
         <set>
             <if test="contractCode != null">
-                contract_code = #{contractCode},
+                dm_contract_code = #{contractCode},
             </if>
             <if test="changeVersionNo != null">
                 change_version_no = #{changeVersionNo},
@@ -87,7 +87,7 @@
 
     <select id="findChangeVersionNoByContractCode" resultMap="BaseResultMap">
         select * from sm_change_log
-        WHERE contract_code = #{contractCode}
+        WHERE dm_contract_code = #{contractCode}
         ORDER BY operat_time desc
     </select>
 

@@ -6,7 +6,7 @@ var proSkuPriceList;
     $('#label').addClass('active')
     proSkuPriceList = new Vue({
         el: '#container',
-        mixins: [MdniVueMixins.DataTableMixin],
+        mixins: [DameiVueMixins.DataTableMixin],
         data: {
             breadcrumbs: [{
                 path: '/',
@@ -138,13 +138,13 @@ var proSkuPriceList;
                         self.allStores = [];
                         var dataStore = res.data.data;
                         if (dataStore) {
-                            if (MdniUser.storeCode) {
+                            if (DameiUser.storeCode) {
                                 for (var i = 0; i < dataStore.length; i++) {
-                                    if (dataStore[i].code == MdniUser.storeCode) {
+                                    if (dataStore[i].code == DameiUser.storeCode) {
                                         self.allStores.push(dataStore[i]);
                                     }
                                 }
-                                self.form.allStoreCode = MdniUser.storeCode;
+                                self.form.allStoreCode = DameiUser.storeCode;
                                 this.drawTable();
                                 this.fetchSuppliers();
                                 this.fetchRegionSuppliers();
@@ -363,7 +363,7 @@ var proSkuPriceList;
                                 if (row.priceFlag != undefined && row.priceFlag.indexOf("UPGRADE") >= 0) {
                                     html += '<button data-handle="u-label" data-id="' + value + '" type="button" class="btn btn-xs btn-danger">下载升级标签</button>';
                                 }
-                                if (MdniUtils.hasPermission('product:seeLabel')) {
+                                if (DameiUtils.hasPermission('product:seeLabel')) {
                                     html += '<button data-handle="see-price" data-id="' + value + '" type="button" class="btn btn-xs btn-info">查看价格</button>';
                                 }
                                 return html;
@@ -413,7 +413,7 @@ var proSkuPriceList;
             function () {
                 vueModal2 = new Vue({
                     el: $modal.get(0),
-                    mixins: [MdniVueMixins.DataTableMixin],
+                    mixins: [DameiVueMixins.DataTableMixin],
                     data: {
                         form: {
                             keyword: '',

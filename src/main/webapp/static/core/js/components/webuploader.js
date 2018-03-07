@@ -145,5 +145,5 @@
     }
   });
 
-  MdniVueComponents.WebUploaderComponent = WebUploaderComponent;
-})(Vue, MdniVueComponents);
+  DameiVueComponents.WebUploaderComponent = WebUploaderComponent;
+})(Vue, DameiVueComponents);

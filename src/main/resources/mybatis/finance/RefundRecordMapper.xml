@@ -19,7 +19,7 @@
             fina_refund_record frr
         LEFT JOIN fina_project_payplan_stage fps ON frr.create_stage_id = fps.stage_code
         <where>
-            frr.contract_uuid = #{contractUuid}
+            frr.dm_contract_uuid = #{contractUuid}
         </where>
         ORDER BY frr.id DESC
     </select>
@@ -31,7 +31,7 @@
         fina_refund_record
         <where>
             <if test="codeList != null">
-                contract_code IN
+                dm_contract_code IN
                 <foreach collection="codeList" index="index" item="item" open="(" separator="," close=")">
                     #{item}
                 </foreach>
@@ -41,7 +41,7 @@
 
 
     <insert id="insert" parameterType="cn.damei.business.entity.finance.RefundRecord">
-        INSERT INTO fina_refund_record(refund_no,contract_code,contract_uuid,create_stage_id,refund_type,refund_expect_amount,
+        INSERT INTO fina_refund_record(refund_no,dm_contract_code,dm_contract_uuid,create_stage_id,refund_type,refund_expect_amount,
             refund_actual_amount,refund_deposit_amount,refund_modify_amount,refund_contract_amount,deduct_design_amount,
             deduct_other_amount,refund_receiver_name,refund_receiver_mobile,refund_receiver_account,operator,operate_time,
             refund_reson,refund_memo,refund_time)

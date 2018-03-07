@@ -244,30 +244,30 @@
 
     <select id="getBychangeCategoryUrl" resultMap="BaseResultMap">
         select * from sm_sku_change_dosage where project_material_id in
-        (select id from sm_project_change_material where contract_code = #{contractCode} and
+        (select id from sm_project_change_material where dm_contract_code = #{contractCode} and
         product_category_url LIKE CONCAT(#{changeCategoryUrl},'%'))
     </select>
     <select id="getByContractCode" resultMap="BaseResultMap">
         select * from sm_sku_change_dosage where project_material_id in
-        (select id from sm_project_change_material where contract_code = #{contractCode}) and loss_dosage > 0
+        (select id from sm_project_change_material where dm_contract_code = #{contractCode}) and loss_dosage > 0
     </select>
 
     <delete id="deleteByContractCode">
         delete from sm_sku_change_dosage where project_material_id in
-        (select id from sm_project_change_material where contract_code = #{contractCode})
+        (select id from sm_project_change_material where dm_contract_code = #{contractCode})
     </delete>
 
     <delete id="deleteByConAndUrl">
         delete from sm_sku_change_dosage where id in (select a.* from
         (select sscd.id from sm_sku_change_dosage as sscd
         LEFT JOIN sm_project_change_material as spcm on spcm.id = sscd.project_material_id
-         where spcm.contract_code = #{contractCode} and spcm.product_category_url like concat(#{changeCategoryUrl},'%')) as a)
+         where spcm.dm_contract_code = #{contractCode} and spcm.product_category_url like concat(#{changeCategoryUrl},'%')) as a)
     </delete>
 
     <select id="getByOriDosGTZero" resultMap="BaseResultMap">
         select sscd.* from sm_sku_change_dosage as sscd
         LEFT JOIN sm_project_change_material as spcm on spcm.id = sscd.project_material_id
-         where spcm.contract_code =  #{contractCode} and spcm.product_category_url like concat(#{changeCategoryUrl},'%')
+         where spcm.dm_contract_code =  #{contractCode} and spcm.product_category_url like concat(#{changeCategoryUrl},'%')
         and sscd.original_dosage  > 0
     </select>
 
@@ -278,7 +278,7 @@
     <select id="getDosage"  resultMap="BaseResultMap">
         select sscd.* from sm_sku_change_dosage as sscd
         LEFT JOIN sm_project_change_material as spcm on spcm.id=sscd.project_material_id
-        where  spcm.contract_code = #{contractCode} and spcm.product_category_url LIKE CONCAT(#{changeCategoryUrl},'%')
+        where  spcm.dm_contract_code = #{contractCode} and spcm.product_category_url LIKE CONCAT(#{changeCategoryUrl},'%')
     </select>
 
 
@@ -296,7 +296,7 @@
         FROM
         sm_project_change_material spm
         WHERE
-        spm.contract_code = #{contractCode}
+        spm.dm_contract_code = #{contractCode}
         AND spm.category_code != 'PACKAGESTANDARD'
         ) aa ON aa.id = ssd.project_material_id
     </select>

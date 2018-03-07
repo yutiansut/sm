@@ -22,7 +22,7 @@ var packageStandardComponent = Vue.extend({
             priceType: 'SALE',
             //项目主材sku
             projectMaterial: {
-                contractCode: MdniUtils.parseQueryStringDecode()['contractCode'],
+                contractCode: DameiUtils.parseQueryStringDecode()['contractCode'],
                 categoryCode: 'PACKAGESTANDARD',//套餐标配
                 categoryDetailCode: 'PACKAGESTANDARD',//套餐标配
             },
@@ -31,9 +31,9 @@ var packageStandardComponent = Vue.extend({
             //上次点击的一级分类id
             activeNvgId: 'allId',
             //页面类型: 选材(select) 或者 变更(change) 或者 其他
-            pageType: MdniUtils.parseQueryStringDecode()['pageType'] || '',
+            pageType: DameiUtils.parseQueryStringDecode()['pageType'] || '',
             //被打回的一级分类url
-            catalogUrl: MdniUtils.parseQueryStringDecode()['catalogUrl'] || '',
+            catalogUrl: DameiUtils.parseQueryStringDecode()['catalogUrl'] || '',
             //背景色对象
             backColorObj:{
                 //变更
@@ -198,7 +198,7 @@ var packageStandardComponent = Vue.extend({
         addProdModel: function (catalog) {
             var self = this;
             showAddProdModel(self.projectMaterial, self.priceType, catalog,
-                        MdniUtils.formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss'), 0);
+                        DameiUtils.formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss'), 0);
         },
         //移除商品sku
         removeSku: function (projectMaterialList, projectMaterial) {
@@ -220,7 +220,7 @@ var packageStandardComponent = Vue.extend({
         addSkuDosageModel: function (catalog, projectMaterial) {
             var self = this;
             showAddSkuDosageModel(self.priceType, catalog, projectMaterial,
-                    MdniUtils.formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss'));
+                    DameiUtils.formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss'));
         },
         //一级分类 导航,
         chooseCatalog: function (type, turnBack) {

@@ -42,7 +42,7 @@
             //查询交款阶段类型
             fetchStageType: function () {
                 var self = this;
-                self.$http.get("/finance/analyze/getstagetype?storeCode="+MdniUser.storeCode).then(function (res) {
+                self.$http.get("/finance/analyze/getstagetype?storeCode="+DameiUser.storeCode).then(function (res) {
                     if (res.data.code == 1) {
                         self.stageType = res.data.data;
                         console.log(self.stageType)

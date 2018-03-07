@@ -34,7 +34,7 @@ var oldHouseChangeComponent = Vue.extend({
                 comprehensivefee4: 0
             },
             //页面类型: 选材(select) 或者 变更(change) 或者 其他
-            pageType: MdniUtils.parseQueryStringDecode()['pageType'] || '',
+            pageType: DameiUtils.parseQueryStringDecode()['pageType'] || '',
         };
 
     },
@@ -42,7 +42,7 @@ var oldHouseChangeComponent = Vue.extend({
     },
     created: function () {
         //合同code赋值
-        var contractCode = MdniUtils.parseQueryStringDecode()['contractCode'];
+        var contractCode = DameiUtils.parseQueryStringDecode()['contractCode'];
         this.projectMaterial[0].contractCode = contractCode;
         this.projectMaterial[1].contractCode = contractCode;
         this.projectMaterial[2].contractCode = contractCode;
@@ -53,7 +53,7 @@ var oldHouseChangeComponent = Vue.extend({
             var self = this;
             //注意索引要传递0
             showAddProjectIntem(self.projectMaterial[0],
-                MdniUtils.formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss'), 0, 'son');
+                DameiUtils.formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss'), 0, 'son');
         },
         //修改定额用量
         updateDosage: function (skuDosage) {

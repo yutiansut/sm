@@ -11,7 +11,7 @@ var ChangeRecord = Vue.extend({
     ready: function () {
     },
     created: function () {
-        this.flag = MdniUtils.parseQueryString()['flag'];
+        this.flag = DameiUtils.parseQueryString()['flag'];
     },
     filters: {
         goDate: function (el) {
@@ -60,10 +60,10 @@ var ChangeRecord = Vue.extend({
             };
             if(changeType == 'BASIC'){
                 var url = '/material/contractchange/vieworprint';
-                MdniUtils.locationHrefToServer(url, params, true);
+                DameiUtils.locationHrefToServer(url, params, true);
             }else{
                 var url = '/finance/changematerialprint/materialchangeprint';
-                MdniUtils.locationHrefToServer(url, params, true);
+                DameiUtils.locationHrefToServer(url, params, true);
             }
         }
     }

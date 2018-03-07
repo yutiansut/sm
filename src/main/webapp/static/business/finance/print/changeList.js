@@ -158,7 +158,7 @@
                         isPrint: true
                     }
                     var url = '/finance/changematerialprint/materialchangeprint';
-                    MdniUtils.locationHrefToServer(url, params, true);
+                    DameiUtils.locationHrefToServer(url, params, true);
                     vueIndex.$dataTable.bootstrapTable('refresh');
 
                 });
@@ -170,7 +170,7 @@
                         isPrint: false
                     }
                     var url = '/finance/changematerialprint/materialchangeprint';
-                    MdniUtils.locationHrefToServer(url, params, true);
+                    DameiUtils.locationHrefToServer(url, params, true);
                     vueIndex.$dataTable.bootstrapTable('refresh');
 
                 });
@@ -205,7 +205,7 @@
                 }
                 console.log(params)
                 var url = '/finance/changematerialprint/materialchangeprint';
-                MdniUtils.locationHrefToServer(url, params, true);
+                DameiUtils.locationHrefToServer(url, params, true);
                 /*setTimeout(function () {
                     self.$dataTable.bootstrapTable('refresh');
                     self.pringIds = [];

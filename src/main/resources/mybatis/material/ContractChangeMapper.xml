@@ -3,7 +3,7 @@
 <mapper namespace="cn.damei.business.dao.material.ContractChangeDao">
     <resultMap id="BaseResultMap" type="cn.damei.business.entity.orderflow.CustomerContract">
         <id column="id" property="id"/>
-        <result column="contract_code" property="contractCode"/>
+        <result column="dm_contract_code" property="contractCode"/>
         <result column="customer_id" property="customerId"/>
         <result column="house_addr" property="houseAddr"/>
         <result column="designer" property="designer"/>
@@ -68,7 +68,7 @@
     </resultMap>
 
     <select id="searchTotal" parameterType="map" resultType="long">
-        SELECT COUNT(DISTINCT cucs.contract_code) FROM customer_contract AS cucs
+        SELECT COUNT(DISTINCT cucs.dm_contract_code) FROM customer_contract AS cucs
         <include refid="searchFromWhere"/>
     </select>
 
@@ -89,10 +89,10 @@
     <sql id="searchFromWhere">
         LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
         LEFT JOIN sm_meal_info smi ON (cucs.meal_id = smi.id)
-        LEFT JOIN sm_contract_operate_time_summary scos ON (cucs.contract_code = scos.contract_code)
+        LEFT JOIN sm_contract_operate_time_summary scos ON (cucs.dm_contract_code = scos.dm_contract_code)
         <where>
             <if test="keyword != null">
-                ( cucs.contract_code like CONCAT('%', #{keyword}, '%') or cus.name like CONCAT('%', #{keyword}, '%') )
+                ( cucs.dm_contract_code like CONCAT('%', #{keyword}, '%') or cus.name like CONCAT('%', #{keyword}, '%') )
             </if>
             <if test="contractStatus != null">
                 AND cucs.contract_status = #{contractStatus}
@@ -151,7 +151,7 @@
         from customer_contract AS cucs
         LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
         LEFT JOIN sm_meal_info smi ON (cucs.meal_id = smi.id)
-        LEFT JOIN sm_order_bespeak_contract sobc ON (cucs.contract_code = sobc.contract_code)
+        LEFT JOIN sm_order_bespeak_contract sobc ON (cucs.dm_contract_code = sobc.dm_contract_code)
         where cucs.id = #{id}
     </select>
 

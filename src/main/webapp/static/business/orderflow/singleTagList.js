@@ -4,7 +4,6 @@ var tt = null;
     $('#singleTag').addClass('active');
     tt = new Vue({
         el: '#container',
-        //mixins: [RocoVueMixins.DataTableMixin],
         data: {
             breadcrumbs: [{
                 path: '/',
@@ -144,7 +143,6 @@ var tt = null;
         isEdit = !!isEdit;
         var userVue = new Vue({
             el: el,
-            //mixins: [RocoVueMixins.ModalMixin],
             $modal: $el,
             created: function () {
 

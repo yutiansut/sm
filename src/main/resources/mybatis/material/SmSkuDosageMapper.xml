@@ -315,7 +315,7 @@
             FROM
                 sm_project_material spm
             WHERE
-                spm.contract_code = #{contractCode}
+                spm.dm_contract_code = #{contractCode}
             AND spm.category_code != 'PACKAGESTANDARD'
         ) aa ON aa.id = ssd.project_material_id
     </select>
@@ -326,7 +326,7 @@
         FROM
             customer_contract cc
         WHERE
-            cc.contract_code = #{contractCode}
+            cc.dm_contract_code = #{contractCode}
     </select>
 
     <delete id="deleteByProjectIntemId" parameterType="long">
@@ -349,7 +349,7 @@
 
     <delete id="deleteByContractCode">
         delete from sm_sku_dosage where project_material_id in
-        (select id from sm_project_material where contract_code = #{contractCode})
+        (select id from sm_project_material where dm_contract_code = #{contractCode})
     </delete>
 
     <select id="getByConCodeAndChUrl" resultMap="BaseResultMap">
@@ -362,7 +362,7 @@
         SELECT ssd.* ,spm.category_code,spm.category_detail_code
         FROM sm_sku_dosage ssd
         RIGHT JOIN sm_project_material spm ON ssd.project_material_id = spm.id
-        WHERE spm.contract_code = #{contractCode}
+        WHERE spm.dm_contract_code = #{contractCode}
     </select>
 
 
@@ -370,7 +370,7 @@
         SELECT ssd.* from sm_sku_dosage as ssd
         LEFT JOIN sm_project_material as spm on spm.id = ssd.project_material_id
         where
-        spm.contract_code = #{contractCode} and
+        spm.dm_contract_code = #{contractCode} and
         spm.product_category_url LIKE CONCAT(#{changeCategoryUrl},'%')
     </select>
 </mapper>

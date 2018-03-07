@@ -210,7 +210,7 @@
         spm.quota_describe
         FROM sm_project_material as spm
         LEFT JOIN sm_sku_dosage as ssd on ssd.project_material_id = spm.id
-        where spm.contract_code = #{contractCode}
+        where spm.dm_contract_code = #{contractCode}
         and spm.category_code = #{categoryCode}
         and spm.category_detail_code = #{categoryDetailCode}
     </select>

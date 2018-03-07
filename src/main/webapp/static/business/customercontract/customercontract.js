@@ -58,11 +58,11 @@ var vueIndex;
             this.drawTable();
         },
         methods: {
-            //注意: MdniUser.roleNameList 是个字符串,需要转为数组!否则影响操作按钮角色的判断!
+            //注意: DameiUser.roleNameList 是个字符串,需要转为数组!否则影响操作按钮角色的判断!
             dealRoleNameList: function () {
                 var self = this;
                 self.roleNameList = [];
-                var str = MdniUser.roleNameList.substring(1, MdniUser.roleNameList.length -1);
+                var str = DameiUser.roleNameList.substring(1, DameiUser.roleNameList.length -1);
                 var roleNameArr = str.split(",");
                 roleNameArr.forEach(function (item) {
                     //去掉两端空格
@@ -380,7 +380,7 @@ var vueIndex;
                                         contractCode: res.data.data.contractCode,
                                         pageType: 'select'
                                     }
-                                    MdniUtils.locationHrefToClient('/material/materialIndex', params);
+                                    DameiUtils.locationHrefToClient('/material/materialIndex', params);
                                     /*window.location.href = '/material/materialIndex?contractCode=' + res.data.data.contractCode
                                         + '&pageType=select';*/
                                 } else {
@@ -602,7 +602,7 @@ var vueIndex;
                                     contractCode: model.contractCode,
                                     pageType: 'audit'
                                 }
-                                MdniUtils.locationHrefToClient('/material/materialIndex', params);
+                                DameiUtils.locationHrefToClient('/material/materialIndex', params);
                                 /*window.location.href = '/material/materialIndex?contractCode=' + model.contractCode
                                     + '&pageType=audit';*/
                             }
@@ -739,9 +739,9 @@ var vueIndex;
                         }
                     },
                     // 模式窗体必须引用 ModalMixin
-                    mixins: [MdniVueMixins.ModalMixin],
+                    mixins: [DameiVueMixins.ModalMixin],
                     components: {
-                        'web-uploader': MdniVueComponents.WebUploaderComponent
+                        'web-uploader': DameiVueComponents.WebUploaderComponent
                     },
                     $modal: $el,
                     //模式窗体 jQuery 对象
@@ -821,7 +821,7 @@ var vueIndex;
                                                     contractCode: model.contractCode,
                                                     pageType: 'select'
                                                 }
-                                                MdniUtils.locationHrefToClient('/material/materialIndex', params);
+                                                DameiUtils.locationHrefToClient('/material/materialIndex', params);
                                                 //window.location.href = '/material/materialIndex?contractCode=' + model.contractCode + '&pageType=select';
                                                 self.$destroy();
                                             } else {
@@ -864,9 +864,9 @@ var vueIndex;
                         }
                     },
                     // 模式窗体必须引用 ModalMixin
-                    mixins: [MdniVueMixins.ModalMixin],
+                    mixins: [DameiVueMixins.ModalMixin],
                     components: {
-                        'web-uploader': MdniVueComponents.WebUploaderComponent
+                        'web-uploader': DameiVueComponents.WebUploaderComponent
                     },
                     $modal: $el,
                     //模式窗体 jQuery 对象
@@ -1061,7 +1061,7 @@ var vueIndex;
                 var vueModal = new Vue({
                     el: el,
                     // 模式窗体必须引用 ModalMixin
-                    mixins: [MdniVueMixins.ModalMixin],
+                    mixins: [DameiVueMixins.ModalMixin],
                     $modal: $el,
                     data: {
                         contractId: contractId,
@@ -1127,7 +1127,7 @@ var vueIndex;
                         dateFormat: function (val) {
                             var newDate = new Date();
                             newDate.setTime(val);
-                            return MdniUtils.formatDate(newDate, 'yyyy-MM-dd hh:mm:ss');
+                            return DameiUtils.formatDate(newDate, 'yyyy-MM-dd hh:mm:ss');
                         }
                     }
                 });
@@ -1233,7 +1233,7 @@ var vueIndex;
                         telWall: telWall
                     },
                     // 模式窗体必须引用 ModalMixin
-                    mixins: [MdniVueMixins.ModalMixin],
+                    mixins: [DameiVueMixins.ModalMixin],
                     $modal: $el,
                     //模式窗体 jQuery 对象
                     created: function () {

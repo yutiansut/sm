@@ -3,7 +3,7 @@
 <mapper namespace="cn.damei.business.dao.material.SmOrderQuotaBillDao">
   <resultMap id="BaseResultMap" type="SmOrderQuotaBill">
     <id column="id"  property="id" />
-    <result column="contract_code"  property="contractCode" />
+    <result column="dm_contract_code"  property="contractCode" />
     <result column="category_code"  property="categoryCode" />
     <result column="category_detail_code"  property="categoryDetailCode" />
     <result column="amount"  property="amount" />
@@ -11,7 +11,7 @@
     <result column="create_time"  property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, contract_code, category_code, category_detail_code, amount, creater, create_time
+    id, dm_contract_code, category_code, category_detail_code, amount, creater, create_time
   </sql>
   <select id="selectById" resultMap="BaseResultMap">
     select 
@@ -25,13 +25,13 @@
   </delete>
   <delete id="deleteByCode">
     delete from sm_order_quota_bill
-    where contract_code = #{contractCode}
+    where dm_contract_code = #{contractCode}
   </delete>
   <insert id="insert"  useGeneratedKeys="true" keyProperty="id">
     insert into sm_order_quota_bill
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="contractCode != null">
-        contract_code,
+        dm_contract_code,
       </if>
       <if test="categoryCode != null">
         category_code,
@@ -74,7 +74,7 @@
     update sm_order_quota_bill
     <set>
       <if test="contractCode != null">
-        contract_code = #{contractCode},
+        dm_contract_code = #{contractCode},
       </if>
       <if test="categoryCode != null">
         category_code = #{categoryCode},
@@ -96,7 +96,7 @@
   </update>
       <insert id="batchInsertList">
         insert into sm_order_quota_bill(
-         contract_code, category_code, category_detail_code, amount, creater, create_time
+         dm_contract_code, category_code, category_detail_code, amount, creater, create_time
         ) values
         <foreach collection="list" index="idx" item="item" separator=",">
           (
@@ -105,6 +105,6 @@
         </foreach>
       </insert>
   <select id="findByCode" resultMap="BaseResultMap">
-    SELECT <include refid="Base_Column_List"/> FROM sm_order_quota_bill  WHERE contract_code=#{contractCode}
+    SELECT <include refid="Base_Column_List"/> FROM sm_order_quota_bill  WHERE dm_contract_code=#{contractCode}
   </select>
 </mapper>

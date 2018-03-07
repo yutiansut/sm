@@ -3,15 +3,15 @@ var otherMoneyComponent = Vue.extend({
     template: '#otherMoneyItemTmpl',
     data: function () {
         return {
-            contractCode: MdniUtils.parseQueryStringDecode()['contractCode'],
+            contractCode: DameiUtils.parseQueryStringDecode()['contractCode'],
             //项目主材集合
             otherMoneyList: [],
             //sku总数(标题后面的数字)
             skuSum: 0,
             //页面类型: 选材(select) 或者 变更(change) 或者 其它
-            pageType: MdniUtils.parseQueryStringDecode()['pageType'] || '',
+            pageType: DameiUtils.parseQueryStringDecode()['pageType'] || '',
             //被打回的一级分类url
-            catalogUrl: MdniUtils.parseQueryStringDecode()['catalogUrl'] || '',
+            catalogUrl: DameiUtils.parseQueryStringDecode()['catalogUrl'] || '',
             //背景色对象
             backColorObj:{
                 //变更

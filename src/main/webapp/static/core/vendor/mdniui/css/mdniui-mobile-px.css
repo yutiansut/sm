@@ -429,44 +429,44 @@ template {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
-.mdniui-flexbox {
+.dameiui-flexbox {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
-.mdniui-flexbox.mdniui-flexbox-dir-row {
+.dameiui-flexbox.dameiui-flexbox-dir-row {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;
       -ms-flex-direction: row;
           flex-direction: row;
 }
-.mdniui-flexbox.mdniui-flexbox-dir-row-reverse {
+.dameiui-flexbox.dameiui-flexbox-dir-row-reverse {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
   -webkit-flex-direction: row-reverse;
       -ms-flex-direction: row-reverse;
           flex-direction: row-reverse;
 }
-.mdniui-flexbox.mdniui-flexbox-dir-column {
+.dameiui-flexbox.dameiui-flexbox-dir-column {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
 }
-.mdniui-flexbox.mdniui-flexbox-dir-column .-flexbox-item {
+.dameiui-flexbox.dameiui-flexbox-dir-column .-flexbox-item {
   width: 100%;
 }
-.mdniui-flexbox.mdniui-flexbox-dir-column-reverse {
+.dameiui-flexbox.dameiui-flexbox-dir-column-reverse {
   -webkit-box-orient: vertical;
   -webkit-box-direction: reverse;
   -webkit-flex-direction: column-reverse;
       -ms-flex-direction: column-reverse;
           flex-direction: column-reverse;
 }
-.mdniui-flexbox.mdniui-flexbox-dir-column-justify {
+.dameiui-flexbox.dameiui-flexbox-dir-column-justify {
   height: 100vh;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -474,81 +474,81 @@ template {
       -ms-flex-direction: column;
           flex-direction: column;
 }
-.mdniui-flexbox.mdniui-flexbox-wrap {
+.dameiui-flexbox.dameiui-flexbox-wrap {
   -webkit-flex-wrap: wrap;
       -ms-flex-wrap: wrap;
           flex-wrap: wrap;
 }
-.mdniui-flexbox.mdniui-flexbox-nowrap {
+.dameiui-flexbox.dameiui-flexbox-nowrap {
   -webkit-flex-wrap: nowrap;
       -ms-flex-wrap: nowrap;
           flex-wrap: nowrap;
 }
-.mdniui-flexbox.mdniui-flexbox-wrap-reverse {
+.dameiui-flexbox.dameiui-flexbox-wrap-reverse {
   -webkit-flex-wrap: wrap-reverse;
       -ms-flex-wrap: wrap-reverse;
           flex-wrap: wrap-reverse;
 }
-.mdniui-flexbox.mdniui-flexbox-justify-start {
+.dameiui-flexbox.dameiui-flexbox-justify-start {
   -webkit-box-pack: start;
   -webkit-justify-content: flex-start;
       -ms-flex-pack: start;
           justify-content: flex-start;
 }
-.mdniui-flexbox.mdniui-flexbox-justify-end {
+.dameiui-flexbox.dameiui-flexbox-justify-end {
   -webkit-box-pack: end;
   -webkit-justify-content: flex-end;
       -ms-flex-pack: end;
           justify-content: flex-end;
 }
-.mdniui-flexbox.mdniui-flexbox-justify-center {
+.dameiui-flexbox.dameiui-flexbox-justify-center {
   -webkit-box-pack: center;
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
 }
-.mdniui-flexbox.mdniui-flexbox-justify-between {
+.dameiui-flexbox.dameiui-flexbox-justify-between {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
-.mdniui-flexbox.mdniui-flexbox-justify-around {
+.dameiui-flexbox.dameiui-flexbox-justify-around {
   -webkit-justify-content: space-around;
       -ms-flex-pack: distribute;
           justify-content: space-around;
 }
-.mdniui-flexbox.mdniui-flexbox-align-top {
+.dameiui-flexbox.dameiui-flexbox-align-top {
   -webkit-box-align: start;
   -webkit-align-items: flex-start;
       -ms-flex-align: start;
           align-items: flex-start;
 }
-.mdniui-flexbox.mdniui-flexbox-align-bottom {
+.dameiui-flexbox.dameiui-flexbox-align-bottom {
   -webkit-box-align: end;
   -webkit-align-items: flex-end;
       -ms-flex-align: end;
           align-items: flex-end;
 }
-.mdniui-flexbox.mdniui-flexbox-align-middle {
+.dameiui-flexbox.dameiui-flexbox-align-middle {
   -webkit-box-align: center;
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
 }
-.mdniui-flexbox.mdniui-flexbox-align-stretch {
+.dameiui-flexbox.dameiui-flexbox-align-stretch {
   -webkit-box-align: stretch;
   -webkit-align-items: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
 }
-.mdniui-flexbox.mdniui-flexbox-align-baseline {
+.dameiui-flexbox.dameiui-flexbox-align-baseline {
   -webkit-box-align: baseline;
   -webkit-align-items: baseline;
       -ms-flex-align: baseline;
           align-items: baseline;
 }
-.mdniui-flexbox .mdniui-flexbox-item {
+.dameiui-flexbox .dameiui-flexbox-item {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   -webkit-box-flex: 1;
@@ -557,35 +557,35 @@ template {
           flex: 1;
   min-width: 20px;
 }
-.mdniui-flexbox .mdniui-flexbox-item:first-child {
+.dameiui-flexbox .dameiui-flexbox-item:first-child {
   margin-left: 0;
 }
-.mdniui-flexbox.mdniui-flexbox-align-content-start {
+.dameiui-flexbox.dameiui-flexbox-align-content-start {
   -webkit-align-content: flex-start;
       -ms-flex-line-pack: start;
           align-content: flex-start;
 }
-.mdniui-flexbox.mdniui-flexbox-align-content-end {
+.dameiui-flexbox.dameiui-flexbox-align-content-end {
   -webkit-align-content: flex-end;
       -ms-flex-line-pack: end;
           align-content: flex-end;
 }
-.mdniui-flexbox.mdniui-flexbox-align-content-middle {
+.dameiui-flexbox.dameiui-flexbox-align-content-middle {
   -webkit-align-content: center;
       -ms-flex-line-pack: center;
           align-content: center;
 }
-.mdniui-flexbox.mdniui-flexbox-align-content-stretch {
+.dameiui-flexbox.dameiui-flexbox-align-content-stretch {
   -webkit-align-content: stretch;
       -ms-flex-line-pack: stretch;
           align-content: stretch;
 }
-.mdniui-flexbox.mdniui-flexbox-align-content-baseline {
+.dameiui-flexbox.dameiui-flexbox-align-content-baseline {
   -webkit-align-content: baseline;
       -ms-flex-line-pack: baseline;
           align-content: baseline;
 }
-.mdniui-picker {
+.dameiui-picker {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -597,14 +597,14 @@ template {
   -webkit-transform: translateZ(0);
           transform: translateZ(0);
 }
-.mdniui-picker-item {
+.dameiui-picker-item {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
       -ms-flex: 1;
           flex: 1;
   text-align: center;
 }
-.mdniui-picker-multi {
+.dameiui-picker-multi {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -615,21 +615,21 @@ template {
           align-items: center;
   padding: 10px 0;
 }
-.mdniui-picker-multi-item {
+.dameiui-picker-multi-item {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
       -ms-flex: 1;
           flex: 1;
   text-align: center;
 }
-.mdniui-picker-col {
+.dameiui-picker-col {
   display: block;
   position: relative;
   height: 238px;
   overflow: hidden;
   width: 100%;
 }
-.mdniui-picker-col-content {
+.dameiui-picker-col-content {
   position: absolute;
   left: 0;
   top: 0;
@@ -637,7 +637,7 @@ template {
   z-index: 1;
   padding: 102px 0;
 }
-.mdniui-picker-col-item {
+.dameiui-picker-col-item {
   -ms-touch-action: manipulation;
       touch-action: manipulation;
   text-align: center;
@@ -648,22 +648,22 @@ template {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-[data-dpr="2"] .mdniui-picker-col-item {
+[data-dpr="2"] .dameiui-picker-col-item {
   font-size: 32px;
 }
-[data-dpr="3"] .mdniui-picker-col-item {
+[data-dpr="3"] .dameiui-picker-col-item {
   font-size: 48px;
 }
-.mdniui-picker-col-item-selected {
+.dameiui-picker-col-item-selected {
   font-size: 17px;
 }
-[data-dpr="2"] .mdniui-picker-col-item-selected {
+[data-dpr="2"] .dameiui-picker-col-item-selected {
   font-size: 34px;
 }
-[data-dpr="3"] .mdniui-picker-col-item-selected {
+[data-dpr="3"] .dameiui-picker-col-item-selected {
   font-size: 51px;
 }
-.mdniui-picker-col-mask {
+.dameiui-picker-col-mask {
   position: absolute;
   left: 0;
   top: 0;
@@ -678,7 +678,7 @@ template {
   background-size: 100% 102px;
   background-repeat: no-repeat;
 }
-.mdniui-picker-col-indicator {
+.dameiui-picker-col-indicator {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
@@ -690,17 +690,17 @@ template {
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
 }
-.mdniui-picker-popup {
+.dameiui-picker-popup {
   left: 0;
   bottom: 0;
   position: fixed;
   width: 100%;
   background-color: #fff;
 }
-.mdniui-picker-popup-hidden {
+.dameiui-picker-popup-hidden {
   display: none !important;
 }
-.mdniui-picker-popup-wrap {
+.dameiui-picker-popup-wrap {
   position: fixed;
   overflow: auto;
   top: 0;
@@ -711,7 +711,7 @@ template {
   -webkit-overflow-scrolling: touch;
   outline: 0;
 }
-.mdniui-picker-popup-mask {
+.dameiui-picker-popup-mask {
   position: fixed;
   top: 0;
   right: 0;
@@ -721,10 +721,10 @@ template {
   height: 100%;
   z-index: 1000;
 }
-.mdniui-picker-popup-mask-hidden {
+.dameiui-picker-popup-mask-hidden {
   display: none;
 }
-.mdniui-picker-popup-header {
+.dameiui-picker-popup-header {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#e7e7e7), color-stop(#e7e7e7), color-stop(transparent), to(transparent));
   background-image: -webkit-linear-gradient(top, #e7e7e7, #e7e7e7, transparent, transparent);
   background-image: linear-gradient(to bottom, #e7e7e7, #e7e7e7, transparent, transparent);
@@ -741,7 +741,7 @@ template {
           align-items: center;
   position: relative;
 }
-.mdniui-picker-popup-header:after {
+.dameiui-picker-popup-header:after {
   display: block;
   position: absolute;
   content: '';
@@ -752,24 +752,24 @@ template {
   width: 100%;
   border-bottom: 1PX solid #ddd;
 }
-.mdniui-picker-popup-header .mdniui-picker-popup-header-right {
+.dameiui-picker-popup-header .dameiui-picker-popup-header-right {
   text-align: right;
 }
-.mdniui-picker-popup-item {
+.dameiui-picker-popup-item {
   color: #108ee9;
   font-size: 17px;
   padding: 9px 15px;
 }
-[data-dpr="2"] .mdniui-picker-popup-item {
+[data-dpr="2"] .dameiui-picker-popup-item {
   font-size: 34px;
 }
-[data-dpr="3"] .mdniui-picker-popup-item {
+[data-dpr="3"] .dameiui-picker-popup-item {
   font-size: 51px;
 }
-.mdniui-picker-popup-item-active {
+.dameiui-picker-popup-item-active {
   background-color: #ddd;
 }
-.mdniui-picker-popup-title {
+.dameiui-picker-popup-title {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
       -ms-flex: 1;
@@ -777,10 +777,10 @@ template {
   text-align: center;
   color: #000;
 }
-.mdniui-picker-popup .mdniui-picker-popup-close {
+.dameiui-picker-popup .dameiui-picker-popup-close {
   display: none;
 }
-.mdniui-card {
+.dameiui-card {
   -webkit-border-radius: 10px;
           border-radius: 10px;
   min-height: 96px;
@@ -797,16 +797,16 @@ template {
           flex-direction: column;
   background-color: #fff;
 }
-.mdniui-card.mdniui-card-border {
+.dameiui-card.dameiui-card-border {
   border: 1PX solid #ddd;
 }
-.mdniui-card.mdniui-card-full {
+.dameiui-card.dameiui-card-full {
   -webkit-border-radius: 0;
           border-radius: 0;
   border-left: 0;
   border-right: 0;
 }
-.mdniui-card-header {
+.dameiui-card-header {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -819,13 +819,13 @@ template {
   padding: 9px 15px;
   position: relative;
 }
-[data-dpr="2"] .mdniui-card-header {
+[data-dpr="2"] .dameiui-card-header {
   font-size: 34px;
 }
-[data-dpr="3"] .mdniui-card-header {
+[data-dpr="3"] .dameiui-card-header {
   font-size: 51px;
 }
-.mdniui-card-header-content {
+.dameiui-card-header-content {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
       -ms-flex: 1;
@@ -833,7 +833,7 @@ template {
   text-align: left;
   color: #000;
 }
-.mdniui-card-header-content > * {
+.dameiui-card-header-content > * {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -843,14 +843,14 @@ template {
       -ms-flex-align: center;
           align-items: center;
 }
-.mdniui-card-header-content img {
+.dameiui-card-header-content img {
   margin-right: 5px;
 }
-.mdniui-card-header-extra {
+.dameiui-card-header-extra {
   font-size: 17px;
   color: #888;
 }
-.mdniui-card-header-extra > * {
+.dameiui-card-header-extra > * {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -860,13 +860,13 @@ template {
       -ms-flex-align: center;
           align-items: center;
 }
-[data-dpr="2"] .mdniui-card-header-extra {
+[data-dpr="2"] .dameiui-card-header-extra {
   font-size: 34px;
 }
-[data-dpr="3"] .mdniui-card-header-extra {
+[data-dpr="3"] .dameiui-card-header-extra {
   font-size: 51px;
 }
-.mdniui-card-body {
+.dameiui-card-body {
   padding: 15px 15px 6px;
   font-size: 15px;
   color: #333;
@@ -876,16 +876,16 @@ template {
       -ms-flex: 1;
           flex: 1;
 }
-[data-dpr="2"] .mdniui-card-body {
+[data-dpr="2"] .dameiui-card-body {
   font-size: 30px;
 }
-[data-dpr="3"] .mdniui-card-body {
+[data-dpr="3"] .dameiui-card-body {
   font-size: 45px;
 }
-.mdniui-card-header + .mdniui-card-body {
+.dameiui-card-header + .dameiui-card-body {
   border-top: 1PX solid #ddd;
 }
-.mdniui-card-footer {
+.dameiui-card-footer {
   font-size: 14px;
   color: #888;
   padding: 6px 15px 0 15px;
@@ -895,30 +895,30 @@ template {
   display: -ms-flexbox;
   display: flex;
 }
-[data-dpr="2"] .mdniui-card-footer {
+[data-dpr="2"] .dameiui-card-footer {
   font-size: 28px;
 }
-[data-dpr="3"] .mdniui-card-footer {
+[data-dpr="3"] .dameiui-card-footer {
   font-size: 42px;
 }
-.mdniui-card-footer-content {
+.dameiui-card-footer-content {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
       -ms-flex: 1;
           flex: 1;
 }
-.mdniui-card-footer-extra {
+.dameiui-card-footer-extra {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
       -ms-flex: 1;
           flex: 1;
   text-align: right;
 }
-.mdniui-modal {
+.dameiui-modal {
   position: relative;
   width: auto;
 }
-.mdniui-modal-mask {
+.dameiui-modal-mask {
   position: fixed;
   top: 0;
   right: 0;
@@ -928,10 +928,10 @@ template {
   z-index: 999;
   background-color: rgba(0, 0, 0, 0.4);
 }
-.mdniui-modal-mask-hidden {
+.dameiui-modal-mask-hidden {
   display: none;
 }
-.mdniui-modal-wrap {
+.dameiui-modal-wrap {
   position: fixed;
   overflow: auto;
   top: 0;
@@ -955,19 +955,19 @@ template {
           justify-content: center;
   z-index: 999;
 }
-.mdniui-modal-hidden {
+.dameiui-modal-hidden {
   display: none !important;
 }
-.mdniui-modal.mdniui-modal-transparent .mdniui-modal-content {
+.dameiui-modal.dameiui-modal-transparent .dameiui-modal-content {
   -webkit-border-radius: 7px;
           border-radius: 7px;
   height: auto;
   padding-top: 15px;
 }
-.mdniui-modal.mdniui-modal-transparent .mdniui-modal-content .mdniui-modal-body {
+.dameiui-modal.dameiui-modal-transparent .dameiui-modal-content .dameiui-modal-body {
   padding: 0 15px 15px;
 }
-.mdniui-modal-content {
+.dameiui-modal-content {
   position: relative;
   background-color: #fff;
   border: 0;
@@ -978,23 +978,23 @@ template {
   -webkit-border-radius: 7px;
           border-radius: 7px;
 }
-.mdniui-modal-header {
+.dameiui-modal-header {
   padding: 6px 15px 15px;
   background: #fff;
 }
-.mdniui-modal-title {
+.dameiui-modal-title {
   margin: 0;
   font-size: 18px;
   color: #000;
   text-align: center;
 }
-[data-dpr="2"] .mdniui-modal-title {
+[data-dpr="2"] .dameiui-modal-title {
   font-size: 36px;
 }
-[data-dpr="3"] .mdniui-modal-title {
+[data-dpr="3"] .dameiui-modal-title {
   font-size: 54px;
 }
-.mdniui-modal-close {
+.dameiui-modal-close {
   border: 0;
   padding: 0;
   background-color: transparent;
@@ -1005,7 +1005,7 @@ template {
   height: 21px;
   width: 21px;
 }
-.mdniui-modal-close-x {
+.dameiui-modal-close-x {
   display: inline-block;
   width: 15px;
   height: 15px;
@@ -1013,31 +1013,31 @@ template {
   background-size: cover;
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D'30'%20height%3D'30'%20viewBox%3D'0%200%2030%2030'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%20%3Cdefs%3E%3C%2Fdefs%3E%20%3Cg%20id%3D'ALL-ICON'%20stroke%3D'none'%20stroke-width%3D'1'%20fill%3D'none'%20fill-rule%3D'evenodd'%3E%20%3Cg%20id%3D'Rectangle-283-%2B-Rectangle-283'%20fill%3D'%23888888'%3E%20%3Crect%20id%3D'Rectangle-283'%20transform%3D'translate(14.849242%2C%2014.849242)%20rotate(-315.000000)%20translate(-14.849242%2C%20-14.849242)%20'%20x%3D'-5.1507576'%20y%3D'13.8492424'%20width%3D'40'%20height%3D'2'%3E%3C%2Frect%3E%20%3Crect%20id%3D'Rectangle-283'%20transform%3D'translate(14.849242%2C%2014.849242)%20scale(-1%2C%201)%20rotate(-315.000000)%20translate(-14.849242%2C%20-14.849242)%20'%20x%3D'-5.1507576'%20y%3D'13.8492424'%20width%3D'40'%20height%3D'2'%3E%3C%2Frect%3E%20%3C%2Fg%3E%20%3C%2Fg%3E%20%3C%2Fsvg%3E");
 }
-.mdniui-modal-body {
+.dameiui-modal-body {
   padding: 9px;
 }
-.mdniui-modal.mdniui-modal-operation .mdniui-modal-content {
+.dameiui-modal.dameiui-modal-operation .dameiui-modal-content {
   -webkit-border-radius: 7px;
           border-radius: 7px;
   height: auto;
   padding-top: 0;
 }
-.mdniui-modal.mdniui-modal-operation .mdniui-modal-content .mdniui-modal-body {
+.dameiui-modal.dameiui-modal-operation .dameiui-modal-content .dameiui-modal-body {
   padding: 0;
 }
-.mdniui-modal.mdniui-modal-operation .mdniui-modal-content .mdniui-modal-button {
+.dameiui-modal.dameiui-modal-operation .dameiui-modal-content .dameiui-modal-button {
   color: #000;
   text-align: start;
   padding-left: 15px;
 }
-.mdniui-modal-button-group-h {
+.dameiui-modal-button-group-h {
   border-top: 1PX solid #ddd;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
-.mdniui-modal-button-group-h .mdniui-modal-button {
+.dameiui-modal-button-group-h .dameiui-modal-button {
   -webkit-touch-callout: none;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
@@ -1058,20 +1058,20 @@ template {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-[data-dpr="2"] .mdniui-modal-button-group-h .mdniui-modal-button {
+[data-dpr="2"] .dameiui-modal-button-group-h .dameiui-modal-button {
   font-size: 32px;
 }
-[data-dpr="3"] .mdniui-modal-button-group-h .mdniui-modal-button {
+[data-dpr="3"] .dameiui-modal-button-group-h .dameiui-modal-button {
   font-size: 48px;
 }
-.mdniui-modal-button-group-h .mdniui-modal-button:active {
+.dameiui-modal-button-group-h .dameiui-modal-button:active {
   background: #ddd;
 }
-.mdniui-modal-button-group-h .mdniui-modal-button:first-child {
+.dameiui-modal-button-group-h .dameiui-modal-button:first-child {
   color: #000;
   border-right: 1PX solid #ddd;
 }
-.mdniui-modal-button-group-v .mdniui-modal-button {
+.dameiui-modal-button-group-v .dameiui-modal-button {
   -webkit-touch-callout: none;
   border-top: 1PX solid #ddd;
   -webkit-box-sizing: border-box;
@@ -1089,24 +1089,24 @@ template {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-[data-dpr="2"] .mdniui-modal-button-group-v .mdniui-modal-button {
+[data-dpr="2"] .dameiui-modal-button-group-v .dameiui-modal-button {
   font-size: 32px;
 }
-[data-dpr="3"] .mdniui-modal-button-group-v .mdniui-modal-button {
+[data-dpr="3"] .dameiui-modal-button-group-v .dameiui-modal-button {
   font-size: 48px;
 }
-.mdniui-modal-button-group-v .mdniui-modal-button:active {
+.dameiui-modal-button-group-v .dameiui-modal-button:active {
   background: #dddddd;
 }
-.mdniui-modal:active {
+.dameiui-modal:active {
   background-color: #ddd;
 }
-.mdniui-modal-input {
+.dameiui-modal-input {
   border-left: 1PX solid #ddd;
   border-right: 1PX solid #ddd;
   border-bottom: 1PX solid #ddd;
 }
-.mdniui-modal-input:first-child {
+.dameiui-modal-input:first-child {
   margin-top: 9px;
   border-top: 1PX solid #ddd;
   -webkit-border-top-left-radius: 6px;
@@ -1114,13 +1114,13 @@ template {
   -webkit-border-top-right-radius: 6px;
           border-top-right-radius: 6px;
 }
-.mdniui-modal-input:last-child {
+.dameiui-modal-input:last-child {
   -webkit-border-bottom-left-radius: 6px;
           border-bottom-left-radius: 6px;
   -webkit-border-bottom-right-radius: 6px;
           border-bottom-right-radius: 6px;
 }
-.mdniui-modal-input input {
+.dameiui-modal-input input {
   border: 0;
   width: 98%;
   -webkit-box-sizing: border-box;
@@ -1128,51 +1128,51 @@ template {
   margin: 0;
   padding: 3px 0;
 }
-.mdniui-modal.mdniui-modal-android .mdniui-modal-content {
+.dameiui-modal.dameiui-modal-android .dameiui-modal-content {
   -webkit-border-radius: 0;
           border-radius: 0;
   padding-top: 15px;
 }
-.mdniui-modal.mdniui-modal-android .mdniui-modal-content .mdniui-modal-header {
+.dameiui-modal.dameiui-modal-android .dameiui-modal-content .dameiui-modal-header {
   padding: 9px 48px 24px;
 }
-.mdniui-modal.mdniui-modal-android .mdniui-modal-content .mdniui-modal-header .mdniui-modal-title {
+.dameiui-modal.dameiui-modal-android .dameiui-modal-content .dameiui-modal-header .dameiui-modal-title {
   text-align: left;
   font-size: 21px;
   color: #000;
 }
-[data-dpr="2"] .mdniui-modal.mdniui-modal-android .mdniui-modal-content .mdniui-modal-header .mdniui-modal-title {
+[data-dpr="2"] .dameiui-modal.dameiui-modal-android .dameiui-modal-content .dameiui-modal-header .dameiui-modal-title {
   font-size: 42px;
 }
-[data-dpr="3"] .mdniui-modal.mdniui-modal-android .mdniui-modal-content .mdniui-modal-header .mdniui-modal-title {
+[data-dpr="3"] .dameiui-modal.dameiui-modal-android .dameiui-modal-content .dameiui-modal-header .dameiui-modal-title {
   font-size: 63px;
 }
-.mdniui-modal.mdniui-modal-android .mdniui-modal-content .mdniui-modal-body {
+.dameiui-modal.dameiui-modal-android .dameiui-modal-content .dameiui-modal-body {
   font-size: 16px;
   color: #000;
   text-align: left;
   padding: 0 48px 15px;
   line-height: 0.75;
 }
-[data-dpr="2"] .mdniui-modal.mdniui-modal-android .mdniui-modal-content .mdniui-modal-body {
+[data-dpr="2"] .dameiui-modal.dameiui-modal-android .dameiui-modal-content .dameiui-modal-body {
   font-size: 32px;
 }
-[data-dpr="3"] .mdniui-modal.mdniui-modal-android .mdniui-modal-content .mdniui-modal-body {
+[data-dpr="3"] .dameiui-modal.dameiui-modal-android .dameiui-modal-content .dameiui-modal-body {
   font-size: 48px;
 }
-.mdniui-modal.mdniui-modal-android .mdniui-modal-content .mdniui-modal-body .mdniui-modal-input {
+.dameiui-modal.dameiui-modal-android .dameiui-modal-content .dameiui-modal-body .dameiui-modal-input {
   border-left: 0;
   border-right: 0;
   -webkit-border-radius: 0;
           border-radius: 0;
 }
-.mdniui-modal.mdniui-modal-android .mdniui-modal-content .mdniui-modal-body .mdniui-modal-input:first-child {
+.dameiui-modal.dameiui-modal-android .dameiui-modal-content .dameiui-modal-body .dameiui-modal-input:first-child {
   border-top: 0;
 }
-.mdniui-modal.mdniui-modal-android .mdniui-modal-content .mdniui-modal-footer {
+.dameiui-modal.dameiui-modal-android .dameiui-modal-content .dameiui-modal-footer {
   padding-bottom: 12px;
 }
-.mdniui-modal.mdniui-modal-android .mdniui-modal-content .mdniui-modal-footer .mdniui-modal-button-group-h {
+.dameiui-modal.dameiui-modal-android .dameiui-modal-content .dameiui-modal-footer .dameiui-modal-button-group-h {
   overflow: hidden;
   border-top: 0;
   -webkit-box-pack: end;
@@ -1181,7 +1181,7 @@ template {
           justify-content: flex-end;
   padding: 0 12px;
 }
-.mdniui-modal.mdniui-modal-android .mdniui-modal-content .mdniui-modal-footer .mdniui-modal-button-group-h .mdniui-modal-button {
+.dameiui-modal.dameiui-modal-android .dameiui-modal-content .dameiui-modal-footer .dameiui-modal-button-group-h .dameiui-modal-button {
   -webkit-box-flex: initial;
   -webkit-flex: initial;
       -ms-flex: initial;
@@ -1192,11 +1192,11 @@ template {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
-.mdniui-modal.mdniui-modal-android .mdniui-modal-content .mdniui-modal-footer .mdniui-modal-button-group-h .mdniui-modal-button:first-child {
+.dameiui-modal.dameiui-modal-android .dameiui-modal-content .dameiui-modal-footer .dameiui-modal-button-group-h .dameiui-modal-button:first-child {
   border-right: 0;
   color: #777;
 }
-.mdniui-modal.mdniui-modal-android .mdniui-modal-content .mdniui-modal-footer .mdniui-modal-button-group-v {
+.dameiui-modal.dameiui-modal-android .dameiui-modal-content .dameiui-modal-footer .dameiui-modal-button-group-v {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1208,7 +1208,7 @@ template {
   overflow: hidden;
   padding: 0 12px;
 }
-.mdniui-modal.mdniui-modal-android .mdniui-modal-content .mdniui-modal-footer .mdniui-modal-button-group-v .mdniui-modal-button {
+.dameiui-modal.dameiui-modal-android .dameiui-modal-content .dameiui-modal-footer .dameiui-modal-button-group-v .dameiui-modal-button {
   border-top: 0;
   padding: 0 15px;
   margin-left: 3px;
@@ -1216,17 +1216,17 @@ template {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
-.mdniui-icon {
+.dameiui-icon {
   font-size: 20px;
   margin-right: 5px;
 }
-[data-dpr="2"] .mdniui-icon {
+[data-dpr="2"] .dameiui-icon {
   font-size: 40px;
 }
-[data-dpr="3"] .mdniui-icon {
+[data-dpr="3"] .dameiui-icon {
   font-size: 60px;
 }
-.mdniui-button {
+.dameiui-button {
   display: inline-block;
   outline: 0 none;
   -webkit-appearance: none;
@@ -1244,65 +1244,65 @@ template {
   background-color: #fff;
   border: 1PX solid #ddd;
 }
-[data-dpr="2"] .mdniui-button {
+[data-dpr="2"] .dameiui-button {
   font-size: 26px;
 }
-[data-dpr="3"] .mdniui-button {
+[data-dpr="3"] .dameiui-button {
   font-size: 39px;
 }
-.mdniui-button:active {
+.dameiui-button:active {
   background-color: #ddd;
 }
-.mdniui-button-primary {
+.dameiui-button-primary {
   color: #fff;
   background-color: #108ee9;
   border: 1PX solid #108ee9;
 }
-.mdniui-button-primary:active {
+.dameiui-button-primary:active {
   background-color: #1284d6;
 }
-.mdniui-button-success {
+.dameiui-button-success {
   color: #fff;
   background-color: #6abf47;
   border: 1PX solid #6abf47;
 }
-.mdniui-button-success:active {
+.dameiui-button-success:active {
   background-color: #8abf47;
 }
-.mdniui-button-warning {
+.dameiui-button-warning {
   color: #fff;
   background-color: #f86e21;
   border: 1PX solid #f86e21;
 }
-.mdniui-button-warning:active {
+.dameiui-button-warning:active {
   background-color: #d86e21;
 }
-.mdniui-button-error {
+.dameiui-button-error {
   color: #fff;
   background-color: #f4333c;
   border: 1PX solid #f4333c;
 }
-.mdniui-button-error:active {
+.dameiui-button-error:active {
   background-color: #d4333c;
 }
-.mdniui-button-ghost {
+.dameiui-button-ghost {
   color: #108ee9;
   background-color: transparent;
   border: 1PX solid #108ee9;
 }
-.mdniui-button-ghost:active {
+.dameiui-button-ghost:active {
   color: #fff;
   background-color: #1284d6;
   border: 1PX solid #108ee9;
 }
-.mdniui-button-inline {
+.dameiui-button-inline {
   display: inline-block;
   padding: 0 15px;
 }
-.mdniui-button-long {
+.dameiui-button-long {
   width: 100%;
 }
-.mdniui-button-small {
+.dameiui-button-small {
   font-size: 11px;
   height: 22.5px;
   line-height: 22.5px;
@@ -1310,35 +1310,35 @@ template {
   -webkit-border-radius: 10px;
           border-radius: 10px;
 }
-[data-dpr="2"] .mdniui-button-small {
+[data-dpr="2"] .dameiui-button-small {
   font-size: 22px;
 }
-[data-dpr="3"] .mdniui-button-small {
+[data-dpr="3"] .dameiui-button-small {
   font-size: 33px;
 }
-.mdniui-button.mdniui-button-across,
-.mdniui-button-primary.mdniui-button-across,
-.mdniui-button-ghost.mdniui-button-across,
-.mdniui-button-warning.mdniui-button-across,
-.mdniui-button-success.mdniui-button-across,
-.mdniui-button-error.mdniui-button-across {
+.dameiui-button.dameiui-button-across,
+.dameiui-button-primary.dameiui-button-across,
+.dameiui-button-ghost.dameiui-button-across,
+.dameiui-button-warning.dameiui-button-across,
+.dameiui-button-success.dameiui-button-across,
+.dameiui-button-error.dameiui-button-across {
   width: 100%;
   -webkit-border-radius: 0;
           border-radius: 0;
   border-left: 0;
   border-right: 0;
 }
-.mdniui-button.mdniui-button-disabled,
-.mdniui-button-primary.mdniui-button-disabled,
-.mdniui-button-ghost.mdniui-button-disabled,
-.mdniui-button-warning.mdniui-button-disabled,
-.mdniui-button-success.mdniui-button-disabled,
-.mdniui-button-error.mdniui-button-disabled {
+.dameiui-button.dameiui-button-disabled,
+.dameiui-button-primary.dameiui-button-disabled,
+.dameiui-button-ghost.dameiui-button-disabled,
+.dameiui-button-warning.dameiui-button-disabled,
+.dameiui-button-success.dameiui-button-disabled,
+.dameiui-button-error.dameiui-button-disabled {
   color: #bbb;
   background-color: #ddd;
   border: 0;
 }
-.mdniui-button-icon {
+.dameiui-button-icon {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1352,62 +1352,62 @@ template {
       -ms-flex-pack: center;
           justify-content: center;
 }
-.mdniui-button > .mdniui-icon {
+.dameiui-button > .dameiui-icon {
   margin-right: 0.5em;
   font-size: 17.5px;
   line-height: 1;
 }
-[data-dpr="2"] .mdniui-button > .mdniui-icon {
+[data-dpr="2"] .dameiui-button > .dameiui-icon {
   font-size: 35px;
 }
-[data-dpr="3"] .mdniui-button > .mdniui-icon {
+[data-dpr="3"] .dameiui-button > .dameiui-icon {
   font-size: 52.5px;
 }
-.mdniui-wingblank {
+.dameiui-wingblank {
   margin-left: 16px;
   margin-right: 16px;
 }
-.mdniui-wingblank.mdniui-wingblank-sm {
+.dameiui-wingblank.dameiui-wingblank-sm {
   margin-left: 10px;
   margin-right: 10px;
 }
-.mdniui-wingblank.mdniui-wingblank-md {
+.dameiui-wingblank.dameiui-wingblank-md {
   margin-left: 16px;
   margin-right: 16px;
 }
-.mdniui-wingblank.mdniui-wingblank-lg {
+.dameiui-wingblank.dameiui-wingblank-lg {
   margin-left: 30px;
   margin-right: 30px;
 }
-.mdniui-whitespace {
+.dameiui-whitespace {
   height: 18px;
 }
-.mdniui-whitespace.mdniui-whitespace-xs {
+.dameiui-whitespace.dameiui-whitespace-xs {
   height: 6px;
 }
-.mdniui-whitespace.mdniui-whitespace-sm {
+.dameiui-whitespace.dameiui-whitespace-sm {
   height: 12px;
 }
-.mdniui-whitespace.mdniui-whitespace-md {
+.dameiui-whitespace.dameiui-whitespace-md {
   height: 18px;
 }
-.mdniui-whitespace.mdniui-whitespace-lg {
+.dameiui-whitespace.dameiui-whitespace-lg {
   height: 30px;
 }
-.mdniui-whitespace.mdniui-whitespace-xl {
+.dameiui-whitespace.dameiui-whitespace-xl {
   height: 42px;
 }
-.mdniui-tabs {
+.dameiui-tabs {
   overflow: hidden;
 }
-.mdniui-tabs-bar {
+.dameiui-tabs-bar {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   position: relative;
 }
-.mdniui-tabs-bar .mdniui-tabs-prevpage:before {
+.dameiui-tabs-bar .dameiui-tabs-prevpage:before {
   pointer-events: none;
   position: absolute;
   top: 0;
@@ -1421,7 +1421,7 @@ template {
   background: -webkit-linear-gradient(left, #ffffff, rgba(255, 255, 255, 0));
   background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0));
 }
-.mdniui-tabs-bar .mdniui-tabs-nextpage:after {
+.dameiui-tabs-bar .dameiui-tabs-nextpage:after {
   pointer-events: none;
   position: absolute;
   top: 0;
@@ -1435,14 +1435,14 @@ template {
   background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), #ffffff);
   background: linear-gradient(to right, rgba(255, 255, 255, 0), #ffffff);
 }
-.mdniui-tabs-bar .mdniui-tabs-nav-swipe-container {
+.dameiui-tabs-bar .dameiui-tabs-nav-swipe-container {
   width: 100%;
 }
-.mdniui-tabs-bar .mdniui-tabs-nav-swipe-container .mdniui-tabs-nav-swipe {
+.dameiui-tabs-bar .dameiui-tabs-nav-swipe-container .dameiui-tabs-nav-swipe {
   position: relative;
   left: 0;
 }
-.mdniui-tabs-bar .mdniui-tabs-nav-swipe-container .mdniui-tabs-nav-swipe .mdniui-tabs-nav {
+.dameiui-tabs-bar .dameiui-tabs-nav-swipe-container .dameiui-tabs-nav-swipe .dameiui-tabs-nav {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1453,7 +1453,7 @@ template {
       -ms-flex: 1;
           flex: 1;
 }
-.mdniui-tabs-bar .mdniui-tabs-nav-swipe-container .mdniui-tabs-nav-swipe .mdniui-tabs-nav .mdniui-tabs-tab {
+.dameiui-tabs-bar .dameiui-tabs-nav-swipe-container .dameiui-tabs-nav-swipe .dameiui-tabs-nav .dameiui-tabs-tab {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1467,7 +1467,7 @@ template {
       -ms-flex: 0 0 20%;
           flex: 0 0 20%;
 }
-.mdniui-tabs-bar .mdniui-tabs-tab {
+.dameiui-tabs-bar .dameiui-tabs-tab {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1489,36 +1489,36 @@ template {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
-.mdniui-tabs-bar .mdniui-tabs-tab-active {
+.dameiui-tabs-bar .dameiui-tabs-tab-active {
   color: #108ee9;
 }
-.mdniui-tabs-ink-bar {
+.dameiui-tabs-ink-bar {
   position: absolute;
   bottom: 0;
   height: 4px;
   background-color: #108ee9;
 }
-.mdniui-tabs-ink-bar-animated {
+.dameiui-tabs-ink-bar-animated {
   -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
   transition: -webkit-transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
   transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
   transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1), -webkit-transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
 }
-.mdniui-tabs.mdniui-tabs-bottom .mdniui-tabs-ink-bar {
+.dameiui-tabs.dameiui-tabs-bottom .dameiui-tabs-ink-bar {
   bottom: auto;
   top: 0;
 }
-.mdniui-tabs.mdniui-tabs-bottom .mdniui-tabs-tab {
+.dameiui-tabs.dameiui-tabs-bottom .dameiui-tabs-tab {
   border-top: 1PX solid #ddd;
   border-bottom: 0;
 }
-.mdniui-tabs-content {
+.dameiui-tabs-content {
   zoom: 1;
 }
-.mdniui-tabs-content .mdniui-tabs-tabpane {
+.dameiui-tabs-content .dameiui-tabs-tabpane {
   overflow: auto;
 }
-.mdniui-tabs-content-animated {
+.dameiui-tabs-content-animated {
   -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
   transition: -webkit-transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
   transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
@@ -1529,7 +1529,7 @@ template {
   display: flex;
   will-change: transform;
 }
-.mdniui-tabs-content-animated .mdniui-tabs-tabpane {
+.dameiui-tabs-content-animated .dameiui-tabs-tabpane {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
@@ -1537,24 +1537,24 @@ template {
       -ms-flex-negative: 0;
           flex-shrink: 0;
 }
-.mdniui-tabs-content-no-animated .mdniui-tabs-tabpane-inactive {
+.dameiui-tabs-content-no-animated .dameiui-tabs-tabpane-inactive {
   display: none;
 }
-.mdniui-tabs .mdniui-tabs-tabpane-inactive {
+.dameiui-tabs .dameiui-tabs-tabpane-inactive {
   height: 0;
   overflow: visible;
 }
-.mdniui-animation-zoom-enter-active,
-.mdniui-animation-zoom-appear {
+.dameiui-animation-zoom-enter-active,
+.dameiui-animation-zoom-appear {
   opacity: 0;
-  -webkit-animation: mdniZoomIn 0.3s cubic-bezier(0.08, 0.82, 0.17, 1);
-          animation: mdniZoomIn 0.3s cubic-bezier(0.08, 0.82, 0.17, 1);
+  -webkit-animation: dameiZoomIn 0.3s cubic-bezier(0.08, 0.82, 0.17, 1);
+          animation: dameiZoomIn 0.3s cubic-bezier(0.08, 0.82, 0.17, 1);
 }
-.mdniui-animation-zoom-leave-active {
-  -webkit-animation: mdniZoomOut 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.34);
-          animation: mdniZoomOut 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.34);
+.dameiui-animation-zoom-leave-active {
+  -webkit-animation: dameiZoomOut 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.34);
+          animation: dameiZoomOut 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.34);
 }
-@-webkit-keyframes mdniZoomIn {
+@-webkit-keyframes dameiZoomIn {
   0% {
     opacity: 0;
     -webkit-transform: scale(0, 0);
@@ -1566,7 +1566,7 @@ template {
             transform: scale(1, 1);
   }
 }
-@keyframes mdniZoomIn {
+@keyframes dameiZoomIn {
   0% {
     opacity: 0;
     -webkit-transform: scale(0, 0);
@@ -1578,7 +1578,7 @@ template {
             transform: scale(1, 1);
   }
 }
-@-webkit-keyframes mdniZoomOut {
+@-webkit-keyframes dameiZoomOut {
   0% {
     -webkit-transform: scale(1, 1);
             transform: scale(1, 1);
@@ -1589,7 +1589,7 @@ template {
             transform: scale(0, 0);
   }
 }
-@keyframes mdniZoomOut {
+@keyframes dameiZoomOut {
   0% {
     -webkit-transform: scale(1, 1);
             transform: scale(1, 1);
@@ -1600,17 +1600,17 @@ template {
             transform: scale(0, 0);
   }
 }
-.mdniui-animation-fade-enter-active,
-.mdniui-animation-fade-appear {
+.dameiui-animation-fade-enter-active,
+.dameiui-animation-fade-appear {
   opacity: 0;
-  -webkit-animation: mdniFadeIn 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
-          animation: mdniFadeIn 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+  -webkit-animation: dameiFadeIn 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+          animation: dameiFadeIn 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
 }
-.mdniui-animation-fade-leave-active {
-  -webkit-animation: mdniFadeOut 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
-          animation: mdniFadeOut 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+.dameiui-animation-fade-leave-active {
+  -webkit-animation: dameiFadeOut 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+          animation: dameiFadeOut 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
 }
-@-webkit-keyframes mdniFadeIn {
+@-webkit-keyframes dameiFadeIn {
   0% {
     opacity: 0;
   }
@@ -1618,7 +1618,7 @@ template {
     opacity: 1;
   }
 }
-@keyframes mdniFadeIn {
+@keyframes dameiFadeIn {
   0% {
     opacity: 0;
   }
@@ -1626,7 +1626,7 @@ template {
     opacity: 1;
   }
 }
-@-webkit-keyframes mdniFadeOut {
+@-webkit-keyframes dameiFadeOut {
   0% {
     opacity: 1;
   }
@@ -1634,7 +1634,7 @@ template {
     opacity: 0;
   }
 }
-@keyframes mdniFadeOut {
+@keyframes dameiFadeOut {
   0% {
     opacity: 1;
   }
@@ -1642,19 +1642,19 @@ template {
     opacity: 0;
   }
 }
-.mdniui-animation-slide-enter-active,
-.mdniui-animation-slide-appear {
+.dameiui-animation-slide-enter-active,
+.dameiui-animation-slide-appear {
   -webkit-transform: translate(0, 100%);
       -ms-transform: translate(0, 100%);
           transform: translate(0, 100%);
-  -webkit-animation: mdniSlideIn 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
-          animation: mdniSlideIn 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+  -webkit-animation: dameiSlideIn 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+          animation: dameiSlideIn 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
 }
-.mdniui-animation-slide-leave-active {
-  -webkit-animation: mdniSlideOut 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
-          animation: mdniSlideOut 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+.dameiui-animation-slide-leave-active {
+  -webkit-animation: dameiSlideOut 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+          animation: dameiSlideOut 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
 }
-@-webkit-keyframes mdniSlideIn {
+@-webkit-keyframes dameiSlideIn {
   0% {
     -webkit-transform: translate(0, 100%);
             transform: translate(0, 100%);
@@ -1664,7 +1664,7 @@ template {
             transform: translate(0, 0);
   }
 }
-@keyframes mdniSlideIn {
+@keyframes dameiSlideIn {
   0% {
     -webkit-transform: translate(0, 100%);
             transform: translate(0, 100%);
@@ -1674,7 +1674,7 @@ template {
             transform: translate(0, 0);
   }
 }
-@-webkit-keyframes mdniSlideOut {
+@-webkit-keyframes dameiSlideOut {
   0% {
     -webkit-transform: translate(0, 0);
             transform: translate(0, 0);
@@ -1684,7 +1684,7 @@ template {
             transform: translate(0, 100%);
   }
 }
-@keyframes mdniSlideOut {
+@keyframes dameiSlideOut {
   0% {
     -webkit-transform: translate(0, 0);
             transform: translate(0, 0);
@@ -1694,7 +1694,7 @@ template {
             transform: translate(0, 100%);
   }
 }
-.mdniui-animation-loading {
+.dameiui-animation-loading {
   -webkit-animation: cirle-anim 1s linear infinite;
           animation: cirle-anim 1s linear infinite;
 }
@@ -1725,739 +1725,739 @@ MIT License: https://github.com/driftyco/ionicons
 }
 .ion,
 .ionicons,
-.mdniui-icon-alert:before,
-.mdniui-icon-alert-circled:before,
-.mdniui-icon-android-add:before,
-.mdniui-icon-android-add-circle:before,
-.mdniui-icon-android-alarm-clock:before,
-.mdniui-icon-android-alert:before,
-.mdniui-icon-android-apps:before,
-.mdniui-icon-android-archive:before,
-.mdniui-icon-android-arrow-back:before,
-.mdniui-icon-android-arrow-down:before,
-.mdniui-icon-android-arrow-dropdown:before,
-.mdniui-icon-android-arrow-dropdown-circle:before,
-.mdniui-icon-android-arrow-dropleft:before,
-.mdniui-icon-android-arrow-dropleft-circle:before,
-.mdniui-icon-android-arrow-dropright:before,
-.mdniui-icon-android-arrow-dropright-circle:before,
-.mdniui-icon-android-arrow-dropup:before,
-.mdniui-icon-android-arrow-dropup-circle:before,
-.mdniui-icon-android-arrow-forward:before,
-.mdniui-icon-android-arrow-up:before,
-.mdniui-icon-android-attach:before,
-.mdniui-icon-android-bar:before,
-.mdniui-icon-android-bicycle:before,
-.mdniui-icon-android-boat:before,
-.mdniui-icon-android-bookmark:before,
-.mdniui-icon-android-bulb:before,
-.mdniui-icon-android-bus:before,
-.mdniui-icon-android-calendar:before,
-.mdniui-icon-android-call:before,
-.mdniui-icon-android-camera:before,
-.mdniui-icon-android-cancel:before,
-.mdniui-icon-android-car:before,
-.mdniui-icon-android-cart:before,
-.mdniui-icon-android-chat:before,
-.mdniui-icon-android-checkbox:before,
-.mdniui-icon-android-checkbox-blank:before,
-.mdniui-icon-android-checkbox-outline:before,
-.mdniui-icon-android-checkbox-outline-blank:before,
-.mdniui-icon-android-checkmark-circle:before,
-.mdniui-icon-android-clipboard:before,
-.mdniui-icon-android-close:before,
-.mdniui-icon-android-cloud:before,
-.mdniui-icon-android-cloud-circle:before,
-.mdniui-icon-android-cloud-done:before,
-.mdniui-icon-android-cloud-outline:before,
-.mdniui-icon-android-color-palette:before,
-.mdniui-icon-android-compass:before,
-.mdniui-icon-android-contact:before,
-.mdniui-icon-android-contacts:before,
-.mdniui-icon-android-contract:before,
-.mdniui-icon-android-create:before,
-.mdniui-icon-android-delete:before,
-.mdniui-icon-android-desktop:before,
-.mdniui-icon-android-document:before,
-.mdniui-icon-android-done:before,
-.mdniui-icon-android-done-all:before,
-.mdniui-icon-android-download:before,
-.mdniui-icon-android-drafts:before,
-.mdniui-icon-android-exit:before,
-.mdniui-icon-android-expand:before,
-.mdniui-icon-android-favorite:before,
-.mdniui-icon-android-favorite-outline:before,
-.mdniui-icon-android-film:before,
-.mdniui-icon-android-folder:before,
-.mdniui-icon-android-folder-open:before,
-.mdniui-icon-android-funnel:before,
-.mdniui-icon-android-globe:before,
-.mdniui-icon-android-hand:before,
-.mdniui-icon-android-hangout:before,
-.mdniui-icon-android-happy:before,
-.mdniui-icon-android-home:before,
-.mdniui-icon-android-image:before,
-.mdniui-icon-android-laptop:before,
-.mdniui-icon-android-list:before,
-.mdniui-icon-android-locate:before,
-.mdniui-icon-android-lock:before,
-.mdniui-icon-android-mail:before,
-.mdniui-icon-android-map:before,
-.mdniui-icon-android-menu:before,
-.mdniui-icon-android-microphone:before,
-.mdniui-icon-android-microphone-off:before,
-.mdniui-icon-android-more-horizontal:before,
-.mdniui-icon-android-more-vertical:before,
-.mdniui-icon-android-navigate:before,
-.mdniui-icon-android-notifications:before,
-.mdniui-icon-android-notifications-none:before,
-.mdniui-icon-android-notifications-off:before,
-.mdniui-icon-android-open:before,
-.mdniui-icon-android-options:before,
-.mdniui-icon-android-people:before,
-.mdniui-icon-android-person:before,
-.mdniui-icon-android-person-add:before,
-.mdniui-icon-android-phone-landscape:before,
-.mdniui-icon-android-phone-portrait:before,
-.mdniui-icon-android-pin:before,
-.mdniui-icon-android-plane:before,
-.mdniui-icon-android-playstore:before,
-.mdniui-icon-android-print:before,
-.mdniui-icon-android-radio-button-off:before,
-.mdniui-icon-android-radio-button-on:before,
-.mdniui-icon-android-refresh:before,
-.mdniui-icon-android-remove:before,
-.mdniui-icon-android-remove-circle:before,
-.mdniui-icon-android-restaurant:before,
-.mdniui-icon-android-sad:before,
-.mdniui-icon-android-search:before,
-.mdniui-icon-android-send:before,
-.mdniui-icon-android-settings:before,
-.mdniui-icon-android-share:before,
-.mdniui-icon-android-share-alt:before,
-.mdniui-icon-android-star:before,
-.mdniui-icon-android-star-half:before,
-.mdniui-icon-android-star-outline:before,
-.mdniui-icon-android-stopwatch:before,
-.mdniui-icon-android-subway:before,
-.mdniui-icon-android-sunny:before,
-.mdniui-icon-android-sync:before,
-.mdniui-icon-android-textsms:before,
-.mdniui-icon-android-time:before,
-.mdniui-icon-android-train:before,
-.mdniui-icon-android-unlock:before,
-.mdniui-icon-android-upload:before,
-.mdniui-icon-android-volume-down:before,
-.mdniui-icon-android-volume-mute:before,
-.mdniui-icon-android-volume-off:before,
-.mdniui-icon-android-volume-up:before,
-.mdniui-icon-android-walk:before,
-.mdniui-icon-android-warning:before,
-.mdniui-icon-android-watch:before,
-.mdniui-icon-android-wifi:before,
-.mdniui-icon-aperture:before,
-.mdniui-icon-archive:before,
-.mdniui-icon-arrow-down-a:before,
-.mdniui-icon-arrow-down-b:before,
-.mdniui-icon-arrow-down-c:before,
-.mdniui-icon-arrow-expand:before,
-.mdniui-icon-arrow-graph-down-left:before,
-.mdniui-icon-arrow-graph-down-right:before,
-.mdniui-icon-arrow-graph-up-left:before,
-.mdniui-icon-arrow-graph-up-right:before,
-.mdniui-icon-arrow-left-a:before,
-.mdniui-icon-arrow-left-b:before,
-.mdniui-icon-arrow-left-c:before,
-.mdniui-icon-arrow-move:before,
-.mdniui-icon-arrow-resize:before,
-.mdniui-icon-arrow-return-left:before,
-.mdniui-icon-arrow-return-right:before,
-.mdniui-icon-arrow-right-a:before,
-.mdniui-icon-arrow-right-b:before,
-.mdniui-icon-arrow-right-c:before,
-.mdniui-icon-arrow-shrink:before,
-.mdniui-icon-arrow-swap:before,
-.mdniui-icon-arrow-up-a:before,
-.mdniui-icon-arrow-up-b:before,
-.mdniui-icon-arrow-up-c:before,
-.mdniui-icon-asterisk:before,
-.mdniui-icon-at:before,
-.mdniui-icon-backspace:before,
-.mdniui-icon-backspace-outline:before,
-.mdniui-icon-bag:before,
-.mdniui-icon-battery-charging:before,
-.mdniui-icon-battery-empty:before,
-.mdniui-icon-battery-full:before,
-.mdniui-icon-battery-half:before,
-.mdniui-icon-battery-low:before,
-.mdniui-icon-beaker:before,
-.mdniui-icon-beer:before,
-.mdniui-icon-bluetooth:before,
-.mdniui-icon-bonfire:before,
-.mdniui-icon-bookmark:before,
-.mdniui-icon-bowtie:before,
-.mdniui-icon-briefcase:before,
-.mdniui-icon-bug:before,
-.mdniui-icon-calculator:before,
-.mdniui-icon-calendar:before,
-.mdniui-icon-camera:before,
-.mdniui-icon-card:before,
-.mdniui-icon-cash:before,
-.mdniui-icon-chatbox:before,
-.mdniui-icon-chatbox-working:before,
-.mdniui-icon-chatboxes:before,
-.mdniui-icon-chatbubble:before,
-.mdniui-icon-chatbubble-working:before,
-.mdniui-icon-chatbubbles:before,
-.mdniui-icon-checkmark:before,
-.mdniui-icon-checkmark-circled:before,
-.mdniui-icon-checkmark-round:before,
-.mdniui-icon-chevron-down:before,
-.mdniui-icon-chevron-left:before,
-.mdniui-icon-chevron-right:before,
-.mdniui-icon-chevron-up:before,
-.mdniui-icon-clipboard:before,
-.mdniui-icon-clock:before,
-.mdniui-icon-close:before,
-.mdniui-icon-close-circled:before,
-.mdniui-icon-close-round:before,
-.mdniui-icon-closed-captioning:before,
-.mdniui-icon-cloud:before,
-.mdniui-icon-code:before,
-.mdniui-icon-code-download:before,
-.mdniui-icon-code-working:before,
-.mdniui-icon-coffee:before,
-.mdniui-icon-compass:before,
-.mdniui-icon-compose:before,
-.mdniui-icon-connection-bars:before,
-.mdniui-icon-contrast:before,
-.mdniui-icon-crop:before,
-.mdniui-icon-cube:before,
-.mdniui-icon-disc:before,
-.mdniui-icon-document:before,
-.mdniui-icon-document-text:before,
-.mdniui-icon-drag:before,
-.mdniui-icon-earth:before,
-.mdniui-icon-easel:before,
-.mdniui-icon-edit:before,
-.mdniui-icon-egg:before,
-.mdniui-icon-eject:before,
-.mdniui-icon-email:before,
-.mdniui-icon-email-unread:before,
-.mdniui-icon-erlenmeyer-flask:before,
-.mdniui-icon-erlenmeyer-flask-bubbles:before,
-.mdniui-icon-eye:before,
-.mdniui-icon-eye-disabled:before,
-.mdniui-icon-female:before,
-.mdniui-icon-filing:before,
-.mdniui-icon-film-marker:before,
-.mdniui-icon-fireball:before,
-.mdniui-icon-flag:before,
-.mdniui-icon-flame:before,
-.mdniui-icon-flash:before,
-.mdniui-icon-flash-off:before,
-.mdniui-icon-folder:before,
-.mdniui-icon-fork:before,
-.mdniui-icon-fork-repo:before,
-.mdniui-icon-forward:before,
-.mdniui-icon-funnel:before,
-.mdniui-icon-gear-a:before,
-.mdniui-icon-gear-b:before,
-.mdniui-icon-grid:before,
-.mdniui-icon-hammer:before,
-.mdniui-icon-happy:before,
-.mdniui-icon-happy-outline:before,
-.mdniui-icon-headphone:before,
-.mdniui-icon-heart:before,
-.mdniui-icon-heart-broken:before,
-.mdniui-icon-help:before,
-.mdniui-icon-help-buoy:before,
-.mdniui-icon-help-circled:before,
-.mdniui-icon-home:before,
-.mdniui-icon-icecream:before,
-.mdniui-icon-image:before,
-.mdniui-icon-images:before,
-.mdniui-icon-information:before,
-.mdniui-icon-information-circled:before,
-.mdniui-icon-ionic:before,
-.mdniui-icon-ios-alarm:before,
-.mdniui-icon-ios-alarm-outline:before,
-.mdniui-icon-ios-albums:before,
-.mdniui-icon-ios-albums-outline:before,
-.mdniui-icon-ios-americanfootball:before,
-.mdniui-icon-ios-americanfootball-outline:before,
-.mdniui-icon-ios-analytics:before,
-.mdniui-icon-ios-analytics-outline:before,
-.mdniui-icon-ios-arrow-back:before,
-.mdniui-icon-ios-arrow-down:before,
-.mdniui-icon-ios-arrow-forward:before,
-.mdniui-icon-ios-arrow-left:before,
-.mdniui-icon-ios-arrow-right:before,
-.mdniui-icon-ios-arrow-thin-down:before,
-.mdniui-icon-ios-arrow-thin-left:before,
-.mdniui-icon-ios-arrow-thin-right:before,
-.mdniui-icon-ios-arrow-thin-up:before,
-.mdniui-icon-ios-arrow-up:before,
-.mdniui-icon-ios-at:before,
-.mdniui-icon-ios-at-outline:before,
-.mdniui-icon-ios-barcode:before,
-.mdniui-icon-ios-barcode-outline:before,
-.mdniui-icon-ios-baseball:before,
-.mdniui-icon-ios-baseball-outline:before,
-.mdniui-icon-ios-basketball:before,
-.mdniui-icon-ios-basketball-outline:before,
-.mdniui-icon-ios-bell:before,
-.mdniui-icon-ios-bell-outline:before,
-.mdniui-icon-ios-body:before,
-.mdniui-icon-ios-body-outline:before,
-.mdniui-icon-ios-bolt:before,
-.mdniui-icon-ios-bolt-outline:before,
-.mdniui-icon-ios-book:before,
-.mdniui-icon-ios-book-outline:before,
-.mdniui-icon-ios-bookmarks:before,
-.mdniui-icon-ios-bookmarks-outline:before,
-.mdniui-icon-ios-box:before,
-.mdniui-icon-ios-box-outline:before,
-.mdniui-icon-ios-briefcase:before,
-.mdniui-icon-ios-briefcase-outline:before,
-.mdniui-icon-ios-browsers:before,
-.mdniui-icon-ios-browsers-outline:before,
-.mdniui-icon-ios-calculator:before,
-.mdniui-icon-ios-calculator-outline:before,
-.mdniui-icon-ios-calendar:before,
-.mdniui-icon-ios-calendar-outline:before,
-.mdniui-icon-ios-camera:before,
-.mdniui-icon-ios-camera-outline:before,
-.mdniui-icon-ios-cart:before,
-.mdniui-icon-ios-cart-outline:before,
-.mdniui-icon-ios-chatboxes:before,
-.mdniui-icon-ios-chatboxes-outline:before,
-.mdniui-icon-ios-chatbubble:before,
-.mdniui-icon-ios-chatbubble-outline:before,
-.mdniui-icon-ios-checkmark:before,
-.mdniui-icon-ios-checkmark-empty:before,
-.mdniui-icon-ios-checkmark-outline:before,
-.mdniui-icon-ios-circle-filled:before,
-.mdniui-icon-ios-circle-outline:before,
-.mdniui-icon-ios-clock:before,
-.mdniui-icon-ios-clock-outline:before,
-.mdniui-icon-ios-close:before,
-.mdniui-icon-ios-close-empty:before,
-.mdniui-icon-ios-close-outline:before,
-.mdniui-icon-ios-cloud:before,
-.mdniui-icon-ios-cloud-download:before,
-.mdniui-icon-ios-cloud-download-outline:before,
-.mdniui-icon-ios-cloud-outline:before,
-.mdniui-icon-ios-cloud-upload:before,
-.mdniui-icon-ios-cloud-upload-outline:before,
-.mdniui-icon-ios-cloudy:before,
-.mdniui-icon-ios-cloudy-night:before,
-.mdniui-icon-ios-cloudy-night-outline:before,
-.mdniui-icon-ios-cloudy-outline:before,
-.mdniui-icon-ios-cog:before,
-.mdniui-icon-ios-cog-outline:before,
-.mdniui-icon-ios-color-filter:before,
-.mdniui-icon-ios-color-filter-outline:before,
-.mdniui-icon-ios-color-wand:before,
-.mdniui-icon-ios-color-wand-outline:before,
-.mdniui-icon-ios-compose:before,
-.mdniui-icon-ios-compose-outline:before,
-.mdniui-icon-ios-contact:before,
-.mdniui-icon-ios-contact-outline:before,
-.mdniui-icon-ios-copy:before,
-.mdniui-icon-ios-copy-outline:before,
-.mdniui-icon-ios-crop:before,
-.mdniui-icon-ios-crop-strong:before,
-.mdniui-icon-ios-download:before,
-.mdniui-icon-ios-download-outline:before,
-.mdniui-icon-ios-drag:before,
-.mdniui-icon-ios-email:before,
-.mdniui-icon-ios-email-outline:before,
-.mdniui-icon-ios-eye:before,
-.mdniui-icon-ios-eye-outline:before,
-.mdniui-icon-ios-fastforward:before,
-.mdniui-icon-ios-fastforward-outline:before,
-.mdniui-icon-ios-filing:before,
-.mdniui-icon-ios-filing-outline:before,
-.mdniui-icon-ios-film:before,
-.mdniui-icon-ios-film-outline:before,
-.mdniui-icon-ios-flag:before,
-.mdniui-icon-ios-flag-outline:before,
-.mdniui-icon-ios-flame:before,
-.mdniui-icon-ios-flame-outline:before,
-.mdniui-icon-ios-flask:before,
-.mdniui-icon-ios-flask-outline:before,
-.mdniui-icon-ios-flower:before,
-.mdniui-icon-ios-flower-outline:before,
-.mdniui-icon-ios-folder:before,
-.mdniui-icon-ios-folder-outline:before,
-.mdniui-icon-ios-football:before,
-.mdniui-icon-ios-football-outline:before,
-.mdniui-icon-ios-game-controller-a:before,
-.mdniui-icon-ios-game-controller-a-outline:before,
-.mdniui-icon-ios-game-controller-b:before,
-.mdniui-icon-ios-game-controller-b-outline:before,
-.mdniui-icon-ios-gear:before,
-.mdniui-icon-ios-gear-outline:before,
-.mdniui-icon-ios-glasses:before,
-.mdniui-icon-ios-glasses-outline:before,
-.mdniui-icon-ios-grid-view:before,
-.mdniui-icon-ios-grid-view-outline:before,
-.mdniui-icon-ios-heart:before,
-.mdniui-icon-ios-heart-outline:before,
-.mdniui-icon-ios-help:before,
-.mdniui-icon-ios-help-empty:before,
-.mdniui-icon-ios-help-outline:before,
-.mdniui-icon-ios-home:before,
-.mdniui-icon-ios-home-outline:before,
-.mdniui-icon-ios-infinite:before,
-.mdniui-icon-ios-infinite-outline:before,
-.mdniui-icon-ios-information:before,
-.mdniui-icon-ios-information-empty:before,
-.mdniui-icon-ios-information-outline:before,
-.mdniui-icon-ios-ionic-outline:before,
-.mdniui-icon-ios-keypad:before,
-.mdniui-icon-ios-keypad-outline:before,
-.mdniui-icon-ios-lightbulb:before,
-.mdniui-icon-ios-lightbulb-outline:before,
-.mdniui-icon-ios-list:before,
-.mdniui-icon-ios-list-outline:before,
-.mdniui-icon-ios-location:before,
-.mdniui-icon-ios-location-outline:before,
-.mdniui-icon-ios-locked:before,
-.mdniui-icon-ios-locked-outline:before,
-.mdniui-icon-ios-loop:before,
-.mdniui-icon-ios-loop-strong:before,
-.mdniui-icon-ios-medical:before,
-.mdniui-icon-ios-medical-outline:before,
-.mdniui-icon-ios-medkit:before,
-.mdniui-icon-ios-medkit-outline:before,
-.mdniui-icon-ios-mic:before,
-.mdniui-icon-ios-mic-off:before,
-.mdniui-icon-ios-mic-outline:before,
-.mdniui-icon-ios-minus:before,
-.mdniui-icon-ios-minus-empty:before,
-.mdniui-icon-ios-minus-outline:before,
-.mdniui-icon-ios-monitor:before,
-.mdniui-icon-ios-monitor-outline:before,
-.mdniui-icon-ios-moon:before,
-.mdniui-icon-ios-moon-outline:before,
-.mdniui-icon-ios-more:before,
-.mdniui-icon-ios-more-outline:before,
-.mdniui-icon-ios-musical-note:before,
-.mdniui-icon-ios-musical-notes:before,
-.mdniui-icon-ios-navigate:before,
-.mdniui-icon-ios-navigate-outline:before,
-.mdniui-icon-ios-nutrition:before,
-.mdniui-icon-ios-nutrition-outline:before,
-.mdniui-icon-ios-paper:before,
-.mdniui-icon-ios-paper-outline:before,
-.mdniui-icon-ios-paperplane:before,
-.mdniui-icon-ios-paperplane-outline:before,
-.mdniui-icon-ios-partlysunny:before,
-.mdniui-icon-ios-partlysunny-outline:before,
-.mdniui-icon-ios-pause:before,
-.mdniui-icon-ios-pause-outline:before,
-.mdniui-icon-ios-paw:before,
-.mdniui-icon-ios-paw-outline:before,
-.mdniui-icon-ios-people:before,
-.mdniui-icon-ios-people-outline:before,
-.mdniui-icon-ios-person:before,
-.mdniui-icon-ios-person-outline:before,
-.mdniui-icon-ios-personadd:before,
-.mdniui-icon-ios-personadd-outline:before,
-.mdniui-icon-ios-photos:before,
-.mdniui-icon-ios-photos-outline:before,
-.mdniui-icon-ios-pie:before,
-.mdniui-icon-ios-pie-outline:before,
-.mdniui-icon-ios-pint:before,
-.mdniui-icon-ios-pint-outline:before,
-.mdniui-icon-ios-play:before,
-.mdniui-icon-ios-play-outline:before,
-.mdniui-icon-ios-plus:before,
-.mdniui-icon-ios-plus-empty:before,
-.mdniui-icon-ios-plus-outline:before,
-.mdniui-icon-ios-pricetag:before,
-.mdniui-icon-ios-pricetag-outline:before,
-.mdniui-icon-ios-pricetags:before,
-.mdniui-icon-ios-pricetags-outline:before,
-.mdniui-icon-ios-printer:before,
-.mdniui-icon-ios-printer-outline:before,
-.mdniui-icon-ios-pulse:before,
-.mdniui-icon-ios-pulse-strong:before,
-.mdniui-icon-ios-rainy:before,
-.mdniui-icon-ios-rainy-outline:before,
-.mdniui-icon-ios-recording:before,
-.mdniui-icon-ios-recording-outline:before,
-.mdniui-icon-ios-redo:before,
-.mdniui-icon-ios-redo-outline:before,
-.mdniui-icon-ios-refresh:before,
-.mdniui-icon-ios-refresh-empty:before,
-.mdniui-icon-ios-refresh-outline:before,
-.mdniui-icon-ios-reload:before,
-.mdniui-icon-ios-reverse-camera:before,
-.mdniui-icon-ios-reverse-camera-outline:before,
-.mdniui-icon-ios-rewind:before,
-.mdniui-icon-ios-rewind-outline:before,
-.mdniui-icon-ios-rose:before,
-.mdniui-icon-ios-rose-outline:before,
-.mdniui-icon-ios-search:before,
-.mdniui-icon-ios-search-strong:before,
-.mdniui-icon-ios-settings:before,
-.mdniui-icon-ios-settings-strong:before,
-.mdniui-icon-ios-shuffle:before,
-.mdniui-icon-ios-shuffle-strong:before,
-.mdniui-icon-ios-skipbackward:before,
-.mdniui-icon-ios-skipbackward-outline:before,
-.mdniui-icon-ios-skipforward:before,
-.mdniui-icon-ios-skipforward-outline:before,
-.mdniui-icon-ios-snowy:before,
-.mdniui-icon-ios-speedometer:before,
-.mdniui-icon-ios-speedometer-outline:before,
-.mdniui-icon-ios-star:before,
-.mdniui-icon-ios-star-half:before,
-.mdniui-icon-ios-star-outline:before,
-.mdniui-icon-ios-stopwatch:before,
-.mdniui-icon-ios-stopwatch-outline:before,
-.mdniui-icon-ios-sunny:before,
-.mdniui-icon-ios-sunny-outline:before,
-.mdniui-icon-ios-telephone:before,
-.mdniui-icon-ios-telephone-outline:before,
-.mdniui-icon-ios-tennisball:before,
-.mdniui-icon-ios-tennisball-outline:before,
-.mdniui-icon-ios-thunderstorm:before,
-.mdniui-icon-ios-thunderstorm-outline:before,
-.mdniui-icon-ios-time:before,
-.mdniui-icon-ios-time-outline:before,
-.mdniui-icon-ios-timer:before,
-.mdniui-icon-ios-timer-outline:before,
-.mdniui-icon-ios-toggle:before,
-.mdniui-icon-ios-toggle-outline:before,
-.mdniui-icon-ios-trash:before,
-.mdniui-icon-ios-trash-outline:before,
-.mdniui-icon-ios-undo:before,
-.mdniui-icon-ios-undo-outline:before,
-.mdniui-icon-ios-unlocked:before,
-.mdniui-icon-ios-unlocked-outline:before,
-.mdniui-icon-ios-upload:before,
-.mdniui-icon-ios-upload-outline:before,
-.mdniui-icon-ios-videocam:before,
-.mdniui-icon-ios-videocam-outline:before,
-.mdniui-icon-ios-volume-high:before,
-.mdniui-icon-ios-volume-low:before,
-.mdniui-icon-ios-wineglass:before,
-.mdniui-icon-ios-wineglass-outline:before,
-.mdniui-icon-ios-world:before,
-.mdniui-icon-ios-world-outline:before,
-.mdniui-icon-ipad:before,
-.mdniui-icon-iphone:before,
-.mdniui-icon-ipod:before,
-.mdniui-icon-jet:before,
-.mdniui-icon-key:before,
-.mdniui-icon-knife:before,
-.mdniui-icon-laptop:before,
-.mdniui-icon-leaf:before,
-.mdniui-icon-levels:before,
-.mdniui-icon-lightbulb:before,
-.mdniui-icon-link:before,
-.mdniui-icon-load-a:before,
-.mdniui-icon-load-b:before,
-.mdniui-icon-load-c:before,
-.mdniui-icon-load-d:before,
-.mdniui-icon-location:before,
-.mdniui-icon-lock-combination:before,
-.mdniui-icon-locked:before,
-.mdniui-icon-log-in:before,
-.mdniui-icon-log-out:before,
-.mdniui-icon-loop:before,
-.mdniui-icon-magnet:before,
-.mdniui-icon-male:before,
-.mdniui-icon-man:before,
-.mdniui-icon-map:before,
-.mdniui-icon-medkit:before,
-.mdniui-icon-merge:before,
-.mdniui-icon-mic-a:before,
-.mdniui-icon-mic-b:before,
-.mdniui-icon-mic-c:before,
-.mdniui-icon-minus:before,
-.mdniui-icon-minus-circled:before,
-.mdniui-icon-minus-round:before,
-.mdniui-icon-model-s:before,
-.mdniui-icon-monitor:before,
-.mdniui-icon-more:before,
-.mdniui-icon-mouse:before,
-.mdniui-icon-music-note:before,
-.mdniui-icon-navicon:before,
-.mdniui-icon-navicon-round:before,
-.mdniui-icon-navigate:before,
-.mdniui-icon-network:before,
-.mdniui-icon-no-smoking:before,
-.mdniui-icon-nuclear:before,
-.mdniui-icon-outlet:before,
-.mdniui-icon-paintbrush:before,
-.mdniui-icon-paintbucket:before,
-.mdniui-icon-paper-airplane:before,
-.mdniui-icon-paperclip:before,
-.mdniui-icon-pause:before,
-.mdniui-icon-person:before,
-.mdniui-icon-person-add:before,
-.mdniui-icon-person-stalker:before,
-.mdniui-icon-pie-graph:before,
-.mdniui-icon-pin:before,
-.mdniui-icon-pinpoint:before,
-.mdniui-icon-pizza:before,
-.mdniui-icon-plane:before,
-.mdniui-icon-planet:before,
-.mdniui-icon-play:before,
-.mdniui-icon-playstation:before,
-.mdniui-icon-plus:before,
-.mdniui-icon-plus-circled:before,
-.mdniui-icon-plus-round:before,
-.mdniui-icon-podium:before,
-.mdniui-icon-pound:before,
-.mdniui-icon-power:before,
-.mdniui-icon-pricetag:before,
-.mdniui-icon-pricetags:before,
-.mdniui-icon-printer:before,
-.mdniui-icon-pull-request:before,
-.mdniui-icon-qr-scanner:before,
-.mdniui-icon-quote:before,
-.mdniui-icon-radio-waves:before,
-.mdniui-icon-record:before,
-.mdniui-icon-refresh:before,
-.mdniui-icon-reply:before,
-.mdniui-icon-reply-all:before,
-.mdniui-icon-ribbon-a:before,
-.mdniui-icon-ribbon-b:before,
-.mdniui-icon-sad:before,
-.mdniui-icon-sad-outline:before,
-.mdniui-icon-scissors:before,
-.mdniui-icon-search:before,
-.mdniui-icon-settings:before,
-.mdniui-icon-share:before,
-.mdniui-icon-shuffle:before,
-.mdniui-icon-skip-backward:before,
-.mdniui-icon-skip-forward:before,
-.mdniui-icon-social-android:before,
-.mdniui-icon-social-android-outline:before,
-.mdniui-icon-social-angular:before,
-.mdniui-icon-social-angular-outline:before,
-.mdniui-icon-social-apple:before,
-.mdniui-icon-social-apple-outline:before,
-.mdniui-icon-social-bitcoin:before,
-.mdniui-icon-social-bitcoin-outline:before,
-.mdniui-icon-social-buffer:before,
-.mdniui-icon-social-buffer-outline:before,
-.mdniui-icon-social-chrome:before,
-.mdniui-icon-social-chrome-outline:before,
-.mdniui-icon-social-codepen:before,
-.mdniui-icon-social-codepen-outline:before,
-.mdniui-icon-social-css3:before,
-.mdniui-icon-social-css3-outline:before,
-.mdniui-icon-social-designernews:before,
-.mdniui-icon-social-designernews-outline:before,
-.mdniui-icon-social-dribbble:before,
-.mdniui-icon-social-dribbble-outline:before,
-.mdniui-icon-social-dropbox:before,
-.mdniui-icon-social-dropbox-outline:before,
-.mdniui-icon-social-euro:before,
-.mdniui-icon-social-euro-outline:before,
-.mdniui-icon-social-facebook:before,
-.mdniui-icon-social-facebook-outline:before,
-.mdniui-icon-social-foursquare:before,
-.mdniui-icon-social-foursquare-outline:before,
-.mdniui-icon-social-freebsd-devil:before,
-.mdniui-icon-social-github:before,
-.mdniui-icon-social-github-outline:before,
-.mdniui-icon-social-google:before,
-.mdniui-icon-social-google-outline:before,
-.mdniui-icon-social-googleplus:before,
-.mdniui-icon-social-googleplus-outline:before,
-.mdniui-icon-social-hackernews:before,
-.mdniui-icon-social-hackernews-outline:before,
-.mdniui-icon-social-html5:before,
-.mdniui-icon-social-html5-outline:before,
-.mdniui-icon-social-instagram:before,
-.mdniui-icon-social-instagram-outline:before,
-.mdniui-icon-social-javascript:before,
-.mdniui-icon-social-javascript-outline:before,
-.mdniui-icon-social-linkedin:before,
-.mdniui-icon-social-linkedin-outline:before,
-.mdniui-icon-social-markdown:before,
-.mdniui-icon-social-nodejs:before,
-.mdniui-icon-social-octocat:before,
-.mdniui-icon-social-pinterest:before,
-.mdniui-icon-social-pinterest-outline:before,
-.mdniui-icon-social-python:before,
-.mdniui-icon-social-reddit:before,
-.mdniui-icon-social-reddit-outline:before,
-.mdniui-icon-social-rss:before,
-.mdniui-icon-social-rss-outline:before,
-.mdniui-icon-social-sass:before,
-.mdniui-icon-social-skype:before,
-.mdniui-icon-social-skype-outline:before,
-.mdniui-icon-social-snapchat:before,
-.mdniui-icon-social-snapchat-outline:before,
-.mdniui-icon-social-tumblr:before,
-.mdniui-icon-social-tumblr-outline:before,
-.mdniui-icon-social-tux:before,
-.mdniui-icon-social-twitch:before,
-.mdniui-icon-social-twitch-outline:before,
-.mdniui-icon-social-twitter:before,
-.mdniui-icon-social-twitter-outline:before,
-.mdniui-icon-social-usd:before,
-.mdniui-icon-social-usd-outline:before,
-.mdniui-icon-social-vimeo:before,
-.mdniui-icon-social-vimeo-outline:before,
-.mdniui-icon-social-whatsapp:before,
-.mdniui-icon-social-whatsapp-outline:before,
-.mdniui-icon-social-windows:before,
-.mdniui-icon-social-windows-outline:before,
-.mdniui-icon-social-wordpress:before,
-.mdniui-icon-social-wordpress-outline:before,
-.mdniui-icon-social-yahoo:before,
-.mdniui-icon-social-yahoo-outline:before,
-.mdniui-icon-social-yen:before,
-.mdniui-icon-social-yen-outline:before,
-.mdniui-icon-social-youtube:before,
-.mdniui-icon-social-youtube-outline:before,
-.mdniui-icon-soup-can:before,
-.mdniui-icon-soup-can-outline:before,
-.mdniui-icon-speakerphone:before,
-.mdniui-icon-speedometer:before,
-.mdniui-icon-spoon:before,
-.mdniui-icon-star:before,
-.mdniui-icon-stats-bars:before,
-.mdniui-icon-steam:before,
-.mdniui-icon-stop:before,
-.mdniui-icon-thermometer:before,
-.mdniui-icon-thumbsdown:before,
-.mdniui-icon-thumbsup:before,
-.mdniui-icon-toggle:before,
-.mdniui-icon-toggle-filled:before,
-.mdniui-icon-transgender:before,
-.mdniui-icon-trash-a:before,
-.mdniui-icon-trash-b:before,
-.mdniui-icon-trophy:before,
-.mdniui-icon-tshirt:before,
-.mdniui-icon-tshirt-outline:before,
-.mdniui-icon-umbrella:before,
-.mdniui-icon-university:before,
-.mdniui-icon-unlocked:before,
-.mdniui-icon-upload:before,
-.mdniui-icon-usb:before,
-.mdniui-icon-videocamera:before,
-.mdniui-icon-volume-high:before,
-.mdniui-icon-volume-low:before,
-.mdniui-icon-volume-medium:before,
-.mdniui-icon-volume-mute:before,
-.mdniui-icon-wand:before,
-.mdniui-icon-waterdrop:before,
-.mdniui-icon-wifi:before,
-.mdniui-icon-wineglass:before,
-.mdniui-icon-woman:before,
-.mdniui-icon-wrench:before,
-.mdniui-icon-xbox:before {
+.dameiui-icon-alert:before,
+.dameiui-icon-alert-circled:before,
+.dameiui-icon-android-add:before,
+.dameiui-icon-android-add-circle:before,
+.dameiui-icon-android-alarm-clock:before,
+.dameiui-icon-android-alert:before,
+.dameiui-icon-android-apps:before,
+.dameiui-icon-android-archive:before,
+.dameiui-icon-android-arrow-back:before,
+.dameiui-icon-android-arrow-down:before,
+.dameiui-icon-android-arrow-dropdown:before,
+.dameiui-icon-android-arrow-dropdown-circle:before,
+.dameiui-icon-android-arrow-dropleft:before,
+.dameiui-icon-android-arrow-dropleft-circle:before,
+.dameiui-icon-android-arrow-dropright:before,
+.dameiui-icon-android-arrow-dropright-circle:before,
+.dameiui-icon-android-arrow-dropup:before,
+.dameiui-icon-android-arrow-dropup-circle:before,
+.dameiui-icon-android-arrow-forward:before,
+.dameiui-icon-android-arrow-up:before,
+.dameiui-icon-android-attach:before,
+.dameiui-icon-android-bar:before,
+.dameiui-icon-android-bicycle:before,
+.dameiui-icon-android-boat:before,
+.dameiui-icon-android-bookmark:before,
+.dameiui-icon-android-bulb:before,
+.dameiui-icon-android-bus:before,
+.dameiui-icon-android-calendar:before,
+.dameiui-icon-android-call:before,
+.dameiui-icon-android-camera:before,
+.dameiui-icon-android-cancel:before,
+.dameiui-icon-android-car:before,
+.dameiui-icon-android-cart:before,
+.dameiui-icon-android-chat:before,
+.dameiui-icon-android-checkbox:before,
+.dameiui-icon-android-checkbox-blank:before,
+.dameiui-icon-android-checkbox-outline:before,
+.dameiui-icon-android-checkbox-outline-blank:before,
+.dameiui-icon-android-checkmark-circle:before,
+.dameiui-icon-android-clipboard:before,
+.dameiui-icon-android-close:before,
+.dameiui-icon-android-cloud:before,
+.dameiui-icon-android-cloud-circle:before,
+.dameiui-icon-android-cloud-done:before,
+.dameiui-icon-android-cloud-outline:before,
+.dameiui-icon-android-color-palette:before,
+.dameiui-icon-android-compass:before,
+.dameiui-icon-android-contact:before,
+.dameiui-icon-android-contacts:before,
+.dameiui-icon-android-contract:before,
+.dameiui-icon-android-create:before,
+.dameiui-icon-android-delete:before,
+.dameiui-icon-android-desktop:before,
+.dameiui-icon-android-document:before,
+.dameiui-icon-android-done:before,
+.dameiui-icon-android-done-all:before,
+.dameiui-icon-android-download:before,
+.dameiui-icon-android-drafts:before,
+.dameiui-icon-android-exit:before,
+.dameiui-icon-android-expand:before,
+.dameiui-icon-android-favorite:before,
+.dameiui-icon-android-favorite-outline:before,
+.dameiui-icon-android-film:before,
+.dameiui-icon-android-folder:before,
+.dameiui-icon-android-folder-open:before,
+.dameiui-icon-android-funnel:before,
+.dameiui-icon-android-globe:before,
+.dameiui-icon-android-hand:before,
+.dameiui-icon-android-hangout:before,
+.dameiui-icon-android-happy:before,
+.dameiui-icon-android-home:before,
+.dameiui-icon-android-image:before,
+.dameiui-icon-android-laptop:before,
+.dameiui-icon-android-list:before,
+.dameiui-icon-android-locate:before,
+.dameiui-icon-android-lock:before,
+.dameiui-icon-android-mail:before,
+.dameiui-icon-android-map:before,
+.dameiui-icon-android-menu:before,
+.dameiui-icon-android-microphone:before,
+.dameiui-icon-android-microphone-off:before,
+.dameiui-icon-android-more-horizontal:before,
+.dameiui-icon-android-more-vertical:before,
+.dameiui-icon-android-navigate:before,
+.dameiui-icon-android-notifications:before,
+.dameiui-icon-android-notifications-none:before,
+.dameiui-icon-android-notifications-off:before,
+.dameiui-icon-android-open:before,
+.dameiui-icon-android-options:before,
+.dameiui-icon-android-people:before,
+.dameiui-icon-android-person:before,
+.dameiui-icon-android-person-add:before,
+.dameiui-icon-android-phone-landscape:before,
+.dameiui-icon-android-phone-portrait:before,
+.dameiui-icon-android-pin:before,
+.dameiui-icon-android-plane:before,
+.dameiui-icon-android-playstore:before,
+.dameiui-icon-android-print:before,
+.dameiui-icon-android-radio-button-off:before,
+.dameiui-icon-android-radio-button-on:before,
+.dameiui-icon-android-refresh:before,
+.dameiui-icon-android-remove:before,
+.dameiui-icon-android-remove-circle:before,
+.dameiui-icon-android-restaurant:before,
+.dameiui-icon-android-sad:before,
+.dameiui-icon-android-search:before,
+.dameiui-icon-android-send:before,
+.dameiui-icon-android-settings:before,
+.dameiui-icon-android-share:before,
+.dameiui-icon-android-share-alt:before,
+.dameiui-icon-android-star:before,
+.dameiui-icon-android-star-half:before,
+.dameiui-icon-android-star-outline:before,
+.dameiui-icon-android-stopwatch:before,
+.dameiui-icon-android-subway:before,
+.dameiui-icon-android-sunny:before,
+.dameiui-icon-android-sync:before,
+.dameiui-icon-android-textsms:before,
+.dameiui-icon-android-time:before,
+.dameiui-icon-android-train:before,
+.dameiui-icon-android-unlock:before,
+.dameiui-icon-android-upload:before,
+.dameiui-icon-android-volume-down:before,
+.dameiui-icon-android-volume-mute:before,
+.dameiui-icon-android-volume-off:before,
+.dameiui-icon-android-volume-up:before,
+.dameiui-icon-android-walk:before,
+.dameiui-icon-android-warning:before,
+.dameiui-icon-android-watch:before,
+.dameiui-icon-android-wifi:before,
+.dameiui-icon-aperture:before,
+.dameiui-icon-archive:before,
+.dameiui-icon-arrow-down-a:before,
+.dameiui-icon-arrow-down-b:before,
+.dameiui-icon-arrow-down-c:before,
+.dameiui-icon-arrow-expand:before,
+.dameiui-icon-arrow-graph-down-left:before,
+.dameiui-icon-arrow-graph-down-right:before,
+.dameiui-icon-arrow-graph-up-left:before,
+.dameiui-icon-arrow-graph-up-right:before,
+.dameiui-icon-arrow-left-a:before,
+.dameiui-icon-arrow-left-b:before,
+.dameiui-icon-arrow-left-c:before,
+.dameiui-icon-arrow-move:before,
+.dameiui-icon-arrow-resize:before,
+.dameiui-icon-arrow-return-left:before,
+.dameiui-icon-arrow-return-right:before,
+.dameiui-icon-arrow-right-a:before,
+.dameiui-icon-arrow-right-b:before,
+.dameiui-icon-arrow-right-c:before,
+.dameiui-icon-arrow-shrink:before,
+.dameiui-icon-arrow-swap:before,
+.dameiui-icon-arrow-up-a:before,
+.dameiui-icon-arrow-up-b:before,
+.dameiui-icon-arrow-up-c:before,
+.dameiui-icon-asterisk:before,
+.dameiui-icon-at:before,
+.dameiui-icon-backspace:before,
+.dameiui-icon-backspace-outline:before,
+.dameiui-icon-bag:before,
+.dameiui-icon-battery-charging:before,
+.dameiui-icon-battery-empty:before,
+.dameiui-icon-battery-full:before,
+.dameiui-icon-battery-half:before,
+.dameiui-icon-battery-low:before,
+.dameiui-icon-beaker:before,
+.dameiui-icon-beer:before,
+.dameiui-icon-bluetooth:before,
+.dameiui-icon-bonfire:before,
+.dameiui-icon-bookmark:before,
+.dameiui-icon-bowtie:before,
+.dameiui-icon-briefcase:before,
+.dameiui-icon-bug:before,
+.dameiui-icon-calculator:before,
+.dameiui-icon-calendar:before,
+.dameiui-icon-camera:before,
+.dameiui-icon-card:before,
+.dameiui-icon-cash:before,
+.dameiui-icon-chatbox:before,
+.dameiui-icon-chatbox-working:before,
+.dameiui-icon-chatboxes:before,
+.dameiui-icon-chatbubble:before,
+.dameiui-icon-chatbubble-working:before,
+.dameiui-icon-chatbubbles:before,
+.dameiui-icon-checkmark:before,
+.dameiui-icon-checkmark-circled:before,
+.dameiui-icon-checkmark-round:before,
+.dameiui-icon-chevron-down:before,
+.dameiui-icon-chevron-left:before,
+.dameiui-icon-chevron-right:before,
+.dameiui-icon-chevron-up:before,
+.dameiui-icon-clipboard:before,
+.dameiui-icon-clock:before,
+.dameiui-icon-close:before,
+.dameiui-icon-close-circled:before,
+.dameiui-icon-close-round:before,
+.dameiui-icon-closed-captioning:before,
+.dameiui-icon-cloud:before,
+.dameiui-icon-code:before,
+.dameiui-icon-code-download:before,
+.dameiui-icon-code-working:before,
+.dameiui-icon-coffee:before,
+.dameiui-icon-compass:before,
+.dameiui-icon-compose:before,
+.dameiui-icon-connection-bars:before,
+.dameiui-icon-contrast:before,
+.dameiui-icon-crop:before,
+.dameiui-icon-cube:before,
+.dameiui-icon-disc:before,
+.dameiui-icon-document:before,
+.dameiui-icon-document-text:before,
+.dameiui-icon-drag:before,
+.dameiui-icon-earth:before,
+.dameiui-icon-easel:before,
+.dameiui-icon-edit:before,
+.dameiui-icon-egg:before,
+.dameiui-icon-eject:before,
+.dameiui-icon-email:before,
+.dameiui-icon-email-unread:before,
+.dameiui-icon-erlenmeyer-flask:before,
+.dameiui-icon-erlenmeyer-flask-bubbles:before,
+.dameiui-icon-eye:before,
+.dameiui-icon-eye-disabled:before,
+.dameiui-icon-female:before,
+.dameiui-icon-filing:before,
+.dameiui-icon-film-marker:before,
+.dameiui-icon-fireball:before,
+.dameiui-icon-flag:before,
+.dameiui-icon-flame:before,
+.dameiui-icon-flash:before,
+.dameiui-icon-flash-off:before,
+.dameiui-icon-folder:before,
+.dameiui-icon-fork:before,
+.dameiui-icon-fork-repo:before,
+.dameiui-icon-forward:before,
+.dameiui-icon-funnel:before,
+.dameiui-icon-gear-a:before,
+.dameiui-icon-gear-b:before,
+.dameiui-icon-grid:before,
+.dameiui-icon-hammer:before,
+.dameiui-icon-happy:before,
+.dameiui-icon-happy-outline:before,
+.dameiui-icon-headphone:before,
+.dameiui-icon-heart:before,
+.dameiui-icon-heart-broken:before,
+.dameiui-icon-help:before,
+.dameiui-icon-help-buoy:before,
+.dameiui-icon-help-circled:before,
+.dameiui-icon-home:before,
+.dameiui-icon-icecream:before,
+.dameiui-icon-image:before,
+.dameiui-icon-images:before,
+.dameiui-icon-information:before,
+.dameiui-icon-information-circled:before,
+.dameiui-icon-ionic:before,
+.dameiui-icon-ios-alarm:before,
+.dameiui-icon-ios-alarm-outline:before,
+.dameiui-icon-ios-albums:before,
+.dameiui-icon-ios-albums-outline:before,
+.dameiui-icon-ios-americanfootball:before,
+.dameiui-icon-ios-americanfootball-outline:before,
+.dameiui-icon-ios-analytics:before,
+.dameiui-icon-ios-analytics-outline:before,
+.dameiui-icon-ios-arrow-back:before,
+.dameiui-icon-ios-arrow-down:before,
+.dameiui-icon-ios-arrow-forward:before,
+.dameiui-icon-ios-arrow-left:before,
+.dameiui-icon-ios-arrow-right:before,
+.dameiui-icon-ios-arrow-thin-down:before,
+.dameiui-icon-ios-arrow-thin-left:before,
+.dameiui-icon-ios-arrow-thin-right:before,
+.dameiui-icon-ios-arrow-thin-up:before,
+.dameiui-icon-ios-arrow-up:before,
+.dameiui-icon-ios-at:before,
+.dameiui-icon-ios-at-outline:before,
+.dameiui-icon-ios-barcode:before,
+.dameiui-icon-ios-barcode-outline:before,
+.dameiui-icon-ios-baseball:before,
+.dameiui-icon-ios-baseball-outline:before,
+.dameiui-icon-ios-basketball:before,
+.dameiui-icon-ios-basketball-outline:before,
+.dameiui-icon-ios-bell:before,
+.dameiui-icon-ios-bell-outline:before,
+.dameiui-icon-ios-body:before,
+.dameiui-icon-ios-body-outline:before,
+.dameiui-icon-ios-bolt:before,
+.dameiui-icon-ios-bolt-outline:before,
+.dameiui-icon-ios-book:before,
+.dameiui-icon-ios-book-outline:before,
+.dameiui-icon-ios-bookmarks:before,
+.dameiui-icon-ios-bookmarks-outline:before,
+.dameiui-icon-ios-box:before,
+.dameiui-icon-ios-box-outline:before,
+.dameiui-icon-ios-briefcase:before,
+.dameiui-icon-ios-briefcase-outline:before,
+.dameiui-icon-ios-browsers:before,
+.dameiui-icon-ios-browsers-outline:before,
+.dameiui-icon-ios-calculator:before,
+.dameiui-icon-ios-calculator-outline:before,
+.dameiui-icon-ios-calendar:before,
+.dameiui-icon-ios-calendar-outline:before,
+.dameiui-icon-ios-camera:before,
+.dameiui-icon-ios-camera-outline:before,
+.dameiui-icon-ios-cart:before,
+.dameiui-icon-ios-cart-outline:before,
+.dameiui-icon-ios-chatboxes:before,
+.dameiui-icon-ios-chatboxes-outline:before,
+.dameiui-icon-ios-chatbubble:before,
+.dameiui-icon-ios-chatbubble-outline:before,
+.dameiui-icon-ios-checkmark:before,
+.dameiui-icon-ios-checkmark-empty:before,
+.dameiui-icon-ios-checkmark-outline:before,
+.dameiui-icon-ios-circle-filled:before,
+.dameiui-icon-ios-circle-outline:before,
+.dameiui-icon-ios-clock:before,
+.dameiui-icon-ios-clock-outline:before,
+.dameiui-icon-ios-close:before,
+.dameiui-icon-ios-close-empty:before,
+.dameiui-icon-ios-close-outline:before,
+.dameiui-icon-ios-cloud:before,
+.dameiui-icon-ios-cloud-download:before,
+.dameiui-icon-ios-cloud-download-outline:before,
+.dameiui-icon-ios-cloud-outline:before,
+.dameiui-icon-ios-cloud-upload:before,
+.dameiui-icon-ios-cloud-upload-outline:before,
+.dameiui-icon-ios-cloudy:before,
+.dameiui-icon-ios-cloudy-night:before,
+.dameiui-icon-ios-cloudy-night-outline:before,
+.dameiui-icon-ios-cloudy-outline:before,
+.dameiui-icon-ios-cog:before,
+.dameiui-icon-ios-cog-outline:before,
+.dameiui-icon-ios-color-filter:before,
+.dameiui-icon-ios-color-filter-outline:before,
+.dameiui-icon-ios-color-wand:before,
+.dameiui-icon-ios-color-wand-outline:before,
+.dameiui-icon-ios-compose:before,
+.dameiui-icon-ios-compose-outline:before,
+.dameiui-icon-ios-contact:before,
+.dameiui-icon-ios-contact-outline:before,
+.dameiui-icon-ios-copy:before,
+.dameiui-icon-ios-copy-outline:before,
+.dameiui-icon-ios-crop:before,
+.dameiui-icon-ios-crop-strong:before,
+.dameiui-icon-ios-download:before,
+.dameiui-icon-ios-download-outline:before,
+.dameiui-icon-ios-drag:before,
+.dameiui-icon-ios-email:before,
+.dameiui-icon-ios-email-outline:before,
+.dameiui-icon-ios-eye:before,
+.dameiui-icon-ios-eye-outline:before,
+.dameiui-icon-ios-fastforward:before,
+.dameiui-icon-ios-fastforward-outline:before,
+.dameiui-icon-ios-filing:before,
+.dameiui-icon-ios-filing-outline:before,
+.dameiui-icon-ios-film:before,
+.dameiui-icon-ios-film-outline:before,
+.dameiui-icon-ios-flag:before,
+.dameiui-icon-ios-flag-outline:before,
+.dameiui-icon-ios-flame:before,
+.dameiui-icon-ios-flame-outline:before,
+.dameiui-icon-ios-flask:before,
+.dameiui-icon-ios-flask-outline:before,
+.dameiui-icon-ios-flower:before,
+.dameiui-icon-ios-flower-outline:before,
+.dameiui-icon-ios-folder:before,
+.dameiui-icon-ios-folder-outline:before,
+.dameiui-icon-ios-football:before,
+.dameiui-icon-ios-football-outline:before,
+.dameiui-icon-ios-game-controller-a:before,
+.dameiui-icon-ios-game-controller-a-outline:before,
+.dameiui-icon-ios-game-controller-b:before,
+.dameiui-icon-ios-game-controller-b-outline:before,
+.dameiui-icon-ios-gear:before,
+.dameiui-icon-ios-gear-outline:before,
+.dameiui-icon-ios-glasses:before,
+.dameiui-icon-ios-glasses-outline:before,
+.dameiui-icon-ios-grid-view:before,
+.dameiui-icon-ios-grid-view-outline:before,
+.dameiui-icon-ios-heart:before,
+.dameiui-icon-ios-heart-outline:before,
+.dameiui-icon-ios-help:before,
+.dameiui-icon-ios-help-empty:before,
+.dameiui-icon-ios-help-outline:before,
+.dameiui-icon-ios-home:before,
+.dameiui-icon-ios-home-outline:before,
+.dameiui-icon-ios-infinite:before,
+.dameiui-icon-ios-infinite-outline:before,
+.dameiui-icon-ios-information:before,
+.dameiui-icon-ios-information-empty:before,
+.dameiui-icon-ios-information-outline:before,
+.dameiui-icon-ios-ionic-outline:before,
+.dameiui-icon-ios-keypad:before,
+.dameiui-icon-ios-keypad-outline:before,
+.dameiui-icon-ios-lightbulb:before,
+.dameiui-icon-ios-lightbulb-outline:before,
+.dameiui-icon-ios-list:before,
+.dameiui-icon-ios-list-outline:before,
+.dameiui-icon-ios-location:before,
+.dameiui-icon-ios-location-outline:before,
+.dameiui-icon-ios-locked:before,
+.dameiui-icon-ios-locked-outline:before,
+.dameiui-icon-ios-loop:before,
+.dameiui-icon-ios-loop-strong:before,
+.dameiui-icon-ios-medical:before,
+.dameiui-icon-ios-medical-outline:before,
+.dameiui-icon-ios-medkit:before,
+.dameiui-icon-ios-medkit-outline:before,
+.dameiui-icon-ios-mic:before,
+.dameiui-icon-ios-mic-off:before,
+.dameiui-icon-ios-mic-outline:before,
+.dameiui-icon-ios-minus:before,
+.dameiui-icon-ios-minus-empty:before,
+.dameiui-icon-ios-minus-outline:before,
+.dameiui-icon-ios-monitor:before,
+.dameiui-icon-ios-monitor-outline:before,
+.dameiui-icon-ios-moon:before,
+.dameiui-icon-ios-moon-outline:before,
+.dameiui-icon-ios-more:before,
+.dameiui-icon-ios-more-outline:before,
+.dameiui-icon-ios-musical-note:before,
+.dameiui-icon-ios-musical-notes:before,
+.dameiui-icon-ios-navigate:before,
+.dameiui-icon-ios-navigate-outline:before,
+.dameiui-icon-ios-nutrition:before,
+.dameiui-icon-ios-nutrition-outline:before,
+.dameiui-icon-ios-paper:before,
+.dameiui-icon-ios-paper-outline:before,
+.dameiui-icon-ios-paperplane:before,
+.dameiui-icon-ios-paperplane-outline:before,
+.dameiui-icon-ios-partlysunny:before,
+.dameiui-icon-ios-partlysunny-outline:before,
+.dameiui-icon-ios-pause:before,
+.dameiui-icon-ios-pause-outline:before,
+.dameiui-icon-ios-paw:before,
+.dameiui-icon-ios-paw-outline:before,
+.dameiui-icon-ios-people:before,
+.dameiui-icon-ios-people-outline:before,
+.dameiui-icon-ios-person:before,
+.dameiui-icon-ios-person-outline:before,
+.dameiui-icon-ios-personadd:before,
+.dameiui-icon-ios-personadd-outline:before,
+.dameiui-icon-ios-photos:before,
+.dameiui-icon-ios-photos-outline:before,
+.dameiui-icon-ios-pie:before,
+.dameiui-icon-ios-pie-outline:before,
+.dameiui-icon-ios-pint:before,
+.dameiui-icon-ios-pint-outline:before,
+.dameiui-icon-ios-play:before,
+.dameiui-icon-ios-play-outline:before,
+.dameiui-icon-ios-plus:before,
+.dameiui-icon-ios-plus-empty:before,
+.dameiui-icon-ios-plus-outline:before,
+.dameiui-icon-ios-pricetag:before,
+.dameiui-icon-ios-pricetag-outline:before,
+.dameiui-icon-ios-pricetags:before,
+.dameiui-icon-ios-pricetags-outline:before,
+.dameiui-icon-ios-printer:before,
+.dameiui-icon-ios-printer-outline:before,
+.dameiui-icon-ios-pulse:before,
+.dameiui-icon-ios-pulse-strong:before,
+.dameiui-icon-ios-rainy:before,
+.dameiui-icon-ios-rainy-outline:before,
+.dameiui-icon-ios-recording:before,
+.dameiui-icon-ios-recording-outline:before,
+.dameiui-icon-ios-redo:before,
+.dameiui-icon-ios-redo-outline:before,
+.dameiui-icon-ios-refresh:before,
+.dameiui-icon-ios-refresh-empty:before,
+.dameiui-icon-ios-refresh-outline:before,
+.dameiui-icon-ios-reload:before,
+.dameiui-icon-ios-reverse-camera:before,
+.dameiui-icon-ios-reverse-camera-outline:before,
+.dameiui-icon-ios-rewind:before,
+.dameiui-icon-ios-rewind-outline:before,
+.dameiui-icon-ios-rose:before,
+.dameiui-icon-ios-rose-outline:before,
+.dameiui-icon-ios-search:before,
+.dameiui-icon-ios-search-strong:before,
+.dameiui-icon-ios-settings:before,
+.dameiui-icon-ios-settings-strong:before,
+.dameiui-icon-ios-shuffle:before,
+.dameiui-icon-ios-shuffle-strong:before,
+.dameiui-icon-ios-skipbackward:before,
+.dameiui-icon-ios-skipbackward-outline:before,
+.dameiui-icon-ios-skipforward:before,
+.dameiui-icon-ios-skipforward-outline:before,
+.dameiui-icon-ios-snowy:before,
+.dameiui-icon-ios-speedometer:before,
+.dameiui-icon-ios-speedometer-outline:before,
+.dameiui-icon-ios-star:before,
+.dameiui-icon-ios-star-half:before,
+.dameiui-icon-ios-star-outline:before,
+.dameiui-icon-ios-stopwatch:before,
+.dameiui-icon-ios-stopwatch-outline:before,
+.dameiui-icon-ios-sunny:before,
+.dameiui-icon-ios-sunny-outline:before,
+.dameiui-icon-ios-telephone:before,
+.dameiui-icon-ios-telephone-outline:before,
+.dameiui-icon-ios-tennisball:before,
+.dameiui-icon-ios-tennisball-outline:before,
+.dameiui-icon-ios-thunderstorm:before,
+.dameiui-icon-ios-thunderstorm-outline:before,
+.dameiui-icon-ios-time:before,
+.dameiui-icon-ios-time-outline:before,
+.dameiui-icon-ios-timer:before,
+.dameiui-icon-ios-timer-outline:before,
+.dameiui-icon-ios-toggle:before,
+.dameiui-icon-ios-toggle-outline:before,
+.dameiui-icon-ios-trash:before,
+.dameiui-icon-ios-trash-outline:before,
+.dameiui-icon-ios-undo:before,
+.dameiui-icon-ios-undo-outline:before,
+.dameiui-icon-ios-unlocked:before,
+.dameiui-icon-ios-unlocked-outline:before,
+.dameiui-icon-ios-upload:before,
+.dameiui-icon-ios-upload-outline:before,
+.dameiui-icon-ios-videocam:before,
+.dameiui-icon-ios-videocam-outline:before,
+.dameiui-icon-ios-volume-high:before,
+.dameiui-icon-ios-volume-low:before,
+.dameiui-icon-ios-wineglass:before,
+.dameiui-icon-ios-wineglass-outline:before,
+.dameiui-icon-ios-world:before,
+.dameiui-icon-ios-world-outline:before,
+.dameiui-icon-ipad:before,
+.dameiui-icon-iphone:before,
+.dameiui-icon-ipod:before,
+.dameiui-icon-jet:before,
+.dameiui-icon-key:before,
+.dameiui-icon-knife:before,
+.dameiui-icon-laptop:before,
+.dameiui-icon-leaf:before,
+.dameiui-icon-levels:before,
+.dameiui-icon-lightbulb:before,
+.dameiui-icon-link:before,
+.dameiui-icon-load-a:before,
+.dameiui-icon-load-b:before,
+.dameiui-icon-load-c:before,
+.dameiui-icon-load-d:before,
+.dameiui-icon-location:before,
+.dameiui-icon-lock-combination:before,
+.dameiui-icon-locked:before,
+.dameiui-icon-log-in:before,
+.dameiui-icon-log-out:before,
+.dameiui-icon-loop:before,
+.dameiui-icon-magnet:before,
+.dameiui-icon-male:before,
+.dameiui-icon-man:before,
+.dameiui-icon-map:before,
+.dameiui-icon-medkit:before,
+.dameiui-icon-merge:before,
+.dameiui-icon-mic-a:before,
+.dameiui-icon-mic-b:before,
+.dameiui-icon-mic-c:before,
+.dameiui-icon-minus:before,
+.dameiui-icon-minus-circled:before,
+.dameiui-icon-minus-round:before,
+.dameiui-icon-model-s:before,
+.dameiui-icon-monitor:before,
+.dameiui-icon-more:before,
+.dameiui-icon-mouse:before,
+.dameiui-icon-music-note:before,
+.dameiui-icon-navicon:before,
+.dameiui-icon-navicon-round:before,
+.dameiui-icon-navigate:before,
+.dameiui-icon-network:before,
+.dameiui-icon-no-smoking:before,
+.dameiui-icon-nuclear:before,
+.dameiui-icon-outlet:before,
+.dameiui-icon-paintbrush:before,
+.dameiui-icon-paintbucket:before,
+.dameiui-icon-paper-airplane:before,
+.dameiui-icon-paperclip:before,
+.dameiui-icon-pause:before,
+.dameiui-icon-person:before,
+.dameiui-icon-person-add:before,
+.dameiui-icon-person-stalker:before,
+.dameiui-icon-pie-graph:before,
+.dameiui-icon-pin:before,
+.dameiui-icon-pinpoint:before,
+.dameiui-icon-pizza:before,
+.dameiui-icon-plane:before,
+.dameiui-icon-planet:before,
+.dameiui-icon-play:before,
+.dameiui-icon-playstation:before,
+.dameiui-icon-plus:before,
+.dameiui-icon-plus-circled:before,
+.dameiui-icon-plus-round:before,
+.dameiui-icon-podium:before,
+.dameiui-icon-pound:before,
+.dameiui-icon-power:before,
+.dameiui-icon-pricetag:before,
+.dameiui-icon-pricetags:before,
+.dameiui-icon-printer:before,
+.dameiui-icon-pull-request:before,
+.dameiui-icon-qr-scanner:before,
+.dameiui-icon-quote:before,
+.dameiui-icon-radio-waves:before,
+.dameiui-icon-record:before,
+.dameiui-icon-refresh:before,
+.dameiui-icon-reply:before,
+.dameiui-icon-reply-all:before,
+.dameiui-icon-ribbon-a:before,
+.dameiui-icon-ribbon-b:before,
+.dameiui-icon-sad:before,
+.dameiui-icon-sad-outline:before,
+.dameiui-icon-scissors:before,
+.dameiui-icon-search:before,
+.dameiui-icon-settings:before,
+.dameiui-icon-share:before,
+.dameiui-icon-shuffle:before,
+.dameiui-icon-skip-backward:before,
+.dameiui-icon-skip-forward:before,
+.dameiui-icon-social-android:before,
+.dameiui-icon-social-android-outline:before,
+.dameiui-icon-social-angular:before,
+.dameiui-icon-social-angular-outline:before,
+.dameiui-icon-social-apple:before,
+.dameiui-icon-social-apple-outline:before,
+.dameiui-icon-social-bitcoin:before,
+.dameiui-icon-social-bitcoin-outline:before,
+.dameiui-icon-social-buffer:before,
+.dameiui-icon-social-buffer-outline:before,
+.dameiui-icon-social-chrome:before,
+.dameiui-icon-social-chrome-outline:before,
+.dameiui-icon-social-codepen:before,
+.dameiui-icon-social-codepen-outline:before,
+.dameiui-icon-social-css3:before,
+.dameiui-icon-social-css3-outline:before,
+.dameiui-icon-social-designernews:before,
+.dameiui-icon-social-designernews-outline:before,
+.dameiui-icon-social-dribbble:before,
+.dameiui-icon-social-dribbble-outline:before,
+.dameiui-icon-social-dropbox:before,
+.dameiui-icon-social-dropbox-outline:before,
+.dameiui-icon-social-euro:before,
+.dameiui-icon-social-euro-outline:before,
+.dameiui-icon-social-facebook:before,
+.dameiui-icon-social-facebook-outline:before,
+.dameiui-icon-social-foursquare:before,
+.dameiui-icon-social-foursquare-outline:before,
+.dameiui-icon-social-freebsd-devil:before,
+.dameiui-icon-social-github:before,
+.dameiui-icon-social-github-outline:before,
+.dameiui-icon-social-google:before,
+.dameiui-icon-social-google-outline:before,
+.dameiui-icon-social-googleplus:before,
+.dameiui-icon-social-googleplus-outline:before,
+.dameiui-icon-social-hackernews:before,
+.dameiui-icon-social-hackernews-outline:before,
+.dameiui-icon-social-html5:before,
+.dameiui-icon-social-html5-outline:before,
+.dameiui-icon-social-instagram:before,
+.dameiui-icon-social-instagram-outline:before,
+.dameiui-icon-social-javascript:before,
+.dameiui-icon-social-javascript-outline:before,
+.dameiui-icon-social-linkedin:before,
+.dameiui-icon-social-linkedin-outline:before,
+.dameiui-icon-social-markdown:before,
+.dameiui-icon-social-nodejs:before,
+.dameiui-icon-social-octocat:before,
+.dameiui-icon-social-pinterest:before,
+.dameiui-icon-social-pinterest-outline:before,
+.dameiui-icon-social-python:before,
+.dameiui-icon-social-reddit:before,
+.dameiui-icon-social-reddit-outline:before,
+.dameiui-icon-social-rss:before,
+.dameiui-icon-social-rss-outline:before,
+.dameiui-icon-social-sass:before,
+.dameiui-icon-social-skype:before,
+.dameiui-icon-social-skype-outline:before,
+.dameiui-icon-social-snapchat:before,
+.dameiui-icon-social-snapchat-outline:before,
+.dameiui-icon-social-tumblr:before,
+.dameiui-icon-social-tumblr-outline:before,
+.dameiui-icon-social-tux:before,
+.dameiui-icon-social-twitch:before,
+.dameiui-icon-social-twitch-outline:before,
+.dameiui-icon-social-twitter:before,
+.dameiui-icon-social-twitter-outline:before,
+.dameiui-icon-social-usd:before,
+.dameiui-icon-social-usd-outline:before,
+.dameiui-icon-social-vimeo:before,
+.dameiui-icon-social-vimeo-outline:before,
+.dameiui-icon-social-whatsapp:before,
+.dameiui-icon-social-whatsapp-outline:before,
+.dameiui-icon-social-windows:before,
+.dameiui-icon-social-windows-outline:before,
+.dameiui-icon-social-wordpress:before,
+.dameiui-icon-social-wordpress-outline:before,
+.dameiui-icon-social-yahoo:before,
+.dameiui-icon-social-yahoo-outline:before,
+.dameiui-icon-social-yen:before,
+.dameiui-icon-social-yen-outline:before,
+.dameiui-icon-social-youtube:before,
+.dameiui-icon-social-youtube-outline:before,
+.dameiui-icon-soup-can:before,
+.dameiui-icon-soup-can-outline:before,
+.dameiui-icon-speakerphone:before,
+.dameiui-icon-speedometer:before,
+.dameiui-icon-spoon:before,
+.dameiui-icon-star:before,
+.dameiui-icon-stats-bars:before,
+.dameiui-icon-steam:before,
+.dameiui-icon-stop:before,
+.dameiui-icon-thermometer:before,
+.dameiui-icon-thumbsdown:before,
+.dameiui-icon-thumbsup:before,
+.dameiui-icon-toggle:before,
+.dameiui-icon-toggle-filled:before,
+.dameiui-icon-transgender:before,
+.dameiui-icon-trash-a:before,
+.dameiui-icon-trash-b:before,
+.dameiui-icon-trophy:before,
+.dameiui-icon-tshirt:before,
+.dameiui-icon-tshirt-outline:before,
+.dameiui-icon-umbrella:before,
+.dameiui-icon-university:before,
+.dameiui-icon-unlocked:before,
+.dameiui-icon-upload:before,
+.dameiui-icon-usb:before,
+.dameiui-icon-videocamera:before,
+.dameiui-icon-volume-high:before,
+.dameiui-icon-volume-low:before,
+.dameiui-icon-volume-medium:before,
+.dameiui-icon-volume-mute:before,
+.dameiui-icon-wand:before,
+.dameiui-icon-waterdrop:before,
+.dameiui-icon-wifi:before,
+.dameiui-icon-wineglass:before,
+.dameiui-icon-woman:before,
+.dameiui-icon-wrench:before,
+.dameiui-icon-xbox:before {
   display: inline-block;
   font-family: "Ionicons";
   speak: none;
@@ -2470,2204 +2470,2204 @@ MIT License: https://github.com/driftyco/ionicons
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.mdniui-icon-alert:before {
+.dameiui-icon-alert:before {
   content: "\f101";
 }
-.mdniui-icon-alert-circled:before {
+.dameiui-icon-alert-circled:before {
   content: "\f100";
 }
-.mdniui-icon-android-add:before {
+.dameiui-icon-android-add:before {
   content: "\f2c7";
 }
-.mdniui-icon-android-add-circle:before {
+.dameiui-icon-android-add-circle:before {
   content: "\f359";
 }
-.mdniui-icon-android-alarm-clock:before {
+.dameiui-icon-android-alarm-clock:before {
   content: "\f35a";
 }
-.mdniui-icon-android-alert:before {
+.dameiui-icon-android-alert:before {
   content: "\f35b";
 }
-.mdniui-icon-android-apps:before {
+.dameiui-icon-android-apps:before {
   content: "\f35c";
 }
-.mdniui-icon-android-archive:before {
+.dameiui-icon-android-archive:before {
   content: "\f2c9";
 }
-.mdniui-icon-android-arrow-back:before {
+.dameiui-icon-android-arrow-back:before {
   content: "\f2ca";
 }
-.mdniui-icon-android-arrow-down:before {
+.dameiui-icon-android-arrow-down:before {
   content: "\f35d";
 }
-.mdniui-icon-android-arrow-dropdown:before {
+.dameiui-icon-android-arrow-dropdown:before {
   content: "\f35f";
 }
-.mdniui-icon-android-arrow-dropdown-circle:before {
+.dameiui-icon-android-arrow-dropdown-circle:before {
   content: "\f35e";
 }
-.mdniui-icon-android-arrow-dropleft:before {
+.dameiui-icon-android-arrow-dropleft:before {
   content: "\f361";
 }
-.mdniui-icon-android-arrow-dropleft-circle:before {
+.dameiui-icon-android-arrow-dropleft-circle:before {
   content: "\f360";
 }
-.mdniui-icon-android-arrow-dropright:before {
+.dameiui-icon-android-arrow-dropright:before {
   content: "\f363";
 }
-.mdniui-icon-android-arrow-dropright-circle:before {
+.dameiui-icon-android-arrow-dropright-circle:before {
   content: "\f362";
 }
-.mdniui-icon-android-arrow-dropup:before {
+.dameiui-icon-android-arrow-dropup:before {
   content: "\f365";
 }
-.mdniui-icon-android-arrow-dropup-circle:before {
+.dameiui-icon-android-arrow-dropup-circle:before {
   content: "\f364";
 }
-.mdniui-icon-android-arrow-forward:before {
+.dameiui-icon-android-arrow-forward:before {
   content: "\f30f";
 }
-.mdniui-icon-android-arrow-up:before {
+.dameiui-icon-android-arrow-up:before {
   content: "\f366";
 }
-.mdniui-icon-android-attach:before {
+.dameiui-icon-android-attach:before {
   content: "\f367";
 }
-.mdniui-icon-android-bar:before {
+.dameiui-icon-android-bar:before {
   content: "\f368";
 }
-.mdniui-icon-android-bicycle:before {
+.dameiui-icon-android-bicycle:before {
   content: "\f369";
 }
-.mdniui-icon-android-boat:before {
+.dameiui-icon-android-boat:before {
   content: "\f36a";
 }
-.mdniui-icon-android-bookmark:before {
+.dameiui-icon-android-bookmark:before {
   content: "\f36b";
 }
-.mdniui-icon-android-bulb:before {
+.dameiui-icon-android-bulb:before {
   content: "\f36c";
 }
-.mdniui-icon-android-bus:before {
+.dameiui-icon-android-bus:before {
   content: "\f36d";
 }
-.mdniui-icon-android-calendar:before {
+.dameiui-icon-android-calendar:before {
   content: "\f2d1";
 }
-.mdniui-icon-android-call:before {
+.dameiui-icon-android-call:before {
   content: "\f2d2";
 }
-.mdniui-icon-android-camera:before {
+.dameiui-icon-android-camera:before {
   content: "\f2d3";
 }
-.mdniui-icon-android-cancel:before {
+.dameiui-icon-android-cancel:before {
   content: "\f36e";
 }
-.mdniui-icon-android-car:before {
+.dameiui-icon-android-car:before {
   content: "\f36f";
 }
-.mdniui-icon-android-cart:before {
+.dameiui-icon-android-cart:before {
   content: "\f370";
 }
-.mdniui-icon-android-chat:before {
+.dameiui-icon-android-chat:before {
   content: "\f2d4";
 }
-.mdniui-icon-android-checkbox:before {
+.dameiui-icon-android-checkbox:before {
   content: "\f374";
 }
-.mdniui-icon-android-checkbox-blank:before {
+.dameiui-icon-android-checkbox-blank:before {
   content: "\f371";
 }
-.mdniui-icon-android-checkbox-outline:before {
+.dameiui-icon-android-checkbox-outline:before {
   content: "\f373";
 }
-.mdniui-icon-android-checkbox-outline-blank:before {
+.dameiui-icon-android-checkbox-outline-blank:before {
   content: "\f372";
 }
-.mdniui-icon-android-checkmark-circle:before {
+.dameiui-icon-android-checkmark-circle:before {
   content: "\f375";
 }
-.mdniui-icon-android-clipboard:before {
+.dameiui-icon-android-clipboard:before {
   content: "\f376";
 }
-.mdniui-icon-android-close:before {
+.dameiui-icon-android-close:before {
   content: "\f2d7";
 }
-.mdniui-icon-android-cloud:before {
+.dameiui-icon-android-cloud:before {
   content: "\f37a";
 }
-.mdniui-icon-android-cloud-circle:before {
+.dameiui-icon-android-cloud-circle:before {
   content: "\f377";
 }
-.mdniui-icon-android-cloud-done:before {
+.dameiui-icon-android-cloud-done:before {
   content: "\f378";
 }
-.mdniui-icon-android-cloud-outline:before {
+.dameiui-icon-android-cloud-outline:before {
   content: "\f379";
 }
-.mdniui-icon-android-color-palette:before {
+.dameiui-icon-android-color-palette:before {
   content: "\f37b";
 }
-.mdniui-icon-android-compass:before {
+.dameiui-icon-android-compass:before {
   content: "\f37c";
 }
-.mdniui-icon-android-contact:before {
+.dameiui-icon-android-contact:before {
   content: "\f2d8";
 }
-.mdniui-icon-android-contacts:before {
+.dameiui-icon-android-contacts:before {
   content: "\f2d9";
 }
-.mdniui-icon-android-contract:before {
+.dameiui-icon-android-contract:before {
   content: "\f37d";
 }
-.mdniui-icon-android-create:before {
+.dameiui-icon-android-create:before {
   content: "\f37e";
 }
-.mdniui-icon-android-delete:before {
+.dameiui-icon-android-delete:before {
   content: "\f37f";
 }
-.mdniui-icon-android-desktop:before {
+.dameiui-icon-android-desktop:before {
   content: "\f380";
 }
-.mdniui-icon-android-document:before {
+.dameiui-icon-android-document:before {
   content: "\f381";
 }
-.mdniui-icon-android-done:before {
+.dameiui-icon-android-done:before {
   content: "\f383";
 }
-.mdniui-icon-android-done-all:before {
+.dameiui-icon-android-done-all:before {
   content: "\f382";
 }
-.mdniui-icon-android-download:before {
+.dameiui-icon-android-download:before {
   content: "\f2dd";
 }
-.mdniui-icon-android-drafts:before {
+.dameiui-icon-android-drafts:before {
   content: "\f384";
 }
-.mdniui-icon-android-exit:before {
+.dameiui-icon-android-exit:before {
   content: "\f385";
 }
-.mdniui-icon-android-expand:before {
+.dameiui-icon-android-expand:before {
   content: "\f386";
 }
-.mdniui-icon-android-favorite:before {
+.dameiui-icon-android-favorite:before {
   content: "\f388";
 }
-.mdniui-icon-android-favorite-outline:before {
+.dameiui-icon-android-favorite-outline:before {
   content: "\f387";
 }
-.mdniui-icon-android-film:before {
+.dameiui-icon-android-film:before {
   content: "\f389";
 }
-.mdniui-icon-android-folder:before {
+.dameiui-icon-android-folder:before {
   content: "\f2e0";
 }
-.mdniui-icon-android-folder-open:before {
+.dameiui-icon-android-folder-open:before {
   content: "\f38a";
 }
-.mdniui-icon-android-funnel:before {
+.dameiui-icon-android-funnel:before {
   content: "\f38b";
 }
-.mdniui-icon-android-globe:before {
+.dameiui-icon-android-globe:before {
   content: "\f38c";
 }
-.mdniui-icon-android-hand:before {
+.dameiui-icon-android-hand:before {
   content: "\f2e3";
 }
-.mdniui-icon-android-hangout:before {
+.dameiui-icon-android-hangout:before {
   content: "\f38d";
 }
-.mdniui-icon-android-happy:before {
+.dameiui-icon-android-happy:before {
   content: "\f38e";
 }
-.mdniui-icon-android-home:before {
+.dameiui-icon-android-home:before {
   content: "\f38f";
 }
-.mdniui-icon-android-image:before {
+.dameiui-icon-android-image:before {
   content: "\f2e4";
 }
-.mdniui-icon-android-laptop:before {
+.dameiui-icon-android-laptop:before {
   content: "\f390";
 }
-.mdniui-icon-android-list:before {
+.dameiui-icon-android-list:before {
   content: "\f391";
 }
-.mdniui-icon-android-locate:before {
+.dameiui-icon-android-locate:before {
   content: "\f2e9";
 }
-.mdniui-icon-android-lock:before {
+.dameiui-icon-android-lock:before {
   content: "\f392";
 }
-.mdniui-icon-android-mail:before {
+.dameiui-icon-android-mail:before {
   content: "\f2eb";
 }
-.mdniui-icon-android-map:before {
+.dameiui-icon-android-map:before {
   content: "\f393";
 }
-.mdniui-icon-android-menu:before {
+.dameiui-icon-android-menu:before {
   content: "\f394";
 }
-.mdniui-icon-android-microphone:before {
+.dameiui-icon-android-microphone:before {
   content: "\f2ec";
 }
-.mdniui-icon-android-microphone-off:before {
+.dameiui-icon-android-microphone-off:before {
   content: "\f395";
 }
-.mdniui-icon-android-more-horizontal:before {
+.dameiui-icon-android-more-horizontal:before {
   content: "\f396";
 }
-.mdniui-icon-android-more-vertical:before {
+.dameiui-icon-android-more-vertical:before {
   content: "\f397";
 }
-.mdniui-icon-android-navigate:before {
+.dameiui-icon-android-navigate:before {
   content: "\f398";
 }
-.mdniui-icon-android-notifications:before {
+.dameiui-icon-android-notifications:before {
   content: "\f39b";
 }
-.mdniui-icon-android-notifications-none:before {
+.dameiui-icon-android-notifications-none:before {
   content: "\f399";
 }
-.mdniui-icon-android-notifications-off:before {
+.dameiui-icon-android-notifications-off:before {
   content: "\f39a";
 }
-.mdniui-icon-android-open:before {
+.dameiui-icon-android-open:before {
   content: "\f39c";
 }
-.mdniui-icon-android-options:before {
+.dameiui-icon-android-options:before {
   content: "\f39d";
 }
-.mdniui-icon-android-people:before {
+.dameiui-icon-android-people:before {
   content: "\f39e";
 }
-.mdniui-icon-android-person:before {
+.dameiui-icon-android-person:before {
   content: "\f3a0";
 }
-.mdniui-icon-android-person-add:before {
+.dameiui-icon-android-person-add:before {
   content: "\f39f";
 }
-.mdniui-icon-android-phone-landscape:before {
+.dameiui-icon-android-phone-landscape:before {
   content: "\f3a1";
 }
-.mdniui-icon-android-phone-portrait:before {
+.dameiui-icon-android-phone-portrait:before {
   content: "\f3a2";
 }
-.mdniui-icon-android-pin:before {
+.dameiui-icon-android-pin:before {
   content: "\f3a3";
 }
-.mdniui-icon-android-plane:before {
+.dameiui-icon-android-plane:before {
   content: "\f3a4";
 }
-.mdniui-icon-android-playstore:before {
+.dameiui-icon-android-playstore:before {
   content: "\f2f0";
 }
-.mdniui-icon-android-print:before {
+.dameiui-icon-android-print:before {
   content: "\f3a5";
 }
-.mdniui-icon-android-radio-button-off:before {
+.dameiui-icon-android-radio-button-off:before {
   content: "\f3a6";
 }
-.mdniui-icon-android-radio-button-on:before {
+.dameiui-icon-android-radio-button-on:before {
   content: "\f3a7";
 }
-.mdniui-icon-android-refresh:before {
+.dameiui-icon-android-refresh:before {
   content: "\f3a8";
 }
-.mdniui-icon-android-remove:before {
+.dameiui-icon-android-remove:before {
   content: "\f2f4";
 }
-.mdniui-icon-android-remove-circle:before {
+.dameiui-icon-android-remove-circle:before {
   content: "\f3a9";
 }
-.mdniui-icon-android-restaurant:before {
+.dameiui-icon-android-restaurant:before {
   content: "\f3aa";
 }
-.mdniui-icon-android-sad:before {
+.dameiui-icon-android-sad:before {
   content: "\f3ab";
 }
-.mdniui-icon-android-search:before {
+.dameiui-icon-android-search:before {
   content: "\f2f5";
 }
-.mdniui-icon-android-send:before {
+.dameiui-icon-android-send:before {
   content: "\f2f6";
 }
-.mdniui-icon-android-settings:before {
+.dameiui-icon-android-settings:before {
   content: "\f2f7";
 }
-.mdniui-icon-android-share:before {
+.dameiui-icon-android-share:before {
   content: "\f2f8";
 }
-.mdniui-icon-android-share-alt:before {
+.dameiui-icon-android-share-alt:before {
   content: "\f3ac";
 }
-.mdniui-icon-android-star:before {
+.dameiui-icon-android-star:before {
   content: "\f2fc";
 }
-.mdniui-icon-android-star-half:before {
+.dameiui-icon-android-star-half:before {
   content: "\f3ad";
 }
-.mdniui-icon-android-star-outline:before {
+.dameiui-icon-android-star-outline:before {
   content: "\f3ae";
 }
-.mdniui-icon-android-stopwatch:before {
+.dameiui-icon-android-stopwatch:before {
   content: "\f2fd";
 }
-.mdniui-icon-android-subway:before {
+.dameiui-icon-android-subway:before {
   content: "\f3af";
 }
-.mdniui-icon-android-sunny:before {
+.dameiui-icon-android-sunny:before {
   content: "\f3b0";
 }
-.mdniui-icon-android-sync:before {
+.dameiui-icon-android-sync:before {
   content: "\f3b1";
 }
-.mdniui-icon-android-textsms:before {
+.dameiui-icon-android-textsms:before {
   content: "\f3b2";
 }
-.mdniui-icon-android-time:before {
+.dameiui-icon-android-time:before {
   content: "\f3b3";
 }
-.mdniui-icon-android-train:before {
+.dameiui-icon-android-train:before {
   content: "\f3b4";
 }
-.mdniui-icon-android-unlock:before {
+.dameiui-icon-android-unlock:before {
   content: "\f3b5";
 }
-.mdniui-icon-android-upload:before {
+.dameiui-icon-android-upload:before {
   content: "\f3b6";
 }
-.mdniui-icon-android-volume-down:before {
+.dameiui-icon-android-volume-down:before {
   content: "\f3b7";
 }
-.mdniui-icon-android-volume-mute:before {
+.dameiui-icon-android-volume-mute:before {
   content: "\f3b8";
 }
-.mdniui-icon-android-volume-off:before {
+.dameiui-icon-android-volume-off:before {
   content: "\f3b9";
 }
-.mdniui-icon-android-volume-up:before {
+.dameiui-icon-android-volume-up:before {
   content: "\f3ba";
 }
-.mdniui-icon-android-walk:before {
+.dameiui-icon-android-walk:before {
   content: "\f3bb";
 }
-.mdniui-icon-android-warning:before {
+.dameiui-icon-android-warning:before {
   content: "\f3bc";
 }
-.mdniui-icon-android-watch:before {
+.dameiui-icon-android-watch:before {
   content: "\f3bd";
 }
-.mdniui-icon-android-wifi:before {
+.dameiui-icon-android-wifi:before {
   content: "\f305";
 }
-.mdniui-icon-aperture:before {
+.dameiui-icon-aperture:before {
   content: "\f313";
 }
-.mdniui-icon-archive:before {
+.dameiui-icon-archive:before {
   content: "\f102";
 }
-.mdniui-icon-arrow-down-a:before {
+.dameiui-icon-arrow-down-a:before {
   content: "\f103";
 }
-.mdniui-icon-arrow-down-b:before {
+.dameiui-icon-arrow-down-b:before {
   content: "\f104";
 }
-.mdniui-icon-arrow-down-c:before {
+.dameiui-icon-arrow-down-c:before {
   content: "\f105";
 }
-.mdniui-icon-arrow-expand:before {
+.dameiui-icon-arrow-expand:before {
   content: "\f25e";
 }
-.mdniui-icon-arrow-graph-down-left:before {
+.dameiui-icon-arrow-graph-down-left:before {
   content: "\f25f";
 }
-.mdniui-icon-arrow-graph-down-right:before {
+.dameiui-icon-arrow-graph-down-right:before {
   content: "\f260";
 }
-.mdniui-icon-arrow-graph-up-left:before {
+.dameiui-icon-arrow-graph-up-left:before {
   content: "\f261";
 }
-.mdniui-icon-arrow-graph-up-right:before {
+.dameiui-icon-arrow-graph-up-right:before {
   content: "\f262";
 }
-.mdniui-icon-arrow-left-a:before {
+.dameiui-icon-arrow-left-a:before {
   content: "\f106";
 }
-.mdniui-icon-arrow-left-b:before {
+.dameiui-icon-arrow-left-b:before {
   content: "\f107";
 }
-.mdniui-icon-arrow-left-c:before {
+.dameiui-icon-arrow-left-c:before {
   content: "\f108";
 }
-.mdniui-icon-arrow-move:before {
+.dameiui-icon-arrow-move:before {
   content: "\f263";
 }
-.mdniui-icon-arrow-resize:before {
+.dameiui-icon-arrow-resize:before {
   content: "\f264";
 }
-.mdniui-icon-arrow-return-left:before {
+.dameiui-icon-arrow-return-left:before {
   content: "\f265";
 }
-.mdniui-icon-arrow-return-right:before {
+.dameiui-icon-arrow-return-right:before {
   content: "\f266";
 }
-.mdniui-icon-arrow-right-a:before {
+.dameiui-icon-arrow-right-a:before {
   content: "\f109";
 }
-.mdniui-icon-arrow-right-b:before {
+.dameiui-icon-arrow-right-b:before {
   content: "\f10a";
 }
-.mdniui-icon-arrow-right-c:before {
+.dameiui-icon-arrow-right-c:before {
   content: "\f10b";
 }
-.mdniui-icon-arrow-shrink:before {
+.dameiui-icon-arrow-shrink:before {
   content: "\f267";
 }
-.mdniui-icon-arrow-swap:before {
+.dameiui-icon-arrow-swap:before {
   content: "\f268";
 }
-.mdniui-icon-arrow-up-a:before {
+.dameiui-icon-arrow-up-a:before {
   content: "\f10c";
 }
-.mdniui-icon-arrow-up-b:before {
+.dameiui-icon-arrow-up-b:before {
   content: "\f10d";
 }
-.mdniui-icon-arrow-up-c:before {
+.dameiui-icon-arrow-up-c:before {
   content: "\f10e";
 }
-.mdniui-icon-asterisk:before {
+.dameiui-icon-asterisk:before {
   content: "\f314";
 }
-.mdniui-icon-at:before {
+.dameiui-icon-at:before {
   content: "\f10f";
 }
-.mdniui-icon-backspace:before {
+.dameiui-icon-backspace:before {
   content: "\f3bf";
 }
-.mdniui-icon-backspace-outline:before {
+.dameiui-icon-backspace-outline:before {
   content: "\f3be";
 }
-.mdniui-icon-bag:before {
+.dameiui-icon-bag:before {
   content: "\f110";
 }
-.mdniui-icon-battery-charging:before {
+.dameiui-icon-battery-charging:before {
   content: "\f111";
 }
-.mdniui-icon-battery-empty:before {
+.dameiui-icon-battery-empty:before {
   content: "\f112";
 }
-.mdniui-icon-battery-full:before {
+.dameiui-icon-battery-full:before {
   content: "\f113";
 }
-.mdniui-icon-battery-half:before {
+.dameiui-icon-battery-half:before {
   content: "\f114";
 }
-.mdniui-icon-battery-low:before {
+.dameiui-icon-battery-low:before {
   content: "\f115";
 }
-.mdniui-icon-beaker:before {
+.dameiui-icon-beaker:before {
   content: "\f269";
 }
-.mdniui-icon-beer:before {
+.dameiui-icon-beer:before {
   content: "\f26a";
 }
-.mdniui-icon-bluetooth:before {
+.dameiui-icon-bluetooth:before {
   content: "\f116";
 }
-.mdniui-icon-bonfire:before {
+.dameiui-icon-bonfire:before {
   content: "\f315";
 }
-.mdniui-icon-bookmark:before {
+.dameiui-icon-bookmark:before {
   content: "\f26b";
 }
-.mdniui-icon-bowtie:before {
+.dameiui-icon-bowtie:before {
   content: "\f3c0";
 }
-.mdniui-icon-briefcase:before {
+.dameiui-icon-briefcase:before {
   content: "\f26c";
 }
-.mdniui-icon-bug:before {
+.dameiui-icon-bug:before {
   content: "\f2be";
 }
-.mdniui-icon-calculator:before {
+.dameiui-icon-calculator:before {
   content: "\f26d";
 }
-.mdniui-icon-calendar:before {
+.dameiui-icon-calendar:before {
   content: "\f117";
 }
-.mdniui-icon-camera:before {
+.dameiui-icon-camera:before {
   content: "\f118";
 }
-.mdniui-icon-card:before {
+.dameiui-icon-card:before {
   content: "\f119";
 }
-.mdniui-icon-cash:before {
+.dameiui-icon-cash:before {
   content: "\f316";
 }
-.mdniui-icon-chatbox:before {
+.dameiui-icon-chatbox:before {
   content: "\f11b";
 }
-.mdniui-icon-chatbox-working:before {
+.dameiui-icon-chatbox-working:before {
   content: "\f11a";
 }
-.mdniui-icon-chatboxes:before {
+.dameiui-icon-chatboxes:before {
   content: "\f11c";
 }
-.mdniui-icon-chatbubble:before {
+.dameiui-icon-chatbubble:before {
   content: "\f11e";
 }
-.mdniui-icon-chatbubble-working:before {
+.dameiui-icon-chatbubble-working:before {
   content: "\f11d";
 }
-.mdniui-icon-chatbubbles:before {
+.dameiui-icon-chatbubbles:before {
   content: "\f11f";
 }
-.mdniui-icon-checkmark:before {
+.dameiui-icon-checkmark:before {
   content: "\f122";
 }
-.mdniui-icon-checkmark-circled:before {
+.dameiui-icon-checkmark-circled:before {
   content: "\f120";
 }
-.mdniui-icon-checkmark-round:before {
+.dameiui-icon-checkmark-round:before {
   content: "\f121";
 }
-.mdniui-icon-chevron-down:before {
+.dameiui-icon-chevron-down:before {
   content: "\f123";
 }
-.mdniui-icon-chevron-left:before {
+.dameiui-icon-chevron-left:before {
   content: "\f124";
 }
-.mdniui-icon-chevron-right:before {
+.dameiui-icon-chevron-right:before {
   content: "\f125";
 }
-.mdniui-icon-chevron-up:before {
+.dameiui-icon-chevron-up:before {
   content: "\f126";
 }
-.mdniui-icon-clipboard:before {
+.dameiui-icon-clipboard:before {
   content: "\f127";
 }
-.mdniui-icon-clock:before {
+.dameiui-icon-clock:before {
   content: "\f26e";
 }
-.mdniui-icon-close:before {
+.dameiui-icon-close:before {
   content: "\f12a";
 }
-.mdniui-icon-close-circled:before {
+.dameiui-icon-close-circled:before {
   content: "\f128";
 }
-.mdniui-icon-close-round:before {
+.dameiui-icon-close-round:before {
   content: "\f129";
 }
-.mdniui-icon-closed-captioning:before {
+.dameiui-icon-closed-captioning:before {
   content: "\f317";
 }
-.mdniui-icon-cloud:before {
+.dameiui-icon-cloud:before {
   content: "\f12b";
 }
-.mdniui-icon-code:before {
+.dameiui-icon-code:before {
   content: "\f271";
 }
-.mdniui-icon-code-download:before {
+.dameiui-icon-code-download:before {
   content: "\f26f";
 }
-.mdniui-icon-code-working:before {
+.dameiui-icon-code-working:before {
   content: "\f270";
 }
-.mdniui-icon-coffee:before {
+.dameiui-icon-coffee:before {
   content: "\f272";
 }
-.mdniui-icon-compass:before {
+.dameiui-icon-compass:before {
   content: "\f273";
 }
-.mdniui-icon-compose:before {
+.dameiui-icon-compose:before {
   content: "\f12c";
 }
-.mdniui-icon-connection-bars:before {
+.dameiui-icon-connection-bars:before {
   content: "\f274";
 }
-.mdniui-icon-contrast:before {
+.dameiui-icon-contrast:before {
   content: "\f275";
 }
-.mdniui-icon-crop:before {
+.dameiui-icon-crop:before {
   content: "\f3c1";
 }
-.mdniui-icon-cube:before {
+.dameiui-icon-cube:before {
   content: "\f318";
 }
-.mdniui-icon-disc:before {
+.dameiui-icon-disc:before {
   content: "\f12d";
 }
-.mdniui-icon-document:before {
+.dameiui-icon-document:before {
   content: "\f12f";
 }
-.mdniui-icon-document-text:before {
+.dameiui-icon-document-text:before {
   content: "\f12e";
 }
-.mdniui-icon-drag:before {
+.dameiui-icon-drag:before {
   content: "\f130";
 }
-.mdniui-icon-earth:before {
+.dameiui-icon-earth:before {
   content: "\f276";
 }
-.mdniui-icon-easel:before {
+.dameiui-icon-easel:before {
   content: "\f3c2";
 }
-.mdniui-icon-edit:before {
+.dameiui-icon-edit:before {
   content: "\f2bf";
 }
-.mdniui-icon-egg:before {
+.dameiui-icon-egg:before {
   content: "\f277";
 }
-.mdniui-icon-eject:before {
+.dameiui-icon-eject:before {
   content: "\f131";
 }
-.mdniui-icon-email:before {
+.dameiui-icon-email:before {
   content: "\f132";
 }
-.mdniui-icon-email-unread:before {
+.dameiui-icon-email-unread:before {
   content: "\f3c3";
 }
-.mdniui-icon-erlenmeyer-flask:before {
+.dameiui-icon-erlenmeyer-flask:before {
   content: "\f3c5";
 }
-.mdniui-icon-erlenmeyer-flask-bubbles:before {
+.dameiui-icon-erlenmeyer-flask-bubbles:before {
   content: "\f3c4";
 }
-.mdniui-icon-eye:before {
+.dameiui-icon-eye:before {
   content: "\f133";
 }
-.mdniui-icon-eye-disabled:before {
+.dameiui-icon-eye-disabled:before {
   content: "\f306";
 }
-.mdniui-icon-female:before {
+.dameiui-icon-female:before {
   content: "\f278";
 }
-.mdniui-icon-filing:before {
+.dameiui-icon-filing:before {
   content: "\f134";
 }
-.mdniui-icon-film-marker:before {
+.dameiui-icon-film-marker:before {
   content: "\f135";
 }
-.mdniui-icon-fireball:before {
+.dameiui-icon-fireball:before {
   content: "\f319";
 }
-.mdniui-icon-flag:before {
+.dameiui-icon-flag:before {
   content: "\f279";
 }
-.mdniui-icon-flame:before {
+.dameiui-icon-flame:before {
   content: "\f31a";
 }
-.mdniui-icon-flash:before {
+.dameiui-icon-flash:before {
   content: "\f137";
 }
-.mdniui-icon-flash-off:before {
+.dameiui-icon-flash-off:before {
   content: "\f136";
 }
-.mdniui-icon-folder:before {
+.dameiui-icon-folder:before {
   content: "\f139";
 }
-.mdniui-icon-fork:before {
+.dameiui-icon-fork:before {
   content: "\f27a";
 }
-.mdniui-icon-fork-repo:before {
+.dameiui-icon-fork-repo:before {
   content: "\f2c0";
 }
-.mdniui-icon-forward:before {
+.dameiui-icon-forward:before {
   content: "\f13a";
 }
-.mdniui-icon-funnel:before {
+.dameiui-icon-funnel:before {
   content: "\f31b";
 }
-.mdniui-icon-gear-a:before {
+.dameiui-icon-gear-a:before {
   content: "\f13d";
 }
-.mdniui-icon-gear-b:before {
+.dameiui-icon-gear-b:before {
   content: "\f13e";
 }
-.mdniui-icon-grid:before {
+.dameiui-icon-grid:before {
   content: "\f13f";
 }
-.mdniui-icon-hammer:before {
+.dameiui-icon-hammer:before {
   content: "\f27b";
 }
-.mdniui-icon-happy:before {
+.dameiui-icon-happy:before {
   content: "\f31c";
 }
-.mdniui-icon-happy-outline:before {
+.dameiui-icon-happy-outline:before {
   content: "\f3c6";
 }
-.mdniui-icon-headphone:before {
+.dameiui-icon-headphone:before {
   content: "\f140";
 }
-.mdniui-icon-heart:before {
+.dameiui-icon-heart:before {
   content: "\f141";
 }
-.mdniui-icon-heart-broken:before {
+.dameiui-icon-heart-broken:before {
   content: "\f31d";
 }
-.mdniui-icon-help:before {
+.dameiui-icon-help:before {
   content: "\f143";
 }
-.mdniui-icon-help-buoy:before {
+.dameiui-icon-help-buoy:before {
   content: "\f27c";
 }
-.mdniui-icon-help-circled:before {
+.dameiui-icon-help-circled:before {
   content: "\f142";
 }
-.mdniui-icon-home:before {
+.dameiui-icon-home:before {
   content: "\f144";
 }
-.mdniui-icon-icecream:before {
+.dameiui-icon-icecream:before {
   content: "\f27d";
 }
-.mdniui-icon-image:before {
+.dameiui-icon-image:before {
   content: "\f147";
 }
-.mdniui-icon-images:before {
+.dameiui-icon-images:before {
   content: "\f148";
 }
-.mdniui-icon-information:before {
+.dameiui-icon-information:before {
   content: "\f14a";
 }
-.mdniui-icon-information-circled:before {
+.dameiui-icon-information-circled:before {
   content: "\f149";
 }
-.mdniui-icon-ionic:before {
+.dameiui-icon-ionic:before {
   content: "\f14b";
 }
-.mdniui-icon-ios-alarm:before {
+.dameiui-icon-ios-alarm:before {
   content: "\f3c8";
 }
-.mdniui-icon-ios-alarm-outline:before {
+.dameiui-icon-ios-alarm-outline:before {
   content: "\f3c7";
 }
-.mdniui-icon-ios-albums:before {
+.dameiui-icon-ios-albums:before {
   content: "\f3ca";
 }
-.mdniui-icon-ios-albums-outline:before {
+.dameiui-icon-ios-albums-outline:before {
   content: "\f3c9";
 }
-.mdniui-icon-ios-americanfootball:before {
+.dameiui-icon-ios-americanfootball:before {
   content: "\f3cc";
 }
-.mdniui-icon-ios-americanfootball-outline:before {
+.dameiui-icon-ios-americanfootball-outline:before {
   content: "\f3cb";
 }
-.mdniui-icon-ios-analytics:before {
+.dameiui-icon-ios-analytics:before {
   content: "\f3ce";
 }
-.mdniui-icon-ios-analytics-outline:before {
+.dameiui-icon-ios-analytics-outline:before {
   content: "\f3cd";
 }
-.mdniui-icon-ios-arrow-back:before {
+.dameiui-icon-ios-arrow-back:before {
   content: "\f3cf";
 }
-.mdniui-icon-ios-arrow-down:before {
+.dameiui-icon-ios-arrow-down:before {
   content: "\f3d0";
 }
-.mdniui-icon-ios-arrow-forward:before {
+.dameiui-icon-ios-arrow-forward:before {
   content: "\f3d1";
 }
-.mdniui-icon-ios-arrow-left:before {
+.dameiui-icon-ios-arrow-left:before {
   content: "\f3d2";
 }
-.mdniui-icon-ios-arrow-right:before {
+.dameiui-icon-ios-arrow-right:before {
   content: "\f3d3";
 }
-.mdniui-icon-ios-arrow-thin-down:before {
+.dameiui-icon-ios-arrow-thin-down:before {
   content: "\f3d4";
 }
-.mdniui-icon-ios-arrow-thin-left:before {
+.dameiui-icon-ios-arrow-thin-left:before {
   content: "\f3d5";
 }
-.mdniui-icon-ios-arrow-thin-right:before {
+.dameiui-icon-ios-arrow-thin-right:before {
   content: "\f3d6";
 }
-.mdniui-icon-ios-arrow-thin-up:before {
+.dameiui-icon-ios-arrow-thin-up:before {
   content: "\f3d7";
 }
-.mdniui-icon-ios-arrow-up:before {
+.dameiui-icon-ios-arrow-up:before {
   content: "\f3d8";
 }
-.mdniui-icon-ios-at:before {
+.dameiui-icon-ios-at:before {
   content: "\f3da";
 }
-.mdniui-icon-ios-at-outline:before {
+.dameiui-icon-ios-at-outline:before {
   content: "\f3d9";
 }
-.mdniui-icon-ios-barcode:before {
+.dameiui-icon-ios-barcode:before {
   content: "\f3dc";
 }
-.mdniui-icon-ios-barcode-outline:before {
+.dameiui-icon-ios-barcode-outline:before {
   content: "\f3db";
 }
-.mdniui-icon-ios-baseball:before {
+.dameiui-icon-ios-baseball:before {
   content: "\f3de";
 }
-.mdniui-icon-ios-baseball-outline:before {
+.dameiui-icon-ios-baseball-outline:before {
   content: "\f3dd";
 }
-.mdniui-icon-ios-basketball:before {
+.dameiui-icon-ios-basketball:before {
   content: "\f3e0";
 }
-.mdniui-icon-ios-basketball-outline:before {
+.dameiui-icon-ios-basketball-outline:before {
   content: "\f3df";
 }
-.mdniui-icon-ios-bell:before {
+.dameiui-icon-ios-bell:before {
   content: "\f3e2";
 }
-.mdniui-icon-ios-bell-outline:before {
+.dameiui-icon-ios-bell-outline:before {
   content: "\f3e1";
 }
-.mdniui-icon-ios-body:before {
+.dameiui-icon-ios-body:before {
   content: "\f3e4";
 }
-.mdniui-icon-ios-body-outline:before {
+.dameiui-icon-ios-body-outline:before {
   content: "\f3e3";
 }
-.mdniui-icon-ios-bolt:before {
+.dameiui-icon-ios-bolt:before {
   content: "\f3e6";
 }
-.mdniui-icon-ios-bolt-outline:before {
+.dameiui-icon-ios-bolt-outline:before {
   content: "\f3e5";
 }
-.mdniui-icon-ios-book:before {
+.dameiui-icon-ios-book:before {
   content: "\f3e8";
 }
-.mdniui-icon-ios-book-outline:before {
+.dameiui-icon-ios-book-outline:before {
   content: "\f3e7";
 }
-.mdniui-icon-ios-bookmarks:before {
+.dameiui-icon-ios-bookmarks:before {
   content: "\f3ea";
 }
-.mdniui-icon-ios-bookmarks-outline:before {
+.dameiui-icon-ios-bookmarks-outline:before {
   content: "\f3e9";
 }
-.mdniui-icon-ios-box:before {
+.dameiui-icon-ios-box:before {
   content: "\f3ec";
 }
-.mdniui-icon-ios-box-outline:before {
+.dameiui-icon-ios-box-outline:before {
   content: "\f3eb";
 }
-.mdniui-icon-ios-briefcase:before {
+.dameiui-icon-ios-briefcase:before {
   content: "\f3ee";
 }
-.mdniui-icon-ios-briefcase-outline:before {
+.dameiui-icon-ios-briefcase-outline:before {
   content: "\f3ed";
 }
-.mdniui-icon-ios-browsers:before {
+.dameiui-icon-ios-browsers:before {
   content: "\f3f0";
 }
-.mdniui-icon-ios-browsers-outline:before {
+.dameiui-icon-ios-browsers-outline:before {
   content: "\f3ef";
 }
-.mdniui-icon-ios-calculator:before {
+.dameiui-icon-ios-calculator:before {
   content: "\f3f2";
 }
-.mdniui-icon-ios-calculator-outline:before {
+.dameiui-icon-ios-calculator-outline:before {
   content: "\f3f1";
 }
-.mdniui-icon-ios-calendar:before {
+.dameiui-icon-ios-calendar:before {
   content: "\f3f4";
 }
-.mdniui-icon-ios-calendar-outline:before {
+.dameiui-icon-ios-calendar-outline:before {
   content: "\f3f3";
 }
-.mdniui-icon-ios-camera:before {
+.dameiui-icon-ios-camera:before {
   content: "\f3f6";
 }
-.mdniui-icon-ios-camera-outline:before {
+.dameiui-icon-ios-camera-outline:before {
   content: "\f3f5";
 }
-.mdniui-icon-ios-cart:before {
+.dameiui-icon-ios-cart:before {
   content: "\f3f8";
 }
-.mdniui-icon-ios-cart-outline:before {
+.dameiui-icon-ios-cart-outline:before {
   content: "\f3f7";
 }
-.mdniui-icon-ios-chatboxes:before {
+.dameiui-icon-ios-chatboxes:before {
   content: "\f3fa";
 }
-.mdniui-icon-ios-chatboxes-outline:before {
+.dameiui-icon-ios-chatboxes-outline:before {
   content: "\f3f9";
 }
-.mdniui-icon-ios-chatbubble:before {
+.dameiui-icon-ios-chatbubble:before {
   content: "\f3fc";
 }
-.mdniui-icon-ios-chatbubble-outline:before {
+.dameiui-icon-ios-chatbubble-outline:before {
   content: "\f3fb";
 }
-.mdniui-icon-ios-checkmark:before {
+.dameiui-icon-ios-checkmark:before {
   content: "\f3ff";
 }
-.mdniui-icon-ios-checkmark-empty:before {
+.dameiui-icon-ios-checkmark-empty:before {
   content: "\f3fd";
 }
-.mdniui-icon-ios-checkmark-outline:before {
+.dameiui-icon-ios-checkmark-outline:before {
   content: "\f3fe";
 }
-.mdniui-icon-ios-circle-filled:before {
+.dameiui-icon-ios-circle-filled:before {
   content: "\f400";
 }
-.mdniui-icon-ios-circle-outline:before {
+.dameiui-icon-ios-circle-outline:before {
   content: "\f401";
 }
-.mdniui-icon-ios-clock:before {
+.dameiui-icon-ios-clock:before {
   content: "\f403";
 }
-.mdniui-icon-ios-clock-outline:before {
+.dameiui-icon-ios-clock-outline:before {
   content: "\f402";
 }
-.mdniui-icon-ios-close:before {
+.dameiui-icon-ios-close:before {
   content: "\f406";
 }
-.mdniui-icon-ios-close-empty:before {
+.dameiui-icon-ios-close-empty:before {
   content: "\f404";
 }
-.mdniui-icon-ios-close-outline:before {
+.dameiui-icon-ios-close-outline:before {
   content: "\f405";
 }
-.mdniui-icon-ios-cloud:before {
+.dameiui-icon-ios-cloud:before {
   content: "\f40c";
 }
-.mdniui-icon-ios-cloud-download:before {
+.dameiui-icon-ios-cloud-download:before {
   content: "\f408";
 }
-.mdniui-icon-ios-cloud-download-outline:before {
+.dameiui-icon-ios-cloud-download-outline:before {
   content: "\f407";
 }
-.mdniui-icon-ios-cloud-outline:before {
+.dameiui-icon-ios-cloud-outline:before {
   content: "\f409";
 }
-.mdniui-icon-ios-cloud-upload:before {
+.dameiui-icon-ios-cloud-upload:before {
   content: "\f40b";
 }
-.mdniui-icon-ios-cloud-upload-outline:before {
+.dameiui-icon-ios-cloud-upload-outline:before {
   content: "\f40a";
 }
-.mdniui-icon-ios-cloudy:before {
+.dameiui-icon-ios-cloudy:before {
   content: "\f410";
 }
-.mdniui-icon-ios-cloudy-night:before {
+.dameiui-icon-ios-cloudy-night:before {
   content: "\f40e";
 }
-.mdniui-icon-ios-cloudy-night-outline:before {
+.dameiui-icon-ios-cloudy-night-outline:before {
   content: "\f40d";
 }
-.mdniui-icon-ios-cloudy-outline:before {
+.dameiui-icon-ios-cloudy-outline:before {
   content: "\f40f";
 }
-.mdniui-icon-ios-cog:before {
+.dameiui-icon-ios-cog:before {
   content: "\f412";
 }
-.mdniui-icon-ios-cog-outline:before {
+.dameiui-icon-ios-cog-outline:before {
   content: "\f411";
 }
-.mdniui-icon-ios-color-filter:before {
+.dameiui-icon-ios-color-filter:before {
   content: "\f414";
 }
-.mdniui-icon-ios-color-filter-outline:before {
+.dameiui-icon-ios-color-filter-outline:before {
   content: "\f413";
 }
-.mdniui-icon-ios-color-wand:before {
+.dameiui-icon-ios-color-wand:before {
   content: "\f416";
 }
-.mdniui-icon-ios-color-wand-outline:before {
+.dameiui-icon-ios-color-wand-outline:before {
   content: "\f415";
 }
-.mdniui-icon-ios-compose:before {
+.dameiui-icon-ios-compose:before {
   content: "\f418";
 }
-.mdniui-icon-ios-compose-outline:before {
+.dameiui-icon-ios-compose-outline:before {
   content: "\f417";
 }
-.mdniui-icon-ios-contact:before {
+.dameiui-icon-ios-contact:before {
   content: "\f41a";
 }
-.mdniui-icon-ios-contact-outline:before {
+.dameiui-icon-ios-contact-outline:before {
   content: "\f419";
 }
-.mdniui-icon-ios-copy:before {
+.dameiui-icon-ios-copy:before {
   content: "\f41c";
 }
-.mdniui-icon-ios-copy-outline:before {
+.dameiui-icon-ios-copy-outline:before {
   content: "\f41b";
 }
-.mdniui-icon-ios-crop:before {
+.dameiui-icon-ios-crop:before {
   content: "\f41e";
 }
-.mdniui-icon-ios-crop-strong:before {
+.dameiui-icon-ios-crop-strong:before {
   content: "\f41d";
 }
-.mdniui-icon-ios-download:before {
+.dameiui-icon-ios-download:before {
   content: "\f420";
 }
-.mdniui-icon-ios-download-outline:before {
+.dameiui-icon-ios-download-outline:before {
   content: "\f41f";
 }
-.mdniui-icon-ios-drag:before {
+.dameiui-icon-ios-drag:before {
   content: "\f421";
 }
-.mdniui-icon-ios-email:before {
+.dameiui-icon-ios-email:before {
   content: "\f423";
 }
-.mdniui-icon-ios-email-outline:before {
+.dameiui-icon-ios-email-outline:before {
   content: "\f422";
 }
-.mdniui-icon-ios-eye:before {
+.dameiui-icon-ios-eye:before {
   content: "\f425";
 }
-.mdniui-icon-ios-eye-outline:before {
+.dameiui-icon-ios-eye-outline:before {
   content: "\f424";
 }
-.mdniui-icon-ios-fastforward:before {
+.dameiui-icon-ios-fastforward:before {
   content: "\f427";
 }
-.mdniui-icon-ios-fastforward-outline:before {
+.dameiui-icon-ios-fastforward-outline:before {
   content: "\f426";
 }
-.mdniui-icon-ios-filing:before {
+.dameiui-icon-ios-filing:before {
   content: "\f429";
 }
-.mdniui-icon-ios-filing-outline:before {
+.dameiui-icon-ios-filing-outline:before {
   content: "\f428";
 }
-.mdniui-icon-ios-film:before {
+.dameiui-icon-ios-film:before {
   content: "\f42b";
 }
-.mdniui-icon-ios-film-outline:before {
+.dameiui-icon-ios-film-outline:before {
   content: "\f42a";
 }
-.mdniui-icon-ios-flag:before {
+.dameiui-icon-ios-flag:before {
   content: "\f42d";
 }
-.mdniui-icon-ios-flag-outline:before {
+.dameiui-icon-ios-flag-outline:before {
   content: "\f42c";
 }
-.mdniui-icon-ios-flame:before {
+.dameiui-icon-ios-flame:before {
   content: "\f42f";
 }
-.mdniui-icon-ios-flame-outline:before {
+.dameiui-icon-ios-flame-outline:before {
   content: "\f42e";
 }
-.mdniui-icon-ios-flask:before {
+.dameiui-icon-ios-flask:before {
   content: "\f431";
 }
-.mdniui-icon-ios-flask-outline:before {
+.dameiui-icon-ios-flask-outline:before {
   content: "\f430";
 }
-.mdniui-icon-ios-flower:before {
+.dameiui-icon-ios-flower:before {
   content: "\f433";
 }
-.mdniui-icon-ios-flower-outline:before {
+.dameiui-icon-ios-flower-outline:before {
   content: "\f432";
 }
-.mdniui-icon-ios-folder:before {
+.dameiui-icon-ios-folder:before {
   content: "\f435";
 }
-.mdniui-icon-ios-folder-outline:before {
+.dameiui-icon-ios-folder-outline:before {
   content: "\f434";
 }
-.mdniui-icon-ios-football:before {
+.dameiui-icon-ios-football:before {
   content: "\f437";
 }
-.mdniui-icon-ios-football-outline:before {
+.dameiui-icon-ios-football-outline:before {
   content: "\f436";
 }
-.mdniui-icon-ios-game-controller-a:before {
+.dameiui-icon-ios-game-controller-a:before {
   content: "\f439";
 }
-.mdniui-icon-ios-game-controller-a-outline:before {
+.dameiui-icon-ios-game-controller-a-outline:before {
   content: "\f438";
 }
-.mdniui-icon-ios-game-controller-b:before {
+.dameiui-icon-ios-game-controller-b:before {
   content: "\f43b";
 }
-.mdniui-icon-ios-game-controller-b-outline:before {
+.dameiui-icon-ios-game-controller-b-outline:before {
   content: "\f43a";
 }
-.mdniui-icon-ios-gear:before {
+.dameiui-icon-ios-gear:before {
   content: "\f43d";
 }
-.mdniui-icon-ios-gear-outline:before {
+.dameiui-icon-ios-gear-outline:before {
   content: "\f43c";
 }
-.mdniui-icon-ios-glasses:before {
+.dameiui-icon-ios-glasses:before {
   content: "\f43f";
 }
-.mdniui-icon-ios-glasses-outline:before {
+.dameiui-icon-ios-glasses-outline:before {
   content: "\f43e";
 }
-.mdniui-icon-ios-grid-view:before {
+.dameiui-icon-ios-grid-view:before {
   content: "\f441";
 }
-.mdniui-icon-ios-grid-view-outline:before {
+.dameiui-icon-ios-grid-view-outline:before {
   content: "\f440";
 }
-.mdniui-icon-ios-heart:before {
+.dameiui-icon-ios-heart:before {
   content: "\f443";
 }
-.mdniui-icon-ios-heart-outline:before {
+.dameiui-icon-ios-heart-outline:before {
   content: "\f442";
 }
-.mdniui-icon-ios-help:before {
+.dameiui-icon-ios-help:before {
   content: "\f446";
 }
-.mdniui-icon-ios-help-empty:before {
+.dameiui-icon-ios-help-empty:before {
   content: "\f444";
 }
-.mdniui-icon-ios-help-outline:before {
+.dameiui-icon-ios-help-outline:before {
   content: "\f445";
 }
-.mdniui-icon-ios-home:before {
+.dameiui-icon-ios-home:before {
   content: "\f448";
 }
-.mdniui-icon-ios-home-outline:before {
+.dameiui-icon-ios-home-outline:before {
   content: "\f447";
 }
-.mdniui-icon-ios-infinite:before {
+.dameiui-icon-ios-infinite:before {
   content: "\f44a";
 }
-.mdniui-icon-ios-infinite-outline:before {
+.dameiui-icon-ios-infinite-outline:before {
   content: "\f449";
 }
-.mdniui-icon-ios-information:before {
+.dameiui-icon-ios-information:before {
   content: "\f44d";
 }
-.mdniui-icon-ios-information-empty:before {
+.dameiui-icon-ios-information-empty:before {
   content: "\f44b";
 }
-.mdniui-icon-ios-information-outline:before {
+.dameiui-icon-ios-information-outline:before {
   content: "\f44c";
 }
-.mdniui-icon-ios-ionic-outline:before {
+.dameiui-icon-ios-ionic-outline:before {
   content: "\f44e";
 }
-.mdniui-icon-ios-keypad:before {
+.dameiui-icon-ios-keypad:before {
   content: "\f450";
 }
-.mdniui-icon-ios-keypad-outline:before {
+.dameiui-icon-ios-keypad-outline:before {
   content: "\f44f";
 }
-.mdniui-icon-ios-lightbulb:before {
+.dameiui-icon-ios-lightbulb:before {
   content: "\f452";
 }
-.mdniui-icon-ios-lightbulb-outline:before {
+.dameiui-icon-ios-lightbulb-outline:before {
   content: "\f451";
 }
-.mdniui-icon-ios-list:before {
+.dameiui-icon-ios-list:before {
   content: "\f454";
 }
-.mdniui-icon-ios-list-outline:before {
+.dameiui-icon-ios-list-outline:before {
   content: "\f453";
 }
-.mdniui-icon-ios-location:before {
+.dameiui-icon-ios-location:before {
   content: "\f456";
 }
-.mdniui-icon-ios-location-outline:before {
+.dameiui-icon-ios-location-outline:before {
   content: "\f455";
 }
-.mdniui-icon-ios-locked:before {
+.dameiui-icon-ios-locked:before {
   content: "\f458";
 }
-.mdniui-icon-ios-locked-outline:before {
+.dameiui-icon-ios-locked-outline:before {
   content: "\f457";
 }
-.mdniui-icon-ios-loop:before {
+.dameiui-icon-ios-loop:before {
   content: "\f45a";
 }
-.mdniui-icon-ios-loop-strong:before {
+.dameiui-icon-ios-loop-strong:before {
   content: "\f459";
 }
-.mdniui-icon-ios-medical:before {
+.dameiui-icon-ios-medical:before {
   content: "\f45c";
 }
-.mdniui-icon-ios-medical-outline:before {
+.dameiui-icon-ios-medical-outline:before {
   content: "\f45b";
 }
-.mdniui-icon-ios-medkit:before {
+.dameiui-icon-ios-medkit:before {
   content: "\f45e";
 }
-.mdniui-icon-ios-medkit-outline:before {
+.dameiui-icon-ios-medkit-outline:before {
   content: "\f45d";
 }
-.mdniui-icon-ios-mic:before {
+.dameiui-icon-ios-mic:before {
   content: "\f461";
 }
-.mdniui-icon-ios-mic-off:before {
+.dameiui-icon-ios-mic-off:before {
   content: "\f45f";
 }
-.mdniui-icon-ios-mic-outline:before {
+.dameiui-icon-ios-mic-outline:before {
   content: "\f460";
 }
-.mdniui-icon-ios-minus:before {
+.dameiui-icon-ios-minus:before {
   content: "\f464";
 }
-.mdniui-icon-ios-minus-empty:before {
+.dameiui-icon-ios-minus-empty:before {
   content: "\f462";
 }
-.mdniui-icon-ios-minus-outline:before {
+.dameiui-icon-ios-minus-outline:before {
   content: "\f463";
 }
-.mdniui-icon-ios-monitor:before {
+.dameiui-icon-ios-monitor:before {
   content: "\f466";
 }
-.mdniui-icon-ios-monitor-outline:before {
+.dameiui-icon-ios-monitor-outline:before {
   content: "\f465";
 }
-.mdniui-icon-ios-moon:before {
+.dameiui-icon-ios-moon:before {
   content: "\f468";
 }
-.mdniui-icon-ios-moon-outline:before {
+.dameiui-icon-ios-moon-outline:before {
   content: "\f467";
 }
-.mdniui-icon-ios-more:before {
+.dameiui-icon-ios-more:before {
   content: "\f46a";
 }
-.mdniui-icon-ios-more-outline:before {
+.dameiui-icon-ios-more-outline:before {
   content: "\f469";
 }
-.mdniui-icon-ios-musical-note:before {
+.dameiui-icon-ios-musical-note:before {
   content: "\f46b";
 }
-.mdniui-icon-ios-musical-notes:before {
+.dameiui-icon-ios-musical-notes:before {
   content: "\f46c";
 }
-.mdniui-icon-ios-navigate:before {
+.dameiui-icon-ios-navigate:before {
   content: "\f46e";
 }
-.mdniui-icon-ios-navigate-outline:before {
+.dameiui-icon-ios-navigate-outline:before {
   content: "\f46d";
 }
-.mdniui-icon-ios-nutrition:before {
+.dameiui-icon-ios-nutrition:before {
   content: "\f470";
 }
-.mdniui-icon-ios-nutrition-outline:before {
+.dameiui-icon-ios-nutrition-outline:before {
   content: "\f46f";
 }
-.mdniui-icon-ios-paper:before {
+.dameiui-icon-ios-paper:before {
   content: "\f472";
 }
-.mdniui-icon-ios-paper-outline:before {
+.dameiui-icon-ios-paper-outline:before {
   content: "\f471";
 }
-.mdniui-icon-ios-paperplane:before {
+.dameiui-icon-ios-paperplane:before {
   content: "\f474";
 }
-.mdniui-icon-ios-paperplane-outline:before {
+.dameiui-icon-ios-paperplane-outline:before {
   content: "\f473";
 }
-.mdniui-icon-ios-partlysunny:before {
+.dameiui-icon-ios-partlysunny:before {
   content: "\f476";
 }
-.mdniui-icon-ios-partlysunny-outline:before {
+.dameiui-icon-ios-partlysunny-outline:before {
   content: "\f475";
 }
-.mdniui-icon-ios-pause:before {
+.dameiui-icon-ios-pause:before {
   content: "\f478";
 }
-.mdniui-icon-ios-pause-outline:before {
+.dameiui-icon-ios-pause-outline:before {
   content: "\f477";
 }
-.mdniui-icon-ios-paw:before {
+.dameiui-icon-ios-paw:before {
   content: "\f47a";
 }
-.mdniui-icon-ios-paw-outline:before {
+.dameiui-icon-ios-paw-outline:before {
   content: "\f479";
 }
-.mdniui-icon-ios-people:before {
+.dameiui-icon-ios-people:before {
   content: "\f47c";
 }
-.mdniui-icon-ios-people-outline:before {
+.dameiui-icon-ios-people-outline:before {
   content: "\f47b";
 }
-.mdniui-icon-ios-person:before {
+.dameiui-icon-ios-person:before {
   content: "\f47e";
 }
-.mdniui-icon-ios-person-outline:before {
+.dameiui-icon-ios-person-outline:before {
   content: "\f47d";
 }
-.mdniui-icon-ios-personadd:before {
+.dameiui-icon-ios-personadd:before {
   content: "\f480";
 }
-.mdniui-icon-ios-personadd-outline:before {
+.dameiui-icon-ios-personadd-outline:before {
   content: "\f47f";
 }
-.mdniui-icon-ios-photos:before {
+.dameiui-icon-ios-photos:before {
   content: "\f482";
 }
-.mdniui-icon-ios-photos-outline:before {
+.dameiui-icon-ios-photos-outline:before {
   content: "\f481";
 }
-.mdniui-icon-ios-pie:before {
+.dameiui-icon-ios-pie:before {
   content: "\f484";
 }
-.mdniui-icon-ios-pie-outline:before {
+.dameiui-icon-ios-pie-outline:before {
   content: "\f483";
 }
-.mdniui-icon-ios-pint:before {
+.dameiui-icon-ios-pint:before {
   content: "\f486";
 }
-.mdniui-icon-ios-pint-outline:before {
+.dameiui-icon-ios-pint-outline:before {
   content: "\f485";
 }
-.mdniui-icon-ios-play:before {
+.dameiui-icon-ios-play:before {
   content: "\f488";
 }
-.mdniui-icon-ios-play-outline:before {
+.dameiui-icon-ios-play-outline:before {
   content: "\f487";
 }
-.mdniui-icon-ios-plus:before {
+.dameiui-icon-ios-plus:before {
   content: "\f48b";
 }
-.mdniui-icon-ios-plus-empty:before {
+.dameiui-icon-ios-plus-empty:before {
   content: "\f489";
 }
-.mdniui-icon-ios-plus-outline:before {
+.dameiui-icon-ios-plus-outline:before {
   content: "\f48a";
 }
-.mdniui-icon-ios-pricetag:before {
+.dameiui-icon-ios-pricetag:before {
   content: "\f48d";
 }
-.mdniui-icon-ios-pricetag-outline:before {
+.dameiui-icon-ios-pricetag-outline:before {
   content: "\f48c";
 }
-.mdniui-icon-ios-pricetags:before {
+.dameiui-icon-ios-pricetags:before {
   content: "\f48f";
 }
-.mdniui-icon-ios-pricetags-outline:before {
+.dameiui-icon-ios-pricetags-outline:before {
   content: "\f48e";
 }
-.mdniui-icon-ios-printer:before {
+.dameiui-icon-ios-printer:before {
   content: "\f491";
 }
-.mdniui-icon-ios-printer-outline:before {
+.dameiui-icon-ios-printer-outline:before {
   content: "\f490";
 }
-.mdniui-icon-ios-pulse:before {
+.dameiui-icon-ios-pulse:before {
   content: "\f493";
 }
-.mdniui-icon-ios-pulse-strong:before {
+.dameiui-icon-ios-pulse-strong:before {
   content: "\f492";
 }
-.mdniui-icon-ios-rainy:before {
+.dameiui-icon-ios-rainy:before {
   content: "\f495";
 }
-.mdniui-icon-ios-rainy-outline:before {
+.dameiui-icon-ios-rainy-outline:before {
   content: "\f494";
 }
-.mdniui-icon-ios-recording:before {
+.dameiui-icon-ios-recording:before {
   content: "\f497";
 }
-.mdniui-icon-ios-recording-outline:before {
+.dameiui-icon-ios-recording-outline:before {
   content: "\f496";
 }
-.mdniui-icon-ios-redo:before {
+.dameiui-icon-ios-redo:before {
   content: "\f499";
 }
-.mdniui-icon-ios-redo-outline:before {
+.dameiui-icon-ios-redo-outline:before {
   content: "\f498";
 }
-.mdniui-icon-ios-refresh:before {
+.dameiui-icon-ios-refresh:before {
   content: "\f49c";
 }
-.mdniui-icon-ios-refresh-empty:before {
+.dameiui-icon-ios-refresh-empty:before {
   content: "\f49a";
 }
-.mdniui-icon-ios-refresh-outline:before {
+.dameiui-icon-ios-refresh-outline:before {
   content: "\f49b";
 }
-.mdniui-icon-ios-reload:before {
+.dameiui-icon-ios-reload:before {
   content: "\f49d";
 }
-.mdniui-icon-ios-reverse-camera:before {
+.dameiui-icon-ios-reverse-camera:before {
   content: "\f49f";
 }
-.mdniui-icon-ios-reverse-camera-outline:before {
+.dameiui-icon-ios-reverse-camera-outline:before {
   content: "\f49e";
 }
-.mdniui-icon-ios-rewind:before {
+.dameiui-icon-ios-rewind:before {
   content: "\f4a1";
 }
-.mdniui-icon-ios-rewind-outline:before {
+.dameiui-icon-ios-rewind-outline:before {
   content: "\f4a0";
 }
-.mdniui-icon-ios-rose:before {
+.dameiui-icon-ios-rose:before {
   content: "\f4a3";
 }
-.mdniui-icon-ios-rose-outline:before {
+.dameiui-icon-ios-rose-outline:before {
   content: "\f4a2";
 }
-.mdniui-icon-ios-search:before {
+.dameiui-icon-ios-search:before {
   content: "\f4a5";
 }
-.mdniui-icon-ios-search-strong:before {
+.dameiui-icon-ios-search-strong:before {
   content: "\f4a4";
 }
-.mdniui-icon-ios-settings:before {
+.dameiui-icon-ios-settings:before {
   content: "\f4a7";
 }
-.mdniui-icon-ios-settings-strong:before {
+.dameiui-icon-ios-settings-strong:before {
   content: "\f4a6";
 }
-.mdniui-icon-ios-shuffle:before {
+.dameiui-icon-ios-shuffle:before {
   content: "\f4a9";
 }
-.mdniui-icon-ios-shuffle-strong:before {
+.dameiui-icon-ios-shuffle-strong:before {
   content: "\f4a8";
 }
-.mdniui-icon-ios-skipbackward:before {
+.dameiui-icon-ios-skipbackward:before {
   content: "\f4ab";
 }
-.mdniui-icon-ios-skipbackward-outline:before {
+.dameiui-icon-ios-skipbackward-outline:before {
   content: "\f4aa";
 }
-.mdniui-icon-ios-skipforward:before {
+.dameiui-icon-ios-skipforward:before {
   content: "\f4ad";
 }
-.mdniui-icon-ios-skipforward-outline:before {
+.dameiui-icon-ios-skipforward-outline:before {
   content: "\f4ac";
 }
-.mdniui-icon-ios-snowy:before {
+.dameiui-icon-ios-snowy:before {
   content: "\f4ae";
 }
-.mdniui-icon-ios-speedometer:before {
+.dameiui-icon-ios-speedometer:before {
   content: "\f4b0";
 }
-.mdniui-icon-ios-speedometer-outline:before {
+.dameiui-icon-ios-speedometer-outline:before {
   content: "\f4af";
 }
-.mdniui-icon-ios-star:before {
+.dameiui-icon-ios-star:before {
   content: "\f4b3";
 }
-.mdniui-icon-ios-star-half:before {
+.dameiui-icon-ios-star-half:before {
   content: "\f4b1";
 }
-.mdniui-icon-ios-star-outline:before {
+.dameiui-icon-ios-star-outline:before {
   content: "\f4b2";
 }
-.mdniui-icon-ios-stopwatch:before {
+.dameiui-icon-ios-stopwatch:before {
   content: "\f4b5";
 }
-.mdniui-icon-ios-stopwatch-outline:before {
+.dameiui-icon-ios-stopwatch-outline:before {
   content: "\f4b4";
 }
-.mdniui-icon-ios-sunny:before {
+.dameiui-icon-ios-sunny:before {
   content: "\f4b7";
 }
-.mdniui-icon-ios-sunny-outline:before {
+.dameiui-icon-ios-sunny-outline:before {
   content: "\f4b6";
 }
-.mdniui-icon-ios-telephone:before {
+.dameiui-icon-ios-telephone:before {
   content: "\f4b9";
 }
-.mdniui-icon-ios-telephone-outline:before {
+.dameiui-icon-ios-telephone-outline:before {
   content: "\f4b8";
 }
-.mdniui-icon-ios-tennisball:before {
+.dameiui-icon-ios-tennisball:before {
   content: "\f4bb";
 }
-.mdniui-icon-ios-tennisball-outline:before {
+.dameiui-icon-ios-tennisball-outline:before {
   content: "\f4ba";
 }
-.mdniui-icon-ios-thunderstorm:before {
+.dameiui-icon-ios-thunderstorm:before {
   content: "\f4bd";
 }
-.mdniui-icon-ios-thunderstorm-outline:before {
+.dameiui-icon-ios-thunderstorm-outline:before {
   content: "\f4bc";
 }
-.mdniui-icon-ios-time:before {
+.dameiui-icon-ios-time:before {
   content: "\f4bf";
 }
-.mdniui-icon-ios-time-outline:before {
+.dameiui-icon-ios-time-outline:before {
   content: "\f4be";
 }
-.mdniui-icon-ios-timer:before {
+.dameiui-icon-ios-timer:before {
   content: "\f4c1";
 }
-.mdniui-icon-ios-timer-outline:before {
+.dameiui-icon-ios-timer-outline:before {
   content: "\f4c0";
 }
-.mdniui-icon-ios-toggle:before {
+.dameiui-icon-ios-toggle:before {
   content: "\f4c3";
 }
-.mdniui-icon-ios-toggle-outline:before {
+.dameiui-icon-ios-toggle-outline:before {
   content: "\f4c2";
 }
-.mdniui-icon-ios-trash:before {
+.dameiui-icon-ios-trash:before {
   content: "\f4c5";
 }
-.mdniui-icon-ios-trash-outline:before {
+.dameiui-icon-ios-trash-outline:before {
   content: "\f4c4";
 }
-.mdniui-icon-ios-undo:before {
+.dameiui-icon-ios-undo:before {
   content: "\f4c7";
 }
-.mdniui-icon-ios-undo-outline:before {
+.dameiui-icon-ios-undo-outline:before {
   content: "\f4c6";
 }
-.mdniui-icon-ios-unlocked:before {
+.dameiui-icon-ios-unlocked:before {
   content: "\f4c9";
 }
-.mdniui-icon-ios-unlocked-outline:before {
+.dameiui-icon-ios-unlocked-outline:before {
   content: "\f4c8";
 }
-.mdniui-icon-ios-upload:before {
+.dameiui-icon-ios-upload:before {
   content: "\f4cb";
 }
-.mdniui-icon-ios-upload-outline:before {
+.dameiui-icon-ios-upload-outline:before {
   content: "\f4ca";
 }
-.mdniui-icon-ios-videocam:before {
+.dameiui-icon-ios-videocam:before {
   content: "\f4cd";
 }
-.mdniui-icon-ios-videocam-outline:before {
+.dameiui-icon-ios-videocam-outline:before {
   content: "\f4cc";
 }
-.mdniui-icon-ios-volume-high:before {
+.dameiui-icon-ios-volume-high:before {
   content: "\f4ce";
 }
-.mdniui-icon-ios-volume-low:before {
+.dameiui-icon-ios-volume-low:before {
   content: "\f4cf";
 }
-.mdniui-icon-ios-wineglass:before {
+.dameiui-icon-ios-wineglass:before {
   content: "\f4d1";
 }
-.mdniui-icon-ios-wineglass-outline:before {
+.dameiui-icon-ios-wineglass-outline:before {
   content: "\f4d0";
 }
-.mdniui-icon-ios-world:before {
+.dameiui-icon-ios-world:before {
   content: "\f4d3";
 }
-.mdniui-icon-ios-world-outline:before {
+.dameiui-icon-ios-world-outline:before {
   content: "\f4d2";
 }
-.mdniui-icon-ipad:before {
+.dameiui-icon-ipad:before {
   content: "\f1f9";
 }
-.mdniui-icon-iphone:before {
+.dameiui-icon-iphone:before {
   content: "\f1fa";
 }
-.mdniui-icon-ipod:before {
+.dameiui-icon-ipod:before {
   content: "\f1fb";
 }
-.mdniui-icon-jet:before {
+.dameiui-icon-jet:before {
   content: "\f295";
 }
-.mdniui-icon-key:before {
+.dameiui-icon-key:before {
   content: "\f296";
 }
-.mdniui-icon-knife:before {
+.dameiui-icon-knife:before {
   content: "\f297";
 }
-.mdniui-icon-laptop:before {
+.dameiui-icon-laptop:before {
   content: "\f1fc";
 }
-.mdniui-icon-leaf:before {
+.dameiui-icon-leaf:before {
   content: "\f1fd";
 }
-.mdniui-icon-levels:before {
+.dameiui-icon-levels:before {
   content: "\f298";
 }
-.mdniui-icon-lightbulb:before {
+.dameiui-icon-lightbulb:before {
   content: "\f299";
 }
-.mdniui-icon-link:before {
+.dameiui-icon-link:before {
   content: "\f1fe";
 }
-.mdniui-icon-load-a:before {
+.dameiui-icon-load-a:before {
   content: "\f29a";
 }
-.mdniui-icon-load-b:before {
+.dameiui-icon-load-b:before {
   content: "\f29b";
 }
-.mdniui-icon-load-c:before {
+.dameiui-icon-load-c:before {
   content: "\f29c";
 }
-.mdniui-icon-load-d:before {
+.dameiui-icon-load-d:before {
   content: "\f29d";
 }
-.mdniui-icon-location:before {
+.dameiui-icon-location:before {
   content: "\f1ff";
 }
-.mdniui-icon-lock-combination:before {
+.dameiui-icon-lock-combination:before {
   content: "\f4d4";
 }
-.mdniui-icon-locked:before {
+.dameiui-icon-locked:before {
   content: "\f200";
 }
-.mdniui-icon-log-in:before {
+.dameiui-icon-log-in:before {
   content: "\f29e";
 }
-.mdniui-icon-log-out:before {
+.dameiui-icon-log-out:before {
   content: "\f29f";
 }
-.mdniui-icon-loop:before {
+.dameiui-icon-loop:before {
   content: "\f201";
 }
-.mdniui-icon-magnet:before {
+.dameiui-icon-magnet:before {
   content: "\f2a0";
 }
-.mdniui-icon-male:before {
+.dameiui-icon-male:before {
   content: "\f2a1";
 }
-.mdniui-icon-man:before {
+.dameiui-icon-man:before {
   content: "\f202";
 }
-.mdniui-icon-map:before {
+.dameiui-icon-map:before {
   content: "\f203";
 }
-.mdniui-icon-medkit:before {
+.dameiui-icon-medkit:before {
   content: "\f2a2";
 }
-.mdniui-icon-merge:before {
+.dameiui-icon-merge:before {
   content: "\f33f";
 }
-.mdniui-icon-mic-a:before {
+.dameiui-icon-mic-a:before {
   content: "\f204";
 }
-.mdniui-icon-mic-b:before {
+.dameiui-icon-mic-b:before {
   content: "\f205";
 }
-.mdniui-icon-mic-c:before {
+.dameiui-icon-mic-c:before {
   content: "\f206";
 }
-.mdniui-icon-minus:before {
+.dameiui-icon-minus:before {
   content: "\f209";
 }
-.mdniui-icon-minus-circled:before {
+.dameiui-icon-minus-circled:before {
   content: "\f207";
 }
-.mdniui-icon-minus-round:before {
+.dameiui-icon-minus-round:before {
   content: "\f208";
 }
-.mdniui-icon-model-s:before {
+.dameiui-icon-model-s:before {
   content: "\f2c1";
 }
-.mdniui-icon-monitor:before {
+.dameiui-icon-monitor:before {
   content: "\f20a";
 }
-.mdniui-icon-more:before {
+.dameiui-icon-more:before {
   content: "\f20b";
 }
-.mdniui-icon-mouse:before {
+.dameiui-icon-mouse:before {
   content: "\f340";
 }
-.mdniui-icon-music-note:before {
+.dameiui-icon-music-note:before {
   content: "\f20c";
 }
-.mdniui-icon-navicon:before {
+.dameiui-icon-navicon:before {
   content: "\f20e";
 }
-.mdniui-icon-navicon-round:before {
+.dameiui-icon-navicon-round:before {
   content: "\f20d";
 }
-.mdniui-icon-navigate:before {
+.dameiui-icon-navigate:before {
   content: "\f2a3";
 }
-.mdniui-icon-network:before {
+.dameiui-icon-network:before {
   content: "\f341";
 }
-.mdniui-icon-no-smoking:before {
+.dameiui-icon-no-smoking:before {
   content: "\f2c2";
 }
-.mdniui-icon-nuclear:before {
+.dameiui-icon-nuclear:before {
   content: "\f2a4";
 }
-.mdniui-icon-outlet:before {
+.dameiui-icon-outlet:before {
   content: "\f342";
 }
-.mdniui-icon-paintbrush:before {
+.dameiui-icon-paintbrush:before {
   content: "\f4d5";
 }
-.mdniui-icon-paintbucket:before {
+.dameiui-icon-paintbucket:before {
   content: "\f4d6";
 }
-.mdniui-icon-paper-airplane:before {
+.dameiui-icon-paper-airplane:before {
   content: "\f2c3";
 }
-.mdniui-icon-paperclip:before {
+.dameiui-icon-paperclip:before {
   content: "\f20f";
 }
-.mdniui-icon-pause:before {
+.dameiui-icon-pause:before {
   content: "\f210";
 }
-.mdniui-icon-person:before {
+.dameiui-icon-person:before {
   content: "\f213";
 }
-.mdniui-icon-person-add:before {
+.dameiui-icon-person-add:before {
   content: "\f211";
 }
-.mdniui-icon-person-stalker:before {
+.dameiui-icon-person-stalker:before {
   content: "\f212";
 }
-.mdniui-icon-pie-graph:before {
+.dameiui-icon-pie-graph:before {
   content: "\f2a5";
 }
-.mdniui-icon-pin:before {
+.dameiui-icon-pin:before {
   content: "\f2a6";
 }
-.mdniui-icon-pinpoint:before {
+.dameiui-icon-pinpoint:before {
   content: "\f2a7";
 }
-.mdniui-icon-pizza:before {
+.dameiui-icon-pizza:before {
   content: "\f2a8";
 }
-.mdniui-icon-plane:before {
+.dameiui-icon-plane:before {
   content: "\f214";
 }
-.mdniui-icon-planet:before {
+.dameiui-icon-planet:before {
   content: "\f343";
 }
-.mdniui-icon-play:before {
+.dameiui-icon-play:before {
   content: "\f215";
 }
-.mdniui-icon-playstation:before {
+.dameiui-icon-playstation:before {
   content: "\f30a";
 }
-.mdniui-icon-plus:before {
+.dameiui-icon-plus:before {
   content: "\f218";
 }
-.mdniui-icon-plus-circled:before {
+.dameiui-icon-plus-circled:before {
   content: "\f216";
 }
-.mdniui-icon-plus-round:before {
+.dameiui-icon-plus-round:before {
   content: "\f217";
 }
-.mdniui-icon-podium:before {
+.dameiui-icon-podium:before {
   content: "\f344";
 }
-.mdniui-icon-pound:before {
+.dameiui-icon-pound:before {
   content: "\f219";
 }
-.mdniui-icon-power:before {
+.dameiui-icon-power:before {
   content: "\f2a9";
 }
-.mdniui-icon-pricetag:before {
+.dameiui-icon-pricetag:before {
   content: "\f2aa";
 }
-.mdniui-icon-pricetags:before {
+.dameiui-icon-pricetags:before {
   content: "\f2ab";
 }
-.mdniui-icon-printer:before {
+.dameiui-icon-printer:before {
   content: "\f21a";
 }
-.mdniui-icon-pull-request:before {
+.dameiui-icon-pull-request:before {
   content: "\f345";
 }
-.mdniui-icon-qr-scanner:before {
+.dameiui-icon-qr-scanner:before {
   content: "\f346";
 }
-.mdniui-icon-quote:before {
+.dameiui-icon-quote:before {
   content: "\f347";
 }
-.mdniui-icon-radio-waves:before {
+.dameiui-icon-radio-waves:before {
   content: "\f2ac";
 }
-.mdniui-icon-record:before {
+.dameiui-icon-record:before {
   content: "\f21b";
 }
-.mdniui-icon-refresh:before {
+.dameiui-icon-refresh:before {
   content: "\f21c";
 }
-.mdniui-icon-reply:before {
+.dameiui-icon-reply:before {
   content: "\f21e";
 }
-.mdniui-icon-reply-all:before {
+.dameiui-icon-reply-all:before {
   content: "\f21d";
 }
-.mdniui-icon-ribbon-a:before {
+.dameiui-icon-ribbon-a:before {
   content: "\f348";
 }
-.mdniui-icon-ribbon-b:before {
+.dameiui-icon-ribbon-b:before {
   content: "\f349";
 }
-.mdniui-icon-sad:before {
+.dameiui-icon-sad:before {
   content: "\f34a";
 }
-.mdniui-icon-sad-outline:before {
+.dameiui-icon-sad-outline:before {
   content: "\f4d7";
 }
-.mdniui-icon-scissors:before {
+.dameiui-icon-scissors:before {
   content: "\f34b";
 }
-.mdniui-icon-search:before {
+.dameiui-icon-search:before {
   content: "\f21f";
 }
-.mdniui-icon-settings:before {
+.dameiui-icon-settings:before {
   content: "\f2ad";
 }
-.mdniui-icon-share:before {
+.dameiui-icon-share:before {
   content: "\f220";
 }
-.mdniui-icon-shuffle:before {
+.dameiui-icon-shuffle:before {
   content: "\f221";
 }
-.mdniui-icon-skip-backward:before {
+.dameiui-icon-skip-backward:before {
   content: "\f222";
 }
-.mdniui-icon-skip-forward:before {
+.dameiui-icon-skip-forward:before {
   content: "\f223";
 }
-.mdniui-icon-social-android:before {
+.dameiui-icon-social-android:before {
   content: "\f225";
 }
-.mdniui-icon-social-android-outline:before {
+.dameiui-icon-social-android-outline:before {
   content: "\f224";
 }
-.mdniui-icon-social-angular:before {
+.dameiui-icon-social-angular:before {
   content: "\f4d9";
 }
-.mdniui-icon-social-angular-outline:before {
+.dameiui-icon-social-angular-outline:before {
   content: "\f4d8";
 }
-.mdniui-icon-social-apple:before {
+.dameiui-icon-social-apple:before {
   content: "\f227";
 }
-.mdniui-icon-social-apple-outline:before {
+.dameiui-icon-social-apple-outline:before {
   content: "\f226";
 }
-.mdniui-icon-social-bitcoin:before {
+.dameiui-icon-social-bitcoin:before {
   content: "\f2af";
 }
-.mdniui-icon-social-bitcoin-outline:before {
+.dameiui-icon-social-bitcoin-outline:before {
   content: "\f2ae";
 }
-.mdniui-icon-social-buffer:before {
+.dameiui-icon-social-buffer:before {
   content: "\f229";
 }
-.mdniui-icon-social-buffer-outline:before {
+.dameiui-icon-social-buffer-outline:before {
   content: "\f228";
 }
-.mdniui-icon-social-chrome:before {
+.dameiui-icon-social-chrome:before {
   content: "\f4db";
 }
-.mdniui-icon-social-chrome-outline:before {
+.dameiui-icon-social-chrome-outline:before {
   content: "\f4da";
 }
-.mdniui-icon-social-codepen:before {
+.dameiui-icon-social-codepen:before {
   content: "\f4dd";
 }
-.mdniui-icon-social-codepen-outline:before {
+.dameiui-icon-social-codepen-outline:before {
   content: "\f4dc";
 }
-.mdniui-icon-social-css3:before {
+.dameiui-icon-social-css3:before {
   content: "\f4df";
 }
-.mdniui-icon-social-css3-outline:before {
+.dameiui-icon-social-css3-outline:before {
   content: "\f4de";
 }
-.mdniui-icon-social-designernews:before {
+.dameiui-icon-social-designernews:before {
   content: "\f22b";
 }
-.mdniui-icon-social-designernews-outline:before {
+.dameiui-icon-social-designernews-outline:before {
   content: "\f22a";
 }
-.mdniui-icon-social-dribbble:before {
+.dameiui-icon-social-dribbble:before {
   content: "\f22d";
 }
-.mdniui-icon-social-dribbble-outline:before {
+.dameiui-icon-social-dribbble-outline:before {
   content: "\f22c";
 }
-.mdniui-icon-social-dropbox:before {
+.dameiui-icon-social-dropbox:before {
   content: "\f22f";
 }
-.mdniui-icon-social-dropbox-outline:before {
+.dameiui-icon-social-dropbox-outline:before {
   content: "\f22e";
 }
-.mdniui-icon-social-euro:before {
+.dameiui-icon-social-euro:before {
   content: "\f4e1";
 }
-.mdniui-icon-social-euro-outline:before {
+.dameiui-icon-social-euro-outline:before {
   content: "\f4e0";
 }
-.mdniui-icon-social-facebook:before {
+.dameiui-icon-social-facebook:before {
   content: "\f231";
 }
-.mdniui-icon-social-facebook-outline:before {
+.dameiui-icon-social-facebook-outline:before {
   content: "\f230";
 }
-.mdniui-icon-social-foursquare:before {
+.dameiui-icon-social-foursquare:before {
   content: "\f34d";
 }
-.mdniui-icon-social-foursquare-outline:before {
+.dameiui-icon-social-foursquare-outline:before {
   content: "\f34c";
 }
-.mdniui-icon-social-freebsd-devil:before {
+.dameiui-icon-social-freebsd-devil:before {
   content: "\f2c4";
 }
-.mdniui-icon-social-github:before {
+.dameiui-icon-social-github:before {
   content: "\f233";
 }
-.mdniui-icon-social-github-outline:before {
+.dameiui-icon-social-github-outline:before {
   content: "\f232";
 }
-.mdniui-icon-social-google:before {
+.dameiui-icon-social-google:before {
   content: "\f34f";
 }
-.mdniui-icon-social-google-outline:before {
+.dameiui-icon-social-google-outline:before {
   content: "\f34e";
 }
-.mdniui-icon-social-googleplus:before {
+.dameiui-icon-social-googleplus:before {
   content: "\f235";
 }
-.mdniui-icon-social-googleplus-outline:before {
+.dameiui-icon-social-googleplus-outline:before {
   content: "\f234";
 }
-.mdniui-icon-social-hackernews:before {
+.dameiui-icon-social-hackernews:before {
   content: "\f237";
 }
-.mdniui-icon-social-hackernews-outline:before {
+.dameiui-icon-social-hackernews-outline:before {
   content: "\f236";
 }
-.mdniui-icon-social-html5:before {
+.dameiui-icon-social-html5:before {
   content: "\f4e3";
 }
-.mdniui-icon-social-html5-outline:before {
+.dameiui-icon-social-html5-outline:before {
   content: "\f4e2";
 }
-.mdniui-icon-social-instagram:before {
+.dameiui-icon-social-instagram:before {
   content: "\f351";
 }
-.mdniui-icon-social-instagram-outline:before {
+.dameiui-icon-social-instagram-outline:before {
   content: "\f350";
 }
-.mdniui-icon-social-javascript:before {
+.dameiui-icon-social-javascript:before {
   content: "\f4e5";
 }
-.mdniui-icon-social-javascript-outline:before {
+.dameiui-icon-social-javascript-outline:before {
   content: "\f4e4";
 }
-.mdniui-icon-social-linkedin:before {
+.dameiui-icon-social-linkedin:before {
   content: "\f239";
 }
-.mdniui-icon-social-linkedin-outline:before {
+.dameiui-icon-social-linkedin-outline:before {
   content: "\f238";
 }
-.mdniui-icon-social-markdown:before {
+.dameiui-icon-social-markdown:before {
   content: "\f4e6";
 }
-.mdniui-icon-social-nodejs:before {
+.dameiui-icon-social-nodejs:before {
   content: "\f4e7";
 }
-.mdniui-icon-social-octocat:before {
+.dameiui-icon-social-octocat:before {
   content: "\f4e8";
 }
-.mdniui-icon-social-pinterest:before {
+.dameiui-icon-social-pinterest:before {
   content: "\f2b1";
 }
-.mdniui-icon-social-pinterest-outline:before {
+.dameiui-icon-social-pinterest-outline:before {
   content: "\f2b0";
 }
-.mdniui-icon-social-python:before {
+.dameiui-icon-social-python:before {
   content: "\f4e9";
 }
-.mdniui-icon-social-reddit:before {
+.dameiui-icon-social-reddit:before {
   content: "\f23b";
 }
-.mdniui-icon-social-reddit-outline:before {
+.dameiui-icon-social-reddit-outline:before {
   content: "\f23a";
 }
-.mdniui-icon-social-rss:before {
+.dameiui-icon-social-rss:before {
   content: "\f23d";
 }
-.mdniui-icon-social-rss-outline:before {
+.dameiui-icon-social-rss-outline:before {
   content: "\f23c";
 }
-.mdniui-icon-social-sass:before {
+.dameiui-icon-social-sass:before {
   content: "\f4ea";
 }
-.mdniui-icon-social-skype:before {
+.dameiui-icon-social-skype:before {
   content: "\f23f";
 }
-.mdniui-icon-social-skype-outline:before {
+.dameiui-icon-social-skype-outline:before {
   content: "\f23e";
 }
-.mdniui-icon-social-snapchat:before {
+.dameiui-icon-social-snapchat:before {
   content: "\f4ec";
 }
-.mdniui-icon-social-snapchat-outline:before {
+.dameiui-icon-social-snapchat-outline:before {
   content: "\f4eb";
 }
-.mdniui-icon-social-tumblr:before {
+.dameiui-icon-social-tumblr:before {
   content: "\f241";
 }
-.mdniui-icon-social-tumblr-outline:before {
+.dameiui-icon-social-tumblr-outline:before {
   content: "\f240";
 }
-.mdniui-icon-social-tux:before {
+.dameiui-icon-social-tux:before {
   content: "\f2c5";
 }
-.mdniui-icon-social-twitch:before {
+.dameiui-icon-social-twitch:before {
   content: "\f4ee";
 }
-.mdniui-icon-social-twitch-outline:before {
+.dameiui-icon-social-twitch-outline:before {
   content: "\f4ed";
 }
-.mdniui-icon-social-twitter:before {
+.dameiui-icon-social-twitter:before {
   content: "\f243";
 }
-.mdniui-icon-social-twitter-outline:before {
+.dameiui-icon-social-twitter-outline:before {
   content: "\f242";
 }
-.mdniui-icon-social-usd:before {
+.dameiui-icon-social-usd:before {
   content: "\f353";
 }
-.mdniui-icon-social-usd-outline:before {
+.dameiui-icon-social-usd-outline:before {
   content: "\f352";
 }
-.mdniui-icon-social-vimeo:before {
+.dameiui-icon-social-vimeo:before {
   content: "\f245";
 }
-.mdniui-icon-social-vimeo-outline:before {
+.dameiui-icon-social-vimeo-outline:before {
   content: "\f244";
 }
-.mdniui-icon-social-whatsapp:before {
+.dameiui-icon-social-whatsapp:before {
   content: "\f4f0";
 }
-.mdniui-icon-social-whatsapp-outline:before {
+.dameiui-icon-social-whatsapp-outline:before {
   content: "\f4ef";
 }
-.mdniui-icon-social-windows:before {
+.dameiui-icon-social-windows:before {
   content: "\f247";
 }
-.mdniui-icon-social-windows-outline:before {
+.dameiui-icon-social-windows-outline:before {
   content: "\f246";
 }
-.mdniui-icon-social-wordpress:before {
+.dameiui-icon-social-wordpress:before {
   content: "\f249";
 }
-.mdniui-icon-social-wordpress-outline:before {
+.dameiui-icon-social-wordpress-outline:before {
   content: "\f248";
 }
-.mdniui-icon-social-yahoo:before {
+.dameiui-icon-social-yahoo:before {
   content: "\f24b";
 }
-.mdniui-icon-social-yahoo-outline:before {
+.dameiui-icon-social-yahoo-outline:before {
   content: "\f24a";
 }
-.mdniui-icon-social-yen:before {
+.dameiui-icon-social-yen:before {
   content: "\f4f2";
 }
-.mdniui-icon-social-yen-outline:before {
+.dameiui-icon-social-yen-outline:before {
   content: "\f4f1";
 }
-.mdniui-icon-social-youtube:before {
+.dameiui-icon-social-youtube:before {
   content: "\f24d";
 }
-.mdniui-icon-social-youtube-outline:before {
+.dameiui-icon-social-youtube-outline:before {
   content: "\f24c";
 }
-.mdniui-icon-soup-can:before {
+.dameiui-icon-soup-can:before {
   content: "\f4f4";
 }
-.mdniui-icon-soup-can-outline:before {
+.dameiui-icon-soup-can-outline:before {
   content: "\f4f3";
 }
-.mdniui-icon-speakerphone:before {
+.dameiui-icon-speakerphone:before {
   content: "\f2b2";
 }
-.mdniui-icon-speedometer:before {
+.dameiui-icon-speedometer:before {
   content: "\f2b3";
 }
-.mdniui-icon-spoon:before {
+.dameiui-icon-spoon:before {
   content: "\f2b4";
 }
-.mdniui-icon-star:before {
+.dameiui-icon-star:before {
   content: "\f24e";
 }
-.mdniui-icon-stats-bars:before {
+.dameiui-icon-stats-bars:before {
   content: "\f2b5";
 }
-.mdniui-icon-steam:before {
+.dameiui-icon-steam:before {
   content: "\f30b";
 }
-.mdniui-icon-stop:before {
+.dameiui-icon-stop:before {
   content: "\f24f";
 }
-.mdniui-icon-thermometer:before {
+.dameiui-icon-thermometer:before {
   content: "\f2b6";
 }
-.mdniui-icon-thumbsdown:before {
+.dameiui-icon-thumbsdown:before {
   content: "\f250";
 }
-.mdniui-icon-thumbsup:before {
+.dameiui-icon-thumbsup:before {
   content: "\f251";
 }
-.mdniui-icon-toggle:before {
+.dameiui-icon-toggle:before {
   content: "\f355";
 }
-.mdniui-icon-toggle-filled:before {
+.dameiui-icon-toggle-filled:before {
   content: "\f354";
 }
-.mdniui-icon-transgender:before {
+.dameiui-icon-transgender:before {
   content: "\f4f5";
 }
-.mdniui-icon-trash-a:before {
+.dameiui-icon-trash-a:before {
   content: "\f252";
 }
-.mdniui-icon-trash-b:before {
+.dameiui-icon-trash-b:before {
   content: "\f253";
 }
-.mdniui-icon-trophy:before {
+.dameiui-icon-trophy:before {
   content: "\f356";
 }
-.mdniui-icon-tshirt:before {
+.dameiui-icon-tshirt:before {
   content: "\f4f7";
 }
-.mdniui-icon-tshirt-outline:before {
+.dameiui-icon-tshirt-outline:before {
   content: "\f4f6";
 }
-.mdniui-icon-umbrella:before {
+.dameiui-icon-umbrella:before {
   content: "\f2b7";
 }
-.mdniui-icon-university:before {
+.dameiui-icon-university:before {
   content: "\f357";
 }
-.mdniui-icon-unlocked:before {
+.dameiui-icon-unlocked:before {
   content: "\f254";
 }
-.mdniui-icon-upload:before {
+.dameiui-icon-upload:before {
   content: "\f255";
 }
-.mdniui-icon-usb:before {
+.dameiui-icon-usb:before {
   content: "\f2b8";
 }
-.mdniui-icon-videocamera:before {
+.dameiui-icon-videocamera:before {
   content: "\f256";
 }
-.mdniui-icon-volume-high:before {
+.dameiui-icon-volume-high:before {
   content: "\f257";
 }
-.mdniui-icon-volume-low:before {
+.dameiui-icon-volume-low:before {
   content: "\f258";
 }
-.mdniui-icon-volume-medium:before {
+.dameiui-icon-volume-medium:before {
   content: "\f259";
 }
-.mdniui-icon-volume-mute:before {
+.dameiui-icon-volume-mute:before {
   content: "\f25a";
 }
-.mdniui-icon-wand:before {
+.dameiui-icon-wand:before {
   content: "\f358";
 }
-.mdniui-icon-waterdrop:before {
+.dameiui-icon-waterdrop:before {
   content: "\f25b";
 }
-.mdniui-icon-wifi:before {
+.dameiui-icon-wifi:before {
   content: "\f25c";
 }
-.mdniui-icon-wineglass:before {
+.dameiui-icon-wineglass:before {
   content: "\f2b9";
 }
-.mdniui-icon-woman:before {
+.dameiui-icon-woman:before {
   content: "\f25d";
 }
-.mdniui-icon-wrench:before {
+.dameiui-icon-wrench:before {
   content: "\f2ba";
 }
-.mdniui-icon-xbox:before {
+.dameiui-icon-xbox:before {
   content: "\f30c";
 }
 
-/*# sourceMappingURL=mdniui-mobile-px.css.map */
+/*# sourceMappingURL=dameiui-mobile-px.css.map */

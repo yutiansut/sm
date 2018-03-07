@@ -295,7 +295,7 @@
             },
             //获取角色和下拉
             getRole: function () {
-                var roleNameList = MdniUser.roleNameList.toString();
+                var roleNameList = DameiUser.roleNameList.toString();
                 if (roleNameList.indexOf('材料部审核员') >= 0) {
                     this.roleFlg = '1';
                     this.statusList = [
@@ -349,7 +349,7 @@
                  vueModal = new Vue({
                     el: el,
                     // 模式窗体必须引用 ModalMixin
-                    mixins: [MdniVueMixins.ModalMixin],
+                    mixins: [DameiVueMixins.ModalMixin],
                     $modal: $el,
                     //模式窗体 jQuery 对象
                     created: function () {

@@ -12,7 +12,7 @@
 
     <insert id="insert" parameterType="cn.damei.business.entity.orderflow.OrderBespeakContract">
         INSERT INTO sm_order_bespeak_contract
-            (contract_code
+            (dm_contract_code
             ,complete_sign
             ,schedule_sign_time
             ,executor

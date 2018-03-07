@@ -3,7 +3,7 @@
 <mapper namespace="cn.damei.business.dao.orderflow.ProjectSignDao">
     <resultMap id="BaseResultMap" type="cn.damei.business.entity.orderflow.ProjectSign">
         <id column="id" property="id"/>
-        <result column="contract_code" property="contractCode"/>
+        <result column="dm_contract_code" property="contractCode"/>
         <result column="complete" property="complete"/>
         <result column="complete_time" property="completeTime"/>
         <result column="sign_executor" property="signExecutor"/>
@@ -19,7 +19,7 @@
     <select id="getByCode" resultMap="BaseResultMap">
         SELECT
             sms.id,
-            cucs.contract_code,
+            cucs.dm_contract_code,
             sms.complete,
             sms.complete_time,
             sms.sign_executor,
@@ -30,12 +30,12 @@
             cucs.modify_amount
         FROM customer_contract cucs
         LEFT JOIN sm_project_sign sms
-        ON sms.contract_code = cucs.contract_code
-        WHERE cucs.contract_code = #{contractCode}
+        ON sms.dm_contract_code = cucs.dm_contract_code
+        WHERE cucs.dm_contract_code = #{contractCode}
     </select>
     <select id="getById" resultMap="BaseResultMap">
         SELECT
-            sms.contract_code,
+            sms.dm_contract_code,
             sms.complete,
             sms.complete_time,
             sms.sign_executor,
@@ -46,14 +46,14 @@
             cucs.modify_amount
         FROM sm_project_sign sms
         LEFT JOIN customer_contract cucs
-        ON sms.contract_code = cucs.contract_code
+        ON sms.dm_contract_code = cucs.dm_contract_code
         WHERE sms.id = #{id}
     </select>
     <update id="update">
         update sm_project_sign
         <set>
             <if test="contractCode != null">
-            contract_code = #{contractCode},
+            dm_contract_code = #{contractCode},
         </if>
             <if test="complete != null">
                 complete = #{complete},
@@ -86,7 +86,7 @@
         insert into sm_project_sign
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="contractCode != null">
-                contract_code,
+                dm_contract_code,
             </if>
             <if test="complete != null">
                 complete,

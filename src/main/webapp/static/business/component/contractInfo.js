@@ -10,7 +10,7 @@ var ContractInfo = Vue.extend({
         return {
             customerContract: '',
             //页面类型: 选材(select) 或者 变更(change) 或者 其他
-            pageType: MdniUtils.parseQueryStringDecode()['pageType'] || '',
+            pageType: DameiUtils.parseQueryStringDecode()['pageType'] || '',
         };
     },
     created: function () {

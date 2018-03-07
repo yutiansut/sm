@@ -4,7 +4,6 @@ var tt = null;
     $('#changeAuditCollect').addClass('active');
     tt = new Vue({
         el: '#container',
-        //mixins: [RocoVueMixins.DataTableMixin],
         data: {
             breadcrumbs: [{
                 path: '/',

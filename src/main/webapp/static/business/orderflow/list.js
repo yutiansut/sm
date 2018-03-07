@@ -56,11 +56,11 @@ var tt = null;
 
         },
         methods: {
-            //注意: MdniUser.roleNameList 是个字符串,需要转为数组!否则影响操作按钮角色的判断!
+            //注意: DameiUser.roleNameList 是个字符串,需要转为数组!否则影响操作按钮角色的判断!
             dealRoleNameList: function () {
                 var self = this;
                 self.roleNameList = [];
-                var str = MdniUser.roleNameList.substring(1, MdniUser.roleNameList.length - 1);
+                var str = DameiUser.roleNameList.substring(1, DameiUser.roleNameList.length - 1);
                 var roleNameArr = str.split(",");
                 roleNameArr.forEach(function (item) {
                     //去掉两端空格
@@ -516,9 +516,9 @@ var tt = null;
                         var id = $(this).data('id');
                         self.$http.get('/customercontract/contract/getById?id=' + id).then(function (res) {
                             if (res.data.code == 1) {
-                                if (MdniUser.roleNameList.toString().indexOf('督导') >= 0) {
+                                if (DameiUser.roleNameList.toString().indexOf('督导') >= 0) {
                                     sendGroupModal(res.data.data);
-                                } else if (MdniUser.roleNameList.toString().indexOf('设计组长') >= 0) {
+                                } else if (DameiUser.roleNameList.toString().indexOf('设计组长') >= 0) {
                                     sendDesignerModal(res.data.data);
                                 }
                             }
@@ -758,7 +758,7 @@ var tt = null;
                             contractCode: contractCode,
                             pageType: 'select'
                         }
-                        MdniUtils.locationHrefToClient('/material/materialIndex', params);
+                        DameiUtils.locationHrefToClient('/material/materialIndex', params);
                         //window.location.href = '/material/materialIndex?contractCode=' + contractCode + '&pageType=select';
                     });
                 //退回
@@ -832,7 +832,7 @@ var tt = null;
                         }
                     },
                     // 模式窗体必须引用 ModalMixin
-                    mixins: [MdniVueMixins.ModalMixin],
+                    mixins: [DameiVueMixins.ModalMixin],
                     $modal: $el,
                     data:{
                         _$dataTable: null
@@ -972,7 +972,7 @@ var tt = null;
                         }
                     },
                     // 模式窗体必须引用 ModalMixin
-                    mixins: [MdniVueMixins.ModalMixin],
+                    mixins: [DameiVueMixins.ModalMixin],
                     $modal: $el,
                     data: {
                         customerContract: model
@@ -1038,7 +1038,7 @@ var tt = null;
                     //     }
                     // },
                     // 模式窗体必须引用 ModalMixin
-                    mixins: [MdniVueMixins.ModalMixin],
+                    mixins: [DameiVueMixins.ModalMixin],
                     $modal: $el,
                     data: {
                         designerGroup: '',
@@ -1111,7 +1111,7 @@ var tt = null;
                 var vueModal = new Vue({
                     el: el,
                     // 模式窗体必须引用 ModalMixin
-                    mixins: [MdniVueMixins.ModalMixin],
+                    mixins: [DameiVueMixins.ModalMixin],
                     $modal: $el,
                     data: {
                         designers: '',
@@ -1191,9 +1191,9 @@ var tt = null;
                         }
                     },
                     // 模式窗体必须引用 ModalMixin
-                    mixins: [MdniVueMixins.ModalMixin],
+                    mixins: [DameiVueMixins.ModalMixin],
                     components: {
-                        'web-uploader': MdniVueComponents.WebUploaderComponent
+                        'web-uploader': DameiVueComponents.WebUploaderComponent
                     },
 
                     $modal: $el,
@@ -1251,9 +1251,9 @@ var tt = null;
                         }
                     },
                     // 模式窗体必须引用 ModalMixin
-                    mixins: [MdniVueMixins.ModalMixin],
+                    mixins: [DameiVueMixins.ModalMixin],
                     components: {
-                        'web-uploader': MdniVueComponents.WebUploaderComponent
+                        'web-uploader': DameiVueComponents.WebUploaderComponent
                     },
 
                     $modal: $el,
@@ -1352,10 +1352,10 @@ var tt = null;
                         }
                     },
                     // 模式窗体必须引用 ModalMixin
-                    mixins: [MdniVueMixins.ModalMixin],
+                    mixins: [DameiVueMixins.ModalMixin],
                     $modal: $el,
                     components: {
-                        'web-uploader': MdniVueComponents.WebUploaderComponent
+                        'web-uploader': DameiVueComponents.WebUploaderComponent
                     },
                     data: {
                         webUploaderAccessories: {   // 上传附件
@@ -1449,7 +1449,7 @@ var tt = null;
                         }
                     },
                     // 模式窗体必须引用 ModalMixin
-                    mixins: [MdniVueMixins.ModalMixin],
+                    mixins: [DameiVueMixins.ModalMixin],
                     $modal: $el,
                     data: {
                         id: model.id == null || model.id === 'undefined' ? '' : model.id,
@@ -1540,7 +1540,7 @@ var tt = null;
                         }
                     },
                     // 模式窗体必须引用 ModalMixin
-                    mixins: [MdniVueMixins.ModalMixin],
+                    mixins: [DameiVueMixins.ModalMixin],
                     $modal: $el,
                     data: {
                         id: model.id == null || model.id === 'undefined' ? '' : model.id,
@@ -1581,7 +1581,7 @@ var tt = null;
                 var vueModal = new Vue({
                     el: el,
                     // 模式窗体必须引用 ModalMixin
-                    mixins: [MdniVueMixins.ModalMixin],
+                    mixins: [DameiVueMixins.ModalMixin],
                     $modal: $el,
                     data: {
                         returnReason: model.returnReason == null || model.returnReason === 'undefined' ? '' : model.returnReason,
@@ -1636,7 +1636,7 @@ var tt = null;
                 var vueModal = new Vue({
                     el: el,
                     // 模式窗体必须引用 ModalMixin
-                    mixins: [MdniVueMixins.ModalMixin],
+                    mixins: [DameiVueMixins.ModalMixin],
                     $modal: $el,
                     data: {
                         returnReason: model.returnReason == null || model.returnReason === 'undefined' ? '' : model.returnReason,
