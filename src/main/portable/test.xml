@@ -4,9 +4,9 @@
     <!-- application.properties -->
     <config-file path="WEB-INF/classes/application.properties">
         <!--测试数据库-->
-        <replace key="jdbc.url">jdbc:mysql://rm-2ze3i1721k91nc0248o.mysql.rds.aliyuncs.com/mdni_scm_uat?useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull&amp;transformedBitIsBoolean=true</replace>
-        <replace key="jdbc.username">scmuatuser</replace>
-        <replace key="jdbc.password">KLLhkjk#$%dd342</replace>
+        <replace key="jdbc.url">jdbc:mysql://rm-2zea20z998tfwmd68.mysql.rds.aliyuncs.com/damei_sm?useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull&amp;transformedBitIsBoolean=true</replace>
+        <replace key="jdbc.username">dmsmuser</replace>
+        <replace key="jdbc.password">dmsmuser!@#</replace>
 
         <!--本系统域名 待替换-->
         <replace key="base.url">smtest.mdni.net.cn</replace>
