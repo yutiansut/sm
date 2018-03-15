@@ -12,12 +12,12 @@
         <replace key="base.url">smtest.mdni.net.cn</replace>
 
         <!--redis相关配置-->
-        <replace key="redis.host">172.16.12.101</replace>
-        <replace key="redis.password">123456</replace>
+        <replace key="redis.host">172.16.25.72</replace>
+        <replace key="redis.password">redis123!@#</replace>
         <replace key="redis.database">10</replace>
         <replace key="redis.timeout">3000</replace>
 
-        <replace key="oauth.center.url">logintest.mdni.net.cn</replace>
+        <replace key="oauth.center.url">http://47.95.234.249:8185</replace>
         <replace key="oauth.center.appid">9ef92d2dffac03fc66</replace>
         <replace key="oauth.center.secret">d81bc3fa3f4772a536627b78e414ce22</replace>
         <!-- 产业工人接口地址 -->
